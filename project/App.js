@@ -27,6 +27,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Riot Ndlovu</Text>
+      <Text>Nokuthaba Moyo</Text>
       <StatusBar style="auto" />
     </View>
   );
