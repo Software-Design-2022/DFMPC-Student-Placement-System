@@ -26,7 +26,7 @@ const analytics = getAnalytics(app);
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>testing App</Text>
+      <Text>Riot Ndlovu</Text>
       <StatusBar style="auto" />
     </View>
   );
