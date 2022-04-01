@@ -31,7 +31,7 @@ export default function App() {
       <Text>Nokuthaba Moyo</Text>
       <Text>Shagan</Text>
       <Text>Angela</Text>
-      <Text>Callum</Text>
+      <Text>Callum Muller</Text>
       <StatusBar style="auto" />
     </View>
   );
