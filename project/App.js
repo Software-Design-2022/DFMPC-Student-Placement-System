@@ -27,6 +27,7 @@ const firebaseConfig = { //
 export default function App() {
   return (
     <View style={styles.container}>
+      <Text>Shagan Plaatjies</Text>
       <Text>Riot Ndlovu</Text>
       <Text>Nokuthaba Moyo</Text>
       <Text>Shagan</Text>
