@@ -30,6 +30,7 @@ export default function App() {
       <Text>Nokuthaba Moyo</Text>
       <Text>Shagan</Text>
       <Text>Angela</Text>
+      <Text>Callum</Text>
       <StatusBar style="auto" />
     </View>
   );
