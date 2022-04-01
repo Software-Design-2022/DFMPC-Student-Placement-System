@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 // Your web app's Firebase configuration
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = { //
   apiKey: "AIzaSyAZVQZO8XWR0UTPoSMLrRN7nSltUDW9Xzs",
   authDomain: "dfmpc-student-placement-system.firebaseapp.com",
@@ -29,6 +30,7 @@ export default function App() {
       <Text>Riot Ndlovu</Text>
       <Text>Nokuthaba Moyo</Text>
       <Text>Shagan</Text>
+      <Text>Callum</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -37,7 +39,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ff0000',
+    backgroundColor: '#ff0f00',
     alignItems: 'center',
     justifyContent: 'center',
   },
