@@ -1,37 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Login from './Screens/Login'
+import Dashboard from './Screens/Dashboard'
 
-// Import the functions you need from the SDKs you need
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = { //
-  apiKey: "AIzaSyAZVQZO8XWR0UTPoSMLrRN7nSltUDW9Xzs",
-  authDomain: "dfmpc-student-placement-system.firebaseapp.com",
-  projectId: "dfmpc-student-placement-system",
-  storageBucket: "dfmpc-student-placement-system.appspot.com",
-  messagingSenderId: "295214875936",
-  appId: "1:295214875936:web:c6574b5bd48a1652c84345",
-  measurementId: "G-C2X38C34FX"
-};
-
-// Initialize Firebase
+const Stack = createNativeStackNavigator();
 
 
-export default function App() {
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Riot Ndlovu</Text>
-      <Text>Nokuthaba Moyo</Text>
-      <Text>Shagan</Text>
-      <Text>Angela</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options={{headerShown:false}} name="Login" component={Login} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -43,3 +28,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+export default App;
