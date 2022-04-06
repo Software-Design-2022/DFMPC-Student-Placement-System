@@ -39,7 +39,7 @@ useEffect(()=> {
     <KeyboardAvoidingView 
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit
-    behavior={"padding","height"} >   
+     >   
          
      <View style={styles.inputStyle}>
          <TextInput
