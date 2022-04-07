@@ -12,9 +12,10 @@ import {
 const Dashboard = () => {
   const navigation =useNavigation()
   const [name, SetName] = useState('');
+
   return (
     <><View style={styles.button}>
-      <Button  title='Schedules' onPress={()=>{navigation.navigate("Schedule")}}></Button>
+      <Button  title='Dashboard' onPress={()=>{navigation.navigate("Dashboard")}}></Button>
     </View>
     <View style={styles.button}>
        <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
