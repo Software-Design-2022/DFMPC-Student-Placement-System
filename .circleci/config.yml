@@ -20,10 +20,10 @@ workflows:
     jobs:
       run_test:
         docker: 
-          -image: circleci/node: 16.14.2
+          - image: circleci/node: 16.14.2
         steps:
-          -checkout
-          -run: node --version
+          - checkout
+          - run: node --version
       - node/test:
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
