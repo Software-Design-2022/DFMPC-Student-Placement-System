@@ -8,28 +8,27 @@ const Login = () => {
 
     const [email,setEmail]= useState('')
     const [password,setPassword]= useState('')
-    
+    const navigation =useNavigation()
     const LoginFirebase =() =>{
         // login with email and password
         auth.signInWithEmailAndPassword(email,password).then(userCredentials =>{
             const user =userCredentials.user;
-            console.log(user.email);
+
+            auth.onAuthStateChanged(user =>{
+                // if user has succ then the dashboard appears
+                if(user){navigation.navigate("Dashboard")}
+          
+            })
         }).catch(error => alert(error.message));
+
+
       }
       
 
 
       // this allows you to switch between different screens
-const navigation =useNavigation()
 
-useEffect(()=> {
-    // user is the firebase user
-    const change = auth.onAuthStateChanged(user =>{
-        // if user has succ then the dashboard appears
-        if(user){navigation.navigate("Dashboard")}
-    })
-    return change
-},[])
+
 
   return (
 
@@ -39,7 +38,7 @@ useEffect(()=> {
     <KeyboardAvoidingView 
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit
-    behavior={"padding","height"} >   
+     >   
          
      <View style={styles.inputStyle}>
          <TextInput
