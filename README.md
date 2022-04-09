@@ -30,7 +30,7 @@
 
 ## Software Design
 
-![Software Design Description](C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Software_Description.png)
+![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Software_Description.png)
 
 
 
