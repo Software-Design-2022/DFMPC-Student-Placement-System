@@ -26,7 +26,7 @@
 
 ## Software Architecture 
 
-![Software Architecture Description](C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Arch_des.png)
+![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Arch_des.png)
 
 ## Software Design
 
