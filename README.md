@@ -26,11 +26,11 @@
 
 ## Software Architecture 
 
-![Software Architecture Description]("C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Arch_des.png")
+![Software Architecture Description](C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Arch_des.png)
 
 ## Software Design
 
-![Software Design Description]("C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Software_Description.png")
+![Software Design Description](C:\Users\Peace\Desktop\YOS3\SEMESTER 1\Software Design III\2022\Software Design Project\SPS-Project\DFMPC-Student-Placement-System\Software_Description.png)
 
 
 
