@@ -8,28 +8,27 @@ const Login = () => {
 
     const [email,setEmail]= useState('')
     const [password,setPassword]= useState('')
-    
+    const navigation =useNavigation()
     const LoginFirebase =() =>{
         // login with email and password
         auth.signInWithEmailAndPassword(email,password).then(userCredentials =>{
             const user =userCredentials.user;
-            console.log(user.email);
+
+            auth.onAuthStateChanged(user =>{
+                // if user has succ then the dashboard appears
+                if(user){navigation.navigate("Dashboard")}
+          
+            })
         }).catch(error => alert(error.message));
+
+
       }
       
 
 
       // this allows you to switch between different screens
-const navigation =useNavigation()
 
-useEffect(()=> {
-    // user is the firebase user
-    const change = auth.onAuthStateChanged(user =>{
-        // if user has succ then the dashboard appears
-        if(user){navigation.navigate("Dashboard")}
-    })
-    return change
-},[])
+
 
   return (
 
@@ -40,16 +39,18 @@ useEffect(()=> {
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit
      >   
-         
+         <View>
+             <Text>Student Placement System</Text>
+         </View>
      <View style={styles.inputStyle}>
          <TextInput
-             placeholder="enter email"
+             placeholder="Enter email"
              value={email}
              onChangeText={text => setEmail(text)}   //  set email to what the text is
              style={styles.input}>
          </TextInput>
          <TextInput
-             placeholder="enter password"
+             placeholder="Enter password"
              value={password}
              onChangeText={text => setPassword(text)} // set password to what the text is
              style={styles.input}
@@ -58,11 +59,10 @@ useEffect(()=> {
          </TextInput>
      </View>
 
-    <View style={styles.btnStyle}>
+     <View style={styles.btnStyle}>
         <TouchableOpacity
             onPress={LoginFirebase}   // when user clicks on login button 
             >
-
             <Text style={styles.buttonText}>Login</Text>
 
         </TouchableOpacity>
