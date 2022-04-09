@@ -10,6 +10,12 @@ Student Mobile App(SPS) - A student app which integrates with the student Placem
 
 ## User Acceptance Test
 - Given I am the medical student and I have the correct student email and corresponding password then I should be able to log into my student placement account on the application.
+- Given I am the medical student, when I am already logged into my account and on any interface of the app, then I should be able to click on a panic button on emergencies.
+-  Given that I am the medical student, when I am logged into my student placement account, then I should be able to access a schedule section from the dashboard to see the location of my next placement and it's duration. 
+-  Given I am the medical student, when I am logged into the app then I should have the ability to communicate with my supervisors and and contact my clinical officers.
+-  Given that I am the medical student when  logged into my student placement account, then I should be able to log any academic disclaims for any pupils that are academically dishonest.
+
+
 ## Software Requirements
 - Given I am the medical student, when I am already logged into my account and on any interface of the app, then I should be able to click on a panic button on emergencies.
 - Given that I am the medical student, when I am logged into my student placement account, then I should be able to access a schedule section from the dashboard to see the location of my next placement and it's duration. 
