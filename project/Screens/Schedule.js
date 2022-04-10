@@ -9,16 +9,20 @@ import {
   Linking,
 } from 'react-native';
 
-const Dashboard = () => {
+const Schedule = () => {
   const navigation =useNavigation()
   const [name, SetName] = useState('');
-
   return (
-    <><View style={styles.button}>
+    <>
+    <Text></Text>
+    <View style={styles.button}>
       <Button  title='Dashboard' onPress={()=>{navigation.navigate("Dashboard")}}></Button>
     </View>
     <View style={styles.button}>
-       <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
+      <Button  title='Calendar' onPress={()=>{navigation.navigate("Calendar")}}></Button>
+    </View>
+    <View style={styles.button}>
+       <Button title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
       </View>
      </>
   );
@@ -32,15 +36,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'grey',
+    backgroundColor: 'darkcyan',
   },
   text: {
-    fontSize: 16,
-    lineHeight: 21,
+    fontSize: 20,
+    lineHeight: 24,
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
   },
 });
 
-export default Dashboard;
+export default Schedule;

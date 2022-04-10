@@ -15,7 +15,7 @@ const Login = () => {
             const user =userCredentials.user;
 
             auth.onAuthStateChanged(user =>{
-                // if user has succ then the dashboard appears
+                // if user has succeeded then the dashboard appears
                 if(user){navigation.navigate("Dashboard")}
           
             })
@@ -73,7 +73,11 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
+
+
+
+
 
 const styles = StyleSheet.create({
     container: {

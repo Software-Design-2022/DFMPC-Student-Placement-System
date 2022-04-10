@@ -9,6 +9,7 @@ import {
   Linking,
 } from 'react-native';
 
+
 const Dashboard = () => {
   const navigation =useNavigation()
   const [name, SetName] = useState('');
@@ -31,11 +32,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'grey',
+    backgroundColor: 'darkcyan',
   },
   text: {
-    fontSize: 16,
-    lineHeight: 21,
+    fontSize: 20,
+    lineHeight: 24,
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
