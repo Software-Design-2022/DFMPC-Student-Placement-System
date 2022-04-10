@@ -2,9 +2,7 @@
 
 ## Project Description
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
-
-
-[![CircleCI](https://circleci.com/<gh>/<Software-Design-2022>/<project>.svg?style=svg&circle-token=<c55d5668c92695d111356e24559769f8b69e903c>)](<https://app.circleci.com/pipelines/github/Software-Design-2022>)
+- 
 ## User Stories 
 - As a medical student user, I should be able to insert my student email and the corresponding password to access my student placement application.
 - As a medical student user, logged into the student placement application, I should always have immediate access to a panic button for emergencies.
@@ -33,6 +31,9 @@
 ## Software Design
 
 ![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Software_Description.png)
+
+## Continuous Integration: CircleCI Badge
+[![CircleCI](https://circleci.com/<gh>/<Software-Design-2022>/<project>.svg?style=svg&circle-token=<09a71fa0f96ca31f85ee8822bf1594419064f557>)](<https://app.circleci.com/pipelines/github/Software-Design-2022>)
 
 
 
