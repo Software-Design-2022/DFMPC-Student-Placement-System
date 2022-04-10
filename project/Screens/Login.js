@@ -15,7 +15,7 @@ const Login = () => {
             const user =userCredentials.user;
 
             auth.onAuthStateChanged(user =>{
-                // if user has succ then the dashboard appears
+                // if user has successfully logged in then the dashboard appears
                 if(user){navigation.navigate("Dashboard")}
           
             })
@@ -37,11 +37,9 @@ const Login = () => {
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <KeyboardAvoidingView 
     style={styles.container}
-     // needs fixing // when keyboard appers things move up a bit
-     >   
-         <View>
-             <Text>Student Placement System</Text>
-         </View>
+     // needs fixing // when keyboard appers things move up a bit 
+      >   
+         
      <View style={styles.inputStyle}>
          <TextInput
              placeholder="Enter email"
