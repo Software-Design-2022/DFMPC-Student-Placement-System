@@ -34,7 +34,7 @@
 
 ## Continuous Integration: CircleCI Badge
 
-[![CircleCI](https://circleci.com/gh/Software-Design-2022/project.svg?style=svg&circle-token=09a71fa0f96ca31f85ee8822bf1594419064f557)](https://app.circleci.com/pipelines/github/Software-Design-2022)
+[![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg&circle-token=09a71fa0f96ca31f85ee8822bf1594419064f557)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
 
 
