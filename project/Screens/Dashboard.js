@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'grey',
+    backgroundColor: 'darkcyan',
   },
   text: {
     fontSize: 16,

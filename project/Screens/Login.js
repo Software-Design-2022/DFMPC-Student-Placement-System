@@ -36,6 +36,7 @@ const Login = () => {
 
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <KeyboardAvoidingView 
+
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit
      >   
@@ -80,10 +81,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor: "darkcyan"
     },
 
 inputStyle:{
-width: "70%"
+width: "60%"
 
 },
 input:{
@@ -93,8 +95,8 @@ input:{
     marginTop:10,
 },
 btnStyle:{
-    width:"50%",
-    backgroundColor:"white",
+    width:"30%",
+    backgroundColor:"rwhite",
     marginTop:50,
     borderColor:"lightblue",
     borderWidth:2,
@@ -103,7 +105,7 @@ btnStyle:{
 },
 
 buttonText:{
-color:"blue",
+color:"black",
 fontSize:16,
 fontWeight:"bold",
 },       
