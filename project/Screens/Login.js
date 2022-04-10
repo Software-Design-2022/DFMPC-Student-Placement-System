@@ -75,13 +75,13 @@ const Login = () => {
          
      <View style={styles.inputStyle}>
          <TextInput
-             placeholder="enter email"
+             placeholder="Enter email"
              value={email}
              onChangeText={text => setEmail(text)}   //  set email to what the text is
              style={styles.input}>
          </TextInput>
          <TextInput
-             placeholder="enter password"
+             placeholder="Enter password"
              value={password}
              onChangeText={text => setPassword(text)} // set password to what the text is
              style={styles.input}
@@ -90,7 +90,7 @@ const Login = () => {
          </TextInput>
      </View>
 
-    <View style={styles.btnStyle}>
+     <View style={styles.btnStyle}>
         <TouchableOpacity
             onPress={LoginFirebase}   // when user clicks on login button 
             >

@@ -27,5 +27,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "test": "jest --coverage",
+  
   "private": true
+  
 }

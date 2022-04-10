@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from './Screens/Login'
 import Dashboard from './Screens/Dashboard'
+import Schedule from './Screens/Schedule'
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen options={{headerShown:false}} name="Login" component={Login} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Schedule" component={Schedule} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -23,7 +25,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ff0000',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
