@@ -36,7 +36,7 @@
 
 [![CircleCI](https://circleci.com/<gh>/<Software-Design-2022>/<project>.svg?style=svg&circle-token=<09a71fa0f96ca31f85ee8822bf1594419064f557>)](<https://app.circleci.com/pipelines/github/Software-Design-2022>)
 
-[![CircleCI](https://circleci.com/<gh>/<Software-Design-2022>/<project>.svg?style=svg&circle-token=<2c94f18340c4b2c06206c836c20ad388bd62f41c>)](<LINK>)
+
 
 
 
