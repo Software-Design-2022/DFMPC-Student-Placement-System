@@ -2,7 +2,6 @@
 
 ## Project Description
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
-- 
 ## User Stories 
 - As a medical student user, I should be able to insert my student email and the corresponding password to access my student placement application.
 - As a medical student user, logged into the student placement application, I should always have immediate access to a panic button for emergencies.
