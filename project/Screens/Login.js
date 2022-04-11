@@ -64,7 +64,7 @@ const Login = () => {
       // this allows you to switch between different screens
 
   return (
-
+    
       //TouchableWithoutFeedback - when i click anywhen outside od the keyboard, the keyboard will disappear
 
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -72,7 +72,7 @@ const Login = () => {
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit 
       >   
-         
+    <Text style={styles.SPSStyle} >Student Placement System</Text> 
      <View style={styles.inputStyle}>
          <TextInput
              placeholder="Enter email"
@@ -130,6 +130,14 @@ btnStyle:{
     backgroundColor:"white",
     marginTop:50,
     borderColor:"lightblue",
+    borderWidth:2,
+    borderRadius:10,
+    alignItems:'center'
+},
+SPSStyle:{
+    backgroundColor:"grey",
+    marginTop:50,
+    borderColor:"black",
     borderWidth:2,
     borderRadius:10,
     alignItems:'center'

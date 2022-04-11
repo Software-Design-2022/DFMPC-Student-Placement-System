@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [name, SetName] = useState('');
   return (
     <><View style={styles.button}>
-      <Button  title='Schedules' onPress={()=>{navigation.navigate("Schedule")}}></Button>
+      <Button  title='Schedule' onPress={()=>{navigation.navigate("Schedule")}}></Button>
     </View>
     <View style={styles.button}>
        <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'grey',
+    backgroundColor: 'darkcyan',
   },
   text: {
     fontSize: 16,

@@ -386,7 +386,7 @@
   } ],
   "users" : [ {
     "created_at" : "2022-02-14 06:52:12.493287",
-    "email" : "John@gmail.com",
+    "email" : "john@gmail.com",
     "id" : "1",
     "password_digest" : "John_pass123",
     "updated_at" : "2022-02-16 10:23:54.059207",
@@ -396,7 +396,7 @@
     "user_Type" : "Student"
   }, {
     "created_at" : "2022-02-14 07:06:56.960417",
-    "email" : "AdamP@gmail.com",
+    "email" : "adamP@gmail.com",
     "id" : "2",
     "password_digest" : "AdamP_pass123",
     "updated_at" : "2022-02-16 10:26:49.021218",
@@ -406,7 +406,7 @@
     "user_Type" : "Student"
   }, {
     "created_at" : "2022-02-16 10:24:51.885569",
-    "email" : "Caroline@Gmail.com",
+    "email" : "caroline@Gmail.com",
     "id" : "3",
     "password_digest" : "Caroline_pass123",
     "updated_at" : "2022-02-16 10:24:51.885569",
@@ -416,7 +416,7 @@
     "user_Type" : "Student"
   }, {
     "created_at" : "2022-02-16 10:25:30.009903",
-    "email" : "JamesQ@Gmail.com",
+    "email" : "jamesQ@Gmail.com",
     "id" : "4",
     "password_digest" : "JamesQ_pass123",
     "updated_at" : "2022-02-16 10:25:30.009903",
@@ -426,7 +426,7 @@
     "user_Type" : "Student"
   }, {
     "created_at" : "2022-02-16 10:26:05.086751",
-    "email" : "JoanneS@Gmail.com ",
+    "email" : "joanneS@Gmail.com ",
     "id" : "5",
     "password_digest" : "JoanneS_pass123",
     "updated_at" : "2022-02-16 10:26:05.086751",
