@@ -18,12 +18,6 @@
 -  Given that I am the medical student when  logged into my student placement account, then I should be able to log any academic disclaims for any pupils that are academically dishonest.
 
 
-## Software Requirements
-- 
-
-## Dependencies 
--
-
 ## Software Architecture 
 
 ![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Arch_des.png)
