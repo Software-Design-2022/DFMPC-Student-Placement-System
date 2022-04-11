@@ -1,37 +1,70 @@
 import React, { useState ,useEffect} from 'react'
-import {Platform,Keyboard, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text, TextInput, View } from 'react-native'
-import {auth} from "../firebase"
+import {Platform,Keyboard, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text,Button, TextInput, View,Alert } from 'react-native'
+import {firebase} from "../firebase"
 import {useNavigation} from '@react-navigation/core'
 
 
 const Login = () => {
 
+
     const [email,setEmail]= useState('')
     const [password,setPassword]= useState('')
     const navigation =useNavigation()
+
+
+
+    function showAlert(title, message) {
+  Alert.alert(
+    title,
+    message,
+    [
+      {
+        text: "Cancel",
+       // onPress: () => Alert.alert("Cancel Pressed"),
+        style: "cancel",
+      },
+    ],
+    {
+      cancelable: true,
+     
+    }
+  );
+    }
     const LoginFirebase =() =>{
         // login with email and password
-        auth.signInWithEmailAndPassword(email,password).then(userCredentials =>{
-            const user =userCredentials.user;
 
-            auth.onAuthStateChanged(user =>{
-                // if user has successfully logged in then the dashboard appears
-                if(user){navigation.navigate("Dashboard")}
-          
-            })
-        }).catch(error => alert(error.message));
+        // check if email exists in the database if so then hash pass and compare 
 
+        var found = false
+        firebase.database().ref('/users').on('value',snapshot=>{
+            //if(snapshot.val()==email)
+               const key = snapshot.forEach(function(data) {
+     
+                const check_email =snapshot.child(data.key+"/email").val();
+             
+                const encrypted = snapshot.child(data.key+"/password_digest").val();
 
+               if(check_email===email){
+                   found =true
+              
+              
+                    if(encrypted===password){
+                        navigation.navigate("Dashboard")
+                    }
+                    else{
+                        showAlert("Password Error","Your email and password do not match")
+                    }
+                }              
+            });
+           if(found===false){
+            showAlert("Email Error","user does not exist")
+           }
+        })
       }
-      
-
-
       // this allows you to switch between different screens
 
-
-
   return (
-
+    
       //TouchableWithoutFeedback - when i click anywhen outside od the keyboard, the keyboard will disappear
 
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -39,16 +72,16 @@ const Login = () => {
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit 
       >   
-         
+    <Text style={styles.SPSStyle} >Student Placement System</Text> 
      <View style={styles.inputStyle}>
          <TextInput
-             placeholder="enter email"
+             placeholder="Enter email"
              value={email}
              onChangeText={text => setEmail(text)}   //  set email to what the text is
              style={styles.input}>
          </TextInput>
          <TextInput
-             placeholder="enter password"
+             placeholder="Enter password"
              value={password}
              onChangeText={text => setPassword(text)} // set password to what the text is
              style={styles.input}
@@ -57,22 +90,23 @@ const Login = () => {
          </TextInput>
      </View>
 
-    <View style={styles.btnStyle}>
+     <View style={styles.btnStyle}>
         <TouchableOpacity
             onPress={LoginFirebase}   // when user clicks on login button 
             >
-
             <Text style={styles.buttonText}>Login</Text>
 
         </TouchableOpacity>
     </View>
-    
+  
+
     </KeyboardAvoidingView>
    // </TouchableWithoutFeedback>
   )
 }
 
 export default Login
+
 
 const styles = StyleSheet.create({
     container: {
@@ -100,11 +134,28 @@ btnStyle:{
     borderRadius:10,
     alignItems:'center'
 },
+SPSStyle:{
+    backgroundColor:"grey",
+    marginTop:50,
+    borderColor:"black",
+    borderWidth:2,
+    borderRadius:10,
+    alignItems:'center'
+},
 
 buttonText:{
 color:"blue",
 fontSize:16,
 fontWeight:"bold",
 },       
-
+btn:{
+    marginTop:50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'green',
+}
 })
