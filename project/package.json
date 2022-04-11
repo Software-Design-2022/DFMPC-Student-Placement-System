@@ -20,6 +20,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-calendar-picker": "^7.1.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1"
@@ -32,7 +33,5 @@
     "collectCoverage": true
   },
   "test": "jest --coverage",
-  
   "private": true
-  
 }
