@@ -20,16 +20,16 @@
 - Given I am the medical student, when I am logged into the app then I should have the ability to communicate with my supervisors and and contact my clinical officers.
 - Given that I am the medical student when logged into my student placement account, then I should be able to log any academic disclaims for any pupils that are academically dishonest.
 
-## Requirements
+# Requirements
 
-# Functional Requirements
+## Functional Requirements
 - The student placement system should be able to accept any student email and corresponding password.
 - The student placement system should be able to provide a panic button for emergencies.
 - The student placement system should be able to provide a schedule section that allows the student to see where their next placement is and the duration of the placement.
 - The student placement system should be able to provide a communication section that allows the student to communicate with their supervisors and clinical officers.
 - The student placement system should be able to provide a section that allows the student to log any academic disclaims for any pupils that are academically dishonest.
 
-# Non-Functional Requirements
+## Non-Functional Requirements
 - The app is easy to use and efficient
 - The app is user friendly
 - The app is secure
