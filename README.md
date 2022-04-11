@@ -23,8 +23,10 @@
 # Requirements
 
 ## Functional Requirements
-- The student placement system should be able to accept any student email and corresponding password.
+- Login page - the student placement system should be able to accept any student email and corresponding password.
+- Dashboard - the Dashboard allows the student to navigate to their schedule and the emergency protocols page
 - The student placement system should be able to provide a panic button for emergencies.
+- Emergency Protocols Page - this page shows the protocols for common emergencies
 - The student placement system should be able to provide a schedule section that allows the student to see where their next placement is and the duration of the placement.
 - The student placement system should be able to provide a communication section that allows the student to communicate with their supervisors and clinical officers.
 - The student placement system should be able to provide a section that allows the student to log any academic disclaims for any pupils that are academically dishonest.
