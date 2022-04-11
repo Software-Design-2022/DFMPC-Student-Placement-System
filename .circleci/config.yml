@@ -39,7 +39,7 @@ jobs:
           command: pip install -r api/requirements.txt
       - run:
           name: Run tests and collect coverage
-          command: pytest --cov --cov-report xml api/
+          command: python -m pytest --cov --cov-report xml api/
       - codecov/upload
 
 workflows:
