@@ -2,25 +2,25 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@3.2.2
-
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  test-api:
+  say-hello:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/python:3.10.4
+      - image: cimg/base:stable
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
       - run:
-          name: Install requirements
-          command: pip install -r api/requirements.txt
-      - run:
-          name: Run tests and collect coverage
-          command: python -m pytest --cov --cov-report xml api/
-      - codecov/upload
+          name: "Say hello"
+          command: "echo Hello, World!"
 
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  version: 2.1
-  build-test:
+  say-hello-workflow:
     jobs:
-      - test-api
+      - say-hello
