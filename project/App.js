@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from './Screens/Login'
 import Dashboard from './Screens/Dashboard'
 import Schedule from './Screens/Schedule'
+import Calendar from './Screens/Calendar'
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ function App() {
         <Stack.Screen options={{headerShown:false}} name="Login" component={Login} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
+        <Stack.Screen name="Calendar" component={Calendar} />
       </Stack.Navigator>
     </NavigationContainer>
   );
