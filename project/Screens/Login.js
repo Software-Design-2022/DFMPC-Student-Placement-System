@@ -1,34 +1,67 @@
 import React, { useState ,useEffect} from 'react'
-import {Platform,Keyboard, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text, TextInput, View } from 'react-native'
-import {auth} from "../firebase"
+import {Platform,Keyboard, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text,Button, TextInput, View,Alert } from 'react-native'
+import {firebase} from "../firebase"
 import {useNavigation} from '@react-navigation/core'
 
 
 const Login = () => {
 
+
     const [email,setEmail]= useState('')
     const [password,setPassword]= useState('')
     const navigation =useNavigation()
+
+
+
+    function showAlert(title, message) {
+  Alert.alert(
+    title,
+    message,
+    [
+      {
+        text: "Cancel",
+       // onPress: () => Alert.alert("Cancel Pressed"),
+        style: "cancel",
+      },
+    ],
+    {
+      cancelable: true,
+     
+    }
+  );
+    }
     const LoginFirebase =() =>{
         // login with email and password
-        auth.signInWithEmailAndPassword(email,password).then(userCredentials =>{
-            const user =userCredentials.user;
 
-            auth.onAuthStateChanged(user =>{
-                // if user has succeeded then the dashboard appears
-                if(user){navigation.navigate("Dashboard")}
-          
-            })
-        }).catch(error => alert(error.message));
+        // check if email exists in the database if so then hash pass and compare 
 
+        var found = false
+        firebase.database().ref('/users').on('value',snapshot=>{
+            //if(snapshot.val()==email)
+               const key = snapshot.forEach(function(data) {
+     
+                const check_email =snapshot.child(data.key+"/email").val();
+             
+                const encrypted = snapshot.child(data.key+"/password_digest").val();
 
+               if(check_email===email){
+                   found =true
+              
+              
+                    if(encrypted===password){
+                        navigation.navigate("Dashboard")
+                    }
+                    else{
+                        showAlert("Password Error","Your email and password do not match")
+                    }
+                }              
+            });
+           if(found===false){
+            showAlert("Email Error","user does not exist")
+           }
+        })
       }
-      
-
-
       // this allows you to switch between different screens
-
-
 
   return (
 
@@ -37,11 +70,9 @@ const Login = () => {
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <KeyboardAvoidingView 
     style={styles.container}
-     // needs fixing // when keyboard appers things move up a bit
-     >   
-         <View>
-             <Text>Student Placement System</Text>
-         </View>
+     // needs fixing // when keyboard appers things move up a bit 
+      >   
+         
      <View style={styles.inputStyle}>
          <TextInput
              placeholder="Enter email"
@@ -67,13 +98,15 @@ const Login = () => {
 
         </TouchableOpacity>
     </View>
-    
+  
+
     </KeyboardAvoidingView>
    // </TouchableWithoutFeedback>
   )
 }
 
 export default Login;
+
 
 
 
@@ -111,5 +144,14 @@ color:"blue",
 fontSize:16,
 fontWeight:"bold",
 },       
-
+btn:{
+    marginTop:50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'green',
+}
 })
