@@ -15,13 +15,6 @@ const Dashboard = () => {
 
   return (
     <><View style={styles.button}>
-<<<<<<< HEAD
-        <Button  title='Dashboard' onPress={()=>{navigation.navigate("Dashboard")}}></Button>
-       </View>
-     <View style={styles.button}>
-        <Button  title='Logout'
-         onPress={()=>{navigation.navigate("Login")}}></Button>
-=======
       <Button  title='Dashboard' onPress={()=>{navigation.navigate("Dashboard")}}></Button>
     </View>
     <View style={styles.button}>
@@ -29,7 +22,6 @@ const Dashboard = () => {
     </View>
     <View style={styles.button}>
        <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
->>>>>>> main
       </View>
      </>
   );
