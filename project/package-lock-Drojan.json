@@ -10,7 +10,6 @@
       "dependencies": {
         "@react-navigation/native": "^6.0.10",
         "@react-navigation/native-stack": "^6.6.1",
-        "dotenv": "^16.0.0",
         "expo": "~44.0.0",
         "expo-status-bar": "~1.2.0",
         "firebase": "^9.6.10",
@@ -4919,14 +4918,6 @@
       "engines": {
         "node": ">= 0.8",
         "npm": "1.2.8000 || >= 1.4.16"
-      }
-    },
-    "node_modules/dotenv": {
-      "version": "16.0.0",
-      "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-16.0.0.tgz",
-      "integrity": "sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==",
-      "engines": {
-        "node": ">=12"
       }
     },
     "node_modules/ee-first": {
@@ -14294,11 +14285,6 @@
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",
       "integrity": "sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg=="
-    },
-    "dotenv": {
-      "version": "16.0.0",
-      "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-16.0.0.tgz",
-      "integrity": "sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q=="
     },
     "ee-first": {
       "version": "1.1.1",
