@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import {Platform,Keyboard, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text,Button, TextInput, View,Alert } from 'react-native'
+import {ImageBackground,Platform,Keyboard,Image, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text,Button, TextInput, View,Alert } from 'react-native'
 import {firebase} from "../firebase"
 import {useNavigation} from '@react-navigation/core'
 
@@ -72,7 +72,10 @@ const Login = () => {
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit 
       >   
-         
+    <Image
+        style={styles.stretch}
+        source={require('./2p6ad9.jpg')}
+      />
      <View style={styles.inputStyle}>
          <TextInput
              placeholder="Enter email"
@@ -89,7 +92,6 @@ const Login = () => {
 
          </TextInput>
      </View>
-
      <View style={styles.btnStyle}>
         <TouchableOpacity
             onPress={LoginFirebase}   // when user clicks on login button 
@@ -97,6 +99,7 @@ const Login = () => {
             <Text style={styles.buttonText}>Login</Text>
 
         </TouchableOpacity>
+        
     </View>
   
 
@@ -123,6 +126,11 @@ inputStyle:{
 width: "70%"
 
 },
+stretch: {
+    width: 200,
+    height: 200,
+    resizeMode: 'stretch',
+  },
 input:{
     backgroundColor:"white",
     padding:10,
@@ -138,7 +146,10 @@ btnStyle:{
     borderRadius:10,
     alignItems:'center'
 },
-
+image: {
+    flex: 1,
+    justifyContent: "center"
+  },
 buttonText:{
 color:"blue",
 fontSize:16,

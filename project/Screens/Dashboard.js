@@ -7,18 +7,28 @@ import {
   TextInput,
   Button,
   Linking,
+  ImageBackground,
 } from 'react-native';
-
+const image="2p6ad9.jpg";
 
 const Dashboard = () => {
   const navigation =useNavigation()
   const [name, SetName] = useState('');
   return (
-    <><View style={styles.button}>
+
+    <>
+    <View>
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <View style={styles.button}>
       <Button  title='Schedules' onPress={()=>{navigation.navigate("Schedule")}}></Button>
     </View>
     <View style={styles.button}>
        <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
+      </View>
+      <View style={styles.button}>
+       <Button  title='BackgroundTest' onPress={()=>{navigation.navigate("BackgroundTest")}}></Button>
+      </View>
+      </ImageBackground>
       </View>
      </>
   );
