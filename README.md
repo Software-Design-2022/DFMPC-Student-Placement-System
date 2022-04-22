@@ -45,15 +45,15 @@
 
 ## On-Screen appearance requirements
 
-![UserInterface Design](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/uidesign.jpg)
+![UserInterface Design](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/uidesign.jpg)
 
 ## Software Architecture
 
-![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Arch_des.png)
+![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Arch_des.png)
 
 ## Software Design
 
-![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/17c20784cb78bcfa8b5c250eace39a3c63011f18/Software_Description.png)
+![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Software_Description.png)
 
 ## Dependencies
 
