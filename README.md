@@ -6,19 +6,19 @@
 
 ## User Stories
 
-- As a medical student user, I should be able to insert my student email and the corresponding password to access my student placement application.
-- As a medical student user, logged into the student placement application, I should always have immediate access to a panic button for emergencies.
-- As a medical student, I should be able to access a schedules sections that allow me to see where my next placement will be, duties for that placement, and the duration of the placement.
-- Being a medical student, I should be able to communicate with my supervisors and contact my clinical officers from the app.
-- As a medical student, I should be able to log any academic disclaims for any pupils that are academically dishonest.
+- As the user, I should be able to click on a panic button while on any interface after logging in, which will take me to the emergency protocol interface.
+-  As the user, I should be able to click on a profile icon, that will allow me to have user settings and the ability to change profile image, password, and general user settings.
+- As the user, while on the schedule interface, I should be able to see a weekly dated calendar with upcoming assessments.
+- As the user, while on the dashboard I should have access to a different calendar view that has a daily dated view of upcoming events.
+- As an admin, I should have a separate system that can not be accessed from the student application, so that I can give assessments and placements for students.
 
 ## User Acceptance Test
 
-- Given I am the medical student and I have the correct student email and corresponding password then I should be able to log into my student placement account on the application.
-- Given I am the medical student, when I am already logged into my account and on any interface of the app, then I should be able to click on a panic button on emergencies.
-- Given that I am the medical student, when I am logged into my student placement account, then I should be able to access a schedule section from the dashboard to see the location of my next placement and it's duration.
-- Given I am the medical student, when I am logged into the app then I should have the ability to communicate with my supervisors and and contact my clinical officers.
-- Given that I am the medical student when logged into my student placement account, then I should be able to log any academic disclaims for any pupils that are academically dishonest.
+- Given that I am a user, when I am on any interface then I should be able to click on a panic button that will take me to the emergency protocol page.
+-  Given that I am the user, when I am on the dashboard, a profile icon should be available for me to click and then have the ability to change my password, profile image and make general user settings changes.
+- Given that I am the user, when I am on the schedule interface, then I should be able to see a calendar that has a weekly view of my upcoming events.
+- Given that I am the user, when I am on the dashboard. , then I should be able to have access to a different calendar that has a daily dated view.
+- Given that I am the admin user with the correct password when clicking on the log-in button, then I should be able to have access to a different system that is capable of letting me assign tasks and placements to the students.
 
 # Requirements
 
