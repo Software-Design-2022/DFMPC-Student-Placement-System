@@ -1,8 +1,13 @@
 import React, { useState ,useEffect} from 'react'
-import {ImageBackground,Platform,Keyboard,Image, TouchableWithoutFeedback,TouchableOpacity,KeyboardAvoidingView,StyleSheet, Text,Button, TextInput, View,Alert } from 'react-native'
+import {ImageBackground,Platform,Keyboard,Image,
+   TouchableWithoutFeedback,TouchableOpacity,
+   KeyboardAvoidingView,StyleSheet, Text,Button,
+    TextInput, View,Alert } from 'react-native'
+import { useFonts } from 'expo-font';
 import {firebase} from "../firebase"
 import {useNavigation} from '@react-navigation/core'
 
+import {LinearGradient} from 'expo-linear-gradient';
 
 const Login = () => {
 
@@ -10,7 +15,6 @@ const Login = () => {
     const [email,setEmail]= useState('')
     const [password,setPassword]= useState('')
     const navigation =useNavigation()
-
 
 
     function showAlert(title, message) {
@@ -71,11 +75,19 @@ const Login = () => {
     <KeyboardAvoidingView 
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit 
-      >   
+     
+      > 
+      
+     <Image
+        style={styles.BackGround}
+        source={require('./giphy(1).gif')}
+        />
     <Image
         style={styles.stretch}
-        source={require('./2p6ad9.jpg')}
+        source={require('./Dfmpc1.png')}
       />
+      
+      
      <View style={styles.inputStyle}>
          <TextInput
              placeholder="Enter email"
@@ -92,15 +104,20 @@ const Login = () => {
 
          </TextInput>
      </View>
-     <View style={styles.btnStyle}>
-        <TouchableOpacity
+     <View style={styles.ButtonStyle}>
+     <LinearGradient colors={['#1d497b', '#1d497b', '#1d497b']} style={styles.linearGradient}>
+     <TouchableOpacity
             onPress={LoginFirebase}   // when user clicks on login button 
             >
             <Text style={styles.buttonText}>Login</Text>
 
-        </TouchableOpacity>
-        
-    </View>
+        </TouchableOpacity> 
+    </LinearGradient>
+    
+     </View>
+     
+     
+      
   
 
     </KeyboardAvoidingView>
@@ -123,46 +140,46 @@ const styles = StyleSheet.create({
     },
 
 inputStyle:{
-width: "70%"
-
+width: "60%"
+},
+ButtonStyle:{
+  paddingTop:15,
+  width: "35%"
+  },
+linearGradient: {
+  height: 40,
+  paddingLeft: 15,
+  paddingRight: 15,
+  borderRadius: 5
+},
+buttonText: {
+  fontSize: 18,
+  textAlign: 'center',
+  margin: 10,
+  color: '#ffffff',
+  backgroundColor: 'transparent',
 },
 stretch: {
-    width: 200,
-    height: 200,
-    resizeMode: 'stretch',
+    width: 300,
+    height: 300,
   },
+BackGround:{
+  width:"100%",
+  height:"100%",
+  resizeMode: 'stretch',
+  position: 'absolute',
+  top:0 , left: 0,
+  zIndex:0,
+},
 input:{
     backgroundColor:"white",
     padding:10,
     borderRadius:15,
     marginTop:10,
 },
-btnStyle:{
-    width:"50%",
-    backgroundColor:"white",
-    marginTop:50,
-    borderColor:"lightblue",
-    borderWidth:2,
-    borderRadius:10,
-    alignItems:'center'
-},
 image: {
     flex: 1,
     justifyContent: "center"
   },
-buttonText:{
-color:"blue",
-fontSize:16,
-fontWeight:"bold",
-},       
-btn:{
-    marginTop:50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'green',
-}
+      
 })

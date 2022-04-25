@@ -34,7 +34,7 @@ const BackgroundTest = () => {
     <View style={styles.container}>
       <Image
         style={styles.stretch}
-        source={require('./2p6ad9.jpg')}
+        source={image}
       />
     </View>
   );

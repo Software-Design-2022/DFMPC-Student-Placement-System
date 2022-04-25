@@ -9,7 +9,6 @@ import {
   Linking,
   ImageBackground,
 } from 'react-native';
-const image="2p6ad9.jpg";
 
 const Dashboard = () => {
   const navigation =useNavigation()
@@ -18,7 +17,6 @@ const Dashboard = () => {
 
     <>
     <View>
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <View style={styles.button}>
       <Button  title='Schedules' onPress={()=>{navigation.navigate("Schedule")}}></Button>
     </View>
@@ -28,7 +26,6 @@ const Dashboard = () => {
       <View style={styles.button}>
        <Button  title='BackgroundTest' onPress={()=>{navigation.navigate("BackgroundTest")}}></Button>
       </View>
-      </ImageBackground>
       </View>
      </>
   );
