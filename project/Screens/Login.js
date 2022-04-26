@@ -80,11 +80,11 @@ const Login = () => {
       
      <Image
         style={styles.BackGround}
-        source={require('./giphy(1).gif')}
+        source={require('./Trianglify-8.3s-2000px.svg')}
         />
     <Image
         style={styles.stretch}
-        source={require('./Dfmpc1.png')}
+        source={require('./Vanilla-1s-648px.svg')}
       />
       
       
@@ -160,8 +160,9 @@ buttonText: {
   backgroundColor: 'transparent',
 },
 stretch: {
-    width: 300,
-    height: 300,
+    width: 400,
+    height: 200,
+    resizeMode: 'stretch'
   },
 BackGround:{
   width:"100%",
