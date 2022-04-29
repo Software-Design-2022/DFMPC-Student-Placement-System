@@ -107,7 +107,7 @@ const Login = () => {
      <View style={styles.ButtonStyle}>
      <LinearGradient colors={['#1d497b', '#1d497b', '#1d497b']} style={styles.linearGradient}>
      <TouchableOpacity
-            onPress={LoginFirebase}   // when user clicks on login button 
+            onPress={()=>{navigation.navigate("Dashboard")}}   // when user clicks on login button 
             >
             <Text style={styles.buttonText}>Login</Text>
 
