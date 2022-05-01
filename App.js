@@ -7,6 +7,7 @@ import Dashboard from "./Screens/Dashboard";
 import Schedule from "./Screens/Schedule";
 import Calendar from "./Screens/Calendar";
 import SettingsView from "./Screens/Settings";
+import "./global.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,9 +16,9 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          options={{ headerShown: false }}
           name="Login"
           component={Login}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Dashboard"

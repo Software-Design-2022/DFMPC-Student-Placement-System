@@ -37,6 +37,13 @@ const Login = () => {
       }
     );
   }
+  function setUserVariables(data) {
+    authUser = data;
+    authUserID = data.key;
+    authUserProfilePic = authUser.child("user_profile_photo/").val();
+    authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
+    console.log("User ID: " + authUserID + " authenticated.");
+  }
   const LoginFirebase = () => {
     // login with email and password
 
@@ -62,10 +69,7 @@ const Login = () => {
 
           if (encrypted === password) {
             //Set global variable for active authenticated user
-            authUserID = data.key;
-            authUserRef =
-              firebase.database().ref("/users") + "/" + authUserID + "/";
-            console.log("User ID: " + authUserID + " authenticated.");
+            setUserVariables(data);
             // navigate to dashboard
             navigation.navigate("Dashboard");
           } else {
