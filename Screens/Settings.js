@@ -19,13 +19,10 @@ const Settings = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
   const [visible, setVisible] = useState(false);
+
   const changeProfilePhoto = () => {
-    // TODO:
-    // Take in an image from the gallery
-    // Upload image to some file host and save the url
-    // Set user_profile_photo image host URL
     setVisible(true);
-    console.log("Button pressed. Dialog visible: " + visible);
+    console.log("Dialog Button pressed. Dialog visible.");
   };
 
   return (
@@ -45,6 +42,42 @@ const Settings = () => {
           hintInput={authUserProfilePic}
           submitInput={(inputText) => {
             console.log("New image link is: " + inputText);
+            if (inputText == "") {
+              {
+                console.log("Reseting profile photo...");
+                console.log(
+                  "OLD Firebase profile photo: " +
+                    authUser.child("user_profile_photo/").val()
+                );
+              }
+              //Sets profile photo to default photo
+              authUser.ref.update({ user_profile_photo: defaultProfilePic });
+              authUserProfilePic = defaultProfilePic;
+
+              console.log(
+                "NEW Firebase profile photo: " +
+                  authUser.child("user_profile_photo/").val()
+              );
+              setVisible(false);
+            } else {
+              console.log("Valid input received: " + inputText);
+              console.log(
+                "OLD Firebase profile photo: " +
+                  authUser.child("user_profile_photo/").val()
+              );
+              // Sets new profile photo URL to input then, updates global variable
+              authUser.ref.update({ user_profile_photo: inputText });
+              authUserProfilePic = inputText;
+
+              console.log(
+                "NEW Firebase profile photo: " +
+                  authUser.child("user_profile_photo/").val()
+              );
+              setVisible(false);
+            }
+            // else {
+            //   alert("Please enter a valid image link");
+            // }
           }}
           closeDialog={() => {
             setVisible(false);
