@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useNavigation} from '@react-navigation/core'
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
   View,
@@ -7,43 +7,51 @@ import {
   TextInput,
   Button,
   Linking,
-} from 'react-native';
+} from "react-native";
 
-const Dashboard = () => {
-  const navigation =useNavigation()
-  const [name, SetName] = useState('');
+const Schedule = () => {
+  const navigation = useNavigation();
+  const [name, SetName] = useState("");
 
   return (
-    <><View style={styles.button}>
-      <Button  title='Dashboard' onPress={()=>{navigation.navigate("Dashboard")}}></Button>
-    </View>
-    <View style={styles.button}>
-      <Button  title='Calendar' onPress={()=>{navigation.navigate("Calendar")}}></Button>
-    </View>
-    <View style={styles.button}>
-       <Button  title='Logout' onPress={()=>{navigation.navigate("Login")}}></Button>
+    <>
+      <View style={styles.button}>
+        <Button
+          title="Calendar"
+          onPress={() => {
+            navigation.navigate("Calendar");
+          }}
+        ></Button>
       </View>
-     </>
+      <View style={styles.button}>
+        <Button
+          title="Logout"
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        ></Button>
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'darkcyan',
+    backgroundColor: "darkcyan",
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 0.25,
-    color: 'white',
+    color: "white",
   },
 });
 
-export default Dashboard;
+export default Schedule;

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Alert } from "react-native";
 
-const Dashboard = () => {
+const Settings = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
 
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dashboard;
+export default Settings;

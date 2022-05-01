@@ -18,7 +18,7 @@ const Dashboard = () => {
         <Button
           title="Schedule"
           onPress={() => {
-            navigation.navigate("SettingsView");
+            navigation.navigate("Schedule");
           }}
         ></Button>
       </View>
