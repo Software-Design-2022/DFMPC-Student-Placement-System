@@ -38,46 +38,35 @@ const Settings = () => {
         <DialogInput
           isDialogVisible={visible}
           title={"Change Profile Photo"}
-          message={"Please paste image link"}
+          message={"Please paste image link.\nLeave blank to reset."}
           hintInput={authUserProfilePic}
           submitInput={(inputText) => {
-            console.log("New image link is: " + inputText);
+            console.log("Image link input is: " + inputText);
+            const isHyperLink = new RegExp(
+              "^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"
+            );
+            const isImageFile = new RegExp(
+              "[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"
+            );
             if (inputText == "") {
-              {
-                console.log("Reseting profile photo...");
-                console.log(
-                  "OLD Firebase profile photo: " +
-                    authUser.child("user_profile_photo/").val()
-                );
-              }
               //Sets profile photo to default photo
               authUser.ref.update({ user_profile_photo: defaultProfilePic });
-              authUserProfilePic = defaultProfilePic;
-
-              console.log(
-                "NEW Firebase profile photo: " +
-                  authUser.child("user_profile_photo/").val()
-              );
+              authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
               setVisible(false);
-            } else {
+            } else if (
+              inputText.match(isHyperLink) &&
+              inputText.match(isImageFile)
+            ) {
               console.log("Valid input received: " + inputText);
-              console.log(
-                "OLD Firebase profile photo: " +
-                  authUser.child("user_profile_photo/").val()
-              );
               // Sets new profile photo URL to input then, updates global variable
               authUser.ref.update({ user_profile_photo: inputText });
               authUserProfilePic = inputText;
-
-              console.log(
-                "NEW Firebase profile photo: " +
-                  authUser.child("user_profile_photo/").val()
-              );
+              //Doesn't update the snapshot though
               setVisible(false);
+            } else {
+              console.log("Invalid link inserted: " + inputText);
+              alert("Please enter a valid image link.");
             }
-            // else {
-            //   alert("Please enter a valid image link");
-            // }
           }}
           closeDialog={() => {
             setVisible(false);
