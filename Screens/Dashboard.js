@@ -12,7 +12,6 @@ import {
 const Dashboard = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
-
   return (
     <>
       <View style={styles.button}>
