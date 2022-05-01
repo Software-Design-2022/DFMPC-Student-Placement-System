@@ -6,27 +6,44 @@ import {
   Text,
   TextInput,
   Button,
+  Image,
   Linking,
 } from "react-native";
+import { Alert } from "react-native";
 
-const Settings = () => {
+const Dashboard = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
+
   return (
     <>
       <View style={styles.button}>
         <Button
           title="Change Profile Photo"
           onPress={() => {
-            // navigation.navigate("Schedule");
+            Alert.alert("TODO:", "Update User' profile_photo url in Firebase.");
           }}
         ></Button>
       </View>
       <View style={styles.button}>
         <Button
-          title="Set Color Themer"
+          title="Change App Theme"
           onPress={() => {
-            // navigation.navigate("Login");
+            Alert.alert(
+              "TODO:",
+              "Display app theme options as dropdown. \nPlace current theme on the top."
+            );
+          }}
+        ></Button>
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Suggestions?"
+          onPress={() => {
+            Alert.alert(
+              "TODO:",
+              "Add suggestions, placeholder. \nAdd suggestions on Discord."
+            );
           }}
         ></Button>
       </View>
@@ -53,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default Dashboard;
