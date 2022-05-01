@@ -8,10 +8,12 @@ import {
   Button,
   Linking,
 } from "react-native";
+import "../global.js";
 
 const Dashboard = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
+  console.log("Active user is " + authUserID);
   return (
     <>
       <View style={styles.button}>

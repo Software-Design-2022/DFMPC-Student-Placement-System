@@ -1,0 +1,2 @@
+global.authUserID = "";
+global.authUserRef = "";

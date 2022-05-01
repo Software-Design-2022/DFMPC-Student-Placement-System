@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
+import "../global.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,33 +43,40 @@ const Login = () => {
     // check if email exists in the database if so then hash pass and compare
 
     var found = false;
-    firebase
-      .database()
-      .ref("/users")
-      .on("value", (snapshot) => {
-        //if(snapshot.val()==email)
-        const key = snapshot.forEach(function (data) {
-          const check_email = snapshot.child(data.key + "/email").val();
+    var firebase_users = firebase.database().ref("/users"); // firebase reference for users
+    firebase_users.once("value", (snapshot) => {
+      // on() Listens for data changes
+      // value EventType will trigger once when loading the data and agian when it changes
 
-          const encrypted = snapshot.child(data.key + "/password_digest").val();
+      const key = snapshot.forEach(function (data) {
+        // for each user object in users, fetch it's data i.e., /users/0/*
+        var ref_user_id = data.key; //firebase reference to user instance. i.e., "/users/0"
+        const check_email = snapshot.child(ref_user_id + "/email").val();
 
-          if (check_email === email) {
-            found = true;
+        const encrypted = snapshot
+          .child(ref_user_id + "/password_digest")
+          .val();
 
-            if (encrypted === password) {
-              navigation.navigate("Dashboard");
-            } else {
-              showAlert(
-                "Password Error",
-                "Your email and password do not match"
-              );
-            }
+        if (check_email === email) {
+          found = true;
+
+          if (encrypted === password) {
+            //Set global variable for active authenticated user
+            authUserID = data.key;
+            authUserRef =
+              firebase.database().ref("/users") + "/" + authUserID + "/";
+            console.log("User ID: " + authUserID + " authenticated.");
+            // navigate to dashboard
+            navigation.navigate("Dashboard");
+          } else {
+            showAlert("Password Error", "Your email and password do not match");
           }
-        });
-        if (found === false) {
-          showAlert("Email Error", "user does not exist");
         }
       });
+      if (found === false) {
+        showAlert("Email Error", "user does not exist");
+      }
+    });
   };
   // this allows you to switch between different screens
 
