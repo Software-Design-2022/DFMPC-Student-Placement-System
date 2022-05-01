@@ -6,6 +6,7 @@ import Login from "./Screens/Login";
 import Dashboard from "./Screens/Dashboard";
 import Schedule from "./Screens/Schedule";
 import Calendar from "./Screens/Calendar";
+import SettingsView from "./Screens/Settings";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,15 +22,21 @@ function App() {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          options={{
+          options={({ navigation }) => ({
             headerTitle: "Dashboard",
             headerRight: () => (
-              <Button title="Settings" onPress={alert("Go to settings")} />
+              <Button
+                title="Settings"
+                onPress={() => {
+                  navigation.navigate("SettingsView");
+                }}
+              />
             ),
-          }}
+          })}
         />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="SettingsView" component={SettingsView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

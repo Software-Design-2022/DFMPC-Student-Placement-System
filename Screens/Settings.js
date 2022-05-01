@@ -6,8 +6,10 @@ import {
   Text,
   TextInput,
   Button,
+  Image,
   Linking,
 } from "react-native";
+import { Alert } from "react-native";
 
 const Dashboard = () => {
   const navigation = useNavigation();
@@ -17,17 +19,31 @@ const Dashboard = () => {
     <>
       <View style={styles.button}>
         <Button
-          title="Schedule"
+          title="Change Profile Photo"
           onPress={() => {
-            navigation.navigate("SettingsView");
+            Alert.alert("TODO:", "Update User' profile_photo url in Firebase.");
           }}
         ></Button>
       </View>
       <View style={styles.button}>
         <Button
-          title="Logout"
+          title="Change App Theme"
           onPress={() => {
-            navigation.navigate("Login");
+            Alert.alert(
+              "TODO:",
+              "Display app theme options as dropdown. \nPlace current theme on the top."
+            );
+          }}
+        ></Button>
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Suggestions?"
+          onPress={() => {
+            Alert.alert(
+              "TODO:",
+              "Add suggestions, placeholder. \nAdd suggestions on Discord."
+            );
           }}
         ></Button>
       </View>
