@@ -75,18 +75,18 @@ const Login = () => {
     <KeyboardAvoidingView 
     style={styles.container}
      // needs fixing // when keyboard appers things move up a bit 
-     
-      > 
-      
-     <Image
-        style={styles.BackGround}
-        source={require('./Trianglify-8.3s-2000px.svg')}
+     options={{ headerShown: false }}
+      >
+      <View >
+       <Image 
+       style={{width:300,
+        height:150,
+        borderRadius:15,
+        marginBottom:50
+        }}
+        source={require("./Wits3.png")}
         />
-    <Image
-        style={styles.stretch}
-        source={require('./Vanilla-1s-648px.svg')}
-      />
-      
+      </View>
       
      <View style={styles.inputStyle}>
          <TextInput
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:'rgba(30,55,108,1)'
     },
 
 inputStyle:{
@@ -153,7 +154,8 @@ linearGradient: {
   borderRadius: 5
 },
 buttonText: {
-  fontSize: 18,
+  fontSize: 15,
+  height:20,
   textAlign: 'center',
   margin: 10,
   color: '#ffffff',

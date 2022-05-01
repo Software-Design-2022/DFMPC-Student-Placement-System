@@ -39,6 +39,33 @@ const DATA = [
     destination: 'BackgroundTest',
     image: require("./test.png"),
   },
+  {
+    id: '28694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Assignments',
+    destination: 'BackgroundTest',
+    image: require("./test.png"),
+  },
+  {
+    id: '18694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Assignments',
+    destination: 'BackgroundTest',
+    image: require("./test.png"),
+  },
+  
+  {
+    id: '08694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Assignments',
+    destination: 'BackgroundTest',
+    image: require("./test.png"),
+  },
+  
+  {
+    id: '98694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Assignments',
+    destination: 'BackgroundTest',
+    image: require("./test.png"),
+  },
+  
   
 ];
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
@@ -50,6 +77,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 
 const Dashboard = () => {
   const navigation =useNavigation()
+  
   const [selectedId, setSelectedId] = useState(null);
   const [name, SetName] = useState('');
   const renderItem = ({ item }) => {
@@ -58,7 +86,7 @@ const Dashboard = () => {
     return (
     <View style={{flexDirection: 'row',
     padding:SPACING,
-    backgroundColor:' rgba(36,50,61,1)',
+    backgroundColor:' rgba(255,255,255,0.1)',
     flex:1,
     borderRadius:8,
     marginBottom:SPACING,
@@ -67,8 +95,8 @@ const Dashboard = () => {
       width: 0,
       height:10,
     },
-    shadowOpacity:0.6,
-    shadowRadius:10,
+    shadowOpacity:1,
+    shadowRadius:20,
     }}>
        <View>
         <Image source={item.image}
@@ -79,7 +107,7 @@ const Dashboard = () => {
         </Image>
       </View>
       <View style={{width:"75%",flex:1}}>
-      <LinearGradient colors={[' rgba(29,73,123,0.4)', 'rgba(29,73,123,0.7)', 'rgba(29,73,123,0.4)']} style={styles.linearGradient}>
+      <LinearGradient colors={['rgba(30,55,108,1)', ' rgba(30,55,108,0.8)', 'rgba(30,55,108,1)']} style={styles.linearGradient}>
       <TouchableOpacity
             onPress={()=>{navigation.navigate(item.destination)}}   // when user clicks on login button 
             >
@@ -127,46 +155,53 @@ const Dashboard = () => {
   };
   
   return (
-    <View style={{flex:1, backgroundColor:' rgba(255,255,255,1)'}}>
-    <View style={{ flex:1, backgroundColor:' rgba(36,50,61,1)',borderRadius:15,}}>
-     <View style={{height:ICON_SIZE+10, backgroundColor:'  rgba(26,40,51,1);', borderRadius:10}}>
+    <SafeAreaView style={{flex:1, backgroundColor:' rgba(255,255,255,1)'}}>
+    <View style={{ flex:1, backgroundColor:' rgba(30,55,108,1)',borderRadius:15,}}>
+     <View style={{height:ICON_SIZE+20, backgroundColor:'  rgba(30,55,108,1)', borderRadius:10}}>
        <View>
+       <Image 
+       style={{width:240,
+        height:120,
+        position: 'absolute',
+                left: SPACING,
+                top: -10,
+                resizeMode: 'stretch',
+        marginRight:SPACING/2,
+       
+        }}
+        source={require("./Wits3.png")}
+        />
+           
      <TouchableHighlight onPress={()=>{navigation.navigate("Login")}}>
        <Image 
        style={{width:ICON_SIZE,
         height:ICON_SIZE,
         position: 'absolute',
+        resizeMode: 'cover',
                 right: 0,
-                top: 2,
+                top: 10,
         borderRadius:ICON_SIZE
         ,marginRight:SPACING/2,
-        borderWidth:3,
-        borderColor:"rgba(0,0,0,0.2)",
-        backgroundColor:"rgba(128,163,198,1)"
+        borderWidth:0,
+        borderColor:"rgba(0,0,0,1)",
+        backgroundColor:"rgba(255,255,255,1)",
+      shadowOffset:{
+      height:10,
+      shadowColor:'black'
+      },
+       shadowOpacity:1,
+      shadowRadius:20,
         }}
-        source={require("./koalaTrans.gif")}
+        source={require("./elephantTrans.gif")}
         />
         </TouchableHighlight>
      </View>
      </View>
-    <View style={{flex:1, backgroundColor:'  rgba(255,255,255,1)',borderRadius:15}}>
+    
+    <View style={{flex:6.5, backgroundColor:' rgba(18,33,65,0.8)'}}>
       <FlatList contentContainerStyle={{
         padding:SPACING/8,
         paddingTop:SPACING,
-
-      }}
-        data={DATA}
-        renderItem={renderItem2}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-        horizontal={true}
-
-      />
-    </View>
-    <View style={{flex:6.5, backgroundColor:' rgba(36,50,61,1)'}}>
-      <FlatList contentContainerStyle={{
-        padding:SPACING/8,
-        paddingTop:SPACING/4,
 
       }}
         data={DATA}
@@ -191,7 +226,7 @@ const Dashboard = () => {
         />
         </TouchableHighlight>
      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -217,10 +252,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 5,
-    paddingTop: 10,
+    paddingTop: AVATAR_SIZE/4,
   },
   buttonText: {
-    fontSize: AVATAR_SIZE/2,
+    fontSize: AVATAR_SIZE/3,
     fontWeight:'700',
     textAlign: 'center',
     color: ' rgba(128,163,198,0.8)',
