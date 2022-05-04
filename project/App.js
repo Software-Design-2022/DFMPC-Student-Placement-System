@@ -17,7 +17,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{headerShown:false}} name="Login" component={Login} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen options={{headerShown:true}} name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="BackgroundTest" component={BackgroundTest} />
         <Stack.Screen name="Calendar" component={Calendar} />

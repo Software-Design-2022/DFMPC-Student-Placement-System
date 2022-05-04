@@ -21,12 +21,7 @@ const DATA = [
     destination: 'Schedule',
     image: require("./task.png"),
   },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Logout',
-    destination: 'Login',
-    image: require("./house.png"),
-  },
+  
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Calendar',
@@ -41,30 +36,31 @@ const DATA = [
   },
   {
     id: '28694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Assignments',
+    title: 'Tasks',
     destination: 'BackgroundTest',
-    image: require("./test.png"),
+    image: require("./Spikes.png"),
   },
   {
     id: '18694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Assignments',
+    title: 'Logbook',
     destination: 'BackgroundTest',
-    image: require("./test.png"),
+    image: require("./logbook.png"),
   },
   
   {
     id: '08694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Assignments',
+    title: 'Settings',
     destination: 'BackgroundTest',
-    image: require("./test.png"),
+    image: require("./settings.png"),
   },
   
   {
-    id: '98694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Assignments',
-    destination: 'BackgroundTest',
-    image: require("./test.png"),
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Logout',
+    destination: 'Login',
+    image: require("./house.png"),
   },
+  
   
   
 ];
@@ -95,6 +91,7 @@ const Dashboard = () => {
       width: 0,
       height:10,
     },
+    paddingTop:10,
     shadowOpacity:1,
     shadowRadius:20,
     }}>
@@ -125,17 +122,11 @@ const Dashboard = () => {
     <View style={{flexDirection: 'row',
     padding:SPACING,
     flex:1,
-    paddingTop:5,
+    paddingTop:10,
     borderRadius:100,
     marginBottom:SPACING/2,
     paddingBottom:5,
-    shadowColor:"rgba(0,0,0,1)",
-    shadowOffset:{
-      width: 0,
-      height:5,
-    },
-    shadowOpacity:1,
-    shadowRadius:20,
+  
     }}>
        <View>
          <TouchableHighlight  onPress={()=>{navigation.navigate(item.destination)}}>
@@ -192,11 +183,25 @@ const Dashboard = () => {
        shadowOpacity:1,
       shadowRadius:20,
         }}
-        source={require("./elephantTrans.gif")}
+        source={require("./koalaTrans.gif")}
         />
         </TouchableHighlight>
      </View>
      </View>
+     <View style={{flex:1, backgroundColor:' rgba(18,33,65,0.8)'}}>
+      <FlatList contentContainerStyle={{
+        padding:SPACING/8,
+        paddingTop:SPACING,
+        
+
+      }}
+        data={DATA}
+        renderItem={renderItem2}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
+        horizontal={true}
+      />
+    </View>
     
     <View style={{flex:6.5, backgroundColor:' rgba(18,33,65,0.8)'}}>
       <FlatList contentContainerStyle={{
