@@ -130,7 +130,7 @@ const Protocols = () =>
         },
      
         wrapper:{
-          cursor:'pointer',
+          
           flex: 1,
           justifyContent: 'center',
           height: '80%',
@@ -140,7 +140,7 @@ const Protocols = () =>
       protocolName:{
         
         justifyContent:'space-between',
-        cursor:'pointer',
+        
         flexDirection:'row',
       
         backgroundColor:'rgba(18,33,65,0.8)',
@@ -151,28 +151,27 @@ const Protocols = () =>
       item:{
         
         marginBottom:10,
-        cursor:'pointer',
+        
         backgroundColor:'rgba(18,33,65,0.8)',
         marginTop:5,
 
         padding:10
       },
       content:{
-        cursor:'pointer',
+        
         backgroundColor:'white',
         overflow:"hidden",
         maxHeight:0
         
       },
       content_show:{
-        cursor:'pointer',
+        
         backgroundColor:'lightblue',
         marginBottom:10,
         marginTop:10,
         padding:30,
         opacity: 1,
         maxHeight:9999,
-        transition:'opacity 1s linear'
 
       }
 
