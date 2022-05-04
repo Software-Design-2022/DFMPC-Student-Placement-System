@@ -5,16 +5,25 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   KeyboardAvoidingView,
+  TouchableHighlight,
   StyleSheet,
   Text,
   Button,
   TextInput,
   View,
   Alert,
+  Image,
 } from "react-native";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
+import {LinearGradient} from 'expo-linear-gradient';
 
+
+
+const AVATAR_SIZE = 70;
+const ICON_SIZE = 80;
+const SPACING = 20;
+const image = { uri: "https://reactjs.org/logo-og.png" };
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,37 +86,46 @@ const Login = () => {
 
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <KeyboardAvoidingView
-      style={styles.container}
-      // needs fixing // when keyboard appers things move up a bit
-    >
-      <Text style={styles.SPSStyle}>Student Placement System</Text>
-      <View style={styles.inputStyle}>
-        <TextInput
-          placeholder="Enter email"
-          value={email}
-          onChangeText={(text) => setEmail(text)} //  set email to what the text is
-          style={styles.input}
-        ></TextInput>
-        <TextInput
-          placeholder="Enter password"
-          value={password}
-          onChangeText={(text) => setPassword(text)} // set password to what the text is
-          style={styles.input}
-          secureTextEntry
-        ></TextInput>
-      </View>
-
-      <View style={styles.btnStyle}>
-        <TouchableOpacity
-          onPress={LoginFirebase} // when user clicks on login button
-        >
+    style={styles.container}
+    // needs fixing // when keyboard appers things move up a bit
+  >
+    <View>
+    <Image source={{uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png"}}
+      style={{width:300,height:150,
+      }}
+      >
+      </Image>
+    </View>
+    <View style={styles.inputStyle}>
+      <TextInput
+        placeholder="Enter email"
+        value={email}
+        onChangeText={(text) => setEmail(text)} //  set email to what the text is
+        style={styles.input}
+      ></TextInput>
+      <TextInput
+        placeholder="Enter password"
+        value={password}
+        onChangeText={(text) => setPassword(text)} // set password to what the text is
+        style={styles.input}
+        secureTextEntry
+      ></TextInput>
+    </View>
+    <View style={{paddingTop:12, width:"50%"}}>
+    <LinearGradient colors={['rgba(18,33,65,0.8)', ' rgba(18,33,65,0.8)', 'rgba(18,33,65,0.8)']} style={styles.linearGradient}>
+    <TouchableOpacity
+          onPress={()=>{navigation.navigate("Dashboard")}}   // when user clicks on login button 
+          >
           <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
-    // </TouchableWithoutFeedback>
+
+      </TouchableOpacity> 
+  </LinearGradient>
+    </View>
+  </KeyboardAvoidingView>
+  // </TouchableWithoutFeedback>
   );
 };
+
 
 export default Login;
 
@@ -116,6 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor:"rgba(30,55,108,1)"
   },
 
   inputStyle: {
@@ -127,37 +146,20 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 10,
   },
-  btnStyle: {
-    width: "30%",
-    backgroundColor: "white",
-    marginTop: 50,
-    borderColor: "lightblue",
-    borderWidth: 2,
-    borderRadius: 10,
-    alignItems: "center",
+  linearGradient: {
+    height: 40,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    paddingTop: 0,
+    borderWidth:3,
+    borderColor:"rgba(18,33,65,1)"
   },
-  SPSStyle: {
-    backgroundColor: "grey",
-    marginTop: 50,
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-
   buttonText: {
-    color: "black",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  btn: {
-    marginTop: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "green",
+    fontSize: 20,
+    fontWeight:'700',
+    textAlign: 'center',
+    color:"white",
+    backgroundColor: 'transparent',
   },
 });

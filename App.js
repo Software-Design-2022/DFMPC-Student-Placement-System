@@ -14,26 +14,12 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        { <Stack.Screen
           options={{ headerShown: false }}
           name="Login"
           component={Login}
-        /> */}
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={({ navigation }) => ({
-            headerTitle: "Dashboard",
-            headerRight: () => (
-              <Button
-                title="Settings"
-                onPress={() => {
-                  navigation.navigate("SettingsView");
-                }}
-              />
-            ),
-          })}
-        />
+        /> }
+        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="SettingsView" component={SettingsView} />
