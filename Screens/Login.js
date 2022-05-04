@@ -111,8 +111,8 @@ const Login = () => {
         secureTextEntry
       ></TextInput>
     </View>
-    <View style={{paddingTop:12, width:"50%"}}>
-    <LinearGradient colors={['rgba(18,33,65,0.8)', ' rgba(18,33,65,0.8)', 'rgba(18,33,65,0.8)']} style={styles.linearGradient}>
+    <View style={{paddingTop:12, width:"40%"}}>
+    <LinearGradient colors={['rgba(28,72,123,255)', ' rgba(28,72,123,255))', 'rgba(28,72,123,255)']} style={styles.linearGradient}>
     <TouchableOpacity
           onPress={()=>{navigation.navigate("Dashboard")}}   // when user clicks on login button 
           >
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:"rgba(30,55,108,1)"
+    backgroundColor:"rgba(28,56,107,255)"
   },
 
   inputStyle: {
@@ -145,18 +145,20 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
     marginTop: 10,
+    marginTop:15
   },
   linearGradient: {
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 5,
-    paddingTop: 0,
+    paddingTop: 2,
     borderWidth:3,
-    borderColor:"rgba(18,33,65,1)"
+    marginTop:10,
+    borderColor:"rgba(28,72,123,255)"
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight:'700',
     textAlign: 'center',
     color:"white",
