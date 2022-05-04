@@ -7,6 +7,7 @@ import Dashboard from "./Screens/Dashboard";
 import Schedule from "./Screens/Schedule";
 import Calendar from "./Screens/Calendar";
 import SettingsView from "./Screens/Settings";
+import Protocols from "./Screens/Protocols";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ function App() {
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="SettingsView" component={SettingsView} />
+        <Stack.Screen name="Protocols" component={Protocols} />
       </Stack.Navigator>
     </NavigationContainer>
   );

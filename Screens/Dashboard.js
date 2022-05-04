@@ -216,7 +216,7 @@ const Dashboard = () => {
     </View>
     </View>
     <View>
-     <TouchableHighlight onPress={()=>{navigation.navigate("Login")}}>
+     <TouchableHighlight onPress={()=>{navigation.navigate("Protocols")}}>
        <Image 
        style={{width:ICON_SIZE,
         height:ICON_SIZE,

@@ -39,7 +39,7 @@ export default class Calendar extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'darkcyan',
+    backgroundColor: 'rgba(28,56,107,255)',
     marginTop: 10,
   },
 });
