@@ -57,6 +57,12 @@
 
 ![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Software_Description.png)
 
+## Database Design
+
+![Database Diagram1](https://user-images.githubusercontent.com/67168444/166960442-32cf8b2c-202f-4eb9-8c34-4f6034dba991.png)
+
+The above image shows the structure of our database which is hosted on firebase. The connections between the tables are shown by lines. The admins and protocols tables are their own separate entities and have no relations with any of the other tables.
+
 ## Dependencies
 
 ```
