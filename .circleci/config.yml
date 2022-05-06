@@ -1,14 +1,14 @@
-
 version: '2.1'
-
-orbs: 
-  codecov: codecov/codecov@3.2.2
-  node: circleci/node@4.7.0
-workflows:
-  upload-to-codecov:
-    jobs: 
-        - node/test: 
-            post-steps: 
-              - codecov/upload:
-                
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
+jobs:
+  build:
+    docker:
+      - image: 'circleci/node:10.0.0'
+    steps:
+      - checkout
+      - run:
+          name: Install and Make
+          command: npm install && make test-coverage
+      - coveralls/upload
   
