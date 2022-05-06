@@ -87,5 +87,4 @@ The above image shows the structure of our database which is hosted on firebase.
 
 [![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
-
 ## Code Coverage Badge: CodeCov
