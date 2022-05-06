@@ -4,17 +4,6 @@ version: 2.1
 orbs: 
   codecov: codecov/codecov@3.2.2
   node: circleci/node@4.7.0
-
-jobs:
-  say-hello:
-    
-      - image: cimg/python:3.10
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
 workflows:
   upload-to-codecov:
     jobs: 
@@ -23,6 +12,4 @@ workflows:
               - codecov/upload:
                 file: './coverage/clover.xml'
                 token: 7025d4e8-9bf4-402a-b21d-79d4abb7848e
-  say-hello-workflow:
-    jobs:
-      - say-hello
+  
