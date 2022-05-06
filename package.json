@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter mocha-badge-generator --reporter-options=badge_format=png,badge_output=badge.png"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
@@ -27,8 +27,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "mocha-badge-generator": "^0.9.0"
-  },
-  "test": "mocha --reporter mocha-badge-generator --reporter-options=badge_format=png,badge_output=badge.png"
+  }
+  
     
 
 }
