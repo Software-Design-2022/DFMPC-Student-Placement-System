@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/core'
 import { StatusBar, FlatList, Image, Animated, Text, View, Dimensions, StyleSheet, TouchableOpacity,TouchableHighlight, Easing, SafeAreaViewBase, SafeAreaView } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 import {LinearGradient} from 'expo-linear-gradient';
-
+import{days} from './CalendarView'
 
 //Constants to dictate side of elements in UI
 const buttonHeight=50;
@@ -65,10 +65,25 @@ const DATA = [
   
   
 ];
+function getData ()
+{var n = 1;
+  firebase.firestore()
+  .collection('emergency_protocols')
+  .get()
+  .then(querySnapshot => {
+     n++
+   
+     querySnapshot.forEach(documentSnapshot => {
+     data.push({id:n,Protocol: documentSnapshot.id,content:documentSnapshot.data().protocol_1} )
+      
+    });
+      
+  });
+    return data
+  }
 
 
-
-const Dashboard = () => {
+const DayAgenda = () => {
   //Use navigation
   const navigation =useNavigation()
   
@@ -161,78 +176,8 @@ const Dashboard = () => {
 
     //main views for layout of UI
     <SafeAreaView style={{flex:1, backgroundColor:' rgba(255,255,255,1)'}}>
-    <View style={{ flex:1, backgroundColor:' rgba(30,55,108,1)',borderRadius:15,}}>
-     <View style={{height:ICON_SIZE+20, backgroundColor:'  rgba(30,55,108,1)', borderRadius:10}}>
-
-       
-       <View>
-         
-       <Image 
-       style={{width:240,
-        height:120,
-        position: 'absolute',
-                left: SPACING,
-                top: -10,
-                resizeMode: 'stretch',
-        marginRight:SPACING/2,
-       // Wits icon in top left
-        }}
-        source={witsLogo}
-        />
-
-
-        
-        <View><TouchableHighlight
-        //View for touchable icon in top right for settings
-         activeOpacity={0}
-      underlayColor={'rgba(18,33,65,0)'}
-         onPress={()=>{navigation.navigate("SettingsView")}}>
-
-
-       <Image 
-       //Style for icon in top right
-       style={{width:ICON_SIZE,
-        height:ICON_SIZE,
-        resizeMode: 'cover',
-        marginLeft:width -ICON_SIZE,
-        borderRadius:ICON_SIZE
-        ,marginRight:SPACING/2,
-        marginTop:10,
-        borderWidth:0,
-        alignSelf: 'flex-end',
-        borderColor:"rgba(0,0,0,1)",
-        backgroundColor:"rgba(255,255,255,1)",
-      shadowOffset:{
-      height:10,
-      shadowColor:'black'
-      },
-       shadowOpacity:1,
-      shadowRadius:20,
-        }}
-        source={require("./bear.gif")}
-        />
-        </TouchableHighlight></View>   
-     
-     </View>
-     
-     </View>
-     
-     <View style={{flex:1, backgroundColor:' rgba(18,33,65,0.8)'}}>
-      <FlatList contentContainerStyle={{
-        // First horizontal flatlist with shortcuts for navigation
-        padding:SPACING/8,
-        paddingTop:SPACING,
-        
-
-      }}
-        data={DATA}
-        renderItem={renderItem2}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-        horizontal={true}
-      />
-    </View>
     
+    <Text>{days}</Text>
     <View style={{flex:6.5, backgroundColor:' rgba(18,33,65,0.8)'}}>
       <FlatList contentContainerStyle={{
         // Second vertical flatlist with navigation to each page
@@ -240,27 +185,12 @@ const Dashboard = () => {
         paddingTop:SPACING,
 
       }}
-        data={DATA}
+        data={getData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
       />
-      <TouchableHighlight activeOpacity={0}
-      // adds icon in bottom left for navigation to protocol page
-      underlayColor={'rgba(18,33,65,0)'}
-      onPress={()=>{navigation.navigate("Protocols")}}>
-       <Image 
-       style={{width:ICON_SIZE,
-        height:ICON_SIZE,
-        borderRadius:ICON_SIZE,
-        marginRight:ICON_SIZE
-        }}
-        source={require("./emergency.gif")}
-        />
-        </TouchableHighlight>
     </View>
-    </View>
-
      
  
     </SafeAreaView>
@@ -325,4 +255,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default Dashboard;
+export default DayAgenda;
