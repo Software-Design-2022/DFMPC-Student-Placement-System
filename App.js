@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./Screens/Login";
 import Dashboard from "./Screens/Dashboard";
 import Schedule from "./Screens/Schedule";
-import Calendar from "./Screens/Calendar";
+import CalendarView from "./Screens/CalendarView";
 import SettingsView from "./Screens/Settings";
+import Protocols from "./Screens/Protocols";
+import DayAgenda from "./Screens/DayAgenda";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,29 +16,17 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        { <Stack.Screen
           options={{ headerShown: false }}
           name="Login"
           component={Login}
-        /> */}
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={({ navigation }) => ({
-            headerTitle: "Dashboard",
-            headerRight: () => (
-              <Button
-                title="Settings"
-                onPress={() => {
-                  navigation.navigate("SettingsView");
-                }}
-              />
-            ),
-          })}
-        />
+        /> }
+        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
-        <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="CalendarView" component={CalendarView} />
         <Stack.Screen name="SettingsView" component={SettingsView} />
+        <Stack.Screen name="Protocols" component={Protocols} />
+        <Stack.Screen name="DayAgenda" component={DayAgenda} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -51,3 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 export default App;
+
