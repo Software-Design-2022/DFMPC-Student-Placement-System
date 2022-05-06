@@ -102,7 +102,7 @@ const Dashboard = () => {
         >
         </Image>
       </View>
-      <View style={{width:"75%",flex:1}}>
+      <View style={{width:"75%",flex:21}}>
       <LinearGradient colors={['rgba(30,55,108,1)', ' rgba(30,55,108,0.8)', 'rgba(30,55,108,1)']} style={styles.linearGradient}>
       <TouchableOpacity
             onPress={()=>{navigation.navigate(item.destination)}}   // when user clicks on login button 
@@ -128,7 +128,8 @@ const Dashboard = () => {
   
     }}>
        <View>
-         <TouchableHighlight  onPress={()=>{navigation.navigate(item.destination)}}>
+         <TouchableHighlight activeOpacity={0}
+      underlayColor={'rgba(18,33,65,0)'} onPress={()=>{navigation.navigate(item.destination)}}>
 
         <Image source={item.image}
         style={{width:AVATAR_SIZE/1.5,height:AVATAR_SIZE/1.5,borderRadius:AVATAR_SIZE/1.5
@@ -161,18 +162,20 @@ const Dashboard = () => {
         }}
         source={witsLogo}
         />
-           
-     <TouchableHighlight onPress={()=>{navigation.navigate("SettingsView")}}>
+        <View><TouchableHighlight
+         activeOpacity={0}
+      underlayColor={'rgba(18,33,65,0)'}
+         onPress={()=>{navigation.navigate("SettingsView")}}>
        <Image 
        style={{width:ICON_SIZE,
         height:ICON_SIZE,
-        position: 'absolute',
         resizeMode: 'cover',
-                right: 0,
-                top: 10,
+        marginLeft:width -ICON_SIZE,
         borderRadius:ICON_SIZE
         ,marginRight:SPACING/2,
+        marginTop:10,
         borderWidth:0,
+        alignSelf: 'flex-end',
         borderColor:"rgba(0,0,0,1)",
         backgroundColor:"rgba(255,255,255,1)",
       shadowOffset:{
@@ -184,9 +187,12 @@ const Dashboard = () => {
         }}
         source={require("./bear.gif")}
         />
-        </TouchableHighlight>
+        </TouchableHighlight></View>   
+     
      </View>
+     
      </View>
+     
      <View style={{flex:1, backgroundColor:' rgba(18,33,65,0.8)'}}>
       <FlatList contentContainerStyle={{
         padding:SPACING/8,
@@ -213,23 +219,24 @@ const Dashboard = () => {
         keyExtractor={(item) => item.id}
         extraData={selectedId}
       />
-    </View>
-    </View>
-    <View>
-     <TouchableHighlight onPress={()=>{navigation.navigate("Protocols")}}>
+      <TouchableHighlight activeOpacity={0}
+      underlayColor={'rgba(18,33,65,0)'}
+      onPress={()=>{navigation.navigate("Protocols")}}>
        <Image 
        style={{width:ICON_SIZE,
         height:ICON_SIZE,
-        position: 'absolute',
-                right: 0,
-                bottom: 0,
         borderRadius:ICON_SIZE
-        ,marginRight:SPACING/2,
+        ,marginLeft:width-ICON_SIZE,
+        marginRight:ICON_SIZE
         }}
         source={require("./emergency.gif")}
         />
         </TouchableHighlight>
-     </View>
+    </View>
+    </View>
+
+     
+ 
     </SafeAreaView>
   );
 };

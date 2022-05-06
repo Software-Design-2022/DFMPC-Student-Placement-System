@@ -40,7 +40,7 @@ function getData (){
 {
   id:6,
   Protocol:"Test Protocol",
-  content:"1) We are testing if this works"
+  content: "1) We are testing if this works"
 }]
 
     var n = 1;
@@ -78,15 +78,16 @@ const Protocols = () =>
        
               
               <View style={styles.item} >
-                
-              <View style={styles.protocolName} >
+                <Text>
+                  <View style={styles.protocolName} >
                 <TouchableOpacity key={i} onPress={()=>toggle(i)}>
               
  
               <Text style={styles.categoryText}> <Text> 
                   {clicked==i ? '-':'+'} </Text>{item.Protocol}</Text>
               </TouchableOpacity>
-              </View>
+              </View></Text>
+              
 
             <View style= {clicked==i ? styles.content_show:styles.content} ><Text>{item.content}</Text> </View> 
               </View>

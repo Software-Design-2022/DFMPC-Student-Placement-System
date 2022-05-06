@@ -7,14 +7,18 @@ import {
   Image
 } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
+import {useNavigation} from '@react-navigation/core'
 
 const buttonHeight=50;
 const textPos=buttonHeight/2;
 const SPACING = 20;
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
+
 export default class Calendar extends Component {
+  
   constructor(props) {
+    
     super(props);
     this.state = {
       selectedStartDate: null,
@@ -35,12 +39,15 @@ export default class Calendar extends Component {
       });
     }
   }
+  
   render() {
+    
     const { selectedStartDate, selectedEndDate } = this.state;
     const minDate = new Date(); // Today
     const maxDate = new Date(2050, 6, 3);
     const startDate  =  selectedStartDate ? selectedStartDate.toString() : '';
     const endDate = selectedEndDate ? selectedEndDate.toString() : '';
+    
     return (
       <View style={{flex:1}}>
 
@@ -84,6 +91,9 @@ export default class Calendar extends Component {
     );
   }
 }
+
+    
+  
 const styles = StyleSheet.create({
   container: {
     marginTop:20,
