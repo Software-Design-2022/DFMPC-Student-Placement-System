@@ -90,7 +90,5 @@ The above image shows the structure of our database which is hosted on firebase.
 
 ## Mocha Testing
 
-```
-    npm test
-```
+![Test](test/badge.svg)
 ## Code Coverage Badge: CodeCov
