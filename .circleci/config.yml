@@ -10,6 +10,5 @@ workflows:
         - node/test: 
             post-steps: 
               - codecov/upload:
-                file: './coverage/clover.xml'
-                token: 7025d4e8-9bf4-402a-b21d-79d4abb7848e
+                
   
