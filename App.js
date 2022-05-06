@@ -41,3 +41,11 @@ const styles = StyleSheet.create({
   },
 });
 export default App;
+
+const express = require("express");
+const app = express();
+app.get("/", (req, res) => {
+  res.send("Working...");
+});
+
+app.listen(5000);
