@@ -26,7 +26,6 @@ const image = { uri: "https://reactjs.org/logo-og.png" };
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [profilePic, setProfilePic] = useState(authUserProfilePic);
   const navigation = useNavigation();
 
   function showAlert(title, message) {
