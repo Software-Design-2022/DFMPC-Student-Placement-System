@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 export async function getList(onReceiveList) {
 
   var protocols = []
-
+  
 
   var snapshot = await firebase.firestore()
     .collection('emergency_protocols')
@@ -21,3 +21,5 @@ export async function getList(onReceiveList) {
 
   onReceiveList(protocols);
 }
+
+

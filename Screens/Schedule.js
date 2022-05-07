@@ -11,6 +11,9 @@ import {
   TouchableOpacity
 } from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
+import { getSchedule } from './RetrieveSchedules';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-web";
 
 const buttonHeight=50;
 const textPos=buttonHeight/2;
@@ -19,52 +22,74 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 260;
 
 const Schedule = () => {
+  const[state,setState]=useState({scheduleList: [{key1:0,
+  created_at:"",
+  hospital:"",
+  ID:"",
+  specialty_duration:"",
+  specialty_id:"",
+  student_id:"",
+  updated_at:"",
+  week_no:"",
+  }]}) 
+
+
+  const onReceive = (scheduleList) => {
+
+    setState(prevState => ({
+      scheduleList: prevState.scheduleList = scheduleList,
+
+    }));
+  }
+  getSchedule(onReceive)
+  console.log(state.scheduleList)
   const navigation = useNavigation();
-  const [name, SetName] = useState("");
+
 
   return (
-    <>
-      <View style={{width:"100%",flex:1,}}>
-      <LinearGradient colors={['rgba(30,55,108,1)', ' rgba(30,55,108,0.8)', 'rgba(30,55,108,1)']} >
-      <TouchableOpacity
-            onPress={()=>{navigation.navigate("CalendarView")}}   // when user clicks on login button 
-            >
-            <Text style={styles.buttonText}>Calendar</Text>
 
-        </TouchableOpacity> 
-    </LinearGradient>
-      </View>
-      <View style={{width:"100%",flex:1,}}>
-      <LinearGradient colors={['rgba(30,55,108,1)', ' rgba(30,55,108,0.8)', 'rgba(30,55,108,1)']} >
-      <TouchableOpacity
-            onPress={()=>{navigation.navigate("Login")}}   // when user clicks on login button 
-            >
-            <Text style={styles.buttonText}>Logout</Text>
-
-        </TouchableOpacity> 
-    </LinearGradient>
-      </View>
-    </>
-  );
+    <Text>asa</Text>
+     );
 };
 
 const styles = StyleSheet.create({
-  linearGradient: {
-    height: AVATAR_SIZE,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
-    
+  container: {
+    flex: 1,
+    backgroundColor:'rgba(18,33,65,0.8)',
   },
-  buttonText: {
-    fontSize: AVATAR_SIZE/3,
-    fontWeight:'700',
-    textAlign: 'center',
-    color: ' rgba(128,163,198,0.8)',
-    backgroundColor: 'transparent',
-    height:AVATAR_SIZE,
-    paddingTop:AVATAR_SIZE/4
+  header:{
+  flexDirection:'row',
+  padding:10,
   },
+  item:{
+    backgroundColor:'rgba(18,33,65,0.8)',
+    padding:20,
+  },
+  itemText:{
+    fontSize: 16,
+    fontWeight:'500',
+    color:'white'
+
+
+  },
+  contentHide: {
+    color:'white',
+    backgroundColor: 'rgba(44,59,92,255)',
+    overflow: "hidden",
+    maxHeight: 0
+
+  },
+  content_show:{
+    color:'white',
+    backgroundColor:'rgba(44,59,92,255)',
+    marginBottom:10,
+    marginTop:10,
+    padding:30,
+    opacity: 1,
+    maxHeight:9999,
+   
+
+  }
 });
 
 export default Schedule;
