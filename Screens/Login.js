@@ -16,9 +16,8 @@ import {
 } from "react-native";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
-import {LinearGradient} from 'expo-linear-gradient';
-
-
+import { LinearGradient } from "expo-linear-gradient";
+import "../global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
@@ -45,6 +44,14 @@ const Login = () => {
       }
     );
   }
+
+  function setUserVariables(data) {
+    authUser = data;
+    authUserID = data.key;
+    authUserProfilePic = authUser.child("user_profile_photo/").val();
+    authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
+    console.log("User ID: " + authUserID + " authenticated.");
+  }
   const LoginFirebase = () => {
     // login with email and password
 
@@ -65,6 +72,10 @@ const Login = () => {
             found = true;
 
             if (encrypted === password) {
+              setUserVariables(data);
+              console.log(
+                "User authenticated sucessfully! Storing variables..."
+              );
               navigation.navigate("Dashboard");
             } else {
               showAlert(
@@ -86,46 +97,54 @@ const Login = () => {
 
     //<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <KeyboardAvoidingView
-    style={styles.container}
-    // needs fixing // when keyboard appers things move up a bit
-  >
-    <View>
-    <Image source={{uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png"}}
-      style={{width:300,height:150,
-      }}
-      >
-      </Image>
-    </View>
-    <View style={styles.inputStyle}>
-      <TextInput
-        placeholder="Enter email"
-        value={email}
-        onChangeText={(text) => setEmail(text)} //  set email to what the text is
-        style={styles.input}
-      ></TextInput>
-      <TextInput
-        placeholder="Enter password"
-        value={password}
-        onChangeText={(text) => setPassword(text)} // set password to what the text is
-        style={styles.input}
-        secureTextEntry
-      ></TextInput>
-    </View>
-    <View style={{paddingTop:12, width:"40%"}}>
-    <LinearGradient colors={['rgba(28,72,123,255)', ' rgba(28,72,123,255))', 'rgba(28,72,123,255)']} style={styles.linearGradient}>
-    <TouchableOpacity
-          onPress={()=>{navigation.navigate("Dashboard")}}   // when user clicks on login button 
+      style={styles.container}
+      // needs fixing // when keyboard appers things move up a bit
+    >
+      <View>
+        <Image
+          source={{
+            uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
+          }}
+          style={{ width: 300, height: 150 }}
+        ></Image>
+      </View>
+      <View style={styles.inputStyle}>
+        <TextInput
+          placeholder="Enter email"
+          value={email}
+          onChangeText={(text) => setEmail(text)} //  set email to what the text is
+          style={styles.input}
+        ></TextInput>
+        <TextInput
+          placeholder="Enter password"
+          value={password}
+          onChangeText={(text) => setPassword(text)} // set password to what the text is
+          style={styles.input}
+          secureTextEntry
+        ></TextInput>
+      </View>
+      <View style={{ paddingTop: 12, width: "40%" }}>
+        <LinearGradient
+          colors={[
+            "rgba(28,72,123,255)",
+            " rgba(28,72,123,255))",
+            "rgba(28,72,123,255)",
+          ]}
+          style={styles.linearGradient}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              LoginFirebase();
+            }} // when user clicks on login button
           >
-          <Text style={styles.buttonText}>Login</Text>
-
-      </TouchableOpacity> 
-  </LinearGradient>
-    </View>
-  </KeyboardAvoidingView>
-  // </TouchableWithoutFeedback>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </View>
+    </KeyboardAvoidingView>
+    // </TouchableWithoutFeedback>
   );
 };
-
 
 export default Login;
 
@@ -134,7 +153,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:"rgba(28,56,107,255)"
+    backgroundColor: "rgba(28,56,107,255)",
   },
 
   inputStyle: {
@@ -145,7 +164,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
     marginTop: 10,
-    marginTop:15
+    marginTop: 15,
   },
   linearGradient: {
     height: 40,
@@ -153,15 +172,15 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     paddingTop: 2,
-    borderWidth:3,
-    marginTop:10,
-    borderColor:"rgba(28,72,123,255)"
+    borderWidth: 3,
+    marginTop: 10,
+    borderColor: "rgba(28,72,123,255)",
   },
   buttonText: {
     fontSize: 18,
-    fontWeight:'700',
-    textAlign: 'center',
-    color:"white",
-    backgroundColor: 'transparent',
+    fontWeight: "700",
+    textAlign: "center",
+    color: "white",
+    backgroundColor: "transparent",
   },
 });

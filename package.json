@@ -23,6 +23,7 @@
     "react-native": "0.64.3",
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1283.0",
+    "react-native-dialog-input": "^1.0.8",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1"
