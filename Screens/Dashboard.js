@@ -132,10 +132,10 @@ const Dashboard = () => {
     <View style={{flexDirection: 'row',
     padding:SPACING,
     flex:1,
-    paddingTop:10,
+    paddingTop:0,
     borderRadius:100,
-    marginBottom:SPACING/2,
-    paddingBottom:5,
+    marginBottom:SPACING,
+    paddingBottom:10,
   
     }}>
        <View>
@@ -219,7 +219,7 @@ const Dashboard = () => {
      
      </View>
      
-     <View style={{flex:1, backgroundColor:' rgba(18,33,65,0.8)'}}>
+     <View style={{flex:1, backgroundColor:' rgba(18,33,65,0.8)',paddingBottom:10}}>
       <FlatList contentContainerStyle={{
         // First horizontal flatlist with shortcuts for navigation
         padding:SPACING/8,
