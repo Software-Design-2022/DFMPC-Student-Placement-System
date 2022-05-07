@@ -86,8 +86,6 @@ const Dashboard = () => {
 
   const [selectedId, setSelectedId] = useState(null);
   const [name, SetName] = useState("");
-  const [profilePic, setProfilePic] = useState(authUserProfilePic);
-
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "#7fb4e1" : "#bcbcbc";
     const color = item.id === selectedId ? "black" : "black";
