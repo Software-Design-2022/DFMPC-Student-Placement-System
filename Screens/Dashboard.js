@@ -182,7 +182,8 @@ const Dashboard = () => {
 
 
         
-        <View><TouchableHighlight
+        <View>
+          <TouchableHighlight
         //View for touchable icon in top right for settings
          activeOpacity={0}
       underlayColor={'rgba(18,33,65,0)'}
@@ -211,7 +212,8 @@ const Dashboard = () => {
         }}
         source={require("./bear.gif")}
         />
-        </TouchableHighlight></View>   
+        </TouchableHighlight>
+        </View>   
      
      </View>
      

@@ -26,9 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "coveralls": "^3.1.1",
-    "mocha-badge-generator": "^0.9.0",
-    "mocha-lcov-reporter": "^1.3.0"
+    "reinstall-node-modules": "^2.0.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
