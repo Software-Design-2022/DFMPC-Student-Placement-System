@@ -27,7 +27,7 @@ const Schedule = () => {
       <View style={{width:"100%",flex:1,}}>
       <LinearGradient colors={['rgba(30,55,108,1)', ' rgba(30,55,108,0.8)', 'rgba(30,55,108,1)']} >
       <TouchableOpacity
-            onPress={()=>{navigation.navigate("Calendar")}}   // when user clicks on login button 
+            onPress={()=>{navigation.navigate("CalendarView")}}   // when user clicks on login button 
             >
             <Text style={styles.buttonText}>Calendar</Text>
 
