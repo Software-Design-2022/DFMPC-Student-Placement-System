@@ -14,11 +14,13 @@ import firebase from "../firebase";
 import "../global.js";
 import { TouchableOpacity } from "react-native-web";
 import DialogInput from "react-native-dialog-input";
+import { SelectDropdown } from "react-native-select-dropdown";
 
 const Settings = () => {
   const navigation = useNavigation();
   const [name, SetName] = useState("");
   const [visible, setVisible] = useState(false);
+  const appThemes = ["Wits Blue", "Darcula"];
 
   const changeProfilePhoto = () => {
     setVisible(true);
@@ -41,14 +43,14 @@ const Settings = () => {
           message={"Please paste image link.\nLeave blank to reset."}
           hintInput={authUserProfilePic}
           submitInput={(inputText) => {
-            console.log("Image link input is: " + inputText);
+            console.log("Image link input is: '" + inputText + "'");
             const isHyperLink = new RegExp(
               "^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"
             );
             const isImageFile = new RegExp(
               "[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"
             );
-            if (inputText == "") {
+            if (inputText == "" || typeof inputText === "undefined") {
               //Sets profile photo to default photo
               authUser.ref.update({ user_profile_photo: defaultProfilePic });
               authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
