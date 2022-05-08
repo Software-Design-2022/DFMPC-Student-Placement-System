@@ -14,6 +14,8 @@ import AppContext from '../AppContext';
 import "../global.js";
 import { NavigationContainer } from '@react-navigation/native';
 
+
+//constants 
 const buttonHeight=50;
 const textPos=buttonHeight/2;
 const SPACING = 20;
@@ -23,39 +25,32 @@ var days=""
 var specialty=""
 const RANGE = 12;
 const initialDate = '2022-01-02'
-// const initialDate = new Date().toISOString().split('T')[0];
-
 
 
 
 const CalendarView = () => {
+
+  //use navigation
   const navigation = useNavigation();
   const myContext = useContext(AppContext);
   // const [selectedId, setSelectedId] = useState(null);
   const [selected, setSelected] = useState(initialDate);
   const [name, SetName] = useState('');
   // const navigation = useNavigation()
+
+  //retrieve user details
   const scheduleList = studentData.schedules;
   console.log('Schedule List', scheduleList)
   const onDayPress = day => {
     setSelected(day.dateString);
   };
 
-  // const markedDates = {
-  //   [selected]: {
-  //     selected: true,
-  //     disableTouchEvent: true,
-  //     selectedColor: '#5E60CE',
-  //     selectedTextColor: 'white'
-  //   }
-  // };
-  // const setwords = ({word}) => {
-  //   words=word
-  // }
 
   
 
   return (
+
+    //render calendar 
     <CalendarList
       // testID={testIDs.calendarList.CONTAINER}
       current={initialDate}
@@ -72,6 +67,8 @@ const CalendarView = () => {
       }}
       // markedDates={markedDates}
       markingType="period"
+
+      //get marked dates using generateschedule and user credentials
       markedDates={generateSchedule(scheduleList)}
     />
   );
@@ -80,24 +77,36 @@ const CalendarView = () => {
 
 
 
+// generate marked dates
 const generateSchedule = (scheduleList) => {
+
+
+  
   let schedulesObj = {}
   scheduleList.forEach((schedule) => {
 
     let scheduleObj = {}
 
+    //get the week for the schedule
     const week = getDateFromWeekNum(schedule.week_no,2022,schedule.specialty_duration);
 
+
+    //figure out which days of the week in the schedule
     const daysInWeek = getDaysInWeek(week.startDate,schedule.specialty_duration);
 
-    
+    //only show schedule for correct user
      if(schedule.student_id!=parseInt(authUserID,10)+1){
        return{}
      }
+
+
+     //default colours
      var startcolor='rgba(80,206,187,0.5)'
      var middlecolor='rgba(80,206,187,0.5)'
      var endcolor='rgba(80,206,187,0.5)'
 
+
+     //change colour based on specialty 
      if(schedule.specialty_id==2){
       startcolor='rgba(226,135,67,0.5)'
       middlecolor='rgba(226,135,67,0.5)'
@@ -122,7 +131,7 @@ const generateSchedule = (scheduleList) => {
        endcolor='rgba(80,206,187,0.5)'
     }
      
-
+    // set information for each day
     daysInWeek.forEach((day, dayIndex) => {
 
       scheduleObj = {};
@@ -146,10 +155,14 @@ const generateSchedule = (scheduleList) => {
     
   }) // End of Schedule List
 
-  console.log('SchedulesObj', schedulesObj)
+
+  
   return schedulesObj;
 }
 
+
+
+// get days that the specialty will run over using specialty duration
 const getDaysInWeek = (startDate,specialtyduration) => {
 
   let dates = [];
@@ -157,6 +170,8 @@ const getDaysInWeek = (startDate,specialtyduration) => {
  console.log(startDate)
   for (let i = 0; i < specialtyduration; i++) {
 
+
+    //takes current date and counts days prior to it for listing on calendar
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
     const formattedDate = currentDate.toISOString().split('T')[0];
@@ -168,6 +183,8 @@ const getDaysInWeek = (startDate,specialtyduration) => {
   
 }
 
+
+// calculates correct week based on the weeknumber and specialty duration
 const getDateFromWeekNum = (weekNum, year,specialtyduration) => {
   var daynum=weekNum*7;
   if(weekNum*7>30){
@@ -190,9 +207,7 @@ const getDateFromWeekNum = (weekNum, year,specialtyduration) => {
   
 }
 
-const getStudentSchedule = (scheduleList, studentId) => {
 
-}
 
 const theme = {
   'stylesheet.calendar.header': {
