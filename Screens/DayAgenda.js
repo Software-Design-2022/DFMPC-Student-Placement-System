@@ -14,7 +14,7 @@ const ICON_SIZE = 80;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 const witsLogo= {uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png"}
 
-//Data for flatlists, image for iamges, destination for where button navigates to.
+
 
 
 
@@ -26,6 +26,8 @@ const DayAgenda = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [name, SetName] = useState('');
   console.log(days)
+
+  //TO-DO, show schedules
   return (
 
     //main views for layout of UI

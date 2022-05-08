@@ -23,6 +23,27 @@ const SPACING = 20;
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 260;
 
+
+
+
+
+
+
+
+
+/* THIS PAGE IS CURRENTLY UNDER DEVELOPMENT AND AS SUCH IS UNCOMMENTED*/
+
+
+
+
+
+
+
+
+
+
+
+
 const Schedule = () => {
   const[state,setState]=useState({scheduleList: [{key1:0,
   created_at:"",
