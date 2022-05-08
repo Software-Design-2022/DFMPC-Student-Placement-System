@@ -35,20 +35,9 @@ function changeSuggestions() {}
 const DATA = [
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
-    title: 'Change Profile Photo',
-    text: "TODO:, Update User' profile_photo url in Firebase.",
-    
+
   },
-  {
-    id: '2',
-    title: 'Change App Theme',
-    text: "TODO:, Update User' profile_photo url in Firebase.",
-  },
-  {
-    id: '3',
-    title: 'Suggestions?',
-    text: "TODO:, Update User' profile_photo url in Firebase.",
-  },
+
 ];
 const Settings = () => {
   const navigation = useNavigation();

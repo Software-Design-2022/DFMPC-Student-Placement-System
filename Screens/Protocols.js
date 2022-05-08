@@ -25,7 +25,7 @@ const Protocols =
     }));
   }
   getList(onReceive)
-  console.log(state.protocolList)
+  
     
   const[selected,setSelected]=useState(null)
 
