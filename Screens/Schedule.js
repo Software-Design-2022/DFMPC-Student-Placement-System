@@ -126,7 +126,7 @@ const getDaysInWeek = (startDate) => {
     dates.push(formattedDate);
   }
   return dates;
-  console.log('DatesList', dates);
+  // console.log('DatesList', dates);
 }
 
 const getDateFromWeekNum = (weekNum, year) => {
