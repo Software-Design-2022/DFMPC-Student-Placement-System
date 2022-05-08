@@ -53,9 +53,41 @@
 
 ![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Arch_des.png)
 
+### Logical View
+
+
+### Development View
+![DFMPC Component Diagram](https://user-images.githubusercontent.com/67168444/167297474-63e1482f-4bd4-42a6-9287-c1444c8b9a4f.png)
+- The diagram above describes the implementation of our software and shows the interactions between the different components in the system. As shown in the diagram, we have our database which store and provide data to the student applications and admin website. The student applications and admin website have the ability to create, read, update and delete data from the database once user data has been validated.
+
+### Process View
+
+
+### Physical View
+![DFMPC Deployment Diagram](https://user-images.githubusercontent.com/67168444/167297728-a6042eb5-df56-407d-b916-a9543471b759.png)
+- The above diagram describes the physical architecture of the system and describes the relationship between software and hardware components of the system.
+
+### Scenarios
+![DFMPC Use Case](https://user-images.githubusercontent.com/67168444/167297202-ad42e177-1a4f-441b-8e65-efc1e1410d5b.png)
+- The diagram above describes the interactions between the system and its actors. We can see above that the two actors for the DFMPC Student Placement System are the student and the admin users. The admin is able to login to the website and make changes to the database tables and subsequently make changes to the information displayed in the app. The student is able to login, view their placement schedule, general calendar, emergency protocols and make changes to their account settings.
+
 ## Software Design
 
 ![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Software_Description.png)
+
+## Database Design
+
+![Database Diagram1](https://user-images.githubusercontent.com/67168444/166960442-32cf8b2c-202f-4eb9-8c34-4f6034dba991.png)
+
+The above image shows the structure of our database which is hosted on firebase. The connections between the tables are shown by lines. The admins and protocols tables are their own separate entities and have no relations with any of the other tables.
+#### The Rules:
+- Each user may only be referenced as a student once.
+- A group may have more than one student, however each student must only be assigned to one group
+- Each course can only belong to one program. A program may have many courses.
+- Each course can belong to more than one specialty. A specialty may have more than one course.
+- More than one student may be allocated to a specialty, however the number of students allocated to a specialty may not exceed the number of available slots for that specialty.
+- A hospital may have more than one specialty. A specialty may be offered at more than one hospital.
+- A student may only be assigned one specialty at a time.
 
 ## Dependencies
 
@@ -79,6 +111,6 @@
 
 ## Continuous Integration: CircleCI Badge
 
-[![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg&circle-token=09a71fa0f96ca31f85ee8822bf1594419064f557)](https://app.circleci.com/pipelines/github/Software-Design-2022)
+[![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
 ## Code Coverage Badge: CodeCov
