@@ -14,6 +14,8 @@ import {LinearGradient} from 'expo-linear-gradient';
 import { getSchedule } from './RetrieveSchedules';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-web";
+import studentData from '../dfmpc-student-placement-system.json'
+import AppContext from '../AppContext';
 
 const buttonHeight=50;
 const textPos=buttonHeight/2;
@@ -41,16 +43,86 @@ const Schedule = () => {
 
     }));
   }
-  getSchedule(onReceive)
-  console.log(state.scheduleList)
+  //getSchedule(onReceive)
+  //console.log(state.scheduleList)
   const navigation = useNavigation();
-
-
+  const scheduleList = studentData.schedules;
+  console.log('Schedule List', scheduleList)
+  generateSchedule(scheduleList)
   return (
-
-    <Text>asa</Text>
+      <View><Text>scheduleList</Text></View>
+    
      );
 };
+
+const generateSchedule = (scheduleList) => {
+  let schedulesObj = {}
+  scheduleList.forEach((schedule) => {
+
+    let scheduleObj = {}
+
+    const week = getDateFromWeekNum(schedule.week_no,2022);
+
+    const daysInWeek = getDaysInWeek(week.startDate);
+
+    daysInWeek.forEach((day, dayIndex) => {
+
+      scheduleObj = {};
+      if (dayIndex === 0) {
+        scheduleObj.startingDate = true;
+        scheduleObj.color = '#50cebb';
+        scheduleObj.textColor = 'white';
+      } else if (dayIndex > 0 && dayIndex <= 5) {
+        scheduleObj.color = '#70d7c7';
+        scheduleObj.textColor = 'white';
+      } else {
+        scheduleObj.endingDay = true;
+        scheduleObj.color = 'black';
+        scheduleObj.textColor = 'white';
+      }
+
+      // Object.assign(schedulesObj, scheduleObj);
+      schedulesObj[day] = scheduleObj;
+
+    }) // end of days i week
+    
+  }) // End of Schedule List
+
+  console.log('SchedulesObj', schedulesObj)
+  return schedulesObj;
+}
+
+const getDaysInWeek = (startDate) => {
+
+  let dates = [];
+  // console.log('startDate', startDate) 
+
+  for (let i = 1; i < 8; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+    const formattedDate = currentDate.toISOString().split('T')[0];
+
+    dates.push(formattedDate);
+  }
+  return dates;
+  console.log('DatesList', dates);
+}
+
+const getDateFromWeekNum = (weekNum, year) => {
+  var d = new Date(year, 0, 1);
+  
+  const endDate = new Date(d.setDate(d.getDate() + (weekNum * 7) - 1));
+  const startDate = new Date(year, 0, 1);
+  startDate.setDate(endDate.getDate() - 6);
+
+  return({startDate: startDate,endDate: endDate});
+  
+}
+
+const getStudentSchedule = (scheduleList, studentId) => {
+
+}
+
 
 const styles = StyleSheet.create({
   container: {

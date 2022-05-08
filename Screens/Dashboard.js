@@ -29,12 +29,7 @@ const witsLogo = {
   uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
 };
 const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Schedule",
-    destination: "Schedule",
-    image: require("./schedule.png"),
-  },
+
 
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
