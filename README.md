@@ -13,8 +13,6 @@ Our project Documentation can be found in our [Wiki!](https://github.com/Softwar
 
 ## Application Installation
 
-Install NPM
-
 Check that you have node and npm installed
 
 To check if you have Node.js installed, run this command in your terminal:
@@ -22,6 +20,11 @@ To check if you have Node.js installed, run this command in your terminal:
 
 ```
 node -v
+```
+
+To install NPM packages
+```
+npm install
 ```
 
 To confirm that you have npm installed you can run this command in your terminal:
