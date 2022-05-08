@@ -73,4 +73,8 @@ npm start or expo start
 - Mthokozisi Masango - @Mtho-hub :man_technologist:
 - Callum Muller - @CallumMuller :man_technologist:
 
+## License
+
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
+
 
