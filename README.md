@@ -1,124 +1,41 @@
 # DFMPC-Student-Placement-System
 
-## Project Description
+## Project Description 📃
 
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
 
-## User Stories
+![image](https://user-images.githubusercontent.com/53468145/167319191-e6e21447-4249-442c-8b23-f7205714ca8b.png)
 
-- As the user, I should be able to click on a panic button while on any interface after logging in, which will take me to the emergency protocol interface.
-- As the user, I should be able to click on a profile icon, that will allow me to have user settings and the ability to change profile image, password, and general user settings.
-- As the user, while on the schedule interface, I should be able to see a weekly dated calendar with upcoming assessments.
-- As the user, while on the dashboard I should have access to a different calendar view that has a daily dated view of upcoming events.
-- As an admin, I should have a separate system that can not be accessed from the student application, so that I can give assessments and placements for students.
 
-## User Acceptance Test
+## Documentation  :memo:
 
-- Given that I am a user, when I am on any interface then I should be able to click on a panic button that will take me to the emergency protocol page.
-- Given that I am the user, when I am on the dashboard, a profile icon should be available for me to click and then have the ability to change my password, profile image and make general user settings changes.
-- Given that I am the user, when I am on the schedule interface, then I should be able to see a calendar that has a weekly view of my upcoming events.
-- Given that I am the user, when I am on the dashboard. , then I should be able to have access to a different calendar that has a daily dated view.
-- Given that I am the admin user with the correct password when clicking on the log-in button, then I should be able to have access to a different system that is capable of letting me assign tasks and placements to the students.
+Our project Documentation can be found in our [Wiki!](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/wiki) :open_book:
 
-# Requirements
+## Application Installation
 
-## Functional Requirements
+Install NPM
 
-- Login page - the student placement system should be able to accept any student email and corresponding password.
-- Dashboard - the Dashboard allows the student to navigate to their schedule and the emergency protocols page
-- The student placement system should be able to provide a panic button for emergencies.
-- Emergency Protocols Page - this page shows the protocols for common emergencies
-- The student placement system should be able to provide a schedule section that allows the student to see where their next placement is and the duration of the placement.
-- The student placement system should be able to provide a communication section that allows the student to communicate with their supervisors and clinical officers.
-- The student placement system should be able to provide a section that allows the student to log any academic disclaims for any pupils that are academically dishonest.
+Check that you have node and npm installed
 
-## Non-Functional Requirements
+To check if you have Node.js installed, run this command in your terminal:
 
-- The app is easy to use and efficient
-- The app is user friendly
-- The app is secure
-- The app is reliable
-- The app is easy to maintain
-- The app is easy to extend
-- The app is easy to install
-- The app is easy to upgrade
-- The app is easy to customize
-- The app is scalable
 
-## On-Screen appearance requirements
+```
+node -v
+```
 
-![UserInterface Design](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/uidesign.jpg)
+To confirm that you have npm installed you can run this command in your terminal:
 
-## Software Architecture
 
-![Software Architecture Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Arch_des.png)
+```
+npm -v
+```
 
-### Logical View
-![State UML drawio](https://user-images.githubusercontent.com/67168444/167314167-69800ec4-dabf-4158-985b-9fb5410a7df9.png)
+To run the application, run this command in your terminal:
 
-Circle - initial state
-+ Rectangle - state
-+ Arrow - transtion between states, labeled with text
-+ Circle with outer circle - termination state
-
-Composite Box on top represents the Log in procedure:
- - Once the application is open the the user would have to insert log in credentials wich will be communuicated with the database. If the credentials insterted exist in the database then the user will be given access into to the application, if not then the user will be rejected and required to try again.
-
- - The states and transitions that follow are based on the usage of the app one the user has logged in.
- - user can move between states swiftly as indicated in the diagram after loggin in with each button leading to a new state without any rejections until the user logs out.
-
-### Development View
-![DFMPC Component Diagram](https://user-images.githubusercontent.com/67168444/167297474-63e1482f-4bd4-42a6-9287-c1444c8b9a4f.png)
-- The diagram above describes the implementation of our software and shows the interactions between the different components in the system. As shown in the diagram, we have our database which store and provide data to the student applications and admin website. The student applications and admin website have the ability to create, read, update and delete data from the database once user data has been validated.
-
-### Process View
-![sequence 1 drawio](https://user-images.githubusercontent.com/67168444/167314198-f30b1ed8-be58-478f-ad51-bc14bab12eb1.png)
-![sequence 2 drawio](https://user-images.githubusercontent.com/67168444/167314202-b9c02435-a421-4caa-91d4-47625342dd40.png)
-
- + A diagram that explains the communication between the computer and the database/server
- + Box on top represents an object/component 
- + Dottedd vertical line represents the lifeline of the system
- + B locks along lifeline represents processes
- + Solid arrows represent communications 
- + Dotted arrows represent returns 
- + Black circle represents initial state/access to the compute by the user
- 
-
- ~Admin Sequence diagram
-	- the computer has to confirm credentilas with the server upon logging into the application
-	- The computer can thereafter make changes to the server as the user sees fit 
-	- Upon requests, the server will provide responses to the computer
-
-~Application Sequence diagram
-	-the computer has to confirm credentilas with the server upon logging into the application
-	- The computer can thereafter make changes to the server as the user sees fit 
-	- Upon requests, the server will provide responses to the computer
-
-### Physical View
-![DFMPC Deployment Diagram](https://user-images.githubusercontent.com/67168444/167297728-a6042eb5-df56-407d-b916-a9543471b759.png)
-- The above diagram describes the physical architecture of the system and describes the relationship between software and hardware components of the system.
-
-### Scenarios
-![DFMPC Use Case](https://user-images.githubusercontent.com/67168444/167297202-ad42e177-1a4f-441b-8e65-efc1e1410d5b.png)
-- The diagram above describes the interactions between the system and its actors. We can see above that the two actors for the DFMPC Student Placement System are the student and the admin users. The admin is able to login to the website and make changes to the database tables and subsequently make changes to the information displayed in the app. The student is able to login, view their placement schedule, general calendar, emergency protocols and make changes to their account settings.
-
-## Software Design
-
-![Software Design Description](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/blob/main/assets/images/Software_Description.png)
-
-## Database Design
-
-![Database Diagram1](https://user-images.githubusercontent.com/67168444/166960442-32cf8b2c-202f-4eb9-8c34-4f6034dba991.png)
-
-The above image shows the structure of our database which is hosted on firebase. The connections between the tables are shown by lines. The admins and protocols tables are their own separate entities and have no relations with any of the other tables.
-#### The Rules:
-- Each user may only be referenced as a student once.
-- A group may have more than one student, however each student must only be assigned to one group
-- Each course can only belong to one program. A program may have many courses.
-- Each course can belong to more than one specialty. A specialty may have more than one course.
-- More than one student may be allocated to a specialty, however the number of students allocated to a specialty may not exceed the number of available slots for that specialty.
-- A hospital may have more than one specialty. A specialty may be offered at more than one hospital.
-- A student may only be assigned one specialty at a time.
+```
+npm start or expo start
+```
 
 ## Dependencies
 
@@ -128,13 +45,16 @@ The above image shows the structure of our database which is hosted on firebase.
     bcrypt-react-native": "^1.1.1",
     bcryptjs": "^2.4.3",
     expo": "~44.0.0",
+    expo-linear-gradient": "^11.0.3",
     expo-status-bar": "~1.2.0",
     firebase": "^9.6.10",
     react": "17.0.1",
     react-dom": "17.0.1",
     react-native": "0.64.3",
     react-native-calendar-picker": "^7.1.2",
+    react-native-calendars": "^1.1283.0",
     react-native-safe-area-context": "3.3.2",
+    react-native-dialog-input": "^1.0.8",
     react-native-screens": "~3.10.1",
     react-native-web": "0.17.1"
 
@@ -144,4 +64,13 @@ The above image shows the structure of our database which is hosted on firebase.
 
 [![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
-## Code Coverage Badge: CodeCov
+## Authors / Contributors
+
+- Riot Ndlovu - @peacendlovu :man_technologist:
+- Shagan Plaatjies - @shgnplaatjies :man_technologist:
+- Angela Nkose - @Cipher73 :woman_technologist:
+- Nokuthaba Moyo - @nokuthabam :woman_technologist: 
+- Mthokozisi Masango - @Mtho-hub :man_technologist:
+- Callum Muller - @CallumMuller :man_technologist:
+
+
