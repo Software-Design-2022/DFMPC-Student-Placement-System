@@ -6,8 +6,7 @@
 
 ![image](https://user-images.githubusercontent.com/53468145/167319191-e6e21447-4249-442c-8b23-f7205714ca8b.png)
 
-
-## Documentation  :memo:
+## Documentation :memo:
 
 Our project Documentation can be found in our [Wiki!](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/wiki) :open_book:
 
@@ -19,13 +18,11 @@ Check that you have node and npm installed
 
 To check if you have Node.js installed, run this command in your terminal:
 
-
 ```
 node -v
 ```
 
 To confirm that you have npm installed you can run this command in your terminal:
-
 
 ```
 npm -v
@@ -69,12 +66,10 @@ npm start or expo start
 - Riot Ndlovu - @peacendlovu :man_technologist:
 - Shagan Plaatjies - @shgnplaatjies :man_technologist:
 - Angela Nkose - @Cipher73 :woman_technologist:
-- Nokuthaba Moyo - @nokuthabam :woman_technologist: 
+- Nokuthaba Moyo - @nokuthabam :woman_technologist:
 - Mthokozisi Masango - @Mtho-hub :man_technologist:
 - Callum Muller - @CallumMuller :man_technologist:
 
 ## License
 
 Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
-
-
