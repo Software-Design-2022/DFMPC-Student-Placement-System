@@ -1,13 +1,121 @@
-version: '2.1'
+# This code is licensed from CircleCI to the user under the MIT license.
+# See here for details: https://circleci.com/developer/orbs/licensing
+version: 2.1
+description: |
+    Upload your coverage reports to Codecov without dealing with complex configurations. This orb helps you get coverage results quickly so that you can breathe easier and commit your code with confidence.
+    If running on `alpine` builds, the orb will need `coreutils`, `curl`, and `gnupg` in order to validate.
+display:
+    home_url: https://codecov.io/
+    source_url: https://github.com/codecov/codecov-circleci-orb
+commands:
+    upload:
+        parameters:
+            file:
+                default: ""
+                description: Path to the code coverage data file to upload.
+                type: string
+            flags:
+                default: ""
+                description: Flag the upload to group coverage metrics (e.g. unittests | integration | ui,chrome)
+                type: string
+            token:
+                default: CODECOV_TOKEN
+                description: Set the private repository token as the value of the variable CODECOV_TOKEN using CircleCI Environment Variables.
+                type: env_var_name
+            upload_name:
+                default: ${CIRCLE_BUILD_NUM}
+                description: Custom defined name of the upload. Visible in Codecov UI
+                type: string
+            validate:
+                default: true
+                description: Validate the uploader before uploading the codecov result.
+                type: boolean
+            version:
+                default: latest
+                description: Which version of the Codecov Uploader to use (defaults to 'latest')
+                type: string
+            when:
+                default: always
+                description: When should this step run?
+                type: string
+            xtra_args:
+                default: ""
+                description: Any extra flags as provided by the bash uploader (e.g. `-v -Z`).
+                type: string
+        steps:
+            - run:
+                command: |
+                    family=$(uname -s | tr '[:upper:]' '[:lower:]')
+                    os="windows"
+                    [[ $family == "darwin" ]] && os="macos"
 
-orbs: 
-  codecov: codecov/codecov@3.2.2
-  node: circleci/node@4.7.0
-workflows:
-  upload-to-codecov:
-    jobs: 
-        - node/test: 
-            post-steps: 
-              - codecov/upload:
+                    [[ $family == "linux" ]] && os="linux"
+                    [[ $os == "linux" ]] && osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
+                    [[ $osID == "alpine" ]] && os="alpine"
+                    echo "Detected ${os}"
+                    echo "export os=${os}" >> $BASH_ENV
+
+                    filename="codecov"
+                    [[ $os == "windows" ]] && filename+=".exe"
+                    echo "export filename=${filename}" >> $BASH_ENV
+                    [[ $os == "macos" ]] && brew install gpg
+                    curl -Os "https://uploader.codecov.io/<< parameters.version >>/${os}/${filename}"
+                name: Download Codecov Uploader
+                when: << parameters.when >>
+            - when:
+                condition: << parameters.validate >>
+                steps:
+                    - run:
+                        command: |
+                            source $BASH_ENV
+                            curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+                            curl -Os "https://uploader.codecov.io/<< parameters.version >>/${os}/${filename}.SHA256SUM"
+                            curl -Os "https://uploader.codecov.io/<< parameters.version >>/${os}/${filename}.SHA256SUM.sig"
+                            gpgv $filename.SHA256SUM.sig $filename.SHA256SUM
+                            shasum -a 256 -c $filename.SHA256SUM || sha256sum -c $filename.SHA256SUM
+                        name: Validate Codecov Uploader
+            - run:
+                command: |
+                    unset NODE_OPTIONS  # See https://github.com/codecov/uploader/issues/475
+                    source $BASH_ENV
+                    chmod +x $filename
+                    [ -n "<< parameters.file >>" ] && set - "${@}" "-f" "<< parameters.file >>"
+                    [ -n "<< parameters.xtra_args >>" ] && set - "${@}" "<< parameters.xtra_args >>"
+                    ./$filename \
+                      -Q "codecov-circleci-orb-3.2.2" \
+                      -t "${<< parameters.token >>}" \
+                      -n "<< parameters.upload_name >>" \
+                      -F "<< parameters.flags >>" \
+                      ${@}
+                name: Upload Coverage Results
+examples:
+    basic_upload:
+        description: |
+            Upload coverage with Codecov Create a simple flow to upload coverage reports to Codecov
+        usage:
+            version: "2.1"
+            orbs:
+                codecov: codecov/codecov@3.1.1
+            workflows:
+                upload-to-codecov:
+                    jobs:
+                        - checkout
+                        - codecov/upload
+    node_test_upload:
+        description: |
+            Upload coverage with Codecov Create a simple flow to upload coverage reports to Codecov and use CircleCI's node/test job
+        usage:
+            version: "2.1"
+            orbs:
+                codecov: codecov/codecov@3.1.1
+                node: circleci/node@4.7.0
+            workflows:
+                upload-to-codecov:
+                    jobs:
+                        - node/test:
+                            post-steps:
+                                - codecov/upload
+
+
                 
   
