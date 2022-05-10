@@ -126,10 +126,12 @@ const Dashboard = () => {
           //create an image with the appropriate locally stored icon
             source={item.image}
             style={{
+              position:'absolute',
               width: AVATAR_SIZE,
               height: AVATAR_SIZE,
               borderRadius: AVATAR_SIZE,
               marginRight: SPACING / 2,
+              zIndex:1
             }}
           ></Image>
         </View>
@@ -168,7 +170,8 @@ const Dashboard = () => {
           flex: 1,
           paddingTop: 10,
           borderRadius: 100,
-          marginBottom: SPACING / 2,
+          marginBottom: SPACING,
+          paddingBottom:SPACING,
           paddingBottom: 5,
         }}
       >
@@ -177,6 +180,7 @@ const Dashboard = () => {
             onPress={() => {
               navigation.navigate(item.destination);
             }}
+            underlayColor="rgba(0,0,0,0)"
           >
             <Image
             //create an image with the appropriate locally stored icon that is tappable
@@ -185,6 +189,8 @@ const Dashboard = () => {
                 width: AVATAR_SIZE / 1.5,
                 height: AVATAR_SIZE / 1.5,
                 borderRadius: AVATAR_SIZE / 1.5,
+                
+                
               }}
             ></Image>
           </TouchableHighlight>
@@ -206,7 +212,7 @@ const Dashboard = () => {
       >
         <View
           style={{
-            height: ICON_SIZE + 20,
+            height: ICON_SIZE + 18,
             backgroundColor: "  rgba(30,55,108,1)",
             borderRadius: 10,
           }}
@@ -226,6 +232,7 @@ const Dashboard = () => {
             />
 
             <TouchableHighlight
+            underlayColor="rgba(0,0,0,0)"
               onPress={() => {
                 navigation.navigate("SettingsView");
               }}
@@ -234,7 +241,7 @@ const Dashboard = () => {
                 style={{
                   width: ICON_SIZE,
                   height: ICON_SIZE,
-                  position: "absolute",
+                  marginLeft:width-ICON_SIZE,
                   resizeMode: "cover",
                   right: 0,
                   top: 10,
@@ -255,11 +262,13 @@ const Dashboard = () => {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)" }}>
+        <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)", paddingBottom:SPACING, }}>
           <FlatList
             contentContainerStyle={{
-              padding: SPACING / 8,
-              paddingTop: SPACING,
+              padding: 0,
+              paddingTop:12,
+              paddingBottom:SPACING,
+              
             }}
             data={DATA}
             renderItem={renderItem2}
@@ -282,8 +291,9 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      <View>
+      <View style={{backgroundColor:'rgba(18,33,65,1)'}}>
         <TouchableHighlight
+        underlayColor="rgba(0,0,0,0)"
           onPress={() => {
             navigation.navigate("Protocols");
           }}
@@ -292,9 +302,10 @@ const Dashboard = () => {
             style={{
               width: ICON_SIZE,
               height: ICON_SIZE,
-              position: "absolute",
+              marginLeft:width-ICON_SIZE,
               right: 0,
               bottom: 0,
+              backgroundColor:'rgba(18,33,65,1)',
               borderRadius: ICON_SIZE,
               marginRight: SPACING / 2,
             }}
