@@ -42,12 +42,6 @@ const DATA = [
     image: require("./calendar.png"),
   },
   {
-    id: "38694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Assignments",
-    destination: "BackgroundTest",
-    image: require("./assignment.png"),
-  },
-  {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "Tasks",
     destination: "BackgroundTest",
@@ -114,12 +108,12 @@ const Dashboard = () => {
 
   return (
     <View style={{flex:1}}>
-      <View style={{backgroundColor:'rgba(0,0,0,0.5)',
+      <View style={{backgroundColor:'rgba(0,0,0,0.2)',
       height:45,
       zIndex:1,
       }}>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.6)',
+      <View style={{backgroundColor:'rgba(255,255,255,0.8)',
       height:100,
       zIndex:1,
       borderEndWidth:0,
@@ -171,8 +165,8 @@ const Dashboard = () => {
         })
         return (
           <Animated.View style={{flexDirection:'row', padding:SPACING,
-           backgroundColor:'rgba(30,55,108,0.2)', borderBottomLeftRadius:0,borderTopLeftRadius:0,
-            borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0)', marginBottom:SPACING,
+           backgroundColor:'rgba(255,255,255,0.2)', borderBottomLeftRadius:0,borderTopLeftRadius:0,
+            borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0.1)', marginBottom:SPACING/2,
             shadowColor:'black',
             shadowOffset:{
               width:0,
@@ -205,7 +199,7 @@ const Dashboard = () => {
       <View style={{position:'absolute'}}>
       <Image
         resizeMode="contain"
-        source={require('./background.png')}
+        source={require('./background5.png')}
         blurRadius={0}
       />
     </View>
