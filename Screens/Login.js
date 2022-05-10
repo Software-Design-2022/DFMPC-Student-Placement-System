@@ -23,6 +23,10 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
+
+
+
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -134,7 +138,7 @@ const Login = () => {
         >
           <TouchableOpacity
             onPress={() => {
-             LoginFirebase();
+             navigation.navigate("Dashboard");
             }} // when user clicks on login button
           >
             <Text style={styles.buttonText}>Login</Text>

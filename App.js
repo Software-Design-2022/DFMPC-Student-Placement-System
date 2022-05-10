@@ -21,7 +21,7 @@ function App() {
           name="Login"
           component={Login}
         /> }
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen options={{ headerShown: false }} name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
         <Stack.Screen name="SettingsView" component={SettingsView} />
