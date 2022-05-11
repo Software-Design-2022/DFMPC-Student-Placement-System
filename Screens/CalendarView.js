@@ -13,6 +13,7 @@ import studentData from '../dfmpc-student-placement-system.json'
 import AppContext from '../AppContext';
 import "../global.js";
 import { NavigationContainer } from '@react-navigation/native';
+import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
 //constants 
@@ -210,6 +211,7 @@ const getDateFromWeekNum = (weekNum, year,specialtyduration) => {
 
 
 const theme = {
+ 
   'stylesheet.calendar.header': {
     dayHeader: {
       fontWeight: '600',
@@ -219,11 +221,13 @@ const theme = {
   'stylesheet.day.basic': {
     today: {
       borderColor: '#48BFE3',
-      borderWidth: 0.8
+      borderWidth: 0.8,
+      
     },
     todayText: {
       color: '#5390D9',
-      fontWeight: '800'
+      fontWeight: '800',
+      
     }
   }
 };

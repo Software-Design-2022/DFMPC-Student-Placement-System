@@ -1,0 +1,17 @@
+TN:
+SF:test\world.js
+FN:1,world
+FNF:1
+FNH:1
+FNDA:2,world
+DA:2,2
+DA:3,1
+DA:5,1
+DA:9,1
+LF:4
+LH:4
+BRDA:2,0,0,1
+BRDA:2,0,1,1
+BRF:2
+BRH:2
+end_of_record
