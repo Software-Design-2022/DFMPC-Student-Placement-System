@@ -6,7 +6,7 @@
 
 ### Node.js Test
 
-[![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)  
+[![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)
 
 ### Code Scanning
 
