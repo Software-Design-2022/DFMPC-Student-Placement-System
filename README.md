@@ -2,11 +2,13 @@
 
 [![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)  
 
-## Continuous Integration: CircleCI Badge
+### Continuous Integration: CircleCI Badge
 
 [![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
-## Code Scanning
+### Code Scanning
+
+[![CodeQL](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/codeql-analysis.yml)
 
 ## Project Description 📃
 
