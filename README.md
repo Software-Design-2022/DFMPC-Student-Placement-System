@@ -1,6 +1,6 @@
 # DFMPC-Student-Placement-System :student: :woman_student: :stethoscope:
 
-[![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)  
+[![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)
 
 ### Continuous Integration: CircleCI Badge
 
