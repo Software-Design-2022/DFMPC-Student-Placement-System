@@ -6,6 +6,8 @@
 
 [![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
+## Code Scanning
+
 ## Project Description 📃
 
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
