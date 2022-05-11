@@ -1,5 +1,11 @@
 # DFMPC-Student-Placement-System :student: :woman_student: :stethoscope:
 
+[![Node.js CI](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml/badge.svg)](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/actions/workflows/node.js.yml)  
+
+## Continuous Integration: CircleCI Badge
+
+[![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
+
 ## Project Description 📃
 
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
@@ -60,10 +66,6 @@ npm start or expo start
     react-native-web": "0.17.1"
 
 ```
-
-## Continuous Integration: CircleCI Badge
-
-[![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
 ## Authors / Contributors
 
