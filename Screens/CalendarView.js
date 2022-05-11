@@ -31,7 +31,7 @@ const initialDate = '2022-01-02'
 const CalendarView = () => {
 
   //use navigation
-  const navigation = useNavigation();
+  const navigation = useNavigation(); // use navigation
   const myContext = useContext(AppContext);
   // const [selectedId, setSelectedId] = useState(null);
   const [selected, setSelected] = useState(initialDate);
