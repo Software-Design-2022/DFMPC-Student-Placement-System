@@ -14,7 +14,7 @@ export async function getList(onReceiveList) {
     .get()
     .then(querySnapshot => {
       querySnapshot.forEach(function (doc) {
-        protocols.push({key:protocols.length+1,Protocol: doc.id,content:doc.data().protocol_1});
+        protocols.push({key:protocols.length+1,Protocol: doc.id,content:doc.data().protocol_1.split("~").join("\n")});
       })
 
     })
