@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "jest": "^28.1.0",
     "reinstall-node-modules": "^2.0.0"
   },
   "jest": {
