@@ -23,10 +23,12 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigation = useNavigation();
+
+
+const Login = () => { //Login Screen
+  const [email, setEmail] = useState(""); //email
+  const [password, setPassword] = useState(""); //password
+  const navigation = useNavigation(); //navigation
 
   function showAlert(title, message) {
     Alert.alert(
