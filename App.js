@@ -10,10 +10,10 @@ import SettingsView from "./Screens/Settings";
 import Protocols from "./Screens/Protocols";
 import DayAgenda from "./Screens/DayAgenda";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator(); 
 
-function App() {
-  return (
+function App() { // This is the main function that will be called when the app is loaded
+  return ( // This is the main function that will be called when the app is loaded
     <NavigationContainer>
       <Stack.Navigator>
         { <Stack.Screen

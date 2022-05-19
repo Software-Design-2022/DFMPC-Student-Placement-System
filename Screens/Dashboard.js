@@ -40,39 +40,39 @@ const DATA = [
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./calendar.png"),
+    image: require("./images/calendar.png"),
   },
   {
     id: "38694a0f-3da1-471f-bd96-145571e29d72",
     title: "Assignments",
     destination: "BackgroundTest",
-    image: require("./assignment.png"),
+    image: require("./images/assignment.png"),
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "Tasks",
     destination: "BackgroundTest",
-    image: require("./tasks.png"),
+    image: require("./images/tasks.png"),
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
     title: "Logbook",
     destination: "BackgroundTest",
-    image: require("./logbook.png"),
+    image: require("./images/logbook.png"),
   },
 
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d72",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./settings.png"),
+    image: require("./images/settings.png"),
   },
 
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
-    image: require("./logout.png"),
+    image: require("./images/logout.png"),
   },
 ];
 
@@ -85,7 +85,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
-const Dashboard = () => {
+const Dashboard = () => { //Dashboard screen
 
   //use navigation
   const navigation = useNavigation();
@@ -298,7 +298,7 @@ const Dashboard = () => {
               borderRadius: ICON_SIZE,
               marginRight: SPACING / 2,
             }}
-            source={require("./emergency.gif")}
+            source={require("./images/emergency.gif")}
           />
         </TouchableHighlight>
       </View>

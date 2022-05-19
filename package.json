@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "make-badges": "istanbul-badges-readme"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
@@ -16,9 +17,9 @@
     "bcrypt-react-native": "^1.1.1",
     "bcryptjs": "^2.4.3",
     "expo": "~44.0.0",
-    "expo-linear-gradient": "^11.0.3",
+    "expo-linear-gradient": "~11.0.3",
     "expo-status-bar": "~1.2.0",
-    "firebase": "^9.6.10",
+    "firebase": "^9.8.1",
     "mocha": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -31,12 +32,18 @@
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "babel-jest": "^28.1.0",
+    "istanbul-badges-readme": "^1.8.1",
     "jest": "^28.1.0",
     "reinstall-node-modules": "^2.0.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json-summary"
+    ]
   }
 }
