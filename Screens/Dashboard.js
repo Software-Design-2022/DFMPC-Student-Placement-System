@@ -30,53 +30,47 @@ const witsLogo = {
   uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
 };
 
-
-
 //data to be displayed in the flatlist
 const DATA = [
-
-
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./calendar.png"),
+    image: require("./images/calendar.png"),
   },
   {
     id: "38694a0f-3da1-471f-bd96-145571e29d72",
     title: "Assignments",
     destination: "BackgroundTest",
-    image: require("./assignment.png"),
+    image: require("./images/assignment.png"),
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "Tasks",
     destination: "BackgroundTest",
-    image: require("./tasks.png"),
+    image: require("./images/tasks.png"),
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
     title: "Logbook",
     destination: "BackgroundTest",
-    image: require("./logbook.png"),
+    image: require("./images/logbook.png"),
   },
 
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d72",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./settings.png"),
+    image: require("./images/settings.png"),
   },
 
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
-    image: require("./logout.png"),
+    image: require("./images/logout.png"),
   },
 ];
-
-
 
 // creates it so each item has a touchable button with correct title
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
@@ -86,10 +80,10 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 const Dashboard = () => {
+  //Dashboard screen
 
   //use navigation
   const navigation = useNavigation();
-
 
   //change colour of tapped button
   const [selectedId, setSelectedId] = useState(null);
@@ -118,12 +112,9 @@ const Dashboard = () => {
           shadowRadius: 20,
         }}
       >
-
-        
         <View>
-          
           <Image
-          //create an image with the appropriate locally stored icon
+            //create an image with the appropriate locally stored icon
             source={item.image}
             style={{
               width: AVATAR_SIZE,
@@ -135,7 +126,7 @@ const Dashboard = () => {
         </View>
         <View style={{ width: "75%", flex: 1 }}>
           <LinearGradient
-          //add a button to each item to allow navigation
+            //add a button to each item to allow navigation
             colors={[
               "rgba(30,55,108,1)",
               " rgba(30,55,108,0.8)",
@@ -146,7 +137,7 @@ const Dashboard = () => {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(item.destination);
-              }} 
+              }}
             >
               <Text style={styles.buttonText}>{item.title}</Text>
             </TouchableOpacity>
@@ -156,9 +147,7 @@ const Dashboard = () => {
     );
   };
 
-
-
-    // second render function that renders the horizontal flatlist
+  // second render function that renders the horizontal flatlist
   const renderItem2 = ({ item }) => {
     return (
       <View
@@ -179,7 +168,7 @@ const Dashboard = () => {
             }}
           >
             <Image
-            //create an image with the appropriate locally stored icon that is tappable
+              //create an image with the appropriate locally stored icon that is tappable
               source={item.image}
               style={{
                 width: AVATAR_SIZE / 1.5,
@@ -194,7 +183,6 @@ const Dashboard = () => {
   };
 
   return (
-
     // main render function that dictates styling
     <SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
       <View
@@ -298,7 +286,7 @@ const Dashboard = () => {
               borderRadius: ICON_SIZE,
               marginRight: SPACING / 2,
             }}
-            source={require("./emergency.gif")}
+            source={require("./images/emergency.gif")}
           />
         </TouchableHighlight>
       </View>

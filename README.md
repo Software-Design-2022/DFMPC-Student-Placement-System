@@ -65,6 +65,16 @@ npm start or expo start
 
 [![CircleCI](https://circleci.com/gh/Software-Design-2022/DFMPC-Student-Placement-System.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Design-2022)
 
+## Code Coverage: Code Climate Badge
+
+| Statements                                                                                       | Branches                                                                                       | Functions                                                                                       | Lines                                                                                       |
+| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) |
+
+## Code Coverage: CodeCov Badge
+
+[![codecov](https://codecov.io/gh/Software-Design-2022/DFMPC-Student-Placement-System/branch/main/graph/badge.svg?token=45L3WG42SX)](https://codecov.io/gh/Software-Design-2022/DFMPC-Student-Placement-System)
+
 ## Authors / Contributors
 
 - Riot Ndlovu - @peacendlovu :man_technologist:

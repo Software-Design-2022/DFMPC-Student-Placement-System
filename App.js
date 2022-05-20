@@ -13,14 +13,18 @@ import DayAgenda from "./Screens/DayAgenda";
 const Stack = createNativeStackNavigator();
 
 function App() {
+  // This is the main function that will be called when the app is loaded
   return (
+    // This is the main function that will be called when the app is loaded
     <NavigationContainer>
       <Stack.Navigator>
-        { <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={Login}
-        /> }
+        {
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Login"
+            component={Login}
+          />
+        }
         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
@@ -41,4 +45,3 @@ const styles = StyleSheet.create({
   },
 });
 export default App;
-
