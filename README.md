@@ -73,7 +73,6 @@ npm start or expo start
 
 ## Code Coverage: CodeCov Badge
 
-
 [![codecov](https://codecov.io/gh/Software-Design-2022/DFMPC-Student-Placement-System/branch/main/graph/badge.svg?token=45L3WG42SX)](https://codecov.io/gh/Software-Design-2022/DFMPC-Student-Placement-System)
 
 ## Authors / Contributors
