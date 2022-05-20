@@ -67,10 +67,9 @@ npm start or expo start
 
 ## Code Coverage: Code Climate Badge
 
-| Statements                  | Branches                | Functions                 | Lines             |
-| --------------------------- | ----------------------- | ------------------------- | ----------------- |
+| Statements                                                                                       | Branches                                                                                       | Functions                                                                                       | Lines                                                                                       |
+| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) |
-
 
 ## Authors / Contributors
 

@@ -24,8 +24,8 @@ const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
-
-const Login = () => { //Login Screen
+const Login = () => {
+  //Login Screen
   const [email, setEmail] = useState(""); //email
   const [password, setPassword] = useState(""); //password
   const navigation = useNavigation(); //navigation
@@ -136,7 +136,7 @@ const Login = () => { //Login Screen
         >
           <TouchableOpacity
             onPress={() => {
-             LoginFirebase();
+              LoginFirebase();
             }} // when user clicks on login button
           >
             <Text style={styles.buttonText}>Login</Text>

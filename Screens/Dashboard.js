@@ -30,12 +30,8 @@ const witsLogo = {
   uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
 };
 
-
-
 //data to be displayed in the flatlist
 const DATA = [
-
-
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
@@ -76,8 +72,6 @@ const DATA = [
   },
 ];
 
-
-
 // creates it so each item has a touchable button with correct title
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -85,11 +79,11 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
-const Dashboard = () => { //Dashboard screen
+const Dashboard = () => {
+  //Dashboard screen
 
   //use navigation
   const navigation = useNavigation();
-
 
   //change colour of tapped button
   const [selectedId, setSelectedId] = useState(null);
@@ -118,12 +112,9 @@ const Dashboard = () => { //Dashboard screen
           shadowRadius: 20,
         }}
       >
-
-        
         <View>
-          
           <Image
-          //create an image with the appropriate locally stored icon
+            //create an image with the appropriate locally stored icon
             source={item.image}
             style={{
               width: AVATAR_SIZE,
@@ -135,7 +126,7 @@ const Dashboard = () => { //Dashboard screen
         </View>
         <View style={{ width: "75%", flex: 1 }}>
           <LinearGradient
-          //add a button to each item to allow navigation
+            //add a button to each item to allow navigation
             colors={[
               "rgba(30,55,108,1)",
               " rgba(30,55,108,0.8)",
@@ -146,7 +137,7 @@ const Dashboard = () => { //Dashboard screen
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(item.destination);
-              }} 
+              }}
             >
               <Text style={styles.buttonText}>{item.title}</Text>
             </TouchableOpacity>
@@ -156,9 +147,7 @@ const Dashboard = () => { //Dashboard screen
     );
   };
 
-
-
-    // second render function that renders the horizontal flatlist
+  // second render function that renders the horizontal flatlist
   const renderItem2 = ({ item }) => {
     return (
       <View
@@ -179,7 +168,7 @@ const Dashboard = () => { //Dashboard screen
             }}
           >
             <Image
-            //create an image with the appropriate locally stored icon that is tappable
+              //create an image with the appropriate locally stored icon that is tappable
               source={item.image}
               style={{
                 width: AVATAR_SIZE / 1.5,
@@ -194,7 +183,6 @@ const Dashboard = () => { //Dashboard screen
   };
 
   return (
-
     // main render function that dictates styling
     <SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
       <View
