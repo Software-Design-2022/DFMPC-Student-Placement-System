@@ -1,1 +1,17 @@
-{"ast":null,"code":"import React from \"react\";\nvar AppContext = React.createContext();\nexport default AppContext;","map":{"version":3,"names":["React","AppContext","createContext"],"sources":["C:/Users/Peace/Desktop/YOS3/SEMESTER 1/Software Design III/2022/Software Design Project/SPS-Project/DFMPC-Student-Placement-System/project/AppContext.js"],"sourcesContent":["import React from \"react\";\r\n\r\nconst AppContext = React.createContext();\r\n\r\nexport default AppContext;"],"mappings":"AAAA,OAAOA,KAAP,MAAkB,OAAlB;AAEA,IAAMC,UAAU,GAAGD,KAAK,CAACE,aAAN,EAAnB;AAEA,eAAeD,UAAf"},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar AppContext = React.createContext();\nexport default AppContext;",
+  "map": {
+    "version": 3,
+    "names": ["React", "AppContext", "createContext"],
+    "sources": [
+      "C:/Users/Peace/Desktop/YOS3/SEMESTER 1/Software Design III/2022/Software Design Project/SPS-Project/DFMPC-Student-Placement-System/project/AppContext.js"
+    ],
+    "sourcesContent": [
+      "import React from \"react\";\r\n\r\nconst AppContext = React.createContext();\r\n\r\nexport default AppContext;"
+    ],
+    "mappings": "AAAA,OAAOA,KAAP,MAAkB,OAAlB;AAEA,IAAMC,UAAU,GAAGD,KAAK,CAACE,aAAN,EAAnB;AAEA,eAAeD,UAAf"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
