@@ -33,7 +33,13 @@ const witsLogo = {
 //data to be displayed in the flatlist
 const DATA = [
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "58694a0f-3da1-471f-bd96-145571e29d70",
+    title: "Schedules",
+    destination: "Schedule",
+    image: require("./images/calendar.png"),
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d71",
     title: "Calendar",
     destination: "CalendarView",
     image: require("./images/calendar.png"),
@@ -45,20 +51,20 @@ const DATA = [
     image: require("./images/assignment.png"),
   },
   {
-    id: "28694a0f-3da1-471f-bd96-145571e29d72",
+    id: "28694a0f-3da1-471f-bd96-145571e29d73",
     title: "Tasks",
     destination: "BackgroundTest",
     image: require("./images/tasks.png"),
   },
   {
-    id: "18694a0f-3da1-471f-bd96-145571e29d72",
+    id: "18694a0f-3da1-471f-bd96-145571e29d74",
     title: "Logbook",
     destination: "BackgroundTest",
     image: require("./images/logbook.png"),
   },
 
   {
-    id: "08694a0f-3da1-471f-bd96-145571e29d72",
+    id: "08694a0f-3da1-471f-bd96-145571e29d75",
     title: "Settings",
     destination: "SettingsView",
     image: require("./images/settings.png"),
