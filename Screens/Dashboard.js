@@ -272,9 +272,9 @@ const Dashboard = () => {
       </View>
       <View>
         <TouchableHighlight
-          onPress={() => {
-            navigation.navigate("Protocols");
-          }}
+          onPress={() => 
+            navigation.navigate("PanicButton")
+          }
         >
           <Image
             style={{

@@ -9,6 +9,9 @@ import CalendarView from "./Screens/CalendarView";
 import SettingsView from "./Screens/Settings";
 import Protocols from "./Screens/Protocols";
 import DayAgenda from "./Screens/DayAgenda";
+import VoiceRecorder from "./Screens/VoiceRecorder"
+import PanicButton from "./Screens/PanicButton"
+
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +25,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={PanicButton}
           />
         }
         <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -31,6 +34,8 @@ function App() {
         <Stack.Screen name="SettingsView" component={SettingsView} />
         <Stack.Screen name="Protocols" component={Protocols} />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
+        <Stack.Screen name="PanicButton" component={PanicButton} />
+        <Stack.Screen name="VoiceRecorder" component={VoiceRecorder} />
       </Stack.Navigator>
     </NavigationContainer>
   );
