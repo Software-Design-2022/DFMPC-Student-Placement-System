@@ -7,42 +7,44 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {getList} from './ListApi'
+import {getList} from './ListApi' // import listapi module
 
-const Protocols =
-()=>{
+const Protocols = 
+()=>{ 
    
-  const[state,setState]=useState({protocolList: [{
-    key:0,Protocol:"",
-    content:""}]})
+  const[state,setState]=useState({protocolList: [{ // set state for list
+    key:0,Protocol:"", // set key and protocol
+    content:""}]}) // set content
   
   
-  const onReceive = (protocolList) => {
+  const onReceive = (protocolList) => { // on receive function
    
-    setState(prevState => ({
-      protocolList: prevState.protocolList = protocolList,
+    setState(prevState => ({ // set state for list 
+      protocolList: prevState.protocolList = protocolList, // set list for protocol
       
     }));
   }
-  getList(onReceive)
+  getList(onReceive) // get list from listapi module
   
     
-  const[selected,setSelected]=useState(null)
+  const[selected,setSelected]=useState(null) // set state for selected
 
-  const toogle=i=>{
-    if(selected==i){
-      return setSelected(null)
+  const toogle=i=>{ // toogle function
+    if(selected==i){ // if selected is equal to i
+      return setSelected(null) // set selected to null
     }
-    setSelected(i)
+    setSelected(i) // set selected to i
   }
 
     return (
-  
+      
+      // SafeAreaView for android
       <SafeAreaView style={{flex:1}}>
         <View style ={styles.container}>
           
           <ScrollView style ={styles.container} >
               {
+                // map function for list
                 state.protocolList.map((item,key)=>(
                 
                   <View>
@@ -74,6 +76,7 @@ const Protocols =
   }
   
 
+// styles for screen
 
 const styles = StyleSheet.create({
   container: {

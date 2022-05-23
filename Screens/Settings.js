@@ -23,7 +23,7 @@ const SPACING = 20;
 const AVATAR_SIZE = 60;
 const ICON_SIZE = 180;
 
-function changeProfilePhoto() {
+function changeProfilePhoto() { // change profile photo function
   alert("TODO: Replace this alert with DialogInput");
   console.log("Button approach works!!");
 }

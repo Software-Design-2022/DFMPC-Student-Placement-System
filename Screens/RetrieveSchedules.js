@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-export async function getSchedule(onReceiveList) {
+export async function getSchedule(onReceiveList) { //get the schedule from the database
 
-    var schedules = []
+    var schedules = [] // create an empty array
     
     
     firebase.database().ref('/schedules').on('value',snapshot=>{
@@ -16,7 +16,7 @@ export async function getSchedule(onReceiveList) {
        
 
     
-           const key = snapshot.forEach(function(data) {
+           const key = snapshot.forEach(function(data) { // for each schedule
             
             schedules.push({key1:schedules.length+1,created_at:snapshot.child(data.key+"/created_at").val(),
             hospital_ID:snapshot.child(data.key+"/hospital_id").val(),
