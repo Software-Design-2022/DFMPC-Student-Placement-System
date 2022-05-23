@@ -37,7 +37,6 @@ const Login = () => {
       [
         {
           text: "Cancel",
-          // onPress: () => Alert.alert("Cancel Pressed"),
           style: "cancel",
         },
       ],
@@ -48,13 +47,13 @@ const Login = () => {
   }
 
   function setUserVariables(data) {
-     // store information about the user who is currently logged in
+    // store information about the user who is currently logged in
     authUser = data;
     authUserID = data.key;
     //authStudentNumber= authUser.child("")user_FirstName
-    
-    authName=authUser.child("user_FirstName").val();
-    authLastName=authUser.child("user_LastName").val();
+
+    authName = authUser.child("user_FirstName").val();
+    authLastName = authUser.child("user_LastName").val();
     authUserProfilePic = authUser.child("user_profile_photo/").val();
     authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
     console.log("User ID: " + authUserID + " authenticated.");
@@ -69,17 +68,18 @@ const Login = () => {
       .database()
       .ref("/users")
       .on("value", (snapshot) => {
-       
         const key = snapshot.forEach(function (data) {
           const check_email = snapshot.child(data.key + "/email").val();
 
           const encrypted = snapshot.child(data.key + "/password_digest").val();
-          if (check_email === email) {// compare entered email with current email on the snapshot
-            
+          if (check_email === email) {
+            // compare entered email with current email on the snapshot
+
             found = true; // sets found to true when we have found a matching email int the database
 
-            if (encrypted === password) {  // compares entered password to the password for the corresponding user in the database
-              setUserVariables(data);  // so that we can keep track of who is logged in currenctly
+            if (encrypted === password) {
+              // compares entered password to the password for the corresponding user in the database
+              setUserVariables(data); // so that we can keep track of who is logged in currenctly
               console.log(
                 "User authenticated sucessfully! Storing variables..."
               );

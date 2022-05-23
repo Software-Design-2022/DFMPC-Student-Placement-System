@@ -14,39 +14,39 @@ import {
 import { useNavigation } from "@react-navigation/core";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
-import {authName,authLastName} from "../global";
+import { authName, authLastName } from "../global";
 import { firebase } from "../firebase";
 import Getlocation from "react-native-geolocation-service";
 const Separator = () => <View style={styles.separator} />;
 
-
-const authname="John";
-const authlastName = "Green";
+// this function will receive the text currently entered
+// it will the send it to the database
+// saves location amd user info
 const sendToFirestore = (text) => {
   firebase
     .firestore()
     .collection("panic_button")
     .add({
-      Location: [-40,30],
+      Location: [-latitude, longitude],
       query: text,
-      student_Number:"123456",
-      user_FirstName:authname,
-      user_LastName:authlastName
+      student_Number: "123456",
+      user_FirstName: authname,
+      user_LastName: authlastName,
     })
     .then(() => {
-      Alert.alert("Emergency Message Saved")
-     
+      Alert.alert("Emergency Message Saved");
     });
 };
-
+const authname = "John";
+const authlastName = "Green";
+const latitude = 20;
+const longitude = 30;
 const PanicButton = () => {
   const [text, setText] = useState("");
-  const [position,setPosition] = useState(null)
+  const [position, setPosition] = useState(null);
   const navigation = useNavigation();
 
- 
-   
-/*  Getlocation.getCurrentPosition(
+  /*  Getlocation.getCurrentPosition(
     (pos)=>{
       setPosition(
         pos.coords)
@@ -59,35 +59,55 @@ const PanicButton = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-       <View style={{justifyContent:"center",marginBottom:30}}>
-       <Text style={{fontSize:20,fontWeight:"bold",color:"#f194ff",textAlign: "center",}}>Emergency Button Page</Text>
+      <View style={{ justifyContent: "center", marginBottom: 30 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#f194ff",
+            textAlign: "center",
+          }}
+        >
+          Emergency Button Page
+        </Text>
       </View>
       <Separator />
-      <View style={{marginBottom:20}}>
+      <View style={{ marginBottom: 20 }}>
         <Button
-          
+          // when clicked it will navigate to the Protocols page
+          // where user can have a look at the available protocols
           title="Protocols"
           onPress={() => navigation.navigate("Protocols")}
         />
       </View>
       <Separator />
 
-      <View style={{ padding: 10,marginBottom:20 }}>
+      <View style={{ padding: 10, marginBottom: 20 }}>
         <TextInput
-          style={{ height: 90 ,textAlign: "center",backgroundColor:"lightblue" }}
+          // user can type their emergency message
+          style={{
+            height: 90,
+            textAlign: "center",
+            backgroundColor: "lightblue",
+          }}
           placeholder="Type emergency message here!"
           onChangeText={(newText) => setText(newText)}
           defaultValue={text}
         />
       </View>
       <Separator />
-      <View style={{marginBottom:20}}>
-        <Button title="Send Emergency message" color="#f194ff"
-        onPress={()=>sendToFirestore(text)} />
+      <View style={{ marginBottom: 20 }}>
+        <Button
+          title="Send Emergency message"
+          color="#f194ff"
+          // when clicked data is send to firestore database
+          onPress={() => sendToFirestore(text)}
+        />
       </View>
       <Separator />
       <View style={styles.MapStyle}>
         <MapView
+          // show a mapview with the given longitude and latitude
           style={styles.map}
           region={{
             latitude: -26.18471,
@@ -95,8 +115,11 @@ const PanicButton = () => {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
+          // show a mapview with the given region
         ></MapView>
+
         <Marker
+          // mark the location
           coordinate={{
             latitude: -26.18471,
             longitude: 28.026791,
@@ -104,9 +127,9 @@ const PanicButton = () => {
           // image={{uri:"./images/pin.png"}}
         />
       </View>
-      <View><Text>
-        Display Current Location of device
-        </Text></View>
+      <View>
+        <Text>Display Current Location of device</Text>
+      </View>
     </SafeAreaView>
   );
 };
