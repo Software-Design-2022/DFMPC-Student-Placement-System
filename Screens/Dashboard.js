@@ -45,7 +45,7 @@ const DATA = [
     image: require("./images/assignment.png"),
   },
   {
-    id: "28694a0f-3da1-471f-bd96-145571e29d72",
+    id: "28694a0g-3da1-471f-bd96-145571e29d72",
     title: "Tasks",
     destination: "BackgroundTest",
     image: require("./images/tasks.png"),
@@ -70,6 +70,15 @@ const DATA = [
     destination: "Login",
     image: require("./images/logout.png"),
   },
+
+  
+  { id: "28694a0f-3da1-471f-bd96-145571e29d72", title: "Panic Button",
+    title: "Panic Button",
+    destination: "PanicButton",
+    image: require("./images/emergency.gif"),
+
+  },
+
 ];
 
 // creates it so each item has a touchable button with correct title
@@ -181,6 +190,7 @@ const Dashboard = () => {
       </View>
     );
   };
+  
 
   return (
     // main render function that dictates styling
@@ -270,7 +280,7 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      <View onPress={() => navigation.navigate("PanicButton")}>
+      {/* <View onPress={() => navigation.navigate("PanicButton")}>
         <TouchableHighlight onPress={() => navigation.navigate("PanicButton")}>
           <Image
             onPress={() => navigation.navigate("PanicButton")}
@@ -286,7 +296,7 @@ const Dashboard = () => {
             source={require("./images/emergency.gif")}
           />
         </TouchableHighlight>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
