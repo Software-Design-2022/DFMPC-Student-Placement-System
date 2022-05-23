@@ -14,7 +14,7 @@ import {
   Alert,
   Image,
 } from "react-native";
-import { firebase } from "../firebase";
+import { auth, firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 import "../global";
@@ -37,7 +37,7 @@ const Login = () => {
       [
         {
           text: "Cancel",
-          // onPress: () => Alert.alert("Cancel Pressed"),
+          // onPress: () => console.log("Cancel Pressed"),
           style: "cancel",
         },
       ],
@@ -46,13 +46,15 @@ const Login = () => {
       }
     );
   }
-
+  // Sets global variables and stores them in /global.js
   function setUserVariables(data) {
     authUser = data;
-    authUserID = data.key;
+    authUserID = authUser.child("/id").val();
+    // authUserID = data.key; //IF you have issues related to authUserID, uncomment this
     authUserProfilePic = authUser.child("user_profile_photo/").val();
     authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
-    console.log("User ID: " + authUserID + " authenticated.");
+    console.log("UserID:" + authUserID + " authenticated.");
+    console.log("UserID:", authUserID, "global variables stored.");
   }
   const LoginFirebase = () => {
     // login with email and password
@@ -74,10 +76,11 @@ const Login = () => {
             found = true;
 
             if (encrypted === password) {
-              setUserVariables(data);
               console.log(
                 "User authenticated sucessfully! Storing variables..."
               );
+              setUserVariables(data);
+
               navigation.navigate("Dashboard");
             } else {
               showAlert(

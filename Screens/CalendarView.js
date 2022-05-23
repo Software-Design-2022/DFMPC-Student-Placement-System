@@ -13,6 +13,8 @@ import studentData from "../dfmpc-student-placement-system.json";
 import AppContext from "../AppContext";
 import "../global.js";
 import { NavigationContainer } from "@react-navigation/native";
+import firestore from "@react-native-firebase/firestore";
+import { auth, firebase } from "../firebase";
 
 //constants
 const buttonHeight = 50;
@@ -25,6 +27,29 @@ var specialty = "";
 const RANGE = 12;
 const initialDate = "2022-01-02";
 
+// Uses realtime, use username to go into schedules table and copy only the objects with the same student_id as authUserId
+const getScheduleListRealtime = () => {
+  let schedulesArray = [];
+  firebase
+    .database()
+    .ref("/schedules")
+    .once("value", (snapshot) => {
+      //traverse each schedule in schedules
+      const key = snapshot.forEach(function (data) {
+        // Check if it student_id matches authUserID
+        // If so, push it onto the schedulesArray
+        if (snapshot.child(data.key + "/student_id").val() === authUserID) {
+          console.log("Matching schedule item found for UserID:", authUserID);
+          schedulesArray.push(snapshot.child(data.key).val());
+        }
+      });
+    });
+  console.log("Matching Schedules List:", schedulesArray);
+  // TODO: BIG Debug, this should return the exact same data type as studentData.schedules.(array of objects)
+  // Instead it shows up as an 'non-empty' array that has no index, instead of array of objects, then coloring should work
+  return schedulesArray;
+};
+
 const CalendarView = () => {
   //use navigation
   const navigation = useNavigation();
@@ -36,9 +61,11 @@ const CalendarView = () => {
   const [name, SetName] = useState("");
   // const navigation = useNavigation()
 
-  //retrieve user details
+  //retrieve user details\
+  // const scheduleList = getScheduleListRealtime();
   const scheduleList = studentData.schedules;
-  console.log("Schedule List", scheduleList);
+  console.log("User's Schedule List:", studentData.schedules);
+  console.log("Get Firestore Schedule List:", getScheduleListRealtime());
   const onDayPress = (day) => {
     // Set's selectedDate state to the selected date
     setSelectedDate(day.dateString);
@@ -53,16 +80,18 @@ const CalendarView = () => {
       futureScrollRange={RANGE}
       // renderHeader={renderCustomHeader}
       theme={theme}
+      // Sets onPress to navigate to that agenda and set selected date.
       onDayPress={(day) => {
-        console.log(day);
+        console.log("Day", day, "selected");
         days = day.dateString;
-        console.log(days);
+        console.log("Days =", days);
 
         navigation.navigate("DayAgenda");
       }}
       // markedDates={markedDates}
       markingType="period"
       //get marked dates using generateschedule and user credentials
+      // Bug: Only generates/draws for one of each speciality ID
       markedDates={generateSchedule(scheduleList)}
     />
   );
@@ -71,6 +100,8 @@ const CalendarView = () => {
 // generate marked dates
 const generateSchedule = (scheduleList) => {
   let schedulesObj = {};
+
+  // The function only works for one of each specialty 1, 5*, 1*, 1, 2, 2, 2*
   scheduleList.forEach((schedule) => {
     let scheduleObj = {};
 
@@ -84,7 +115,8 @@ const generateSchedule = (scheduleList) => {
     //figure out which days of the week in the schedule
     const daysInWeek = getDaysInWeek(
       week.startDate,
-      schedule.specialty_duration
+      schedule.specialty_duration,
+      schedule.specialty_id
     );
 
     //only show schedule for correct user
@@ -94,36 +126,38 @@ const generateSchedule = (scheduleList) => {
 
     //default colours
     var startcolor = "rgba(80,206,187,0.5)";
-    var middlecolor = "rgba(80,206,187,0.5)";
-    var endcolor = "rgba(80,206,187,0.5)";
+    var middlecolor = startcolor;
+    var endcolor = middlecolor;
 
     //change colour based on specialty
-    if (schedule.specialty_id == 2) {
-      startcolor = "rgba(226,135,67,0.5)";
-      middlecolor = "rgba(226,135,67,0.5)";
-      endcolor = "rgba(226,135,67,0.5)";
-    } else if (schedule.specialty_id == 5) {
-      startcolor = "rgba(8,181,245,0.5)";
-      middlecolor = "rgba(8,181,245,0.5)";
-      endcolor = "rgba(8,181,245,0.5)";
-    } else if (schedule.specialty_id == 6) {
-      startcolor = "rgba(245,58,245,0.5)";
-      middlecolor = "rgba(245,58,245,0.5)";
-      endcolor = "rgba(245,58,245,0.5)";
-    } else {
-      startcolor = "rgba(80,206,187,0.5)";
-      middlecolor = "rgba(80,206,187,0.5)";
-      endcolor = "rgba(80,206,187,0.5)";
+    {
+      if (schedule.specialty_id == 1) {
+        startcolor = "rgba(226,135,67,0.5)";
+      } else if (schedule.specialty_id == 2) {
+        startcolor = "rgba(8,181,245,0.5)";
+      } else if (schedule.specialty_id == 3) {
+        startcolor = "rgba(245,158,45,0.5)";
+      } else if (schedule.specialty_id == 4) {
+        startcolor = "rgba(25,8,245,0.5)";
+      } else if (schedule.specialty_id == 5) {
+        startcolor = "rgba(180,58,230,0.5)";
+      } else if (schedule.specialty_id == 6) {
+        startcolor = "rgba(245,58,24,0.5)";
+      } else {
+        startcolor = "rgba(80,206,187,0.5)";
+      }
+      middlecolor = startcolor;
+      endcolor = middlecolor;
     }
-
-    // set information for each day
+    // Iterates through each schedule object in a week
     daysInWeek.forEach((day, dayIndex) => {
+      // Stores appropriate schedule item as scheduleObj
       scheduleObj = {};
       if (dayIndex === 0) {
         scheduleObj.startingDate = true;
         scheduleObj.color = startcolor;
         scheduleObj.textColor = "white";
-      } else if (dayIndex > 0 && dayIndex <= 5) {
+      } else if (dayIndex > 0 && dayIndex <= 7) {
         scheduleObj.color = middlecolor;
         scheduleObj.textColor = "white";
       } else {
@@ -133,7 +167,9 @@ const generateSchedule = (scheduleList) => {
       }
 
       // Object.assign(schedulesObj, scheduleObj);
+      // Assigns the day's
       schedulesObj[day] = scheduleObj;
+      // schedulesObj.push(scheduleObj);
     }); // end of days i week
   }); // End of Schedule List
 
@@ -141,10 +177,12 @@ const generateSchedule = (scheduleList) => {
 };
 
 // get days that the specialty will run over using specialty duration
-const getDaysInWeek = (startDate, specialtyduration) => {
+
+const getDaysInWeek = (startDate, specialtyduration, specialty_id) => {
   let dates = [];
   // console.log('startDate', startDate)
-  console.log(startDate);
+  console.log("Start Date:", startDate);
+  console.log("SpecialityID:", specialty_id);
   for (let i = 0; i < specialtyduration; i++) {
     //takes current date and counts days prior to it for listing on calendar
     const currentDate = new Date(startDate);
@@ -174,7 +212,7 @@ const getDateFromWeekNum = (weekNum, year, specialtyduration) => {
   const endDate = new Date(d.setDate(daynum));
   const startDate = new Date(year, month, 2);
   startDate.setDate(endDate.getDate() - specialtyduration);
-  console.log(startDate, endDate);
+  console.log("Start Date:", startDate, ", End Date:", endDate);
   return { startDate: startDate, endDate: endDate };
 };
 
@@ -209,5 +247,4 @@ const styles = StyleSheet.create({
   },
 });
 export default CalendarView;
-
 export { days };

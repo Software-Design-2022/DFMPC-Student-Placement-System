@@ -1,3 +1,5 @@
+import { Firestore } from "react-firestore";
+
 global.authUserID = "";
 global.authUserRef = "";
 global.authUser = "";

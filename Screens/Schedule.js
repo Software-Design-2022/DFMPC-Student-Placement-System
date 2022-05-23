@@ -57,7 +57,7 @@ const Schedule = () => {
   //console.log(stateSchedulesList.scheduleList)
 
   const navigation = useNavigation(); //Sets view to show nav bar
-  const scheduleList = studentData.schedules; //Used as a proxy for pulling data from FireStore
+  const scheduleList = studentData.schedules; //Used as a proxy for pulling data from FireStore. We should use a global variable here to store the user's information
   console.log("Schedule List", scheduleList);
   generateSchedule(scheduleList);
   return (

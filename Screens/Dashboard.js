@@ -33,12 +33,6 @@ const witsLogo = {
 //data to be displayed in the flatlist
 const DATA = [
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d70",
-    title: "Schedules",
-    destination: "Schedule",
-    image: require("./images/calendar.png"),
-  },
-  {
     id: "58694a0f-3da1-471f-bd96-145571e29d71",
     title: "Calendar",
     destination: "CalendarView",
@@ -87,7 +81,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 
 const Dashboard = () => {
   //Dashboard screen
-
+  console.log("UserID:", authUserID, "Opened Dashboard View");
   //use navigation
   const navigation = useNavigation();
 
@@ -142,6 +136,13 @@ const Dashboard = () => {
           >
             <TouchableOpacity
               onPress={() => {
+                console.log(
+                  "UserID:",
+                  authUserID,
+                  "navigated to the",
+                  item.destination,
+                  "view"
+                );
                 navigation.navigate(item.destination);
               }}
             >

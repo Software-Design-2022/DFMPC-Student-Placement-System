@@ -12,6 +12,8 @@
     "make-badges": "istanbul-badges-readme --logo='jest' "
   },
   "dependencies": {
+    "@react-native-firebase/app": "^14.9.4",
+    "@react-native-firebase/firestore": "^14.9.4",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
     "bcrypt-react-native": "^1.1.1",
@@ -23,6 +25,7 @@
     "mocha": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-firestore": "^1.0.1",
     "react-native": "0.64.3",
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1284.0",
