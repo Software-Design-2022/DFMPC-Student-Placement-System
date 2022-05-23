@@ -7,6 +7,7 @@ export default {
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "plugins": ["@react-native-voice/voice"],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
