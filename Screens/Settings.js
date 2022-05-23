@@ -23,7 +23,8 @@ const SPACING = 20;
 const AVATAR_SIZE = 60;
 const ICON_SIZE = 180;
 
-function changeProfilePhoto() { // change profile photo function
+function changeProfilePhoto() {
+  // change profile photo function
   alert("TODO: Replace this alert with DialogInput");
   console.log("Button approach works!!");
 }
@@ -34,9 +35,8 @@ const changeTheme = () => {
 function changeSuggestions() {}
 const DATA = [
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f62",
   },
-
 ];
 const Settings = () => {
   const navigation = useNavigation();
