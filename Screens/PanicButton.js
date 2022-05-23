@@ -14,7 +14,7 @@ import {
 import { useNavigation } from "@react-navigation/core";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
-import { authName, authLastName } from "../global";
+import  "../global";
 import { firebase } from "../firebase";
 import Getlocation from "react-native-geolocation-service";
 const Separator = () => <View style={styles.separator} />;
@@ -37,8 +37,8 @@ const sendToFirestore = (text) => {
       Alert.alert("Emergency Message Saved");
     });
 };
-const authname = "John";
-const authlastName = "Green";
+const authname =authName;
+const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
 const PanicButton = () => {
@@ -128,7 +128,7 @@ const PanicButton = () => {
         />
       </View>
       <View>
-        <Text>Display Current Location of device</Text>
+        {/* <Text>Display Current Location of device</Text> */}
       </View>
     </SafeAreaView>
   );
