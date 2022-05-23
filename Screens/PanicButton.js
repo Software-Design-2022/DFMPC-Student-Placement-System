@@ -8,53 +8,78 @@ import {
   Text,
   Alert,
   TextInput,
+  Platform,
+  useEffect,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
-import GetLocation from "react-native-get-location";
+import "../global";
+import { firebase } from "../firebase";
+import Getlocation from "react-native-geolocation-service";
 const Separator = () => <View style={styles.separator} />;
+
+const sendToFirestore = (text) => {
+  firebase
+    .firestore()
+    .collection("panic_button")
+    .add({
+      Location: [-40,30],
+      query: text,
+      student_Number:"123456",
+      user_FirstName:"Angela",
+      user_LastName:"Nkosi"
+    })
+    .then(() => {
+      Alert.alert("Emergency Message Saved")
+    });
+};
 
 const PanicButton = () => {
   const [text, setText] = useState("");
+  const [position,setPosition] = useState(null)
   const navigation = useNavigation();
+
+ 
+   
+  Getlocation.getCurrentPosition(
+    (pos)=>{
+      setPosition(
+        pos.coords)
+    },
+    (error)=>{
+      Alert.alert(error.message)
+    },
+    {enableHighAccuracy:true,timeout:15000,maximumAge:10000}
+  )
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+       <View style={{justifyContent:"center",marginBottom:30}}>
+       <Text style={{fontSize:20,fontWeight:"bold",color:"#f194ff",textAlign: "center",}}>Emergency Button Page</Text>
+      </View>
+      <Separator />
+      <View style={{marginBottom:20}}>
         <Button
+          
           title="Protocols"
           onPress={() => navigation.navigate("Protocols")}
         />
       </View>
       <Separator />
-    
-      <View 
-      style={{ padding: 10 }}>
-            <TextInput
-              style={{ height: 40 }}
-              placeholder="Type emergency message here!"
-              onChangeText={(newText) => setText(newText)}
-              defaultValue={text}
-            />
-           
-          </View>
-          <Separator />
-          <View>
-        <Button title="Send Emergency message" color="#f194ff"
-         />
 
-
+      <View style={{ padding: 10,marginBottom:20 }}>
+        <TextInput
+          style={{ height: 90 ,textAlign: "center",backgroundColor:"lightblue" }}
+          placeholder="Type emergency message here!"
+          onChangeText={(newText) => setText(newText)}
+          defaultValue={text}
+        />
       </View>
       <Separator />
-      <View>
-        <View>
-          <Button
-            title="Record Emergency"
-            onPress={() => navigation.navigate("VoiceRecorder")}
-          />
-          
-        </View>
+      <View style={{marginBottom:20}}>
+        <Button title="Send Emergency message" color="#f194ff"
+        onPress={()=>sendToFirestore(text)} />
       </View>
       <Separator />
       <View style={styles.MapStyle}>
@@ -75,6 +100,8 @@ const PanicButton = () => {
           // image={{uri:"./images/pin.png"}}
         />
       </View>
+      <View><Text>
+        {position}</Text></View>
     </SafeAreaView>
   );
 };
