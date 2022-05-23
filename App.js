@@ -25,7 +25,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={PanicButton}
+            component={Login}
           />
         }
         <Stack.Screen name="Dashboard" component={Dashboard} />

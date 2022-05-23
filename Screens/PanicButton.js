@@ -14,11 +14,14 @@ import {
 import { useNavigation } from "@react-navigation/core";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
-import "../global";
+import {authName,authLastName} from "../global";
 import { firebase } from "../firebase";
 import Getlocation from "react-native-geolocation-service";
 const Separator = () => <View style={styles.separator} />;
 
+
+const authname="John";
+const authlastName = "Green";
 const sendToFirestore = (text) => {
   firebase
     .firestore()
@@ -27,11 +30,12 @@ const sendToFirestore = (text) => {
       Location: [-40,30],
       query: text,
       student_Number:"123456",
-      user_FirstName:"Angela",
-      user_LastName:"Nkosi"
+      user_FirstName:authname,
+      user_LastName:authlastName
     })
     .then(() => {
       Alert.alert("Emergency Message Saved")
+     
     });
 };
 
@@ -42,7 +46,7 @@ const PanicButton = () => {
 
  
    
-  Getlocation.getCurrentPosition(
+/*  Getlocation.getCurrentPosition(
     (pos)=>{
       setPosition(
         pos.coords)
@@ -51,7 +55,7 @@ const PanicButton = () => {
       Alert.alert(error.message)
     },
     {enableHighAccuracy:true,timeout:15000,maximumAge:10000}
-  )
+  )*/
 
   return (
     <SafeAreaView style={styles.container}>
@@ -101,7 +105,8 @@ const PanicButton = () => {
         />
       </View>
       <View><Text>
-        {position}</Text></View>
+        Display Current Location of device
+        </Text></View>
     </SafeAreaView>
   );
 };

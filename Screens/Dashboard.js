@@ -270,13 +270,21 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      <View>
+      <View
+      
+        onPress={() => 
+        navigation.navigate("PanicButton")
+      }>
         <TouchableHighlight
-          onPress={() => 
-            navigation.navigate("PanicButton")
-          }
+        onPress={() => 
+          navigation.navigate("PanicButton")
+        }
         >
           <Image
+          
+            onPress={() => 
+              navigation.navigate("PanicButton")
+            }
             style={{
               width: ICON_SIZE,
               height: ICON_SIZE,
