@@ -49,7 +49,7 @@ const Login = () => {
   function setUserVariables(data) {
     // store information about the user who is currently logged in
     authUser = data;
-    authUserID = data.key;
+    authUserID = data.child("id").val();
     //authStudentNumber= authUser.child("")user_FirstName
 
     authName = authUser.child("user_FirstName").val();
