@@ -281,6 +281,8 @@ const Dashboard = () => {
   );
 };
 
+// styling for the main render function
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
