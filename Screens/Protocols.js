@@ -23,9 +23,6 @@ const Protocols = () => {
     ],
   });
 
-
-  
-
   const onReceive = (protocolList) => {
     // when the list is received we set our protocolLIst to the current received list (updating)
     setState((prevState) => ({
@@ -47,7 +44,6 @@ const Protocols = () => {
     setSelected(i);
   };
 
-  
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return (
@@ -83,7 +79,6 @@ const Protocols = () => {
       </View>
     </SafeAreaView>
   );
-
 };
 
 const styles = StyleSheet.create({
