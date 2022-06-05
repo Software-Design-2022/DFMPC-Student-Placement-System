@@ -1,4 +1,4 @@
-import { multiply, makeLowerCase } from "../../HelperFunctions.js";
+import { makeLowerCase } from "../../HelperFunctions.js";
 
 describe("HelperFunctions", () => {
 
