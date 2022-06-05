@@ -47,8 +47,10 @@
     "@babel/core": "^7.17.12",
     "@babel/preset-env": "^7.17.12",
     "babel-jest": "^28.1.0",
+    "codecov": "^3.8.3",
     "istanbul-badges-readme": "^1.8.1",
     "jest": "^28.1.0",
+    "nyc": "^15.1.0",
     "reinstall-node-modules": "^2.0.0"
   },
   "jest": {

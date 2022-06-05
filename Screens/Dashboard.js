@@ -38,24 +38,6 @@ const DATA = [
     destination: "CalendarView",
     image: require("./images/calendar.png"),
   },
-  {
-    id: "38694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Assignments",
-    destination: "BackgroundTest",
-    image: require("./images/assignment.png"),
-  },
-  {
-    id: "28694a0g-3da1-471f-bd96-145571e29d72",
-    title: "Tasks",
-    destination: "BackgroundTest",
-    image: require("./images/tasks.png"),
-  },
-  {
-    id: "18694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Logbook",
-    destination: "BackgroundTest",
-    image: require("./images/logbook.png"),
-  },
 
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d72",
@@ -71,14 +53,13 @@ const DATA = [
     image: require("./images/logout.png"),
   },
 
-  
-  { id: "28694a0f-3da1-471f-bd96-145571e29d72", title: "Panic Button",
+  {
+    id: "28694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Panic Button",
     title: "Panic Button",
     destination: "PanicButton",
     image: require("./images/emergency.gif"),
-
   },
-
 ];
 
 // creates it so each item has a touchable button with correct title
@@ -157,40 +138,39 @@ const Dashboard = () => {
   };
 
   // second render function that renders the horizontal flatlist
-  const renderItem2 = ({ item }) => {
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          padding: SPACING,
-          flex: 1,
-          paddingTop: 10,
-          borderRadius: 100,
-          marginBottom: SPACING / 2,
-          paddingBottom: 5,
-        }}
-      >
-        <View>
-          <TouchableHighlight
-            onPress={() => {
-              navigation.navigate(item.destination);
-            }}
-          >
-            <Image
-              //create an image with the appropriate locally stored icon that is tappable
-              source={item.image}
-              style={{
-                width: AVATAR_SIZE / 1.5,
-                height: AVATAR_SIZE / 1.5,
-                borderRadius: AVATAR_SIZE / 1.5,
-              }}
-            ></Image>
-          </TouchableHighlight>
-        </View>
-      </View>
-    );
-  };
-  
+  // const renderItem2 = ({ item }) => {
+  //   return (
+  //     <View
+  //       style={{
+  //         flexDirection: "row",
+  //         padding: SPACING,
+  //         flex: 1,
+  //         paddingTop: 10,
+  //         borderRadius: 100,
+  //         marginBottom: SPACING / 2,
+  //         paddingBottom: 5,
+  //       }}
+  //     >
+  //       <View>
+  //         <TouchableHighlight
+  //           onPress={() => {
+  //             navigation.navigate(item.destination);
+  //           }}
+  //         >
+  //           <Image
+  //             //create an image with the appropriate locally stored icon that is tappable
+  //             source={item.image}
+  //             style={{
+  //               width: AVATAR_SIZE / 1.5,
+  //               height: AVATAR_SIZE / 1.5,
+  //               borderRadius: AVATAR_SIZE / 1.5,
+  //             }}
+  //           ></Image>
+  //         </TouchableHighlight>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   return (
     // main render function that dictates styling
@@ -253,7 +233,7 @@ const Dashboard = () => {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)" }}>
+        {/* <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)" }}>
           <FlatList
             contentContainerStyle={{
               padding: SPACING / 8,
@@ -265,7 +245,7 @@ const Dashboard = () => {
             extraData={selectedId}
             horizontal={true}
           />
-        </View>
+        </View> */}
 
         <View style={{ flex: 6.5, backgroundColor: " rgba(18,33,65,0.8)" }}>
           <FlatList
@@ -300,6 +280,8 @@ const Dashboard = () => {
     </SafeAreaView>
   );
 };
+
+// styling for the main render function
 
 const styles = StyleSheet.create({
   container: {

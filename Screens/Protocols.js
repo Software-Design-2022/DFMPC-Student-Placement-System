@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  LogBox,
 } from "react-native";
 import { getList } from "./ListApi";
 
@@ -43,6 +44,8 @@ const Protocols = () => {
     setSelected(i);
   };
 
+  LogBox.ignoreLogs(["Setting a timer"]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -52,7 +55,7 @@ const Protocols = () => {
             //and returns an array that contains the results.
             // with the {+,-} we toggle between the two depending on which one is currently selected
             state.protocolList.map((item, key) => (
-              <View>
+              <View key={state.protocolList.Protocol}>
                 <TouchableOpacity
                   style={styles.item}
                   onPress={() => toggle(key)}
