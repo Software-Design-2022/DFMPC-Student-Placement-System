@@ -52,7 +52,7 @@ const Protocols = () => {
             //and returns an array that contains the results.
             // with the {+,-} we toggle between the two depending on which one is currently selected
             state.protocolList.map((item, key) => (
-              <View>
+              <View key={protocolList.Protocol}>
                 <TouchableOpacity
                   style={styles.item}
                   onPress={() => toggle(key)}
