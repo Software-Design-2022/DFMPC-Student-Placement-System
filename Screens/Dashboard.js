@@ -33,12 +33,6 @@ const witsLogo = {
 //data to be displayed in the flatlist
 const DATA = [
   {
-    id: "28694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Emergency",
-    destination: "PanicButton",
-    image: require("./images/emergency.gif"),
-  },
-  {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
@@ -135,41 +129,6 @@ const Dashboard = () => {
     );
   };
 
-  // second render function that renders the horizontal flatlist
-  // const renderItem2 = ({ item }) => {
-  //   return (
-  //     <View
-  //       style={{
-  //         flexDirection: "row",
-  //         padding: SPACING,
-  //         flex: 1,
-  //         paddingTop: 10,
-  //         borderRadius: 100,
-  //         marginBottom: SPACING / 2,
-  //         paddingBottom: 5,
-  //       }}
-  //     >
-  //       <View>
-  //         <TouchableHighlight
-  //           onPress={() => {
-  //             navigation.navigate(item.destination);
-  //           }}
-  //         >
-  //           <Image
-  //             //create an image with the appropriate locally stored icon that is tappable
-  //             source={item.image}
-  //             style={{
-  //               width: AVATAR_SIZE / 1.5,
-  //               height: AVATAR_SIZE / 1.5,
-  //               borderRadius: AVATAR_SIZE / 1.5,
-  //             }}
-  //           ></Image>
-  //         </TouchableHighlight>
-  //       </View>
-  //     </View>
-  //   );
-  // };
-
   return (
     // main render function that dictates styling
     <SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
@@ -231,20 +190,7 @@ const Dashboard = () => {
             </TouchableHighlight>
           </View>
         </View>
-        {/* <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)" }}>
-          <FlatList
-            contentContainerStyle={{
-              padding: SPACING / 8,
-              paddingTop: SPACING,
-            }}
-            data={DATA}
-            renderItem={renderItem2}
-            keyExtractor={(item) => item.id}
-            extraData={selectedId}
-            horizontal={true}
-          />
-        </View> */}
-
+      
         <View style={{ flex: 6.5, backgroundColor: " rgba(18,33,65,0.8)" }}>
           <FlatList
             contentContainerStyle={{
@@ -258,23 +204,30 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      {/* <View onPress={() => navigation.navigate("PanicButton")}>
-        <TouchableHighlight onPress={() => navigation.navigate("PanicButton")}>
-          <Image
-            onPress={() => navigation.navigate("PanicButton")}
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              right: 0,
-              bottom: 0,
-              borderRadius: ICON_SIZE,
-              marginRight: SPACING / 2,
+      {
+        <View style={{ backgroundColor: "rgba(18,33,65,1)" }}>
+          <TouchableHighlight
+            underlayColor="rgba(0,0,0,0)"
+            onPress={() => {
+              navigation.navigate("PanicButton");
             }}
-            source={require("./images/emergency.gif")}
-          />
-        </TouchableHighlight>
-      </View> */}
+          >
+            <Image
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                marginLeft: width - ICON_SIZE,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(18,33,65,1)",
+                borderRadius: ICON_SIZE,
+                marginRight: SPACING / 2,
+              }}
+              source={require("./images/emergency.gif")}
+            />
+          </TouchableHighlight>
+        </View>
+      }
     </SafeAreaView>
   );
 };
