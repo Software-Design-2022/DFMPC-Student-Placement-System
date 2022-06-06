@@ -79,7 +79,7 @@ npm start or expo start
 
 - Riot Ndlovu - @peacendlovu :man_technologist:
 - Shagan Plaatjies - @shgnplaatjies :man_technologist:
-- Angela Nkose - @Cipher73 :woman_technologist:
+- Angela Nkosi - @Cipher73 :woman_technologist:
 - Nokuthaba Moyo - @nokuthabam :woman_technologist:
 - Mthokozisi Masango - @Mtho-hub :man_technologist:
 - Callum Muller - @CallumMuller :man_technologist:
