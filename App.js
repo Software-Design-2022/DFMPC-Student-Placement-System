@@ -16,11 +16,13 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        { <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={Login}
-        /> }
+        {
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Login"
+            component={Login}
+          />
+        }
         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
@@ -41,4 +43,3 @@ const styles = StyleSheet.create({
   },
 });
 export default App;
-

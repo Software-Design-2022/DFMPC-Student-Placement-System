@@ -34,9 +34,8 @@ const changeTheme = () => {
 function changeSuggestions() {}
 const DATA = [
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f62",
   },
-
 ];
 const Settings = () => {
   const navigation = useNavigation();

@@ -134,7 +134,7 @@ const Login = () => {
         >
           <TouchableOpacity
             onPress={() => {
-             LoginFirebase();
+              LoginFirebase();
             }} // when user clicks on login button
           >
             <Text style={styles.buttonText}>Login</Text>
