@@ -32,12 +32,7 @@ const witsLogo = {
 
 //data to be displayed in the flatlist
 const DATA = [
-  {
-    id: "28694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Emergency",
-    destination: "PanicButton",
-    image: require("./images/emergency.gif"),
-  },
+
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
@@ -258,23 +253,28 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      {/* <View onPress={() => navigation.navigate("PanicButton")}>
-        <TouchableHighlight onPress={() => navigation.navigate("PanicButton")}>
+      {<View style={{backgroundColor:'rgba(18,33,65,1)'}}>
+        <TouchableHighlight
+        underlayColor="rgba(0,0,0,0)"
+          onPress={() => {
+            navigation.navigate("PanicButton");
+          }}
+        >
           <Image
-            onPress={() => navigation.navigate("PanicButton")}
             style={{
               width: ICON_SIZE,
               height: ICON_SIZE,
-              position: "absolute",
+              marginLeft:width-ICON_SIZE,
               right: 0,
               bottom: 0,
+              backgroundColor:'rgba(18,33,65,1)',
               borderRadius: ICON_SIZE,
               marginRight: SPACING / 2,
             }}
             source={require("./images/emergency.gif")}
           />
         </TouchableHighlight>
-      </View> */}
+      </View>}
     </SafeAreaView>
   );
 };
