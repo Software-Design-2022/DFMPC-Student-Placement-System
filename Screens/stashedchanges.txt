@@ -261,23 +261,25 @@ const styles = StyleSheet.create({
     borderWidth: 5,
   },
 });
+// Extends the schedules item object to describe it's marking, color and agenda condition
 function parseItemConditions(scheduleItem) {
+  // Parse different properties for scheduleItem/agendaItem
   var color_conditions = parseColorConditions(scheduleItem);
-
+  var agenda_conditions = parseAgendaConditions(scheduleItem);
   //Returns a vector of 4 rgba strings
   const agenda_meta_object = {};
   agenda_meta_object.color = color_conditions.color;
   agenda_meta_object.startcolor = color_conditions.startcolor;
   agenda_meta_object.middlecolor = color_conditions.middlecolor;
   agenda_meta_object.endcolor = color_conditions.endcolor;
-  agenda_meta_object.name = name;
-  agenda_meta_object.height = height;
-  agenda_meta_object.description = description;
-  agenda_meta_object.textColor = textColor;
+  agenda_meta_object.name = agenda_conditions.name;
+  agenda_meta_object.height = agenda_conditions.height;
+  agenda_meta_object.description = agenda_conditions.description;
+  agenda_meta_object.textColor = agenda_conditions.textColor;
 
   return agenda_meta_object;
 }
-function parseColorConditions() {
+function parseColorConditions(scheduleItem) {
   //default colours. Can use a gradient of 2 colors, but I'm setting them all to the same color.
   var color = "rgba(80,206,187,0.5)";
   var startcolor = color;
@@ -310,7 +312,35 @@ function parseColorConditions() {
 
   return color_conditions;
 }
+function parseAgendaConditions(scheduleItem) {
+  var agenda_conditions = {};
+  var height = 80;
+  var name = "";
+  if (scheduleItem.specialty_id == "0") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else if (scheduleItem.specialty_id == "1") {
+    name = "Name for specialty type:";
+  } else if (scheduleItem.specialty_id == "2") {
+    name = "Name for specialty type:";
+  } else if (scheduleItem.specialty_id == "3") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else if (scheduleItem.specialty_id == "4") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else if (scheduleItem.specialty_id == "5") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else if (scheduleItem.specialty_id == "6") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else if (scheduleItem.specialty_id == "7") {
+    name = "Name for specialty type: " + scheduleItem.specialty_id.toString();
+  } else {
+    name = "Name for specialty type " + "8";
+  }
 
+  agenda_conditions.height = height;
+  agenda_conditions.name = name;
+
+  return agenda_conditions;
+}
 export default CalendarView;
 
 export { dateToPass };
