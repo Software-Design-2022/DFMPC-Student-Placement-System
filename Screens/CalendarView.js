@@ -12,7 +12,12 @@ import {Calendar,CalendarList,Agenda} from 'react-native-calendars';
 import studentData from '../dfmpc-student-placement-system.json'
 import AppContext from '../AppContext';
 import "../global.js";
+<<<<<<< Updated upstream
 import { NavigationContainer } from '@react-navigation/native';
+=======
+import { firebase } from "../firebase";
+import { NavigationContainer } from "@react-navigation/native";
+>>>>>>> Stashed changes
 
 
 //constants 
@@ -24,15 +29,22 @@ const ICON_SIZE = 80;
 var days=""
 var specialty=""
 const RANGE = 12;
+<<<<<<< Updated upstream
 const initialDate = '2022-01-02'
 
 
+=======
+const initialDate = "2022-01-02";
+var usersMarkedDatesList = {};
+var usersAgendaList = {};
+>>>>>>> Stashed changes
 
 const CalendarView = () => {
 
   //use navigation
   const navigation = useNavigation();
   const myContext = useContext(AppContext);
+<<<<<<< Updated upstream
   // const [selectedId, setSelectedId] = useState(null);
   const [selected, setSelected] = useState(initialDate);
   const [name, SetName] = useState('');
@@ -48,6 +60,20 @@ const CalendarView = () => {
 
   
 
+=======
+  // Keeps track of selected date
+  const [selectedDate, setSelectedDate] = useState(initialDate);
+
+  //fetches record of schedules for all users
+  // An array of schedule objects with no keys stored
+  const fullScheduleList = studentData.schedules;
+  // Also an array of schedule objects.. Not sure why it's parsing them as different datatypes
+  const firebaseScheduleList = createFirebaseSchedule(authUserID);
+
+  // usersAgendaList is a JSON object with only "stringDate","color","textColor" properties
+  usersMarkedDatesList = generateSchedule(fullScheduleList);
+  usersAgendaList; //This object is updated to include usersMarkedDatesList properties as well as "student_id";,"created_at" ,"updated_at" ,"hospital_id","specialty_id"
+>>>>>>> Stashed changes
   return (
 
     //render calendar 
@@ -67,6 +93,7 @@ const CalendarView = () => {
       }}
       // markedDates={markedDates}
       markingType="period"
+<<<<<<< Updated upstream
 
       //get marked dates using generateschedule and user credentials
       markedDates={generateSchedule(scheduleList)}
@@ -112,6 +139,44 @@ const generateSchedule = (scheduleList) => {
       middlecolor='rgba(226,135,67,0.5)'
       endcolor='rgba(226,135,67,0.5)'
     
+=======
+      // * The generateSchedule method does way too much at once, really caused issues with understanding
+      // Refactored this section to calculate the users agendalist before the calendar is rendered
+      markedDates={usersMarkedDatesList} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
+    />
+  );
+};
+// Downloads the user's schedule from firebase
+function createFirebaseSchedule(authUserID) {
+  var schedules = [];
+  firebase
+    .database()
+    .ref("/schedules")
+    .on("value", (snapshot) => {
+      const key = snapshot.forEach(function (data) {
+        console.log("pushing this object to the array", data);
+        schedules.push(data);
+      });
+    });
+  return schedules;
+}
+// generate marked dates [Too specific, needs to include relevant info for agenda ]\
+// Refactored generateSchedule to include data it "threw away". Namely "student_id";,"created_at" ,"updated_at" ,"hospital_id","specialty_id"
+// Returns objects with properties: "startingDate","color","textColor"
+
+const generateSchedule = (fullScheduleList) => {
+  let userSchedulesListObj = {};
+  let userMarkedDatesListObj = {};
+  // Iterate through entire list of schedules for all users
+  // Skip immediately if it's a different user, else parse the database object
+  fullScheduleList.forEach((scheduleItem) => {
+    let scheduleObj = {};
+    let markedDateObj = {};
+
+    //only show scheduleItem for correct user
+    if (scheduleItem.student_id != authUserID) {
+      return {};
+>>>>>>> Stashed changes
     }
     else if(schedule.specialty_id==5){
       startcolor='rgba(8,181,245,0.5)'
@@ -147,6 +212,7 @@ const generateSchedule = (scheduleList) => {
         scheduleObj.color = endcolor;
         scheduleObj.textColor = 'white';
       }
+<<<<<<< Updated upstream
 
       // Object.assign(schedulesObj, scheduleObj);
       schedulesObj[day] = scheduleObj;
@@ -161,6 +227,35 @@ const generateSchedule = (scheduleList) => {
 }
 
 
+=======
+      // Packing the values into the schedule/agenda object
+      scheduleObj.student_id = scheduleItem.student_id;
+      scheduleObj.created_at = scheduleItem.created_at;
+      scheduleObj.updated_at = scheduleItem.updated_at;
+      scheduleObj.hospital_id = scheduleItem.hospital_id;
+      scheduleObj.specialty_id = scheduleItem.specialty_id;
+      scheduleObj.startingDate;
+      scheduleObj.color;
+      scheduleObj.textColor;
+
+      markedDateObj.startingDate = scheduleObj.startingDate;
+      markedDateObj.color = scheduleObj.color;
+      markedDateObj.textColor = scheduleObj.textColor;
+      // creating the object and stashing it in the user's schedule object list
+
+      userSchedulesListObj[day] = scheduleObj;
+      userMarkedDatesListObj[day] = markedDateObj;
+    }); // end of days i week
+  }); // End of Schedule List
+  // Saving a user's schedule as individual objects for each day higher up in scope.
+  usersMarkedDatesList = userMarkedDatesListObj;
+  usersAgendaList = userSchedulesListObj;
+  // To test function
+  // console.log("Should be more verbose than marked again", usersAgendaList);
+  // console.log("Should be a only 3 properties", userMarkedDatesListObj);
+  return userMarkedDatesListObj;
+};
+>>>>>>> Stashed changes
 
 // get days that the specialty will run over using specialty duration
 const getDaysInWeek = (startDate,specialtyduration) => {

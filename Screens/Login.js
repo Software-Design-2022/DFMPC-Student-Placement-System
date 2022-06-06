@@ -60,6 +60,7 @@ const Login = () => {
     // check if email exists in the database if so then hash pass and compare
 
     var found = false;
+
     firebase
       .database()
       .ref("/users")
