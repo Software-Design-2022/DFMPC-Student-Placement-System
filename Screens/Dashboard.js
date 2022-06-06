@@ -58,8 +58,6 @@ const DATA = [
     destination: "Login",
     image: require("./images/logout.png"),
   },
-
-  
 ];
 
 // creates it so each item has a touchable button with correct title
