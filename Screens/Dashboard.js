@@ -129,41 +129,6 @@ const Dashboard = () => {
     );
   };
 
-  // second render function that renders the horizontal flatlist
-  // const renderItem2 = ({ item }) => {
-  //   return (
-  //     <View
-  //       style={{
-  //         flexDirection: "row",
-  //         padding: SPACING,
-  //         flex: 1,
-  //         paddingTop: 10,
-  //         borderRadius: 100,
-  //         marginBottom: SPACING / 2,
-  //         paddingBottom: 5,
-  //       }}
-  //     >
-  //       <View>
-  //         <TouchableHighlight
-  //           onPress={() => {
-  //             navigation.navigate(item.destination);
-  //           }}
-  //         >
-  //           <Image
-  //             //create an image with the appropriate locally stored icon that is tappable
-  //             source={item.image}
-  //             style={{
-  //               width: AVATAR_SIZE / 1.5,
-  //               height: AVATAR_SIZE / 1.5,
-  //               borderRadius: AVATAR_SIZE / 1.5,
-  //             }}
-  //           ></Image>
-  //         </TouchableHighlight>
-  //       </View>
-  //     </View>
-  //   );
-  // };
-
   return (
     // main render function that dictates styling
     <SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
@@ -225,20 +190,7 @@ const Dashboard = () => {
             </TouchableHighlight>
           </View>
         </View>
-        {/* <View style={{ flex: 1, backgroundColor: " rgba(18,33,65,0.8)" }}>
-          <FlatList
-            contentContainerStyle={{
-              padding: SPACING / 8,
-              paddingTop: SPACING,
-            }}
-            data={DATA}
-            renderItem={renderItem2}
-            keyExtractor={(item) => item.id}
-            extraData={selectedId}
-            horizontal={true}
-          />
-        </View> */}
-
+      
         <View style={{ flex: 6.5, backgroundColor: " rgba(18,33,65,0.8)" }}>
           <FlatList
             contentContainerStyle={{
