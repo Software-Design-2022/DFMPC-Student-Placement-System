@@ -33,6 +33,12 @@ const witsLogo = {
 //data to be displayed in the flatlist
 const DATA = [
   {
+    id: "28694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Emergency",
+    destination: "PanicButton",
+    image: require("./images/emergency.gif"),
+  },
+  {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
@@ -53,13 +59,7 @@ const DATA = [
     image: require("./images/logout.png"),
   },
 
-  {
-    id: "28694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Panic Button",
-    title: "Panic Button",
-    destination: "PanicButton",
-    image: require("./images/emergency.gif"),
-  },
+  
 ];
 
 // creates it so each item has a touchable button with correct title
