@@ -32,7 +32,6 @@ const witsLogo = {
 
 //data to be displayed in the flatlist
 const DATA = [
-
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
@@ -253,28 +252,30 @@ const Dashboard = () => {
           />
         </View>
       </View>
-      {<View style={{backgroundColor:'rgba(18,33,65,1)'}}>
-        <TouchableHighlight
-        underlayColor="rgba(0,0,0,0)"
-          onPress={() => {
-            navigation.navigate("PanicButton");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              marginLeft:width-ICON_SIZE,
-              right: 0,
-              bottom: 0,
-              backgroundColor:'rgba(18,33,65,1)',
-              borderRadius: ICON_SIZE,
-              marginRight: SPACING / 2,
+      {
+        <View style={{ backgroundColor: "rgba(18,33,65,1)" }}>
+          <TouchableHighlight
+            underlayColor="rgba(0,0,0,0)"
+            onPress={() => {
+              navigation.navigate("PanicButton");
             }}
-            source={require("./images/emergency.gif")}
-          />
-        </TouchableHighlight>
-      </View>}
+          >
+            <Image
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                marginLeft: width - ICON_SIZE,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(18,33,65,1)",
+                borderRadius: ICON_SIZE,
+                marginRight: SPACING / 2,
+              }}
+              source={require("./images/emergency.gif")}
+            />
+          </TouchableHighlight>
+        </View>
+      }
     </SafeAreaView>
   );
 };
