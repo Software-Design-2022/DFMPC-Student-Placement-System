@@ -69,7 +69,7 @@ npm start or expo start
 
 | Statements                                                                                       | Branches                                                                                       | Functions                                                                                       | Lines                                                                                       |
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg?style=flat&logo=jest) |
+| ![Statements](https://img.shields.io/badge/statements-83.33%25-yellow.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/functions-66.66%25-red.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/lines-83.33%25-yellow.svg?style=flat&logo=jest) |
 
 ## Code Coverage: CodeCov Badge
 
@@ -79,7 +79,7 @@ npm start or expo start
 
 - Riot Ndlovu - @peacendlovu :man_technologist:
 - Shagan Plaatjies - @shgnplaatjies :man_technologist:
-- Angela Nkose - @Cipher73 :woman_technologist:
+- Angela Nkosi - @Cipher73 :woman_technologist:
 - Nokuthaba Moyo - @nokuthabam :woman_technologist:
 - Mthokozisi Masango - @Mtho-hub :man_technologist:
 - Callum Muller - @CallumMuller :man_technologist:
