@@ -244,7 +244,7 @@ const Dashboard = () => {
       <View style={{position:'absolute'}}>
       <Image
         resizeMode="contain"
-        source={require('./images/background.gif')}
+        source={require('./images/background.png')}
         blurRadius={0}
       />
     </View>
