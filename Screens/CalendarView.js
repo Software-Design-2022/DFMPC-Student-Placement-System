@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
-  Text,
+
   View,
-  TouchableHighlight,
-  Image,
-  FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
@@ -43,7 +40,7 @@ const CalendarView = () => {
   };
 
   return (
-    //render calendar
+    <View>
     <CalendarList
       // testID={testIDs.calendarList.CONTAINER}
       current={initialDate}
@@ -62,6 +59,7 @@ const CalendarView = () => {
       // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
       markedDates={generateSchedule(fullScheduleList)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
     />
+    </View>
   );
 };
 

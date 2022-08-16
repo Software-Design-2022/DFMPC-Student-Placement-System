@@ -14,6 +14,7 @@ import {
   Easing,
   SafeAreaViewBase,
   SafeAreaView,
+  Button,
 
 
 } from "react-native";
@@ -28,13 +29,11 @@ const SPACING = 20;
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const ITEM_SIZE= AVATAR_SIZE + SPACING*3
-
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 
 //data to be displayed in the flatlist
 const DATA = [
-
-
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
@@ -44,10 +43,10 @@ const DATA = [
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Tasks",
-    destination: "BackgroundTest",
+    title: "PanicButton",
+    destination: "PanicButton",
     image: require("./images/tasks.png"),
-    text: "Tasks"
+    text: "Emergency"
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
@@ -123,20 +122,59 @@ const Dashboard = () => {
       }}>
       <View>
       <Image 
-        style={{height:80,position:'absolute',top:5,left:-50}}
+        style={{height:80,position:'absolute',top:5,left:-160}}
         resizeMode='contain'
         source={require('./images/wits.png')}
         blurRadius={0}
       />
     </View>
+    <TouchableHighlight style={{flex:1,width: ICON_SIZE,
+                  height: ICON_SIZE,
+                  right: 10,
+                  top: 10,
+                  position:'absolute',
+                  borderRadius: ICON_SIZE,
+                  }}
+              onPress={() => {
+                navigation.navigate("SettingsView");
+              }}
+            >
+              <Image
+                style={{
+                  width: ICON_SIZE,
+                  height: ICON_SIZE,
+                  position: "absolute",
+                  resizeMode: "cover",
+                  marginRight: SPACING / 2,
+                  borderRadius: ICON_SIZE,
+                  borderWidth: 1,
+                  borderColor: "rgba(0,0,0,0.5)",
+                  backgroundColor: "rgba(255,255,255,1)",
+                  shadowOffset: {
+                    height: 10,
+                    shadowColor: "black",
+                  },
+                  shadowOpacity: 1,
+                  shadowRadius: 20,
+                }}
+                source={require('./images/bear.gif')}
+              />
+      </TouchableHighlight>
+    <View>
+      <Image 
+        style={{height:80,position:'absolute',top:5,right:50}}
+        resizeMode='contain'
+        source={{ uri: authUserProfilePic }}
+        blurRadius={0}
+      />
+    </View>
       </View>
-      <View style={{zIndex:1, flex:1}}>
+    <View style={{zIndex:1, flex:1,flexDirection:'row'}}>
     <Animated.FlatList
     onScroll={Animated.event(
       [{nativeEvent: {contentOffset:{y: scrollY}}}],
       {useNativeDriver:true}
     )}
-    
       data={DATA}
       keyExtractor={item=>item.key}
       contentContainerStyle={{
@@ -165,9 +203,16 @@ const Dashboard = () => {
           outputRange: [1,1,1,0]
         })
         return (
+          <TouchableHighlight style={{transform:[{translateY:(0)},{translateX:(-300)},{rotate: '0deg'}],
+          borderRadius:100,marginBottom:SPACING/2}}
+          onPress={() => {
+            navigation.navigate(item.destination);
+          }}
+          underlayColor='rgba(28,56,107,0.2)'
+          >
           <Animated.View style={{flexDirection:'row', padding:SPACING,
-           backgroundColor:'rgba(255,255,255,0.2)', borderBottomLeftRadius:0,borderTopLeftRadius:0,
-            borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0.1)', marginBottom:SPACING/2,
+           backgroundColor:'rgba(255,255,255,0.2)', borderBottomleftRadius:0,borderTopLeftRadius:0,
+            borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0.1)',
             shadowColor:'black',
             shadowOffset:{
               width:0,
@@ -176,34 +221,26 @@ const Dashboard = () => {
             opacity,
             shadowRadius:20,
             shadowOpacity:0.5,
-            transform:[{scale}],
-            left:-300
+            transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}],
+            left:0,
             }}>
               <View>
-              <TouchableHighlight
-              onPress={() => {
-                navigation.navigate("SettingsView");
-              }}
-            >
               <Image
             source={item.image}
             style={{width:AVATAR_SIZE, height:AVATAR_SIZE,borderRadius:AVATAR_SIZE,
             marginRight:SPACING/2,
-            left:ICON_SIZE*2+20}}
+            left:ICON_SIZE*2+20,
+            borderWidth:1.5,borderColor:'rgba(0,0,0,0.2)' }}
             />
-            </TouchableHighlight>
               </View> 
-            <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.7)' , position: 'relative',transform:[{translateY:(-20)},{translateX:(ICON_SIZE + 5)},{rotate: '0deg'}]}}>{item.text}</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.6)' , position: 'relative',transform:[{translateY:(-20)},{translateX:(ICON_SIZE + 5)},{rotate: '0deg'}]}}>{item.text}</Text>
           </Animated.View>
+          </TouchableHighlight>
         )
           
       }}
-      
-      
       />
-      
     </View>
-    
       <View style={{position:'absolute'}}>
       <Image
         resizeMode="contain"
