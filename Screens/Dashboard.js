@@ -38,14 +38,14 @@ const DATA = [
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./images/calendar.png"),
+    image: require("./images/calendarComp.png"),
     text: "Calendar"
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "PanicButton",
     destination: "PanicButton",
-    image: require("./images/tasks.png"),
+    image: require("./images/taskFunky.png"),
     text: "Emergency"
   },
   {
@@ -192,7 +192,7 @@ const Dashboard = () => {
           -1,
           0,
           ITEM_SIZE*index,
-          ITEM_SIZE*(index+0.5),
+          ITEM_SIZE*(index+0.4),
         ]
         const scale= scrollY.interpolate({
           inputRange,
@@ -211,7 +211,7 @@ const Dashboard = () => {
           underlayColor='rgba(28,56,107,0.2)'
           >
           <Animated.View style={{flexDirection:'row', padding:SPACING,
-           backgroundColor:'rgba(255,255,255,0.2)', borderBottomleftRadius:0,borderTopLeftRadius:0,
+           backgroundColor:'rgba(255,255,255,0.5)', borderBottomleftRadius:0,borderTopLeftRadius:0,
             borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0.1)',
             shadowColor:'black',
             shadowOffset:{
@@ -230,7 +230,7 @@ const Dashboard = () => {
             style={{width:AVATAR_SIZE, height:AVATAR_SIZE,borderRadius:AVATAR_SIZE,
             marginRight:SPACING/2,
             left:ICON_SIZE*2+20,
-            borderWidth:1.5,borderColor:'rgba(0,0,0,0.2)' }}
+            borderWidth:0,borderColor:'rgba(0,0,0,0.2)' }}
             />
               </View> 
             <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.6)' , position: 'relative',transform:[{translateY:(-20)},{translateX:(ICON_SIZE + 5)},{rotate: '0deg'}]}}>{item.text}</Text>
