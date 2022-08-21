@@ -38,21 +38,21 @@ const DATA = [
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./images/calendarComp.png"),
+    image: require("./images/calendarBlue.png"),
     text: "Calendar"
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "PanicButton",
     destination: "PanicButton",
-    image: require("./images/taskFunky.png"),
+    image: require("./images/emergencyRed.png"),
     text: "Emergency"
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
     title: "Logbook",
     destination: "BackgroundTest",
-    image: require("./images/logbook.png"),
+    image: require("./images/logbookPurple.png"),
     text: "Logbook"
   },
 
@@ -60,7 +60,7 @@ const DATA = [
     id: "08694a0f-3da1-471f-bd96-145571e29d72",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./images/settings.png"),
+    image: require("./images/settingsYellow.png"),
     text: "Settings"
   },
 
@@ -68,23 +68,24 @@ const DATA = [
     id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logout.png"),
+    image: require("./images/logoutGreen.png"),
     text: "Logout"
   },
   {
-    id: "4ac68af2-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f631",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logout.png"),
+    image: require("./images/logoutGreen.png"),
     text: "Logout"
   },
   {
-    id: "5ac68af2-c605-48d3-a4f8-fbd91aa97f63",
+    id: "2ac68af2-c605-48d3-a4f8-fbd91aa97f631",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logout.png"),
+    image: require("./images/logoutGreen.png"),
     text: "Logout"
   },
+  
 ];
 
 
@@ -147,9 +148,9 @@ const Dashboard = () => {
                   resizeMode: "cover",
                   marginRight: SPACING / 2,
                   borderRadius: ICON_SIZE,
-                  borderWidth: 1,
-                  borderColor: "rgba(0,0,0,0.5)",
-                  backgroundColor: "rgba(255,255,255,1)",
+                  borderWidth: 1.5,
+                  borderColor: "rgba(0,0,0,1)",
+                  backgroundColor: "rgba(0,0,0,0.1)",
                   shadowOffset: {
                     height: 10,
                     shadowColor: "black",
@@ -157,20 +158,12 @@ const Dashboard = () => {
                   shadowOpacity: 1,
                   shadowRadius: 20,
                 }}
-                source={require('./images/bear.gif')}
+                source={require('./images/user.png')}
               />
       </TouchableHighlight>
-    <View>
-      <Image 
-        style={{height:80,position:'absolute',top:5,right:50}}
-        resizeMode='contain'
-        source={{ uri: authUserProfilePic }}
-        blurRadius={0}
-      />
-    </View>
       </View>
     <View style={{zIndex:1, flex:1,flexDirection:'row'}}>
-    <Animated.FlatList
+    <Animated.FlatList style={{flex:1}}
     onScroll={Animated.event(
       [{nativeEvent: {contentOffset:{y: scrollY}}}],
       {useNativeDriver:true}
@@ -178,7 +171,6 @@ const Dashboard = () => {
       data={DATA}
       keyExtractor={item=>item.key}
       contentContainerStyle={{
-        paddingLeft:SPACING,
         paddingTop: SPACING
       }}
       renderItem={({item,index})=>{
@@ -186,16 +178,26 @@ const Dashboard = () => {
           -1,
           0,
           ITEM_SIZE*index,
-          ITEM_SIZE*(index+2),
+          ITEM_SIZE*(index+1),
+        ]
+        const transInputRange =[
+          -1,
+          0,
+          ITEM_SIZE*index,
+          ITEM_SIZE*(index+1),
         ]
         const opacityInputRange =[
           -1,
           0,
           ITEM_SIZE*index,
-          ITEM_SIZE*(index+0.4),
+          ITEM_SIZE*(index+0.8),
         ]
         const scale= scrollY.interpolate({
           inputRange,
+          outputRange: [1,1,1,0]
+        })
+        const translated= scrollY.interpolate({
+          transInputRange,
           outputRange: [1,1,1,0]
         })
         const opacity= scrollY.interpolate({
@@ -203,43 +205,59 @@ const Dashboard = () => {
           outputRange: [1,1,1,0]
         })
         return (
-          <TouchableHighlight style={{transform:[{translateY:(0)},{translateX:(-300)},{rotate: '0deg'}],
-          borderRadius:100,marginBottom:SPACING/2}}
+          
+          <TouchableHighlight style={{
+          borderRadius:100,marginBottom:SPACING/2,width:ICON_SIZE+30,borderBottomEndRadius:0}}
           onPress={() => {
             navigation.navigate(item.destination);
           }}
           underlayColor='rgba(28,56,107,0.2)'
           >
-          <Animated.View style={{flexDirection:'row', padding:SPACING,
-           backgroundColor:'rgba(255,255,255,0.5)', borderBottomleftRadius:0,borderTopLeftRadius:0,
-            borderRadius:100,borderStartWidth:100,borderStartColor:'rgba(30,55,108,0.1)',
+
+          <Animated.View style={{flexDirection:'row',
+           padding:SPACING,
+           backgroundColor:'rgba(0,0,0,0.2))',
+            borderRadius:100,
             shadowColor:'black',
+            borderBottomStartRadius:0,
+            borderTopStartRadius:0,
             shadowOffset:{
               width:0,
               height:10
             },
             opacity,
+            transform:[{scaleX:(scale)},{scaleY:(scale)},{translateX:(translated)}],
             shadowRadius:20,
             shadowOpacity:0.5,
-            transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}],
-            left:0,
+            width:ICON_SIZE+30,
+            position:'relative',
             }}>
+
               <View>
               <Image
             source={item.image}
-            style={{width:AVATAR_SIZE, height:AVATAR_SIZE,borderRadius:AVATAR_SIZE,
+            style={{width:AVATAR_SIZE, 
+            height:AVATAR_SIZE,
+            borderRadius:AVATAR_SIZE,
             marginRight:SPACING/2,
-            left:ICON_SIZE*2+20,
-            borderWidth:0,borderColor:'rgba(0,0,0,0.2)' }}
+            left:0,
+            borderWidth:0,
+            borderColor:'rgba(0,0,0,0.2)',
+            backgroundColor:'rgba(0,0,0,0)' }}
             />
               </View> 
-            <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.6)' , position: 'relative',transform:[{translateY:(-20)},{translateX:(ICON_SIZE + 5)},{rotate: '0deg'}]}}>{item.text}</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.6)'
+             , position: 'absolute',
+             transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}]}}>{item.text}</Text>
           </Animated.View>
           </TouchableHighlight>
         )
           
       }}
       />
+      <View style={{zIndex:1,flex:2.5,flexDirection:'row',backgroundColor:'rgba(0,0,0,0.1)',transform:[{translateY:(0)},{translateX:(0)}]}}>
+      
+      </View>
     </View>
       <View style={{position:'absolute'}}>
       <Image
