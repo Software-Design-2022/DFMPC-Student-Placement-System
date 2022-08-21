@@ -28,7 +28,7 @@ const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
-const ITEM_SIZE= AVATAR_SIZE + SPACING*3
+const ITEM_SIZE= AVATAR_SIZE + SPACING*4
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 
@@ -38,21 +38,21 @@ const DATA = [
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./images/calendarBlue.png"),
+    image: require("./images/calendar.png"),
     text: "Calendar"
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "PanicButton",
     destination: "PanicButton",
-    image: require("./images/emergencyRed.png"),
+    image: require("./images/schedule.png"),
     text: "Emergency"
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
     title: "Logbook",
     destination: "BackgroundTest",
-    image: require("./images/logbookPurple.png"),
+    image: require("./images/logbook.png"),
     text: "Logbook"
   },
 
@@ -60,32 +60,53 @@ const DATA = [
     id: "08694a0f-3da1-471f-bd96-145571e29d72",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./images/settingsYellow.png"),
+    image: require("./images/settings.png"),
     text: "Settings"
   },
-
   {
     id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logoutGreen.png"),
+    image: require("./images/logout.png"),
     text: "Logout"
+  },
+
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d71",
+    title: "Calendar",
+    destination: "CalendarView",
+    image: require("./images/calendar.png"),
+    text: "Calendar"
   },
   {
-    id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f631",
-    title: "Logout",
-    destination: "Login",
-    image: require("./images/logoutGreen.png"),
-    text: "Logout"
+    id: "28694a0f-3da1-471f-bd96-145571e29d73",
+    title: "PanicButton",
+    destination: "PanicButton",
+    image: require("./images/schedule.png"),
+    text: "Emergency"
   },
   {
-    id: "2ac68af2-c605-48d3-a4f8-fbd91aa97f631",
+    id: "18694a0f-3da1-471f-bd96-145571e29d74",
+    title: "Logbook",
+    destination: "BackgroundTest",
+    image: require("./images/logbook.png"),
+    text: "Logbook"
+  },
+  {
+    id: "08694a0f-3da1-471f-bd96-145571e29d75",
+    title: "Settings",
+    destination: "SettingsView",
+    image: require("./images/settings.png"),
+    text: "Settings"
+  },
+
+  {
+    id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f66",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logoutGreen.png"),
+    image: require("./images/logout.png"),
     text: "Logout"
   },
-  
 ];
 
 
@@ -109,7 +130,7 @@ const Dashboard = () => {
 
   return (
     <View style={{flex:1}}>
-      <View style={{backgroundColor:'rgba(0,0,0,0.1)',
+      <View style={{backgroundColor:'rgba(0,0,0,0.2)',
       height:40,
       zIndex:1,
       }}>
@@ -129,12 +150,14 @@ const Dashboard = () => {
         blurRadius={0}
       />
     </View>
-    <TouchableHighlight style={{flex:1,width: ICON_SIZE,
+    <TouchableHighlight underlayColor='rgba(0,0,0,0.2)' style={{flex:1,
+                width: ICON_SIZE,
                   height: ICON_SIZE,
-                  right: 10,
+                  right: 15,
                   top: 10,
                   position:'absolute',
                   borderRadius: ICON_SIZE,
+                  backgroundColor:'grey',
                   }}
               onPress={() => {
                 navigation.navigate("SettingsView");
@@ -146,11 +169,10 @@ const Dashboard = () => {
                   height: ICON_SIZE,
                   position: "absolute",
                   resizeMode: "cover",
-                  marginRight: SPACING / 2,
                   borderRadius: ICON_SIZE,
                   borderWidth: 1.5,
-                  borderColor: "rgba(0,0,0,1)",
-                  backgroundColor: "rgba(0,0,0,0.1)",
+                  borderColor: "rgba(0,0,0,0)",
+                  backgroundColor: "rgba(0,0,0,0)",
                   shadowOffset: {
                     height: 10,
                     shadowColor: "black",
@@ -162,8 +184,69 @@ const Dashboard = () => {
               />
       </TouchableHighlight>
       </View>
+      
     <View style={{zIndex:1, flex:1,flexDirection:'row'}}>
-    <Animated.FlatList style={{flex:1}}
+    <View style={{zIndex:1,
+      flex:2.5,flexDirection:'column',
+      backgroundColor:'rgba(0,0,0,0)',
+      transform:[{translateY:(0)},{translateX:(0)}]}}>
+        <View style={{flex:0.5,
+          zIndex:1,
+          backgroundColor:"rgba(255,255,255,0.9)",
+          borderRadius:16,
+          marginTop:SPACING,
+          marginLeft:SPACING/2,
+          flexDirection:"column"}}>
+            <View style={{flex:0.3,backgroundColor:'rgba(28,56,107,0.9)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:2,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
+              <Text style={{fontSize:25,fontWeight:'bold',left:65,color:'white'}}>Notifications</Text>
+            </View>
+          <View style={{flex:1,
+          zIndex:1,
+          borderRadius:32,
+          margin:SPACING/2,
+          }}>
+            
+        </View>
+        <View style={{flex:1,
+          zIndex:1,
+          borderRadius:32,
+          margin:SPACING/2,
+          }}>
+        </View>
+        </View>
+        <View style={{flex:0.5,
+          zIndex:1,
+          backgroundColor:"rgba(255,255,255,0.9)",
+          borderRadius:16,
+          marginTop:SPACING,
+          marginLeft:SPACING/2,
+          marginBottom:SPACING,
+          flexDirection:"column"}}>
+            <View style={{flex:0.3,backgroundColor:'rgba(28,56,107,0.9)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:2,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
+              <Text style={{fontSize:25,fontWeight:'bold',left:70,color:'white'}}>Short Links</Text>
+            </View>
+          <View style={{flex:1,
+          zIndex:1,
+          borderRadius:32,
+          margin:SPACING/2,
+          }}>
+            
+        </View>
+        <View style={{flex:1,
+          zIndex:1,
+          borderRadius:32,
+          margin:SPACING/2,
+          }}>
+        </View>
+        </View>
+
+
+    </View>
+    
+    <Animated.FlatList 
+    snapToInterval={ITEM_SIZE-SPACING*1.5}
+    decelerationRate={0}
+    style={{flex:1}}
     onScroll={Animated.event(
       [{nativeEvent: {contentOffset:{y: scrollY}}}],
       {useNativeDriver:true}
@@ -177,27 +260,17 @@ const Dashboard = () => {
         const inputRange =[
           -1,
           0,
-          ITEM_SIZE*index,
-          ITEM_SIZE*(index+1),
-        ]
-        const transInputRange =[
-          -1,
-          0,
-          ITEM_SIZE*index,
-          ITEM_SIZE*(index+1),
+          (ITEM_SIZE-SPACING*1.5)*index,
+          (ITEM_SIZE-SPACING*1.5)*(index+1),
         ]
         const opacityInputRange =[
           -1,
           0,
-          ITEM_SIZE*index,
-          ITEM_SIZE*(index+0.8),
+          (ITEM_SIZE-SPACING*1.5)*index,
+          (ITEM_SIZE-SPACING*1.5)*(index+1),
         ]
         const scale= scrollY.interpolate({
           inputRange,
-          outputRange: [1,1,1,0]
-        })
-        const translated= scrollY.interpolate({
-          transInputRange,
           outputRange: [1,1,1,0]
         })
         const opacity= scrollY.interpolate({
@@ -207,30 +280,28 @@ const Dashboard = () => {
         return (
           
           <TouchableHighlight style={{
-          borderRadius:100,marginBottom:SPACING/2,width:ICON_SIZE+30,borderBottomEndRadius:0}}
+          borderRadius:100,marginBottom:SPACING/2,width:300,borderBottomEndRadius:0,left:10}}
           onPress={() => {
             navigation.navigate(item.destination);
           }}
           underlayColor='rgba(28,56,107,0.2)'
           >
-
           <Animated.View style={{flexDirection:'row',
            padding:SPACING,
            backgroundColor:'rgba(0,0,0,0.2))',
             borderRadius:100,
             shadowColor:'black',
-            borderBottomStartRadius:0,
-            borderTopStartRadius:0,
+            borderBottomEndRadius:0,
+            borderTopEndRadius:0,
             shadowOffset:{
               width:0,
               height:10
             },
             opacity,
-            transform:[{scaleX:(scale)},{scaleY:(scale)},{translateX:(translated)}],
+            transform:[{scaleX:(scale)},{scaleY:(scale)}],
             shadowRadius:20,
             shadowOpacity:0.5,
-            width:ICON_SIZE+30,
-            position:'relative',
+            width:300,
             }}>
 
               <View>
@@ -246,18 +317,21 @@ const Dashboard = () => {
             backgroundColor:'rgba(0,0,0,0)' }}
             />
               </View> 
-            <Text style={{fontSize: 15, fontWeight: 'bold',color:'rgba(0,0,0,0.6)'
+            <Text style={{fontSize: 13, fontWeight: 'bold',color:'rgba(255,255,255,1)'
              , position: 'absolute',
-             transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}]}}>{item.text}</Text>
+             left:30,
+             transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}],
+             top:2.5,
+             textShadowColor:"rgba(0,0,0,1)",
+             textShadowRadius:0,
+             textShadowOffset: { width: 0, height: 0 },
+             }}>{item.text}</Text>
           </Animated.View>
           </TouchableHighlight>
         )
           
       }}
       />
-      <View style={{zIndex:1,flex:2.5,flexDirection:'row',backgroundColor:'rgba(0,0,0,0.1)',transform:[{translateY:(0)},{translateX:(0)}]}}>
-      
-      </View>
     </View>
       <View style={{position:'absolute'}}>
       <Image
