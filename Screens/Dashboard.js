@@ -205,6 +205,9 @@ const Dashboard = () => {
           borderRadius:32,
           margin:SPACING/2,
           }}>
+            <Image source={require('./images/news.png')} resizeMode="stretch" style={{width:250,height:250}}>
+              
+            </Image>
             
         </View>
         <View style={{flex:1,
