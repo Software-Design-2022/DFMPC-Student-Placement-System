@@ -4,6 +4,8 @@ import {
   StyleSheet,
   Button,
   View,
+  Image,
+  TouchableHighlight,
   SafeAreaView,
   Text,
   Alert,
@@ -12,11 +14,13 @@ import {
   useEffect,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-import MapView from "react-native-maps";
-import { Marker } from "react-native-maps";
-import  "../global";
+/* import MapView from "react-native-maps";
+import { Marker } from "react-native-maps"; */
+import "../global";
 import { firebase } from "../firebase";
-import Getlocation from "react-native-geolocation-service";
+//import Getlocation from "react-native-geolocation-service";
+
+const ICON_SIZE = 80;
 const Separator = () => <View style={styles.separator} />;
 
 // this function will receive the text currently entered
@@ -37,7 +41,7 @@ const sendToFirestore = (text) => {
       Alert.alert("Emergency Message Saved");
     });
 };
-const authname =authName;
+const authname = authName;
 const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
@@ -59,6 +63,36 @@ const PanicButton = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+       <View style={{ flex: 1}}>
+        <View
+        style={{
+          
+          top: 0,
+          backgroundColor: "rgba(255,255,255,0.8)",
+          height: 100,
+          zIndex: 1,
+          borderEndWidth: 0,
+          borderEndColor: "rgba(255,255,255,1)",
+          borderBottomStartRadius: 100,
+          
+        }}
+      >
+        <View style={{margin:0}}>
+          <Image
+
+            style={{ height: 80, position: "absolute", top: 5, left: -160 }}
+            resizeMode="contain"
+            source={require("./images/wits.png")}
+            blurRadius={0}
+          />
+        </View>
+        
+      </View>
+     
+      <Separator/>
+
+  
+
       <View style={{ justifyContent: "center", marginBottom: 30 }}>
         <Text
           style={{
@@ -105,7 +139,7 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View style={styles.MapStyle}>
+      {/*     <View style={styles.MapStyle}>
         <MapView
           // show a mapview with the given longitude and latitude
           style={styles.map}
@@ -126,9 +160,8 @@ const PanicButton = () => {
           }}
           // image={{uri:"./images/pin.png"}}
         />
-      </View>
-      <View>
-        {/* <Text>Display Current Location of device</Text> */}
+      </View> */}
+      <View>{/* <Text>Display Current Location of device</Text> */}</View>
       </View>
     </SafeAreaView>
   );
@@ -150,6 +183,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   separator: {
+    
     marginVertical: 8,
     borderBottomColor: "#737373",
     borderBottomWidth: StyleSheet.hairlineWidth,
