@@ -176,7 +176,7 @@ const Dashboard = () => {
                   shadowOpacity: 1,
                   shadowRadius: 20,
                 }}
-                source={require('./images/NadiasMantis.png')}
+                source={require('./images/user.png')}
               />
       </TouchableHighlight>
       </View>
