@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { getSchedule } from "../Screens/RetrieveSchedules";
 import studentData from "../dfmpc-student-placement-system.json";
 import AppContext from "../AppContext";
 import "../global.js";
