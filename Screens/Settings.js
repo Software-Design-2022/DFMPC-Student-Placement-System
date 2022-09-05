@@ -22,6 +22,7 @@ const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 60;
 const ICON_SIZE = 180;
+const back="<"
 
 function changeProfilePhoto() { // change profile photo function
   alert("TODO: Replace this alert with DialogInput");
@@ -145,17 +146,25 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
+      <TouchableOpacity 
+      style={{zIndex:1,top:0,left:10,backgroundColor:'rgba(255,255,255,0.1)',borderRadius:7,position:'absolute'}}
+      onPress={() => {
+        navigation.navigate("Dashboard");
+      }}
+      >
+            <Text style={{fontSize:25,color:'rgba(0,0,0,0.7)'}}> {back} </Text>
+      </TouchableOpacity>
       <Image
         style={{
           width: ICON_SIZE,
           height: ICON_SIZE,
           resizeMode: "cover",
-          right: 0,
+          right: -10,
           top: 10,
           borderRadius: ICON_SIZE,
           marginRight: SPACING / 2,
           borderWidth: 3,
-          borderColor: "rgba(0,0,0,1)",
+          borderColor: "rgba(0,0,0,0.1)",
           backgroundColor: "rgba(0,0,0,0.4)",
           zIndex:1,
           shadowOffset: {
@@ -202,7 +211,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
     width: "100%",
-    zIndex:1
+    zIndex:1,
+    top:70
   },
   linearGradient: {
     height: AVATAR_SIZE,

@@ -15,8 +15,7 @@ import {
   SafeAreaViewBase,
   SafeAreaView,
   Button,
-
-
+  Linking
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
@@ -109,6 +108,46 @@ const DATA = [
   },
 ];
 
+const DATA2 = [
+  {
+    id: "1",
+    link: "https://ulwazi.wits.ac.za/",
+    text: "ULWAZI",
+    image: require("./images/ulwazi.png")
+  },
+  {
+    id: "5",
+    link: "https://mail.google.com/",
+    text: "GMAIL",
+    image: require("./images/gmaillogo.png")
+  },
+  {
+    id: "2",
+    link: "https://self-service.wits.ac.za/",
+    text: "SELF SERVICE",
+    image: require("./images/witsLogo.png")
+  },
+  {
+    id: "3",
+    link: "https://courses.ms.wits.ac.za/moodle/",
+    text: "MOODLE",
+    image: require("./images/moodleLogo.png")
+  },
+  {
+    id: "4",
+    link: "https://www.youtube.com/",
+    text: "YOUTUBE",
+    image: require("./images/youtubeLogo.png")
+  },
+  {
+    id: "5",
+    link: "https://www.notion.so/",
+    text: "NOTION",
+    image: require("./images/notionLogo.png")
+  },
+  
+
+];
 
 
 // creates it so each item has a touchable button with correct title
@@ -126,7 +165,45 @@ const Dashboard = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [name, SetName] = useState("");
   // first render function that renders the vertical flatlist
-  
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity  onPress={() => {
+        Linking.openURL(item.link)
+      }}>
+        <View style={{backgroundColor:'rgba(0,0,0,0.2)',
+      flex:1,flexDirection:'row',
+      borderRadius: 8,
+      paddingRight:SPACING,
+      marginLeft:SPACING/2}}>
+        <View style={{flex:1}}>
+        <Image style={{
+                  width: 30,
+                  height: 30,
+                  left:5,
+                  top:5,
+                  position: "relative",
+                  resizeMode: "cover",
+                  borderRadius: 20,
+                  borderWidth: 0,
+                  borderColor: "rgba(0,0,0,0.1)",
+                  backgroundColor: "rgba(255,255,255,0.5)",
+                  shadowOpacity: 1,
+                  shadowRadius: 20,
+            }}
+            source={item.image}
+          />
+        </View>
+        <View style={{flex:1}}>
+          <Text style={{flex:1,fontSize:15,top:10,left:10,color:'white'}}>{item.text}</Text>
+        </View>
+
+
+      </View>
+      </TouchableOpacity>
+      
+    )
+
+  }
 
   return (
     <View style={{flex:1}}>
@@ -171,8 +248,8 @@ const Dashboard = () => {
                   resizeMode: "cover",
                   borderRadius: ICON_SIZE,
                   borderWidth: 2,
-                  borderColor: "rgba(24,44,76,1)",
-                  backgroundColor: "rgba(0,0,0,1)",
+                  borderColor: "rgba(0,0,0,0.1)",
+                  backgroundColor: "rgba(0,0,0,0.1)",
                   shadowOpacity: 1,
                   shadowRadius: 20,
                 }}
@@ -188,21 +265,20 @@ const Dashboard = () => {
       transform:[{translateY:(0)},{translateX:(0)}]}}>
         <View style={{flex:0.5,
           zIndex:1,
-          backgroundColor:'rgba(0,0,0,0.1)',
+          backgroundColor:'rgba(0,0,0,0.05)',
           borderRadius:16,
           marginTop:SPACING,
           marginLeft:SPACING/2,
           flexDirection:"column"}}>
             <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:0,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
-              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:70,fontFamily: 'sans-serif-condensed'}}>Notifications</Text>
+              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:80,fontFamily: 'sans-serif-condensed'}}>News Feed</Text>
             </View>
           <View style={{flex:1,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
           }}>
-            <Image source={require('./images/news.png')} resizeMode="stretch" style={{width:250,height:250,left:8,borderRadius:6}}>
-              
+            <Image source={require('./images/news.png')} resizeMode="stretch" style={{width:250,height:230,left:8,borderRadius:6}}>
             </Image>
             
         </View>
@@ -215,14 +291,14 @@ const Dashboard = () => {
         </View>
         <View style={{flex:0.5,
           zIndex:1,
-          backgroundColor:'rgba(0,0,0,0.1)',
+          backgroundColor:'rgba(0,0,0,0.05)',
           borderRadius:16,
           marginTop:SPACING,
           marginLeft:SPACING/2,
-          marginBottom:SPACING,
+
           flexDirection:"column"}}>
            <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:0,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
-              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:73,}}>Short Links</Text>
+              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:70,}}>Notifications</Text>
             </View>
           <View style={{flex:1,
           zIndex:1,
@@ -231,14 +307,25 @@ const Dashboard = () => {
           }}>
             
         </View>
-        <View style={{flex:1,
+        <View style={{flex:0.6,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
           }}>
-        </View>
+        </View>  
         </View>
 
+        <View style={{flex:0.065,marginTop:SPACING,marginBottom:4,
+          backgroundColor:'rgba(0,0,0,0.0)',borderTopRightRadius:20,borderBottomRightRadius:20}}>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          contentContainerStyle={{}}
+          data={DATA2}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+        </View>
 
     </View>
     
@@ -287,7 +374,7 @@ const Dashboard = () => {
           >
           <Animated.View style={{flexDirection:'row',
            padding:SPACING,
-           backgroundColor:'rgba(0,0,0,0.2)',
+           backgroundColor:'rgba(0,0,0,0.12)',
             borderRadius:100,
             shadowColor:'black',
             borderBottomEndRadius:0,

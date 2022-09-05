@@ -31,7 +31,7 @@ function App() {
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }}/>
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
-        <Stack.Screen name="SettingsView" component={SettingsView} />
+        <Stack.Screen name="SettingsView" component={SettingsView} options={{ headerShown: false }}/>
         <Stack.Screen name="Protocols" component={Protocols} />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="PanicButton" component={PanicButton} />
