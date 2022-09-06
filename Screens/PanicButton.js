@@ -12,6 +12,7 @@ import {
   useEffect,
   Image
 } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 import  "../global";
 import { firebase } from "../firebase";
 const Separator = () => <View style={styles.separator} />;
@@ -41,6 +42,7 @@ const longitude = 30;
 const PanicButton = () => {
   const [text, setText] = useState("");
   const [position, setPosition] = useState(null);
+  const navigation = useNavigation();
 
 
   return (

@@ -9,7 +9,6 @@ import CalendarView from "./Screens/CalendarView";
 import SettingsView from "./Screens/Settings";
 import Protocols from "./Screens/Protocols";
 import DayAgenda from "./Screens/DayAgenda";
-import VoiceRecorder from "./Screens/VoiceRecorder"
 import PanicButton from "./Screens/PanicButton"
 
 
@@ -35,7 +34,6 @@ function App() {
         <Stack.Screen name="Protocols" component={Protocols} />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="PanicButton" component={PanicButton} />
-        <Stack.Screen name="VoiceRecorder" component={VoiceRecorder} />
       </Stack.Navigator>
     </NavigationContainer>
   );
