@@ -69,7 +69,6 @@ const DATA = [
     image: require("./images/logout.png"),
     text: "Logout"
   },
-
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d71",
     title: "Calendar",
@@ -108,6 +107,9 @@ const DATA = [
   },
 ];
 
+
+
+
 const DATA2 = [
   {
     id: "1",
@@ -140,16 +142,12 @@ const DATA2 = [
     image: require("./images/youtubeLogo.png")
   },
   {
-    id: "5",
+    id: "6",
     link: "https://www.notion.so/",
     text: "NOTION",
     image: require("./images/notionLogo.png")
   },
-  
-
 ];
-
-
 // creates it so each item has a touchable button with correct title
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -196,18 +194,14 @@ const Dashboard = () => {
         <View style={{flex:1}}>
           <Text style={{flex:1,fontSize:15,top:10,left:10,color:'white'}}>{item.text}</Text>
         </View>
-
-
       </View>
       </TouchableOpacity>
-      
     )
-
   }
 
   return (
     <View style={{flex:1}}>
-      <View style={{backgroundColor:'rgba(255,255,255,0.8)',
+      <View style={{backgroundColor:'rgba(0,0,0,0.5)',
       height:35,
       zIndex:1,
       }}>
@@ -238,8 +232,7 @@ const Dashboard = () => {
                   }}
               onPress={() => {
                 navigation.navigate("SettingsView");
-              }}
-            >
+              }}>
               <Image
                 style={{
                   width: ICON_SIZE,
@@ -253,11 +246,9 @@ const Dashboard = () => {
                   shadowOpacity: 1,
                   shadowRadius: 20,
                 }}
-                source={require('./images/user.png')}
-              />
-      </TouchableHighlight>
-      </View>
-      
+                source={require('./images/user.png')}/>
+    </TouchableHighlight>
+    </View>
     <View style={{zIndex:1, flex:1,flexDirection:'row'}}>
     <View style={{zIndex:1,
       flex:2.5,flexDirection:'column',
@@ -270,17 +261,21 @@ const Dashboard = () => {
           marginTop:SPACING,
           marginLeft:SPACING/2,
           flexDirection:"column"}}>
-            <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:0,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
-              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:80,fontFamily: 'sans-serif-condensed'}}>News Feed</Text>
+            <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)'
+            ,borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:0
+            ,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
+              <Text style={{color:"rgba(255,255,255,1)",fontSize:25
+              ,fontWeight:'bold',left:80}}>News Feed</Text>
             </View>
           <View style={{flex:1,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
           }}>
-            <Image source={require('./images/news.png')} resizeMode="stretch" style={{width:250,height:230,left:8,borderRadius:6}}>
+            <Image source={require('./images/news.png')}
+             resizeMode="stretch" 
+             style={{width:250,height:230,left:8,borderRadius:6,top:13}}>
             </Image>
-            
         </View>
         <View style={{flex:1,
           zIndex:1,
@@ -295,28 +290,31 @@ const Dashboard = () => {
           borderRadius:16,
           marginTop:SPACING,
           marginLeft:SPACING/2,
-
           flexDirection:"column"}}>
-           <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)',borderTopRightRadius:16,borderTopLeftRadius:16,borderWidth:0,borderBottomColor:'rgba(28,56,107,0.9)',borderColor:'rgba(28,56,107,0.9)'}}>
-              <Text style={{color:"rgba(255,255,255,1)",fontSize:25,fontWeight:'bold',left:70,}}>Notifications</Text>
+           <View style={{flex:0.3,backgroundColor:'rgba(0,0,0,0.2)',
+           borderTopRightRadius:16,borderTopLeftRadius:16,
+           borderWidth:0,borderBottomColor:'rgba(28,56,107,0.9)',
+           borderColor:'rgba(28,56,107,0.9)'}}>
+              <Text style={{color:"rgba(255,255,255,1)",
+              fontSize:25,fontWeight:'bold',left:70,}}>Notifications</Text>
             </View>
           <View style={{flex:1,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
-          }}>
-            
+          }}> 
         </View>
-        <View style={{flex:0.6,
+        <View style={{flex:0.5,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
           }}>
         </View>  
         </View>
-
-        <View style={{flex:0.065,marginTop:SPACING,marginBottom:4,
-          backgroundColor:'rgba(0,0,0,0.0)',borderTopRightRadius:20,borderBottomRightRadius:20}}>
+        <View style={{flex:0.065,marginTop:SPACING,marginBottom:SPACING*2,
+          backgroundColor:'rgba(0,0,0,0.0)',
+          borderTopRightRadius:20,
+          borderBottomRightRadius:20}}>
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal={true}
@@ -326,9 +324,7 @@ const Dashboard = () => {
           keyExtractor={(item) => item.id}
         />
         </View>
-
     </View>
-    
     <Animated.FlatList 
     snapToInterval={ITEM_SIZE-SPACING*1.5}
     decelerationRate={0}
@@ -389,7 +385,6 @@ const Dashboard = () => {
             shadowOpacity:0.5,
             width:300,
             }}>
-
               <View>
               <Image
             source={item.image}
@@ -403,10 +398,10 @@ const Dashboard = () => {
             backgroundColor:'rgba(0,0,0,0)' }}
             />
               </View> 
-            <Text style={{fontSize: 13, fontWeight: 'bold',color:'rgba(255,255,255,1)'
+            <Text style={{fontSize: 11, fontWeight: 'bold',color:'rgba(255,255,255,1)'
              , position: 'absolute',
              left:30,
-             transform:[{translateY:(0)},{translateX:(0)},{rotate: '0deg'}],
+             transform:[{translateY:(2)},{translateX:(0)},{rotate: '0deg'}],
              top:2.5,
              textShadowColor:"rgba(0,0,0,1)",
              textShadowRadius:0,
@@ -415,8 +410,7 @@ const Dashboard = () => {
              }}>{item.text}</Text>
           </Animated.View>
           </TouchableHighlight>
-        )
-          
+        )  
       }}
       />
     </View>
@@ -428,8 +422,6 @@ const Dashboard = () => {
       />
     </View>
     </View>
-    
-    
   );
 };
 
