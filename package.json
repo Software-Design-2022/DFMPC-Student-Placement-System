@@ -12,6 +12,7 @@
     "make-badges": "istanbul-badges-readme --logo='jest' "
   },
   "dependencies": {
+    "@notifee/react-native": "^5.7.0",
     "@react-native-community/voice": "^1.1.9",
     "@react-native-voice/voice": "^3.2.4",
     "@react-navigation/native": "^6.0.10",
