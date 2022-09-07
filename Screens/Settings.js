@@ -22,6 +22,7 @@ const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 60;
 const ICON_SIZE = 180;
+const back="<"
 
 function changeProfilePhoto() { // change profile photo function
   alert("TODO: Replace this alert with DialogInput");
@@ -70,9 +71,9 @@ const Settings = () => {
         <View style={{ width: "100%", flex: 1 }}>
           <LinearGradient
             colors={[
-              "rgba(30,55,108,1)",
-              " rgba(30,55,108,0.8)",
-              "rgba(30,55,108,1)",
+              "rgba(30,55,108,0.1)",
+              " rgba(30,55,108,0.2)",
+              "rgba(30,55,108,0.1)",
             ]}
           >
             <TouchableOpacity
@@ -145,18 +146,27 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
+      <TouchableOpacity 
+      style={{zIndex:1,top:0,left:10,backgroundColor:'rgba(255,255,255,0.1)',borderRadius:7,position:'absolute'}}
+      onPress={() => {
+        navigation.navigate("Dashboard");
+      }}
+      >
+            <Text style={{fontSize:25,color:'rgba(0,0,0,0.7)'}}> {back} </Text>
+      </TouchableOpacity>
       <Image
         style={{
           width: ICON_SIZE,
           height: ICON_SIZE,
           resizeMode: "cover",
-          right: 0,
+          right: -10,
           top: 10,
           borderRadius: ICON_SIZE,
           marginRight: SPACING / 2,
-          borderWidth: 10,
-          borderColor: "rgba(200,200,200,1)",
-          backgroundColor: "white",
+          borderWidth: 3,
+          borderColor: "rgba(0,0,0,0.1)",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          zIndex:1,
           shadowOffset: {
             height: 10,
             shadowColor: "black",
@@ -165,14 +175,15 @@ const Settings = () => {
           shadowOpacity: 1,
           shadowRadius: 10,
         }}
-        source={{ uri: profilePic }}
+        source={require('./images/user.png')}
       />
       <View
         style={{
           flex: 2,
           marginTop: 25,
           width: "100%",
-          backgroundColor: "rgba(30,55,108,1)",
+          backgroundColor: "rgba(30,55,108,0)",
+          zIndex:1
         }}
       >
         <FlatList
@@ -182,6 +193,13 @@ const Settings = () => {
           keyExtractor={(item) => item.id}
         />
       </View>
+      <View style={{position:'absolute', transform:[{translateX:(-15)}] }}>
+      <Image
+        resizeMode="contain"
+        source={require('./images/background6.png')}
+        blurRadius={0}
+      />
+    </View>
     </View>
   );
 };
@@ -193,6 +211,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
     width: "100%",
+    zIndex:1,
+    top:70
   },
   linearGradient: {
     height: AVATAR_SIZE,
@@ -204,7 +224,7 @@ const styles = StyleSheet.create({
     fontSize: AVATAR_SIZE / 3,
     fontWeight: "700",
     textAlign: "center",
-    color: " rgba(128,163,198,0.8)",
+    color: " rgba(255,255,255,1)",
     backgroundColor: "transparent",
     height: AVATAR_SIZE,
     paddingTop: AVATAR_SIZE / 4,

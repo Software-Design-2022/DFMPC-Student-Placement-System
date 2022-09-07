@@ -62,6 +62,41 @@ const Login = () => {
     // login with email and password
 
     // check if email exists in the database if so then hash pass and compare
+    /* var found = false;
+    var snapshot = firebase
+    .firestore()
+    .collection("users") // Get collection of protocols
+    .get() // Get all items in collection
+    .then((querySnapshot) => {
+    
+   // For each item in collection
+   querySnapshot.forEach(function (doc) {
+    // For each item in collection
+      if(doc.data().email===email){
+        found = true;
+        // user exists
+        if(doc.data().password_digest===password){
+          setUserVariables(doc.data()); // so that we can keep track of who is logged in currenctly
+          console.log(
+            "User authenticated sucessfully! Storing variables..."
+          );
+          navigation.navigate("Dashboard");
+        } else {
+          showAlert(
+            "Password Error",
+            "Your email and password do not match"
+          );
+        
+        }
+      }
+      
+  });
+  if (found === false) {
+    showAlert("Email Error", "user does not exist");
+  }
+});
+ */
+
 
     var found = false;
     firebase
@@ -178,8 +213,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 5,
-    paddingTop: 2,
-    borderWidth: 3,
+    paddingTop: 6,
+    borderWidth: 0,
     marginTop: 10,
     borderColor: "rgba(28,72,123,255)",
   },
