@@ -1,1 +1,44 @@
-{"ast":null,"code":"import _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport { firebase } from \"../firebase\";\nimport { v4 as uuidv4 } from 'uuid';\nexport function getEvents(onReceiveList) {\n  var events, snapshot;\n  return _regeneratorRuntime.async(function getEvents$(_context) {\n    while (1) {\n      switch (_context.prev = _context.next) {\n        case 0:\n          events = [];\n          _context.next = 3;\n          return _regeneratorRuntime.awrap(firebase.firestore().collection(\"events\").get().then(function (querySnapshot) {\n            querySnapshot.forEach(function (doc) {\n              events.push({\n                key: events.length + 1,\n                name: doc.data().name,\n                programme: doc.data().programme,\n                ID: doc.data().id,\n                start_date: doc.data().start_date,\n                end_date: doc.data().end_date\n              });\n            });\n          }));\n\n        case 3:\n          snapshot = _context.sent;\n          console.log(events);\n          onReceiveList(events);\n\n        case 6:\n        case \"end\":\n          return _context.stop();\n      }\n    }\n  }, null, null, null, Promise);\n}","map":{"version":3,"sources":["C:/Users/callu/Desktop/3rd Year/Software Design Project/App/DFMPC-Student-Placement-System/Screens/RetrieveEvents.js"],"names":["firebase","v4","uuidv4","getEvents","onReceiveList","events","firestore","collection","get","then","querySnapshot","forEach","doc","push","key","length","name","data","programme","ID","id","start_date","end_date","snapshot","console","log"],"mappings":";AAAA,SAAQA,QAAR;AACA,SAASC,EAAE,IAAIC,MAAf,QAA6B,MAA7B;AAMA,OAAO,SAAeC,SAAf,CAAyBC,aAAzB;AAAA;AAAA;AAAA;AAAA;AAAA;AACCC,UAAAA,MADD,GACU,EADV;AAAA;AAAA,2CAEkBL,QAAQ,CAC5BM,SADoB,GAEpBC,UAFoB,CAET,QAFS,EAGpBC,GAHoB,GAIpBC,IAJoB,CAIf,UAACC,aAAD,EAAmB;AACrBA,YAAAA,aAAa,CAACC,OAAd,CAAsB,UAAUC,GAAV,EAAe;AAEjCP,cAAAA,MAAM,CAACQ,IAAP,CAAY;AACRC,gBAAAA,GAAG,EAAET,MAAM,CAACU,MAAP,GAAgB,CADb;AAERC,gBAAAA,IAAI,EAAEJ,GAAG,CAACK,IAAJ,GAAWD,IAFT;AAGRE,gBAAAA,SAAS,EAAEN,GAAG,CAACK,IAAJ,GAAWC,SAHd;AAIRC,gBAAAA,EAAE,EAAEP,GAAG,CAACK,IAAJ,GAAWG,EAJP;AAKRC,gBAAAA,UAAU,EAAET,GAAG,CAACK,IAAJ,GAAWI,UALf;AAMRC,gBAAAA,QAAQ,EAAEV,GAAG,CAACK,IAAJ,GAAWK;AANb,eAAZ;AASH,aAXD;AAYH,WAjBoB,CAFlB;;AAAA;AAECC,UAAAA,QAFD;AAoBHC,UAAAA,OAAO,CAACC,GAAR,CAAYpB,MAAZ;AACDD,UAAAA,aAAa,CAACC,MAAD,CAAb;;AArBI;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA","sourcesContent":["import {firebase} from \"../firebase\"\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n\r\n\r\n\r\n\r\nexport async function getEvents(onReceiveList) {\r\n    var events = [];\r\n    var snapshot = await firebase\r\n    .firestore()\r\n    .collection(\"events\")\r\n    .get()\r\n    .then((querySnapshot) => {\r\n        querySnapshot.forEach(function (doc) {\r\n        \r\n            events.push({\r\n                key: events.length + 1,\r\n                name: doc.data().name,\r\n                programme: doc.data().programme,\r\n                ID: doc.data().id,\r\n                start_date: doc.data().start_date,\r\n                end_date: doc.data().end_date,\r\n            });\r\n    \r\n        });\r\n    });\r\n    console.log(events);\r\n   onReceiveList(events);\r\n}\r\n\r\n"]},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "import _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport { firebase } from \"../firebase\";\nimport { v4 as uuidv4 } from 'uuid';\nexport function getEvents(onReceiveList) {\n  var events, snapshot;\n  return _regeneratorRuntime.async(function getEvents$(_context) {\n    while (1) {\n      switch (_context.prev = _context.next) {\n        case 0:\n          events = [];\n          _context.next = 3;\n          return _regeneratorRuntime.awrap(firebase.firestore().collection(\"events\").get().then(function (querySnapshot) {\n            querySnapshot.forEach(function (doc) {\n              events.push({\n                key: events.length + 1,\n                name: doc.data().name,\n                programme: doc.data().programme,\n                ID: doc.data().id,\n                start_date: doc.data().start_date,\n                end_date: doc.data().end_date\n              });\n            });\n          }));\n\n        case 3:\n          snapshot = _context.sent;\n          console.log(events);\n          onReceiveList(events);\n\n        case 6:\n        case \"end\":\n          return _context.stop();\n      }\n    }\n  }, null, null, null, Promise);\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "C:/Users/callu/Desktop/3rd Year/Software Design Project/App/DFMPC-Student-Placement-System/Screens/RetrieveEvents.js"
+    ],
+    "names": [
+      "firebase",
+      "v4",
+      "uuidv4",
+      "getEvents",
+      "onReceiveList",
+      "events",
+      "firestore",
+      "collection",
+      "get",
+      "then",
+      "querySnapshot",
+      "forEach",
+      "doc",
+      "push",
+      "key",
+      "length",
+      "name",
+      "data",
+      "programme",
+      "ID",
+      "id",
+      "start_date",
+      "end_date",
+      "snapshot",
+      "console",
+      "log"
+    ],
+    "mappings": ";AAAA,SAAQA,QAAR;AACA,SAASC,EAAE,IAAIC,MAAf,QAA6B,MAA7B;AAMA,OAAO,SAAeC,SAAf,CAAyBC,aAAzB;AAAA;AAAA;AAAA;AAAA;AAAA;AACCC,UAAAA,MADD,GACU,EADV;AAAA;AAAA,2CAEkBL,QAAQ,CAC5BM,SADoB,GAEpBC,UAFoB,CAET,QAFS,EAGpBC,GAHoB,GAIpBC,IAJoB,CAIf,UAACC,aAAD,EAAmB;AACrBA,YAAAA,aAAa,CAACC,OAAd,CAAsB,UAAUC,GAAV,EAAe;AAEjCP,cAAAA,MAAM,CAACQ,IAAP,CAAY;AACRC,gBAAAA,GAAG,EAAET,MAAM,CAACU,MAAP,GAAgB,CADb;AAERC,gBAAAA,IAAI,EAAEJ,GAAG,CAACK,IAAJ,GAAWD,IAFT;AAGRE,gBAAAA,SAAS,EAAEN,GAAG,CAACK,IAAJ,GAAWC,SAHd;AAIRC,gBAAAA,EAAE,EAAEP,GAAG,CAACK,IAAJ,GAAWG,EAJP;AAKRC,gBAAAA,UAAU,EAAET,GAAG,CAACK,IAAJ,GAAWI,UALf;AAMRC,gBAAAA,QAAQ,EAAEV,GAAG,CAACK,IAAJ,GAAWK;AANb,eAAZ;AASH,aAXD;AAYH,WAjBoB,CAFlB;;AAAA;AAECC,UAAAA,QAFD;AAoBHC,UAAAA,OAAO,CAACC,GAAR,CAAYpB,MAAZ;AACDD,UAAAA,aAAa,CAACC,MAAD,CAAb;;AArBI;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA",
+    "sourcesContent": [
+      "import {firebase} from \"../firebase\"\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n\r\n\r\n\r\n\r\nexport async function getEvents(onReceiveList) {\r\n    var events = [];\r\n    var snapshot = await firebase\r\n    .firestore()\r\n    .collection(\"events\")\r\n    .get()\r\n    .then((querySnapshot) => {\r\n        querySnapshot.forEach(function (doc) {\r\n        \r\n            events.push({\r\n                key: events.length + 1,\r\n                name: doc.data().name,\r\n                programme: doc.data().programme,\r\n                ID: doc.data().id,\r\n                start_date: doc.data().start_date,\r\n                end_date: doc.data().end_date,\r\n            });\r\n    \r\n        });\r\n    });\r\n    console.log(events);\r\n   onReceiveList(events);\r\n}\r\n\r\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
