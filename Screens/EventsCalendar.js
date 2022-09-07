@@ -11,7 +11,7 @@ import AppContext from "../AppContext";
 import "../global.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import { getEvents } from "./RetrieveEvents";
+
 
 //constants
 const buttonHeight = 50;
