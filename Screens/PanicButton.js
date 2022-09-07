@@ -10,13 +10,11 @@ import {
   TextInput,
   Platform,
   useEffect,
+  Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-import MapView from "react-native-maps";
-import { Marker } from "react-native-maps";
 import  "../global";
 import { firebase } from "../firebase";
-import Getlocation from "react-native-geolocation-service";
 const Separator = () => <View style={styles.separator} />;
 
 // this function will receive the text currently entered
@@ -96,7 +94,7 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View style={{ marginBottom: 20 }}>
+      <View style={{ marginBottom: 20, zIndex:1 }}>
         <Button
           title="Send Emergency message"
           color="#f194ff"
@@ -105,32 +103,12 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View style={styles.MapStyle}>
-        <MapView
-          // show a mapview with the given longitude and latitude
-          style={styles.map}
-          region={{
-            latitude: -26.18471,
-            longitude: 28.026791,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          // show a mapview with the given region
-        ></MapView>
-
-        <Marker
-          // mark the location
-          coordinate={{
-            latitude: -26.18471,
-            longitude: 28.026791,
-          }}
-          // image={{uri:"./images/pin.png"}}
-        />
-      </View>
       <View>
         {/* <Text>Display Current Location of device</Text> */}
       </View>
+      
     </SafeAreaView>
+    
   );
 };
 
