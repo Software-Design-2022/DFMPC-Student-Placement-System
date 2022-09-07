@@ -12,15 +12,11 @@ import {
   TextInput,
   Platform,
   useEffect,
+  Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-/* import MapView from "react-native-maps";
-import { Marker } from "react-native-maps"; */
-import "../global";
+import  "../global";
 import { firebase } from "../firebase";
-//import Getlocation from "react-native-geolocation-service";
-
-const ICON_SIZE = 80;
 const Separator = () => <View style={styles.separator} />;
 
 // this function will receive the text currently entered
@@ -50,16 +46,6 @@ const PanicButton = () => {
   const [position, setPosition] = useState(null);
   const navigation = useNavigation();
 
-  /*  Getlocation.getCurrentPosition(
-    (pos)=>{
-      setPosition(
-        pos.coords)
-    },
-    (error)=>{
-      Alert.alert(error.message)
-    },
-    {enableHighAccuracy:true,timeout:15000,maximumAge:10000}
-  )*/
 
   return (
     <SafeAreaView style={styles.container}>
@@ -87,6 +73,7 @@ const PanicButton = () => {
           />
         </View>
         
+      </View>
       </View>
      
       <Separator/>
@@ -130,7 +117,7 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View style={{ marginBottom: 20 }}>
+      <View style={{ marginBottom: 20, zIndex:1 }}>
         <Button
           title="Send Emergency message"
           color="#f194ff"
@@ -139,31 +126,12 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      {/*     <View style={styles.MapStyle}>
-        <MapView
-          // show a mapview with the given longitude and latitude
-          style={styles.map}
-          region={{
-            latitude: -26.18471,
-            longitude: 28.026791,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          // show a mapview with the given region
-        ></MapView>
-
-        <Marker
-          // mark the location
-          coordinate={{
-            latitude: -26.18471,
-            longitude: 28.026791,
-          }}
-          // image={{uri:"./images/pin.png"}}
-        />
-      </View> */}
-      <View>{/* <Text>Display Current Location of device</Text> */}</View>
+      <View>
+        {/* <Text>Display Current Location of device</Text> */}
       </View>
+      
     </SafeAreaView>
+    
   );
 };
 
