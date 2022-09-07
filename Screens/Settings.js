@@ -22,9 +22,10 @@ const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 60;
 const ICON_SIZE = 180;
-const back="<"
+const back = "<";
 
-function changeProfilePhoto() { // change profile photo function
+function changeProfilePhoto() {
+  // change profile photo function
   alert("TODO: Replace this alert with DialogInput");
   console.log("Button approach works!!");
 }
@@ -35,9 +36,8 @@ const changeTheme = () => {
 function changeSuggestions() {}
 const DATA = [
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f62",
   },
-
 ];
 const Settings = () => {
   const navigation = useNavigation();
@@ -113,7 +113,7 @@ const Settings = () => {
               );
               if (inputText == "" || typeof inputText === "undefined") {
                 //Sets profile photo to default photo
-                authUser.ref.update({ user_profile_photo: defaultProfilePic });
+                authUser.ref.update({ user_profile_photo: authUserProfilePic });
                 authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
                 setProfilePic(authUserProfilePic);
                 setDialogVisible(false);
@@ -146,13 +146,20 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
-      style={{zIndex:1,top:0,left:10,backgroundColor:'rgba(255,255,255,0.1)',borderRadius:7,position:'absolute'}}
-      onPress={() => {
-        navigation.navigate("Dashboard");
-      }}
+      <TouchableOpacity
+        style={{
+          zIndex: 1,
+          top: 0,
+          left: 10,
+          backgroundColor: "rgba(255,255,255,0.1)",
+          borderRadius: 7,
+          position: "absolute",
+        }}
+        onPress={() => {
+          navigation.navigate("Dashboard");
+        }}
       >
-            <Text style={{fontSize:25,color:'rgba(0,0,0,0.7)'}}> {back} </Text>
+        <Text style={{ fontSize: 25, color: "rgba(0,0,0,0.7)" }}> {back} </Text>
       </TouchableOpacity>
       <Image
         style={{
@@ -166,7 +173,7 @@ const Settings = () => {
           borderWidth: 3,
           borderColor: "rgba(0,0,0,0.1)",
           backgroundColor: "rgba(0,0,0,0.4)",
-          zIndex:1,
+          zIndex: 1,
           shadowOffset: {
             height: 10,
             shadowColor: "black",
@@ -175,7 +182,7 @@ const Settings = () => {
           shadowOpacity: 1,
           shadowRadius: 10,
         }}
-        source={require('./images/user.png')}
+        source={{ uri: authUserProfilePic }}
       />
       <View
         style={{
@@ -183,7 +190,7 @@ const Settings = () => {
           marginTop: 25,
           width: "100%",
           backgroundColor: "rgba(30,55,108,0)",
-          zIndex:1
+          zIndex: 1,
         }}
       >
         <FlatList
@@ -193,13 +200,13 @@ const Settings = () => {
           keyExtractor={(item) => item.id}
         />
       </View>
-      <View style={{position:'absolute', transform:[{translateX:(-15)}] }}>
-      <Image
-        resizeMode="contain"
-        source={require('./images/background6.png')}
-        blurRadius={0}
-      />
-    </View>
+      <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
+        <Image
+          resizeMode="contain"
+          source={require("./images/background6.png")}
+          blurRadius={0}
+        />
+      </View>
     </View>
   );
 };
@@ -211,8 +218,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
     width: "100%",
-    zIndex:1,
-    top:70
+    zIndex: 1,
+    top: 70,
   },
   linearGradient: {
     height: AVATAR_SIZE,
