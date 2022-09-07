@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  StyleSheet,
-
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { getSchedule } from "../Screens/RetrieveSchedules";
@@ -24,7 +20,7 @@ var specialty = "";
 const RANGE = 12;
 const initialDate = "2022-01-02";
 var usersAgenda = {};
-const days=""; //@Noku - this is what I used to fix the Calendar
+const days = ""; //@Noku - this is what I used to fix the Calendar
 
 const CalendarView = () => {
   //use navigation
@@ -35,23 +31,23 @@ const CalendarView = () => {
 
   const [state, setState] = useState({
     //@Noku -  this useState will be used to set the current state of our data
-  // sets scheduleList to the data from database (firestore)
+    // sets scheduleList to the data from database (firestore)
     scheduleList: [
       {
-      key: 0,
-      student_id:"",
-      SpecialtyName:"",
-      hospital_id:"",
-      specialty_duration:"",
-      start_date:"",
-      end_date:"",
-      specialty_id:"",
+        key: 0,
+        student_id: "",
+        SpecialtyName: "",
+        hospital_id: "",
+        specialty_duration: "",
+        start_date: "",
+        end_date: "",
+        specialty_id: "",
       },
     ],
-  })
- 
+  });
+
   const onReceive = (scheduleList) => {
-        // @Noku - when the list is received we set our scheduleList to the current received list (updating)
+    // @Noku - when the list is received we set our scheduleList to the current received list (updating)
 
     setState((prevState) => ({
       scheduleList: (prevState.scheduleList = scheduleList),
@@ -69,31 +65,30 @@ const CalendarView = () => {
 
   return (
     <View>
-    <CalendarList
-      // testID={testIDs.calendarList.CONTAINER}
-      current={initialDate}
-      pastScrollRange={3}
-      futureScrollRange={RANGE}
-      // renderHeader={renderCustomHeader}
-      theme={theme}
-      onDayPress={(day) => {
-        setSelectedDate(day.dateString);
-        dateToPass = day.dateString;
-        console.log("dateToPass value before navigation:", dateToPass);
-        navigation.navigate("DayAgenda"); // @Noku Does this js file exist? 
-      }}
-      markingType="period"
-      // * The generateSchedule method does way too much at once, really caused issues with understanding
-      // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
-      markedDates={generateSchedule(onReceive)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
-    />
+      <CalendarList
+        // testID={testIDs.calendarList.CONTAINER}
+        current={initialDate}
+        pastScrollRange={3}
+        futureScrollRange={RANGE}
+        // renderHeader={renderCustomHeader}
+        theme={theme}
+        onDayPress={(day) => {
+          setSelectedDate(day.dateString);
+          dateToPass = day.dateString;
+          console.log("dateToPass value before navigation:", dateToPass);
+          navigation.navigate("DayAgenda"); // @Noku Does this js file exist?
+        }}
+        markingType="period"
+        // * The generateSchedule method does way too much at once, really caused issues with understanding
+        // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
+        markedDates={generateSchedule(onReceive)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
+      />
     </View>
   );
 };
 
-
 const generateSchedule = (onReceive) => {
-   // @Noku - this is the function needs work
+  // @Noku - this is the function needs work
 };
 
 // get days that the specialty will run over using specialty duration
@@ -108,8 +103,6 @@ const getDaysInWeek = (startDate, endDate) => {
   dates.push(formattedDate);
   return dates;
 };
-
-
 
 const theme = {
   "stylesheet.calendar.header": {
@@ -145,4 +138,4 @@ const styles = StyleSheet.create({
 export default CalendarView;
 
 export { dateToPass };
-export{ days};
+export { days };
