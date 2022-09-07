@@ -29,3 +29,4 @@ export async function getEvents(onReceiveList) {
     console.log(events);
    onReceiveList(events);
 }
+
