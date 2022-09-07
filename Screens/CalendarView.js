@@ -25,7 +25,7 @@ var specialty = "";
 const RANGE = 12;
 const initialDate = "2022-01-02";
 var usersAgenda = {};
-const days="";
+const days=""; //@Noku - this is what I used to fix the Calendar
 
 const CalendarView = () => {
   //use navigation
@@ -35,25 +35,33 @@ const CalendarView = () => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
 
   const [state, setState] = useState({
+    //@Noku -  this useState will be used to set the current state of our data
+  // sets scheduleList to the data from database (firestore)
     scheduleList: [
       {
       key: 0,
+      student_id:"",
       SpecialtyName:"",
-      start_date: "",
-      end_date: "",
+      hospital_id:"",
+      specialty_duration:"",
+      start_date:"",
+      end_date:"",
+      specialty_id:"",
       },
     ],
   })
-  //fetches record of schedules for all users
+ 
   const onReceive = (scheduleList) => {
+        // @Noku - when the list is received we set our scheduleList to the current received list (updating)
+
     setState((prevState) => ({
       scheduleList: (prevState.scheduleList = scheduleList),
     }));
   };
+  // getSchedule is a function from RetrieveSchedules.js
+  // it gets the student specific schedule list containing data from firestore
   getSchedule(onReceive);
 
-  
-  // Keeps track of schedule for user
   // User's agenda
   // What to do when day is pressed.
   const onDayPress = (day) => {
@@ -84,113 +92,14 @@ const CalendarView = () => {
   );
 };
 
-// generate marked dates [Too specific, needs to include relevant info for agenda ]\
-// Refactored generateSchedule to include data it "threw away". Namely "student_id";,"created_at" ,"updated_at" ,"hospital_id","specialty_id"
-// Returns objects with properties: "startingDate","color","textColor"
+
 const generateSchedule = (onReceive) => {
-    
-  // let userSchedulesListObj = {};
-  // let userMarkedDatesListObj = {};
-  // // Iterate through entire list of schedules for all users
-  // // Skip immediately if it's a different user, else parse the database object
-  // onReceive.forEach((scheduleItem) => {
-  //   let scheduleObj = {};
-  //   let markedDateObj = {};
-
-  //   //only show scheduleItem for correct user
-  //   if (scheduleItem.student_id != authUserID) {
-  //     return {};
-  //   }
-    
-  //   const startDate = scheduleItem.start_date;
-  //   const endDate = scheduleItem.end_date;
-
-  //   //figure out which days of the week in the scheduleItem
-  //   // Returns: string
-  //   const daysInWeek = getDaysInWeek(
-  //     startDate,
-  //     endDate,
-  //   );
-
-  //   //default colours. Can use a gradient of 2 colors, but I'm setting them all to the same color.
-  //   var color = "rgba(80,206,187,0.5)";
-  //   var startcolor = color;
-  //   var middlecolor = startcolor;
-  //   var endcolor = startcolor;
-
-  //   //change color based on specialty
-  //   // These are the different options color options (no interpolation)
-  //   if (scheduleItem.specialty_id == 2) {
-  //     startcolor = "rgba(226,135,67,0.5)";
-  //     middlecolor = "rgba(226,135,67,0.25)";
-  //     endcolor = "rgba(226,135,67,0.5)";
-  //   } else if (scheduleItem.specialty_id == 5) {
-  //     startcolor = "rgba(8,181,245,0.5)";
-  //     middlecolor = "rgba(8,181,245,0.25)";
-  //     endcolor = "rgba(8,181,245,0.5)";
-  //   } else if (scheduleItem.specialty_id == 6) {
-  //     startcolor = "rgba(245,58,245,0.5)";
-  //     middlecolor = "rgba(245,58,245,0.25)";
-  //     endcolor = "rgba(245,58,245,0.5)";
-  //   } else {
-  //     startcolor = "rgba(80,206,187,0.5)";
-  //     middlecolor = "rgba(80,206,187,0.25)";
-  //     endcolor = "rgba(80,206,187,0.5)";
-  //   }
-
-  //   // Iterates through each day and adds all the information to each schedule object/Agenda item
-  //   // This is a very important section, used to pass all the information to the views
-  //   daysInWeek.forEach((day, dayIndex) => {
-  //     scheduleObj = {};
-  //     markedDateObj = {};
-
-  //     // Configuring Conditional Variables
-  //     // Conditions for start dates
-  //     if (dayIndex === 0) {
-  //       scheduleObj.startingDate = true;
-  //       scheduleObj.color = startcolor;
-  //       scheduleObj.textColor = "white";
-  //     }
-  //     // Conditions for middle dates
-  //     else if (dayIndex > 0 && dayIndex <= 5) {
-  //       scheduleObj.color = middlecolor;
-  //       scheduleObj.textColor = "white";
-  //     }
-  //     // Conditions for end dates
-  //     else {
-  //       scheduleObj.endingDay = true;
-  //       scheduleObj.color = endcolor;
-  //       scheduleObj.textColor = "white";
-  //     }
-  //     // Packing the values into the schedule/agenda object
-  //     scheduleObj.student_id = scheduleItem.student_id;
-  //     scheduleObj.created_at = scheduleItem.created_at;
-  //     scheduleObj.updated_at = scheduleItem.updated_at;
-  //     scheduleObj.hospital_id = scheduleItem.hospital_id;
-  //     scheduleObj.specialty_id = scheduleItem.specialty_id;
-  //     scheduleObj.startingDate;
-  //     scheduleObj.color;
-  //     scheduleObj.textColor;
-
-  //     markedDateObj.startingDate = scheduleObj.startingDate;
-  //     markedDateObj.color = scheduleObj.color;
-  //     markedDateObj.textColor = scheduleObj.textColor;
-  //     // creating the object and stashing it in the user's schedule object list
-
-  //     userSchedulesListObj[day] = scheduleObj;
-  //     userMarkedDatesListObj[day] = markedDateObj;
-  //   }); // end of days i week
-  // }); // End of Schedule List
-  // // Saving a user's schedule as individual objects for each day higher up in scope.
-  // usersAgenda = userSchedulesListObj;
-  // // To test function
-  // // console.log("Should be more verbose than marked again", usersAgenda);
-  // // console.log("Should be a only 3 properties", userMarkedDatesListObj);
-  // return userMarkedDatesListObj;
+   // @Noku - this is the function needs work
 };
 
 // get days that the specialty will run over using specialty duration
 const getDaysInWeek = (startDate, endDate) => {
+  //@Noku, I edited this to find the number of days between start and end date
   let dates = [];
 
   const start = new Date(startDate);
@@ -201,24 +110,7 @@ const getDaysInWeek = (startDate, endDate) => {
   return dates;
 };
 
-// calculates correct week based on the weeknumber and specialty duration
-const getDateFromWeekNum = (weekNum, year, specialtyduration) => {
-  var daynum = weekNum * 7;
-  if (weekNum * 7 > 30) {
-    var month = (weekNum * 7) / 30 + 1;
-  } else {
-    var month = 0;
-  }
-  while (daynum > 30) {
-    daynum = daynum - 30;
-  }
-  month = parseInt(month);
-  var d = new Date(year, month, 1);
-  const endDate = new Date(d.setDate(daynum));
-  const startDate = new Date(year, month, 2);
-  startDate.setDate(endDate.getDate() - specialtyduration);
-  return { startDate: startDate, endDate: endDate };
-};
+
 
 const theme = {
   "stylesheet.calendar.header": {

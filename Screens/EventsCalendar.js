@@ -1,119 +1,133 @@
-import {CalendarList} from 'react-native-calendars';
 import React, { useState, useEffect, useContext } from "react";
-import {View,} from "react-native";
+import {
+  StyleSheet,
 
-import {LocaleConfig} from 'react-native-calendars';
+  View,
+} from "react-native";
+import { useNavigation } from "@react-navigation/core";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { getEvents } from "../Screens/RetrieveEvents";
+import AppContext from "../AppContext";
+import "../global.js";
+import { NavigationContainer } from "@react-navigation/native";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import { getEvents } from "./RetrieveEvents";
 
-const EventsCalendar = () => {
-LocaleConfig.locales['en'] = {
-  monthNames: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'Décember'
-  ],
-  monthNamesShort: ['Jan.', 'Feb.', 'Mar', 'April', 'May', 'Jun', 'July.', 'Aug', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
-  dayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  dayNamesShort: ['Mon.', 'Tues.', 'Wed.', 'Thurs.', 'Fri.', 'Sat.', 'Sun.'],
-  today: "Today"
-};
-LocaleConfig.defaultLocale = 'en';
-return(
-<View>
-<CalendarList
+//constants
+const buttonHeight = 50;
+const textPos = buttonHeight / 2;
+const SPACING = 20;
+const AVATAR_SIZE = 70;
+const ICON_SIZE = 80;
+var dateToPass = "";
+var specialty = "";
+const RANGE = 12;
+const initialDate = "2022-01-02";
+var usersAgenda = {};
+const days=""; //@Noku - this is what I used to fix the Calendar
 
-style={{
-  borderWidth: 1,
-  borderColor: 'gray',
-  height: 350
-}}
-// Specify theme properties to override specific styles for calendar parts. Default = {}
-theme={{
-  backgroundColor: '#ffffff',
-  calendarBackground: '#ffffff',
-  textSectionTitleColor: '#b6c1cd',
-  textSectionTitleDisabledColor: '#d9e1e8',
-  selectedDayBackgroundColor: '#00adf5',
-  selectedDayTextColor: '#ffffff',
-  todayTextColor: '#00adf5',
-  dayTextColor: '#2d4150',
-  textDisabledColor: '#d9e1e8',
-  dotColor: '#00adf5',
-  selectedDotColor: '#ffffff',
-  arrowColor: 'orange',
-  disabledArrowColor: '#d9e1e8',
-  monthTextColor: 'blue',
-  indicatorColor: 'blue',
-  textDayFontFamily: 'monospace',
-  textMonthFontFamily: 'monospace',
-  textDayHeaderFontFamily: 'monospace',
-  textDayFontWeight: '300',
-  textMonthFontWeight: 'bold',
-  textDayHeaderFontWeight: '300',
-  textDayFontSize: 16,
-  textMonthFontSize: 16,
-  textDayHeaderFontSize: 16
-}}
-  // Initially visible month. Default = now
-  initialDate={'2022-01-01'}
-  // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-  onDayPress={day => {
-    console.log('selected day', day);
-  }}
-  // Handler which gets executed on day long press. Default = undefined
-  onDayLongPress={day => {
-    console.log('selected day', day);
-  }}
-  // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-  monthFormat={'yyyy MM'}
-  // Handler which gets executed when visible month changes in calendar. Default = undefined
-  onMonthChange={month => {
-    console.log('month changed', month);
-  }}
-  // Hide month navigation arrows. Default = false
-  hideArrows={true}
-  // Replace default arrows with custom ones (direction can be 'left' or 'right')
-  renderArrow={direction => <Arrow />}
-  // Do not show days of other months in month page. Default = false
-  hideExtraDays={true}
-  // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
-  // day from another month that is visible in calendar page. Default = false
-  disableMonthChange={true}
-  // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-  firstDay={1}
-  // Hide day names. Default = false
-  hideDayNames={true}
-  // Show week numbers to the left. Default = false
-  showWeekNumbers={true}
-  // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-  onPressArrowLeft={subtractMonth => subtractMonth()}
-  // Handler which gets executed when press arrow icon right. It receive a callback can go next month
-  onPressArrowRight={addMonth => addMonth()}
-  // Disable left arrow. Default = false
-  disableArrowLeft={true}
-  // Disable right arrow. Default = false
-  disableArrowRight={true}
-  // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-  disableAllTouchEventsForDisabledDays={true}
-  // Replace default month and year title with custom one. the function receive a date as parameter
-  renderHeader={date => {
-    /*Return JSX*/
-  }}
-  // Enable the option to swipe between months. Default = false
-  enableSwipeMonths={true}
-/>
-</View>
-);
+const EventCalendar = () => {
+  //use navigation
+  const navigation = useNavigation();
+  const myContext = useContext(AppContext);
+  // Keeps track of selected date
+  const [selectedDate, setSelectedDate] = useState(initialDate);
+
+  const [state, setState] = useState({
+    //@Noku -  this useState will be used to set the current state of our data
+  // sets scheduleList to the data from database (firestore)
+    EventList: [
+      {
+      key: 0,
+      name:"",
+      programme:"",
+      ID:"",
+      start_date:"",
+      end_date:"",
+      },
+    ],
+  })
+ 
+  const onReceive = (EventList) => {
+        // @Noku - when the list is received we set our scheduleList to the current received list (updating)
+
+    setState((prevState) => ({
+      EventList: (prevState.EventList = EventList),
+    }));
+  };
+  // getEvents is a function from RetrieveEvents.js
+  // it gets the list containing Events data from firestore
+  getEvents(onReceive);
+
+  // User's agenda
+  // What to do when day is pressed.
+  const onDayPress = (day) => {
+    console.log("Just ran the redundant function");
+  };
+
+  return (
+    <View>
+    <CalendarList
+      // testID={testIDs.calendarList.CONTAINER}
+      current={initialDate}
+      pastScrollRange={3}
+      futureScrollRange={RANGE}
+      // renderHeader={renderCustomHeader}
+      theme={theme}
+      onDayPress={(day) => {
+        setSelectedDate(day.dateString);
+        dateToPass = day.dateString;
+        console.log("dateToPass value before navigation:", dateToPass);
+        navigation.navigate("DayAgenda"); // @Noku Does this js file exist? 
+      }}
+      markingType="period"
+      // * The generateSchedule method does way too much at once, really caused issues with understanding
+      // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
+      markedDates={generateSchedule(onReceive)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
+    />
+    </View>
+  );
 };
 
-export default EventsCalendar;
+
+const generateSchedule = (onReceive) => {
+   // @Noku - this is the function needs work
+};
 
 
+
+const theme = {
+  "stylesheet.calendar.header": {
+    dayHeader: {
+      fontWeight: "600",
+      color: "#48BFE3",
+    },
+  },
+  "stylesheet.day.basic": {
+    today: {
+      borderColor: "#48BFE3",
+      borderWidth: 0.8,
+    },
+    todayText: {
+      color: "#5390D9",
+      fontWeight: "800",
+    },
+  },
+};
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    backgroundColor: "white",
+    marginTop: 10,
+    borderRadius: 20,
+    flex: 1,
+    borderColor: "rgba(36,50,61,1)",
+    borderWidth: 5,
+  },
+});
+
+export default EventCalendar;
+
+export { dateToPass };
+export{ days};

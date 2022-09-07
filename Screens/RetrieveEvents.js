@@ -1,4 +1,3 @@
-import {db} from "../firebase"
 import {firebase} from "../firebase"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,7 +16,7 @@ export async function getEvents(onReceiveList) {
         
             events.push({
                 key: events.length + 1,
-                name: doc.data().nme,
+                name: doc.data().name,
                 programme: doc.data().programme,
                 ID: doc.data().id,
                 start_date: doc.data().start_date,

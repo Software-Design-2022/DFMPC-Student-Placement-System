@@ -10,11 +10,11 @@ export async function getSchedule(onReceiveList) {
     var snapshot = await firebase
     .firestore()
     .collection("schedules")
-    .where("student_id", "==", authUserID)
+    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
-        
+        //push the required data to the array
             schedules.push({
                 key: schedules.length + 1,
                 student_id: doc.data().student_id,
