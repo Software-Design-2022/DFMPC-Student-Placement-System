@@ -10,10 +10,10 @@ import {
   TextInput,
   Platform,
   useEffect,
-  Image
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-import  "../global";
+import "../global";
 import { firebase } from "../firebase";
 const Separator = () => <View style={styles.separator} />;
 
@@ -35,7 +35,7 @@ const sendToFirestore = (text) => {
       Alert.alert("Emergency Message Saved");
     });
 };
-const authname =authName;
+const authname = authName;
 const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
@@ -43,7 +43,6 @@ const PanicButton = () => {
   const [text, setText] = useState("");
   const [position, setPosition] = useState(null);
   const navigation = useNavigation();
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -84,7 +83,7 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View style={{ marginBottom: 20, zIndex:1 }}>
+      <View style={{ marginBottom: 20, zIndex: 1 }}>
         <Button
           title="Send Emergency message"
           color="#f194ff"
@@ -93,12 +92,8 @@ const PanicButton = () => {
         />
       </View>
       <Separator />
-      <View>
-        {/* <Text>Display Current Location of device</Text> */}
-      </View>
-      
+      <View>{/* <Text>Display Current Location of device</Text> */}</View>
     </SafeAreaView>
-    
   );
 };
 
