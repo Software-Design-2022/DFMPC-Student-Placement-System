@@ -165,10 +165,13 @@ const Dashboard = () => {
   // first render function that renders the vertical flatlist
   const renderItem = ({ item }) => {
     return (
+      //open link to other application(ulwazi, youtube, etc.)
       <TouchableOpacity  onPress={() => {
         Linking.openURL(item.link)
       }}>
+
         <View style={{backgroundColor:'rgba(0,0,0,0.2)',
+        //style for flatlist of shortlinks
       flex:1,flexDirection:'row',
       borderRadius: 8,
       paddingRight:SPACING,
@@ -191,7 +194,9 @@ const Dashboard = () => {
             source={item.image}
           />
         </View>
-        <View style={{flex:1}}>
+        <View style={{flex:1}}
+        //text for short links
+        >
           <Text style={{flex:1,fontSize:15,top:10,left:10,color:'white'}}>{item.text}</Text>
         </View>
       </View>
@@ -200,13 +205,19 @@ const Dashboard = () => {
   }
 
   return (
-    <View style={{flex:1}}>
+
+    
+    <View style={{flex:1}}
+      //creates a safe area of 35px for mobile indicators
+    > 
       <View style={{backgroundColor:'rgba(0,0,0,0.5)',
       height:35,
       zIndex:1,
       }}>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.8)',
+      <View
+      //adds rounded forehead bar to screen for logo and user icon
+       style={{backgroundColor:'rgba(255,255,255,0.8)',
       height:100,
       zIndex:1,
       borderEndWidth:0,
@@ -215,13 +226,16 @@ const Dashboard = () => {
       }}>
       <View>
       <Image 
+      //logo 
         style={{height:80,position:'absolute',top:5,left:-160}}
         resizeMode='contain'
         source={require('./images/wits.png')}
         blurRadius={0}
       />
     </View>
-    <TouchableHighlight underlayColor='rgba(0,0,0,0.2)' style={{flex:1,
+    <TouchableHighlight
+    //Tappable icon
+     underlayColor='rgba(0,0,0,0.2)' style={{flex:1,
                 width: ICON_SIZE,
                   height: ICON_SIZE,
                   right: 15,
@@ -249,12 +263,18 @@ const Dashboard = () => {
                 source={require('./images/user.png')}/>
     </TouchableHighlight>
     </View>
-    <View style={{zIndex:1, flex:1,flexDirection:'row'}}>
+
+
+    <View style={{zIndex:1, flex:1,flexDirection:'row'}}
+    //creates multiple views for information
+    >
     <View style={{zIndex:1,
       flex:2.5,flexDirection:'column',
       backgroundColor:'rgba(0,0,0,0)',
       transform:[{translateY:(0)},{translateX:(0)}]}}>
-        <View style={{flex:0.5,
+        <View
+        //news feed
+         style={{flex:0.5,
           zIndex:1,
           backgroundColor:'rgba(0,0,0,0.05)',
           borderRadius:16,
@@ -267,7 +287,9 @@ const Dashboard = () => {
               <Text style={{color:"rgba(255,255,255,1)",fontSize:25
               ,fontWeight:'bold',left:80}}>News Feed</Text>
             </View>
-          <View style={{flex:1,
+          <View
+
+           style={{flex:1,
           zIndex:1,
           borderRadius:32,
           margin:SPACING/2,
@@ -284,7 +306,9 @@ const Dashboard = () => {
           }}>
         </View>
         </View>
-        <View style={{flex:0.5,
+        <View 
+        //notification info
+        style={{flex:0.5,
           zIndex:1,
           backgroundColor:'rgba(0,0,0,0.05)',
           borderRadius:16,
@@ -326,6 +350,7 @@ const Dashboard = () => {
         </View>
     </View>
     <Animated.FlatList 
+    //creates animated flatlist to swipe through different page navigation options
     snapToInterval={ITEM_SIZE-SPACING*1.5}
     decelerationRate={0}
     style={{flex:1}}
@@ -339,6 +364,7 @@ const Dashboard = () => {
         paddingTop: SPACING
       }}
       renderItem={({item,index})=>{
+        //linear interpolation for smooth scaling and fading
         const inputRange =[
           -1,
           0,
@@ -359,16 +385,21 @@ const Dashboard = () => {
           inputRange: opacityInputRange,
           outputRange: [1,1,1,0]
         })
+        
         return (
           
-          <TouchableHighlight style={{
+          <TouchableHighlight
+          // creates tappable icon for navigation
+           style={{
           borderRadius:100,marginBottom:SPACING/2,width:300,borderBottomEndRadius:0,left:20}}
           onPress={() => {
             navigation.navigate(item.destination);
           }}
           underlayColor='rgba(28,56,107,0.2)'
           >
-          <Animated.View style={{flexDirection:'row',
+          <Animated.View
+          
+          style={{flexDirection:'row',
            padding:SPACING,
            backgroundColor:'rgba(0,0,0,0.12)',
             borderRadius:100,
@@ -387,6 +418,7 @@ const Dashboard = () => {
             }}>
               <View>
               <Image
+              //adds image to each destination
             source={item.image}
             style={{width:AVATAR_SIZE, 
             height:AVATAR_SIZE,
@@ -398,7 +430,9 @@ const Dashboard = () => {
             backgroundColor:'rgba(0,0,0,0)' }}
             />
               </View> 
-            <Text style={{fontSize: 11, fontWeight: 'bold',color:'rgba(255,255,255,1)'
+            <Text
+            //adds destination text 
+            style={{fontSize: 11, fontWeight: 'bold',color:'rgba(255,255,255,1)'
              , position: 'absolute',
              left:30,
              transform:[{translateY:(2)},{translateX:(0)},{rotate: '0deg'}],
