@@ -18,7 +18,7 @@ const Protocols = () => {
       {
         key: 0,
         Protocol: "",
-        content: "",
+        content: [""],
       },
     ],
   });
@@ -48,6 +48,7 @@ const Protocols = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+    
       <View style={styles.container}>
         <ScrollView style={styles.container}>
           {
@@ -55,22 +56,34 @@ const Protocols = () => {
             //and returns an array that contains the results.
             // with the {+,-} we toggle between the two depending on which one is currently selected
             state.protocolList.map((item, key) => (
-              <View key={state.protocolList.Protocol}>
+              <View key={item.Protocol}>
                 <TouchableOpacity
-                  style={styles.item}
+                  
                   onPress={() => toggle(key)}
+                  style={selected === key ? styles.itemshow : styles.item}
                 >
-                  <Text style={styles.itemText}>{item.Protocol}</Text>
-                  <Text style={styles.itemText}>
+                   <Text style={selected === key ? styles.toggleshow : styles.togglehide}>
                     {selected === key ? "-" : "+"}
                   </Text>
+                  <Text
+                    style={
+                      selected === key ? styles.itemTextshow : styles.itemText
+                    }
+                  >
+                    {item.Protocol}{" "}
+                  </Text>
+                 
                 </TouchableOpacity>
                 <View
                   style={
                     selected === key ? styles.content_show : styles.contentHide
                   }
                 >
-                  <Text style={{ color: "white" }}>{item.content}</Text>
+                  {item.content.map((data, key) => (
+                    <View style={styles.inneritem} key={data}>
+                      <Text style={styles.inneritemText}>{data}</Text>
+                    </View>
+                  ))}
                 </View>
               </View>
             ))
@@ -80,39 +93,103 @@ const Protocols = () => {
     </SafeAreaView>
   );
 };
+``;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20,
     flex: 1,
-    backgroundColor: "rgba(18,33,65,0.8)",
+    backgroundColor: "white",
   },
   header: {
     flexDirection: "row",
     padding: 10,
   },
   item: {
-    backgroundColor: "rgba(18,33,65,0.8)",
-    padding: 20,
+    
+    flexDirection: "row",
+    borderRadius: 5,
+    backgroundColor: "rgba(192,192,192,0.2)",
+    padding: 10,
+
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 2,
+    marginLeft: 2,
+    borderWidth: 2,
+    borderColor: "rgba(192,192,192,0.3)",
+  },
+  itemshow: {
+    
+    flexDirection: "row",
+    borderRadius: 5,
+    backgroundColor: "rgba(63, 130, 109,0.2)",
+    padding: 10,
+
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 2,
+    marginLeft: 2,
+    borderWidth: 2,
+    borderColor: "rgba(192,192,192,0.3)",
   },
   itemText: {
     fontSize: 16,
     fontWeight: "500",
-    color: "white",
+    color: "black",
+  },
+
+  toggleshow: {
+    start:0,
+    marginRight:10,
+    fontSize: 18,
+    fontWeight: "500",
+    color: "rgb(192, 50, 33)",
+  },
+  togglehide: {
+    start:0,
+    marginRight:10,
+    fontSize: 18,
+    fontWeight: "500",
+    color: "rgb(241, 80, 37)",
+  },
+
+  itemTextshow: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "rgb(36, 123, 160)",
+  },
+  inneritem: {
+    borderRadius: 5,
+    backgroundColor: "rgba(181, 177, 178,0.2)",
+    padding: 10,
+    margin: 2,
+    borderWidth: 2,
+    borderColor: "rgba(192,192,192,0.3)",
+  },
+  inneritemText: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "black",
   },
   contentHide: {
-    color: "white",
-    backgroundColor: "rgba(44,59,92,255)",
+    color: "black",
+    backgroundColor: "rgb(216, 212, 213)",
     overflow: "hidden",
     maxHeight: 0,
   },
   content_show: {
-    color: "white",
-    backgroundColor: "rgba(44,59,92,255)",
+    backgroundColor: "rgba(221, 240, 255,0.2)",
+    color: "black",
     marginBottom: 10,
     marginTop: 10,
-    padding: 30,
+    padding: 10,
     opacity: 1,
     maxHeight: 9999,
   },
 });
 export default Protocols;
+
