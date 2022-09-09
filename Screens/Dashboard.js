@@ -181,7 +181,7 @@ const Dashboard = () => {
                   width: 30,
                   height: 30,
                   left:5,
-                  top:5,
+                  top:3,
                   position: "relative",
                   resizeMode: "cover",
                   borderRadius: 20,
@@ -197,7 +197,7 @@ const Dashboard = () => {
         <View style={{flex:1}}
         //text for short links
         >
-          <Text style={{flex:1,fontSize:15,top:10,left:10,color:'white'}}>{item.text}</Text>
+          <Text style={{flex:1,fontSize:15,top:8,left:10,color:'white'}}>{item.text}</Text>
         </View>
       </View>
       </TouchableOpacity>
@@ -335,11 +335,12 @@ const Dashboard = () => {
           }}>
         </View>  
         </View>
-        <View style={{flex:0.065,marginTop:SPACING,marginBottom:SPACING*2,
+        <View style={{flex:0.065,marginTop:SPACING,marginBottom:SPACING,
           backgroundColor:'rgba(0,0,0,0.0)',
           borderTopRightRadius:20,
           borderBottomRightRadius:20}}>
         <FlatList
+        // flatlist for short links
           showsHorizontalScrollIndicator={false}
           horizontal={true}
           contentContainerStyle={{}}
