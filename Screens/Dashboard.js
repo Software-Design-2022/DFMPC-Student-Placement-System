@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -165,7 +164,6 @@ const Dashboard = () => {
         onPress={() => {
           Linking.openURL(item.link);
         }}
-        
       >
         <View
           style={{
@@ -194,7 +192,6 @@ const Dashboard = () => {
                 shadowRadius: 20,
               }}
               source={item.image}
-            
             />
           </View>
           <View style={{ flex: 1 }}>
@@ -389,7 +386,7 @@ const Dashboard = () => {
                 flex: 0.5,
                 zIndex: 1,
                 borderRadius: 32,
-                margin: SPACING / 2, 
+                margin: SPACING / 2,
               }}
             ></View>
           </View>
@@ -397,13 +394,12 @@ const Dashboard = () => {
             style={{
               flex: 0.065,
               marginTop: SPACING,
-              marginBottom: SPACING+10,
+              marginBottom: SPACING + 10,
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
             }}
           >
-           
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
@@ -414,7 +410,7 @@ const Dashboard = () => {
             />
           </View>
         </View>
-        
+
         <Animated.FlatList
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
@@ -461,7 +457,6 @@ const Dashboard = () => {
                 onPress={() => {
                   navigation.navigate(item.destination);
                 }}
-                
                 underlayColor="rgba(28,56,107,0.2)"
               >
                 <Animated.View
@@ -483,11 +478,9 @@ const Dashboard = () => {
                     shadowOpacity: 0.5,
                     width: 300,
                   }}
-                 
                 >
-                  <View >
+                  <View>
                     <Image
-                     
                       source={item.image}
                       style={{
                         width: AVATAR_SIZE,

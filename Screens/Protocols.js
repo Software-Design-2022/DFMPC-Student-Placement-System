@@ -46,7 +46,7 @@ const Protocols = () => {
 
   LogBox.ignoreLogs(["Setting a timer"]);
 
-  return ( 
+  return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <ScrollView style={styles.container}>
@@ -94,7 +94,6 @@ const Protocols = () => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
