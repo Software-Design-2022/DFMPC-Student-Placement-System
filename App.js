@@ -9,34 +9,37 @@ import CalendarView from "./Screens/CalendarView";
 import SettingsView from "./Screens/Settings";
 import Protocols from "./Screens/Protocols";
 import DayAgenda from "./Screens/DayAgenda";
-import VoiceRecorder from "./Screens/VoiceRecorder"
-import PanicButton from "./Screens/PanicButton"
-import Notifications from "./Screens/Notifications";
+import PanicButton from "./Screens/PanicButton";
 
-const Stack = createNativeStackNavigator(); 
+
+
+const Stack = createNativeStackNavigator();
 
 function App() {
   // This is the main function that will be called when the app is loaded
   return (
-    
     <NavigationContainer>
       <Stack.Navigator>
         {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Notifications}
+            component={Login}
           />
         }
-        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }}/>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
         <Stack.Screen name="SettingsView" component={SettingsView} />
         <Stack.Screen name="Protocols" component={Protocols} />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="PanicButton" component={PanicButton} />
-        <Stack.Screen name="VoiceRecorder" component={VoiceRecorder} />
-        <Stack.Screen name="Notifications" component={Login} />
+
+     
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -50,7 +51,7 @@ const Settings = () => {
             );
             if (inputText == "") {
               //Sets profile photo to default photo
-              authUser.ref.update({ user_profile_photo: defaultProfilePic });
+              authUser.ref.update({ user_profile_photo: defaultProfilePic }); // @Noku - update Firestore instead of realtime database
               authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
               setVisible(false);
             } else if (

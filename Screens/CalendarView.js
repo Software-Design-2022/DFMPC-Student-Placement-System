@@ -52,7 +52,7 @@ const CalendarView = () => {
         setSelectedDate(day.dateString);
         dateToPass = day.dateString;
         console.log("dateToPass value before navigation:", dateToPass);
-        navigation.navigate("DayAgenda");
+        navigation.navigate("DayAgenda"); // @Noku Does this js file exist? 
       }}
       markingType="period"
       // * The generateSchedule method does way too much at once, really caused issues with understanding
