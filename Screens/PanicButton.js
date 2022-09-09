@@ -150,6 +150,7 @@ export default function PanicButton() {
         </View>
       
     </SafeAreaView>
+    
   );
 }
 
