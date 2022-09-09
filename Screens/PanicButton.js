@@ -60,14 +60,13 @@ export default function PanicButton() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
- 
+
   useEffect(() => {
-    let cancel=false
-    registerForPushNotificationsAsync().then((token) =>{
-      if(cancel) return
-      setExpoPushToken(token)
-     });
-  
+    let cancel = false;
+    registerForPushNotificationsAsync().then((token) => {
+      if (cancel) return;
+      setExpoPushToken(token);
+    });
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
@@ -80,14 +79,12 @@ export default function PanicButton() {
       });
 
     return () => {
-      
       Notifications.removeNotificationSubscription(
         notificationListener.current
       );
       Notifications.removeNotificationSubscription(responseListener.current);
       cancel = true;
     };
-  
   }, []);
 
   return (
@@ -114,8 +111,6 @@ export default function PanicButton() {
           </View>
         </View>
 
-     
-    
         <View style={{ padding: 10, marginBottom: 20 }}>
           <TextInput
             // user can type their emergency message
@@ -125,32 +120,27 @@ export default function PanicButton() {
             defaultValue={text}
           />
         </View>
-      
-    
-        
-        <View style={{ margin:20 }}>
+
+        <View style={{ margin: 20 }}>
           <Button
-            
             title="Send Emergency message"
             color="#415A77"
             // when clicked data is send to firestore database
             onPress={() => sendToFirestore(text, msg)}
           />
         </View>
-        <View style={{ margin:20 }}>
+        <View style={{ margin: 20 }}>
           <Button
             // when clicked it will navigate to the Protocols page
             // where user can have a look at the available protocols
-            
+
             color="#778DA9"
             title="Protocols"
             onPress={() => navigation.navigate("Protocols")}
           />
-          </View>
         </View>
-      
+      </View>
     </View>
-    
   );
 }
 
@@ -180,9 +170,7 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    
   }
-    
 
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync("default", {
@@ -210,7 +198,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "rgba(192,192,192,0.3)",
- 
   },
   message: {
     marginTop: 50,
@@ -219,12 +206,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     height: 200,
     textAlign: "center",
-    borderRadius:5,
+    borderRadius: 5,
     backgroundColor: "white",
   },
 
-  Button1:{
-    backgroundColor:"rgba(221, 240, 255,0.2)"
+  Button1: {
+    backgroundColor: "rgba(221, 240, 255,0.2)",
   },
 
   title: {

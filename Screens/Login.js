@@ -18,7 +18,6 @@ import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 
-
 import "../global";
 
 const AVATAR_SIZE = 70;
@@ -27,7 +26,6 @@ const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
 const Login = () => {
- 
   //Login Screen
   const [email, setEmail] = useState(""); //email
   const [password, setPassword] = useState(""); //password
@@ -99,7 +97,6 @@ const Login = () => {
   }
 });
  */
-
 
     var found = false;
     firebase
@@ -184,13 +181,10 @@ const Login = () => {
           >
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
-          
         </LinearGradient>
-      
       </View>
     </KeyboardAvoidingView>
     // </TouchableWithoutFeedback>
-    
   );
 };
 

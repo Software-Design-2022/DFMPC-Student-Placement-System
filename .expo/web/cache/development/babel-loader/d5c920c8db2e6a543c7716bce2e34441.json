@@ -1,1 +1,35 @@
-{"ast":null,"code":"import { isUndefined, isDate, isString, isNumber } from 'lodash';\nimport XDate from 'xdate';\n\nvar _require = require(\"../interface\"),\n    padNumber = _require.padNumber,\n    toMarkingFormat = _require.toMarkingFormat;\n\nexport function getCalendarDateString(date) {\n  if (!isUndefined(date)) {\n    if (isDate(date) && !isNaN(date.getFullYear())) {\n      return date.getFullYear() + '-' + padNumber(date.getMonth() + 1) + '-' + padNumber(date.getDate());\n    } else if (isString(date)) {\n      return toMarkingFormat(new XDate(date, false));\n    } else if (isNumber(date)) {\n      return toMarkingFormat(new XDate(date, true));\n    }\n\n    throw 'Invalid Date';\n  }\n}\nexport function getDefaultLocale() {\n  return XDate.locales[XDate.defaultLocale];\n}\nexport default {\n  getCalendarDateString: getCalendarDateString,\n  getDefaultLocale: getDefaultLocale\n};","map":{"version":3,"names":["isUndefined","isDate","isString","isNumber","XDate","require","padNumber","toMarkingFormat","getCalendarDateString","date","isNaN","getFullYear","getMonth","getDate","getDefaultLocale","locales","defaultLocale"],"sources":["/home/cipher73/Coding Projects/SDproject/DFMPC-Student-Placement-System/node_modules/react-native-calendars/src/services/index.js"],"sourcesContent":["import { isUndefined, isDate, isString, isNumber } from 'lodash';\nimport XDate from 'xdate';\nconst { padNumber, toMarkingFormat } = require('../interface');\nexport function getCalendarDateString(date) {\n    if (!isUndefined(date)) {\n        if (isDate(date) && !isNaN(date.getFullYear())) {\n            return date.getFullYear() + '-' + padNumber(date.getMonth() + 1) + '-' + padNumber(date.getDate());\n        }\n        else if (isString(date)) {\n            // issue with strings and XDate's utc-mode - returns one day before\n            return toMarkingFormat(new XDate(date, false));\n        }\n        else if (isNumber(date)) {\n            return toMarkingFormat(new XDate(date, true));\n        }\n        throw 'Invalid Date';\n    }\n}\nexport function getDefaultLocale() {\n    return XDate.locales[XDate.defaultLocale];\n}\nexport default {\n    getCalendarDateString,\n    getDefaultLocale\n};\n"],"mappings":"AAAA,SAASA,WAAT,EAAsBC,MAAtB,EAA8BC,QAA9B,EAAwCC,QAAxC,QAAwD,QAAxD;AACA,OAAOC,KAAP,MAAkB,OAAlB;;AACA,eAAuCC,OAAO,gBAA9C;AAAA,IAAQC,SAAR,YAAQA,SAAR;AAAA,IAAmBC,eAAnB,YAAmBA,eAAnB;;AACA,OAAO,SAASC,qBAAT,CAA+BC,IAA/B,EAAqC;EACxC,IAAI,CAACT,WAAW,CAACS,IAAD,CAAhB,EAAwB;IACpB,IAAIR,MAAM,CAACQ,IAAD,CAAN,IAAgB,CAACC,KAAK,CAACD,IAAI,CAACE,WAAL,EAAD,CAA1B,EAAgD;MAC5C,OAAOF,IAAI,CAACE,WAAL,KAAqB,GAArB,GAA2BL,SAAS,CAACG,IAAI,CAACG,QAAL,KAAkB,CAAnB,CAApC,GAA4D,GAA5D,GAAkEN,SAAS,CAACG,IAAI,CAACI,OAAL,EAAD,CAAlF;IACH,CAFD,MAGK,IAAIX,QAAQ,CAACO,IAAD,CAAZ,EAAoB;MAErB,OAAOF,eAAe,CAAC,IAAIH,KAAJ,CAAUK,IAAV,EAAgB,KAAhB,CAAD,CAAtB;IACH,CAHI,MAIA,IAAIN,QAAQ,CAACM,IAAD,CAAZ,EAAoB;MACrB,OAAOF,eAAe,CAAC,IAAIH,KAAJ,CAAUK,IAAV,EAAgB,IAAhB,CAAD,CAAtB;IACH;;IACD,MAAM,cAAN;EACH;AACJ;AACD,OAAO,SAASK,gBAAT,GAA4B;EAC/B,OAAOV,KAAK,CAACW,OAAN,CAAcX,KAAK,CAACY,aAApB,CAAP;AACH;AACD,eAAe;EACXR,qBAAqB,EAArBA,qBADW;EAEXM,gBAAgB,EAAhBA;AAFW,CAAf"},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "import { isUndefined, isDate, isString, isNumber } from 'lodash';\nimport XDate from 'xdate';\n\nvar _require = require(\"../interface\"),\n    padNumber = _require.padNumber,\n    toMarkingFormat = _require.toMarkingFormat;\n\nexport function getCalendarDateString(date) {\n  if (!isUndefined(date)) {\n    if (isDate(date) && !isNaN(date.getFullYear())) {\n      return date.getFullYear() + '-' + padNumber(date.getMonth() + 1) + '-' + padNumber(date.getDate());\n    } else if (isString(date)) {\n      return toMarkingFormat(new XDate(date, false));\n    } else if (isNumber(date)) {\n      return toMarkingFormat(new XDate(date, true));\n    }\n\n    throw 'Invalid Date';\n  }\n}\nexport function getDefaultLocale() {\n  return XDate.locales[XDate.defaultLocale];\n}\nexport default {\n  getCalendarDateString: getCalendarDateString,\n  getDefaultLocale: getDefaultLocale\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "isUndefined",
+      "isDate",
+      "isString",
+      "isNumber",
+      "XDate",
+      "require",
+      "padNumber",
+      "toMarkingFormat",
+      "getCalendarDateString",
+      "date",
+      "isNaN",
+      "getFullYear",
+      "getMonth",
+      "getDate",
+      "getDefaultLocale",
+      "locales",
+      "defaultLocale"
+    ],
+    "sources": [
+      "/home/cipher73/Coding Projects/SDproject/DFMPC-Student-Placement-System/node_modules/react-native-calendars/src/services/index.js"
+    ],
+    "sourcesContent": [
+      "import { isUndefined, isDate, isString, isNumber } from 'lodash';\nimport XDate from 'xdate';\nconst { padNumber, toMarkingFormat } = require('../interface');\nexport function getCalendarDateString(date) {\n    if (!isUndefined(date)) {\n        if (isDate(date) && !isNaN(date.getFullYear())) {\n            return date.getFullYear() + '-' + padNumber(date.getMonth() + 1) + '-' + padNumber(date.getDate());\n        }\n        else if (isString(date)) {\n            // issue with strings and XDate's utc-mode - returns one day before\n            return toMarkingFormat(new XDate(date, false));\n        }\n        else if (isNumber(date)) {\n            return toMarkingFormat(new XDate(date, true));\n        }\n        throw 'Invalid Date';\n    }\n}\nexport function getDefaultLocale() {\n    return XDate.locales[XDate.defaultLocale];\n}\nexport default {\n    getCalendarDateString,\n    getDefaultLocale\n};\n"
+    ],
+    "mappings": "AAAA,SAASA,WAAT,EAAsBC,MAAtB,EAA8BC,QAA9B,EAAwCC,QAAxC,QAAwD,QAAxD;AACA,OAAOC,KAAP,MAAkB,OAAlB;;AACA,eAAuCC,OAAO,gBAA9C;AAAA,IAAQC,SAAR,YAAQA,SAAR;AAAA,IAAmBC,eAAnB,YAAmBA,eAAnB;;AACA,OAAO,SAASC,qBAAT,CAA+BC,IAA/B,EAAqC;EACxC,IAAI,CAACT,WAAW,CAACS,IAAD,CAAhB,EAAwB;IACpB,IAAIR,MAAM,CAACQ,IAAD,CAAN,IAAgB,CAACC,KAAK,CAACD,IAAI,CAACE,WAAL,EAAD,CAA1B,EAAgD;MAC5C,OAAOF,IAAI,CAACE,WAAL,KAAqB,GAArB,GAA2BL,SAAS,CAACG,IAAI,CAACG,QAAL,KAAkB,CAAnB,CAApC,GAA4D,GAA5D,GAAkEN,SAAS,CAACG,IAAI,CAACI,OAAL,EAAD,CAAlF;IACH,CAFD,MAGK,IAAIX,QAAQ,CAACO,IAAD,CAAZ,EAAoB;MAErB,OAAOF,eAAe,CAAC,IAAIH,KAAJ,CAAUK,IAAV,EAAgB,KAAhB,CAAD,CAAtB;IACH,CAHI,MAIA,IAAIN,QAAQ,CAACM,IAAD,CAAZ,EAAoB;MACrB,OAAOF,eAAe,CAAC,IAAIH,KAAJ,CAAUK,IAAV,EAAgB,IAAhB,CAAD,CAAtB;IACH;;IACD,MAAM,cAAN;EACH;AACJ;AACD,OAAO,SAASK,gBAAT,GAA4B;EAC/B,OAAOV,KAAK,CAACW,OAAN,CAAcX,KAAK,CAACY,aAApB,CAAP;AACH;AACD,eAAe;EACXR,qBAAqB,EAArBA,qBADW;EAEXM,gBAAgB,EAAhBA;AAFW,CAAf"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
