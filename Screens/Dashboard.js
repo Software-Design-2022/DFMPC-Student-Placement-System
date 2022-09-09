@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -33,7 +34,7 @@ const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 //data to be displayed in the flatlist
 const DATA = [
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "58694a0f-3da1-471f-bd96-145571e29d73",
     title: "Calendar",
     destination: "CalendarView",
     image: require("./images/calendar.png"),
@@ -54,7 +55,7 @@ const DATA = [
     text: "Events Calendar",
   },
   {
-    id: "08694a0f-3da1-471f-bd96-145571e29d72",
+    id: "08694a0f-3da1-471f-bd96-145571e29d79",
     title: "Settings",
     destination: "SettingsView",
     image: require("./images/settings.png"),
@@ -75,14 +76,14 @@ const DATA = [
     text: "Calendar",
   },
   {
-    id: "28694a0f-3da1-471f-bd96-145571e29d73",
+    id: "28694a0f-3da1-471f-bd96-145571e29d70",
     title: "PanicButton",
     destination: "PanicButton",
     image: require("./images/schedule.png"),
     text: "Emergency",
   },
   {
-    id: "18694a0f-3da1-471f-bd96-145571e29d74",
+    id: "18694a0f-3da1-471f-bd96-145571e29d76",
     title: "Logbook",
     destination: "BackgroundTest",
     image: require("./images/logbook.png"),
@@ -164,6 +165,7 @@ const Dashboard = () => {
         onPress={() => {
           Linking.openURL(item.link);
         }}
+        
       >
         <View
           style={{
@@ -192,6 +194,7 @@ const Dashboard = () => {
                 shadowRadius: 20,
               }}
               source={item.image}
+            
             />
           </View>
           <View style={{ flex: 1 }}>
@@ -211,8 +214,9 @@ const Dashboard = () => {
       </TouchableOpacity>
     );
   };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <View
         style={{ backgroundColor: "rgba(0,0,0,0.5)", height: 35, zIndex: 1 }}
       ></View>
@@ -326,7 +330,7 @@ const Dashboard = () => {
                   height: 230,
                   left: 8,
                   borderRadius: 6,
-                  top: 13,
+                  top: -2,
                 }}
               ></Image>
             </View>
@@ -385,7 +389,7 @@ const Dashboard = () => {
                 flex: 0.5,
                 zIndex: 1,
                 borderRadius: 32,
-                margin: SPACING / 2,
+                margin: SPACING / 2, 
               }}
             ></View>
           </View>
@@ -393,12 +397,13 @@ const Dashboard = () => {
             style={{
               flex: 0.065,
               marginTop: SPACING,
-              marginBottom: SPACING,
+              marginBottom: SPACING+10,
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
             }}
           >
+           
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
@@ -409,6 +414,7 @@ const Dashboard = () => {
             />
           </View>
         </View>
+        
         <Animated.FlatList
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
@@ -418,7 +424,7 @@ const Dashboard = () => {
             { useNativeDriver: true }
           )}
           data={DATA}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item) => item.id}
           contentContainerStyle={{
             paddingTop: SPACING,
           }}
@@ -455,6 +461,7 @@ const Dashboard = () => {
                 onPress={() => {
                   navigation.navigate(item.destination);
                 }}
+                
                 underlayColor="rgba(28,56,107,0.2)"
               >
                 <Animated.View
@@ -476,9 +483,11 @@ const Dashboard = () => {
                     shadowOpacity: 0.5,
                     width: 300,
                   }}
+                 
                 >
-                  <View>
+                  <View >
                     <Image
+                     
                       source={item.image}
                       style={{
                         width: AVATAR_SIZE,
@@ -526,7 +535,7 @@ const Dashboard = () => {
           blurRadius={0}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

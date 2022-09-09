@@ -18,7 +18,7 @@ export async function getList(onReceiveList) {
           // Add item to array
           key: protocols.length + 1, // Add key to item
           Protocol: doc.id, // Add item to array
-          content: doc.data().protocol_1.split("~").join("\n"), // Format item using split and join
+          content: doc.data().protocol_1.split("~"), // Format item using split and join
         });
       });
     });
