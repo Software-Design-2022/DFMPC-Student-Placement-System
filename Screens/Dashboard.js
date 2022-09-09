@@ -184,7 +184,7 @@ const Dashboard = () => {
                 width: 30,
                 height: 30,
                 left: 5,
-                top: 5,
+                top: 3,
                 position: "relative",
                 resizeMode: "cover",
                 borderRadius: 20,
@@ -203,7 +203,7 @@ const Dashboard = () => {
               style={{
                 flex: 1,
                 fontSize: 15,
-                top: 10,
+                top: 8,
                 left: 10,
                 color: "white",
               }}
@@ -332,7 +332,7 @@ const Dashboard = () => {
                   height: 230,
                   left: 8,
                   borderRadius: 6,
-                  top: 13,
+                  top: -2,
                 }}
               ></Image>
             </View>
@@ -400,7 +400,7 @@ const Dashboard = () => {
             style={{
               flex: 0.065,
               marginTop: SPACING,
-              marginBottom: SPACING * 2,
+              marginBottom: SPACING+10,
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,

@@ -91,11 +91,11 @@ export default function PanicButton() {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={{ flex: 1 }}>
         <View
           style={{
-            top: 0,
+            top: -50,
             backgroundColor: "rgba(255,255,255,0.8)",
             height: 100,
             zIndex: 1,
@@ -149,7 +149,7 @@ export default function PanicButton() {
           </View>
         </View>
       
-    </SafeAreaView>
+    </View>
     
   );
 }
@@ -181,9 +181,8 @@ async function registerForPushNotificationsAsync() {
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
     
-  } else {
-    alert("Must use physical device for Push Notifications");
   }
+    
 
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync("default", {

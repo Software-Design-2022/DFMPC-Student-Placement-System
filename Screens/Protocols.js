@@ -47,7 +47,7 @@ const Protocols = () => {
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return ( 
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <ScrollView style={styles.container}>
           {
@@ -91,7 +91,7 @@ const Protocols = () => {
           }
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
