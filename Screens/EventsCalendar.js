@@ -6,7 +6,7 @@ import AppContext from "../AppContext";
 import "../global.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
-import {firebase, db} from "../firebase"
+import { firebase, db } from "../firebase";
 
 //constants
 const buttonHeight = 50;
@@ -27,37 +27,32 @@ const EventCalendar = () => {
   const myContext = useContext(AppContext);
   // Keeps track of selected date
 
-async function eventsData()
-{
-  const events = [];
-  var snapshot = await firebase
-    .firestore()
-    .collection("events")
-    .get()
-    .then((querySnapshot) => {
+  async function eventsData() {
+    const events = [];
+    var snapshot = await firebase
+      .firestore()
+      .collection("events")
+      .get()
+      .then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
           let start = doc.data().start_date,
-          end = doc.data().end_date,
-          name = doc.data().name,
-          id = doc.data().id,
-          programme = doc.data().programme,
-          key = events.length + 1;
-          events.push(JSON.stringify({key, start, end, name, id, programme})); //this is an array of strings
-          
+            end = doc.data().end_date,
+            name = doc.data().name,
+            id = doc.data().id,
+            programme = doc.data().programme,
+            key = events.length + 1;
+          events.push(JSON.stringify({ key, start, end, name, id, programme })); //this is an array of strings
         });
-    });
-   console.log(events);
-   return events;
-}
+      });
+    console.log(events);
+    return events;
+  }
 
+  var EventList = eventsData();
+  console.log(EventList); //@Peace - in the console, you'll see a Promise
+  //If you expand it, sometimes you'll see the events array other times you see undefined because the promise is unfulfiled
 
-var EventList = eventsData();
-console.log(EventList); //@Peace - in the console, you'll see a Promise
-//If you expand it, sometimes you'll see the events array other times you see undefined because the promise is unfulfiled
-  
-
-
-// User's agenda
+  // User's agenda
   // What to do when day is pressed.
   const onDayPress = (day) => {
     console.log("Just ran the redundant function");
@@ -72,7 +67,6 @@ console.log(EventList); //@Peace - in the console, you'll see a Promise
         futureScrollRange={RANGE}
         // renderHeader={renderCustomHeader}
         theme={theme}
-        
         onDayPress={(day) => {
           setSelectedDate(day.dateString);
           dateToPass = day.dateString;
@@ -80,7 +74,6 @@ console.log(EventList); //@Peace - in the console, you'll see a Promise
           navigation.navigate("DayAgenda"); // @Noku Does this js file exist?
         }}
         markingType="period"
-
       />
     </View>
   );
@@ -103,7 +96,6 @@ const generateSchedule = (onReceive) => {
    * notes: 'Bring sunglasses'
    * }
    */
-  
 };
 
 const theme = {
