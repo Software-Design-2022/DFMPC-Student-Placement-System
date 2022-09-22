@@ -1,1 +1,48 @@
-{"ast":null,"code":"import _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport { firebase } from \"../firebase\";\nimport { v4 as uuidv4 } from 'uuid';\nexport function getSchedule(onReceiveList) {\n  var schedules, snapshot;\n  return _regeneratorRuntime.async(function getSchedule$(_context) {\n    while (1) {\n      switch (_context.prev = _context.next) {\n        case 0:\n          schedules = [];\n          _context.next = 3;\n          return _regeneratorRuntime.awrap(firebase.firestore().collection(\"schedules\").where(\"student_id\", \"==\", authUserID).get().then(function (querySnapshot) {\n            querySnapshot.forEach(function (doc) {\n              schedules.push({\n                key: schedules.length + 1,\n                student_id: doc.data().student_id,\n                SpecialtyName: doc.data().SpecialtyName,\n                hospital_ID: doc.data().hospital_id,\n                specialty_duration: doc.data().specialty_duration,\n                start_date: doc.data().start_date,\n                end_date: doc.data().end_date,\n                specialty_id: doc.data().specialty_id\n              });\n            });\n          }));\n\n        case 3:\n          snapshot = _context.sent;\n          console.log(schedules);\n          onReceiveList(schedules);\n\n        case 6:\n        case \"end\":\n          return _context.stop();\n      }\n    }\n  }, null, null, null, Promise);\n}","map":{"version":3,"names":["firebase","v4","uuidv4","getSchedule","onReceiveList","schedules","firestore","collection","where","authUserID","get","then","querySnapshot","forEach","doc","push","key","length","student_id","data","SpecialtyName","hospital_ID","hospital_id","specialty_duration","start_date","end_date","specialty_id","snapshot","console","log"],"sources":["C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/Screens/RetrieveSchedules.js"],"sourcesContent":["\r\nimport {firebase} from \"../firebase\"\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n\r\n\r\n\r\n\r\nexport async function getSchedule(onReceiveList) {\r\n    var schedules = [];\r\n    var snapshot = await firebase\r\n    .firestore()\r\n    .collection(\"schedules\")\r\n    .where(\"student_id\", \"==\", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in\r\n    .get()\r\n    .then((querySnapshot) => {\r\n        querySnapshot.forEach(function (doc) {\r\n        //push the required data to the array\r\n            schedules.push({\r\n                key: schedules.length + 1,\r\n                student_id: doc.data().student_id,\r\n                SpecialtyName: doc.data().SpecialtyName,\r\n                hospital_ID: doc.data().hospital_id,\r\n                specialty_duration: doc.data().specialty_duration,\r\n                start_date: doc.data().start_date,\r\n                end_date: doc.data().end_date,\r\n                specialty_id: doc.data().specialty_id,\r\n            });\r\n    \r\n        });\r\n    });\r\n    console.log(schedules);\r\n   onReceiveList(schedules);\r\n}\r\n"],"mappings":";AACA,SAAQA,QAAR;AACA,SAASC,EAAE,IAAIC,MAAf,QAA6B,MAA7B;AAMA,OAAO,SAAeC,WAAf,CAA2BC,aAA3B;EAAA;EAAA;IAAA;MAAA;QAAA;UACCC,SADD,GACa,EADb;UAAA;UAAA,iCAEkBL,QAAQ,CAC5BM,SADoB,GAEpBC,UAFoB,CAET,WAFS,EAGpBC,KAHoB,CAGd,YAHc,EAGA,IAHA,EAGMC,UAHN,EAIpBC,GAJoB,GAKpBC,IALoB,CAKf,UAACC,aAAD,EAAmB;YACrBA,aAAa,CAACC,OAAd,CAAsB,UAAUC,GAAV,EAAe;cAEjCT,SAAS,CAACU,IAAV,CAAe;gBACXC,GAAG,EAAEX,SAAS,CAACY,MAAV,GAAmB,CADb;gBAEXC,UAAU,EAAEJ,GAAG,CAACK,IAAJ,GAAWD,UAFZ;gBAGXE,aAAa,EAAEN,GAAG,CAACK,IAAJ,GAAWC,aAHf;gBAIXC,WAAW,EAAEP,GAAG,CAACK,IAAJ,GAAWG,WAJb;gBAKXC,kBAAkB,EAAET,GAAG,CAACK,IAAJ,GAAWI,kBALpB;gBAMXC,UAAU,EAAEV,GAAG,CAACK,IAAJ,GAAWK,UANZ;gBAOXC,QAAQ,EAAEX,GAAG,CAACK,IAAJ,GAAWM,QAPV;gBAQXC,YAAY,EAAEZ,GAAG,CAACK,IAAJ,GAAWO;cARd,CAAf;YAWH,CAbD;UAcH,CApBoB,CAFlB;;QAAA;UAECC,QAFD;UAuBHC,OAAO,CAACC,GAAR,CAAYxB,SAAZ;UACDD,aAAa,CAACC,SAAD,CAAb;;QAxBI;QAAA;UAAA;MAAA;IAAA;EAAA;AAAA"},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "import _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport { firebase } from \"../firebase\";\nimport { v4 as uuidv4 } from 'uuid';\nexport function getSchedule(onReceiveList) {\n  var schedules, snapshot;\n  return _regeneratorRuntime.async(function getSchedule$(_context) {\n    while (1) {\n      switch (_context.prev = _context.next) {\n        case 0:\n          schedules = [];\n          _context.next = 3;\n          return _regeneratorRuntime.awrap(firebase.firestore().collection(\"schedules\").where(\"student_id\", \"==\", authUserID).get().then(function (querySnapshot) {\n            querySnapshot.forEach(function (doc) {\n              schedules.push({\n                key: schedules.length + 1,\n                student_id: doc.data().student_id,\n                SpecialtyName: doc.data().SpecialtyName,\n                hospital_ID: doc.data().hospital_id,\n                specialty_duration: doc.data().specialty_duration,\n                start_date: doc.data().start_date,\n                end_date: doc.data().end_date,\n                specialty_id: doc.data().specialty_id\n              });\n            });\n          }));\n\n        case 3:\n          snapshot = _context.sent;\n          console.log(schedules);\n          onReceiveList(schedules);\n\n        case 6:\n        case \"end\":\n          return _context.stop();\n      }\n    }\n  }, null, null, null, Promise);\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "firebase",
+      "v4",
+      "uuidv4",
+      "getSchedule",
+      "onReceiveList",
+      "schedules",
+      "firestore",
+      "collection",
+      "where",
+      "authUserID",
+      "get",
+      "then",
+      "querySnapshot",
+      "forEach",
+      "doc",
+      "push",
+      "key",
+      "length",
+      "student_id",
+      "data",
+      "SpecialtyName",
+      "hospital_ID",
+      "hospital_id",
+      "specialty_duration",
+      "start_date",
+      "end_date",
+      "specialty_id",
+      "snapshot",
+      "console",
+      "log"
+    ],
+    "sources": [
+      "C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/Screens/RetrieveSchedules.js"
+    ],
+    "sourcesContent": [
+      "\r\nimport {firebase} from \"../firebase\"\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n\r\n\r\n\r\n\r\nexport async function getSchedule(onReceiveList) {\r\n    var schedules = [];\r\n    var snapshot = await firebase\r\n    .firestore()\r\n    .collection(\"schedules\")\r\n    .where(\"student_id\", \"==\", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in\r\n    .get()\r\n    .then((querySnapshot) => {\r\n        querySnapshot.forEach(function (doc) {\r\n        //push the required data to the array\r\n            schedules.push({\r\n                key: schedules.length + 1,\r\n                student_id: doc.data().student_id,\r\n                SpecialtyName: doc.data().SpecialtyName,\r\n                hospital_ID: doc.data().hospital_id,\r\n                specialty_duration: doc.data().specialty_duration,\r\n                start_date: doc.data().start_date,\r\n                end_date: doc.data().end_date,\r\n                specialty_id: doc.data().specialty_id,\r\n            });\r\n    \r\n        });\r\n    });\r\n    console.log(schedules);\r\n   onReceiveList(schedules);\r\n}\r\n"
+    ],
+    "mappings": ";AACA,SAAQA,QAAR;AACA,SAASC,EAAE,IAAIC,MAAf,QAA6B,MAA7B;AAMA,OAAO,SAAeC,WAAf,CAA2BC,aAA3B;EAAA;EAAA;IAAA;MAAA;QAAA;UACCC,SADD,GACa,EADb;UAAA;UAAA,iCAEkBL,QAAQ,CAC5BM,SADoB,GAEpBC,UAFoB,CAET,WAFS,EAGpBC,KAHoB,CAGd,YAHc,EAGA,IAHA,EAGMC,UAHN,EAIpBC,GAJoB,GAKpBC,IALoB,CAKf,UAACC,aAAD,EAAmB;YACrBA,aAAa,CAACC,OAAd,CAAsB,UAAUC,GAAV,EAAe;cAEjCT,SAAS,CAACU,IAAV,CAAe;gBACXC,GAAG,EAAEX,SAAS,CAACY,MAAV,GAAmB,CADb;gBAEXC,UAAU,EAAEJ,GAAG,CAACK,IAAJ,GAAWD,UAFZ;gBAGXE,aAAa,EAAEN,GAAG,CAACK,IAAJ,GAAWC,aAHf;gBAIXC,WAAW,EAAEP,GAAG,CAACK,IAAJ,GAAWG,WAJb;gBAKXC,kBAAkB,EAAET,GAAG,CAACK,IAAJ,GAAWI,kBALpB;gBAMXC,UAAU,EAAEV,GAAG,CAACK,IAAJ,GAAWK,UANZ;gBAOXC,QAAQ,EAAEX,GAAG,CAACK,IAAJ,GAAWM,QAPV;gBAQXC,YAAY,EAAEZ,GAAG,CAACK,IAAJ,GAAWO;cARd,CAAf;YAWH,CAbD;UAcH,CApBoB,CAFlB;;QAAA;UAECC,QAFD;UAuBHC,OAAO,CAACC,GAAR,CAAYxB,SAAZ;UACDD,aAAa,CAACC,SAAD,CAAb;;QAxBI;QAAA;UAAA;MAAA;IAAA;EAAA;AAAA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
