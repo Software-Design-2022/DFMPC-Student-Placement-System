@@ -29,6 +29,6 @@ export async function getSchedule(onReceiveList) {
     
         });
     });
-    console.log(schedules);
+    
    onReceiveList(schedules);
 }
