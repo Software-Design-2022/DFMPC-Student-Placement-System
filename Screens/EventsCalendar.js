@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
-import { getEvents } from "../Screens/RetrieveEvents";
 import AppContext from "../AppContext";
 import "../global.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import {firebase, db} from "../firebase"
 
 //constants
 const buttonHeight = 50;
@@ -26,35 +26,38 @@ const EventCalendar = () => {
   const navigation = useNavigation();
   const myContext = useContext(AppContext);
   // Keeps track of selected date
-  const [selectedDate, setSelectedDate] = useState(initialDate);
 
-  const [state, setState] = useState({
-    //@Noku -  this useState will be used to set the current state of our data
-    // sets scheduleList to the data from database (firestore)
-    EventList: [
-      {
-        key: 0,
-        name: "",
-        programme: "",
-        ID: "",
-        start_date: "",
-        end_date: "",
-      },
-    ],
-  });
+async function eventsData()
+{
+  const events = [];
+  var snapshot = await firebase
+    .firestore()
+    .collection("events")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          let start = doc.data().start_date,
+          end = doc.data().end_date,
+          name = doc.data().name,
+          id = doc.data().id,
+          programme = doc.data().programme,
+          key = events.length + 1;
+          events.push(JSON.stringify({key, start, end, name, id, programme})); //this is an array of strings
+          
+        });
+    });
+   console.log(events);
+   return events;
+}
 
-  const onReceive = (EventList) => {
-    // @Noku - when the list is received we set our scheduleList to the current received list (updating)
 
-    setState((prevState) => ({
-      EventList: (prevState.EventList = EventList),
-    }));
-  };
-  // getEvents is a function from RetrieveEvents.js
-  // it gets the list containing Events data from firestore
-  getEvents(onReceive);
+var EventList = eventsData();
+console.log(EventList); //@Peace - in the console, you'll see a Promise
+//If you expand it, sometimes you'll see the events array other times you see undefined because the promise is unfulfiled
+  
 
-  // User's agenda
+
+// User's agenda
   // What to do when day is pressed.
   const onDayPress = (day) => {
     console.log("Just ran the redundant function");
@@ -69,6 +72,7 @@ const EventCalendar = () => {
         futureScrollRange={RANGE}
         // renderHeader={renderCustomHeader}
         theme={theme}
+        
         onDayPress={(day) => {
           setSelectedDate(day.dateString);
           dateToPass = day.dateString;
@@ -76,9 +80,7 @@ const EventCalendar = () => {
           navigation.navigate("DayAgenda"); // @Noku Does this js file exist?
         }}
         markingType="period"
-        // * The generateSchedule method does way too much at once, really caused issues with understanding
-        // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
-        markedDates={generateSchedule(onReceive)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
+
       />
     </View>
   );
@@ -101,7 +103,7 @@ const generateSchedule = (onReceive) => {
    * notes: 'Bring sunglasses'
    * }
    */
-  // @Noku - this is the function needs work
+  
 };
 
 const theme = {

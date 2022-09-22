@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-export async function getEvents(onReceiveList) {
+export async function getEvents() {
     var events = [];
     var snapshot = await firebase
     .firestore()
@@ -25,7 +25,6 @@ export async function getEvents(onReceiveList) {
     
         });
     });
-    console.log(events);
    onReceiveList(events);
 }
 
