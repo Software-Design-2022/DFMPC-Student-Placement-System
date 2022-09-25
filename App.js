@@ -33,8 +33,15 @@ function App() {
         />
         <Stack.Screen name="Schedule" component={Schedule} />
         <Stack.Screen name="CalendarView" component={CalendarView} />
-        <Stack.Screen name="SettingsView" component={SettingsView} options={{ headerShown: false }}/>
-        <Stack.Screen name="EmergencyProtocols" component={EmergencyProtocols} />
+        <Stack.Screen
+          name="SettingsView"
+          component={SettingsView}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EmergencyProtocols"
+          component={EmergencyProtocols}
+        />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="EmergencyPage" component={EmergencyPage} />
         <Stack.Screen name="EventsCalendar" component={EventsCalendar} />
