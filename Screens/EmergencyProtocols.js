@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { getList } from "./ListApi";
 
-const Protocols = () => {
+const EmergencyProtocols = () => {
   // this useState will be used to set the current state of our data
   // sets protocolList to the dat from database (firestore)
   const [state, setState] = useState({
@@ -46,7 +46,7 @@ const Protocols = () => {
 
   LogBox.ignoreLogs(["Setting a timer"]);
 
-  return ( 
+  return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <ScrollView style={styles.container}>
@@ -94,7 +94,6 @@ const Protocols = () => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -190,4 +189,4 @@ const styles = StyleSheet.create({
     maxHeight: 9999,
   },
 });
-export default Protocols;
+export default EmergencyProtocols;

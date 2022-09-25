@@ -4,31 +4,32 @@ import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
 
-const days = "";
-async function getSchedule(onReceiveList) {
-  const schedules = [];
+async function eventsData(onReceiveList) {
+  const events = [];
   var snapshot = await firebase
     .firestore()
-    .collection("schedules")
-    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
+    .collection("events")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach(function (doc) {
-        //push the required data to the array
-        schedules.push({
-          key: schedules.length + 1,
-          student_id: doc.data().student_id,
-          SpecialtyName: doc.data().SpecialtyName,
-          hospital_ID: doc.data().hospital_id,
-          specialty_duration: doc.data().specialty_duration,
-          start: doc.data().start_date,
-          end: doc.data().end_date,
-          specialty_id: doc.data().specialty_id,
+        let start = doc.data().start_date,
+          end = doc.data().end_date,
+          name = doc.data().name,
+          id = doc.data().id,
+          programme = doc.data().programme,
+          key = events.length + 1;
+        // events.push(JSON.stringify({key, start, end, name, id, programme})); //this is an array of strings
+        events.push({
+          key: key,
+          start: start,
+          end: end,
+          id: id,
+          programme: programme,
         });
       });
     });
 
-  onReceiveList(schedules);
+  onReceiveList(events);
 }
 
 LogBox.ignoreLogs(["Setting a timer"]);
@@ -57,7 +58,7 @@ export default class AgendaCalendar extends React.Component {
           textSectionTitleColor: "rgba(28,56,107,0.9)",
           selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
           dayTextColor: "rgba(28,56,107,0.9)", // calendar day
-          dotColor: "green", // dots
+          dotColor: "white", // dots
         }}
         items={this.state.items}
         selected={"2022-05-01"}
@@ -75,17 +76,16 @@ export default class AgendaCalendar extends React.Component {
         events: data,
       });
     };
-    getSchedule(onReceive);
+    eventsData(onReceive);
     this.state.events.map((key, index) => {
       const day = key.start;
 
       if (!this.state.items[day]) {
         this.state.items[day] = [];
         this.state.items[day].push({
-          specialty: "Specialty: " + key.SpecialtyName,
+          programme: "programme: " + key.programme,
           start: "start day: " + key.start,
           end: "end day: " + key.end,
-          hospital: "hospital: " + "Baragwanath Hospital",
           height: Math.max(50, Math.floor(Math.random() * 150)),
         });
       }
@@ -103,10 +103,9 @@ export default class AgendaCalendar extends React.Component {
   renderItem(item) {
     return (
       <View style={[styles.item, { height: item.height }]}>
-        <Text>{item.specialty}</Text>
+        <Text>{item.programme}</Text>
         <Text>{item.start}</Text>
         <Text>{item.end}</Text>
-        <Text>{item.hospital}</Text>
       </View>
     );
   }
@@ -139,5 +138,3 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
 });
-
-export { days };

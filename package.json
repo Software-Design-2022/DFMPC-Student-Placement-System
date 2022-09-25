@@ -34,9 +34,11 @@
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1283.0",
     "react-native-dialog-input": "^1.0.8",
+    "react-native-paper": "^4.12.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "react-native-webview": "11.15.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",

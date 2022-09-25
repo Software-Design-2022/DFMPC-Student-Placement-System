@@ -1,11 +1,11 @@
-
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, Component } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   StatusBar,
   FlatList,
   Image,
   Animated,
+  Pressable,
   Text,
   View,
   Dimensions,
@@ -16,11 +16,14 @@ import {
   SafeAreaViewBase,
   SafeAreaView,
   Button,
+  ScrollView,
   Linking,
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
 import "../global";
+import PropTypes from "prop-types";
+import { WebView } from "react-native-webview";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -30,7 +33,7 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
-
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 const DATA = [
   {
@@ -42,10 +45,10 @@ const DATA = [
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
-    title: "PanicButton",
-    destination: "PanicButton",
+    title: "Emergency Protocols",
+    destination: "EmergencyProtocols",
     image: require("./images/schedule.png"),
-    text: "Emergency",
+    text: "Protocols",
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
@@ -77,10 +80,10 @@ const DATA = [
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",
-    title: "PanicButton",
-    destination: "PanicButton",
+    title: "Emergency Protocols",
+    destination: "EmergencyProtocols",
     image: require("./images/schedule.png"),
-    text: "Emergency",
+    text: "Protocols",
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d76",
@@ -151,7 +154,99 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
+class TwitterFeed extends Component {
+  static propTypes = {
+    witsUrl: PropTypes.string,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      embedHtml: null,
+    };
+  }
+
+  componentDidMount() {
+    this.setupUrl();
+  }
+
+  setupUrl() {
+    let witsUrl =
+      "https://publish.twitter.com/oembed?url=https://twitter.com/WitsUniversity/status/1572222171174289408?cxt=HHwWgICyzYLv09ErAAAA" +
+      encodeURIComponent(this.props.witsUrl);
+    fetch(witsUrl, {
+      method: "GET",
+      headers: { Accepts: "application/json" },
+    }).then((resp) => {
+      resp.json().then((json) => {
+        let html = json.html;
+        this.setState({
+          embedHtml: html,
+        });
+      });
+    });
+  }
+
+  renderEmbed() {
+    if (this.state.embedHtml) {
+      let html = `<!DOCTYPE html>\
+      <html>\
+        <head>\
+          <meta charset="utf-8">\
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+          </head>\
+          <body>\
+            ${this.state.embedHtml}\
+          </body>\
+      </html>`;
+      return (
+        <View style={styles.webviewStyle}>
+          <WebView
+            style={{
+              borderBottomColor: "rgba(28,56,107,0.9)",
+              borderRadius: 10,
+            }}
+            source={{ html: html }}
+          />
+        </View>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <ScrollView
+        style={{ borderBottomColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+      >
+        {this.renderEmbed()}
+      </ScrollView>
+    );
+  }
+}
 const Dashboard = () => {
+  const anim = useRef(new Animated.Value(1));
+
+  useEffect(() => {
+    // makes the sequence loop
+    Animated.loop(
+      // runs given animations in a sequence
+      Animated.sequence([
+        // increase size
+        Animated.timing(anim.current, {
+          toValue: 1.08,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        // decrease size
+        Animated.timing(anim.current, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
+
   const scrollY = React.useRef(new Animated.Value(0)).current;
   //use navigation
   const navigation = useNavigation();
@@ -165,7 +260,6 @@ const Dashboard = () => {
         onPress={() => {
           Linking.openURL(item.link);
         }}
-        
       >
         <View
           style={{
@@ -194,7 +288,6 @@ const Dashboard = () => {
                 shadowRadius: 20,
               }}
               source={item.image}
-            
             />
           </View>
           <View style={{ flex: 1 }}>
@@ -238,6 +331,7 @@ const Dashboard = () => {
             blurRadius={0}
           />
         </View>
+
         <TouchableHighlight
           underlayColor="rgba(0,0,0,0.2)"
           style={{
@@ -248,7 +342,6 @@ const Dashboard = () => {
             top: 10,
             position: "absolute",
             borderRadius: ICON_SIZE,
-            backgroundColor: "grey",
           }}
           onPress={() => {
             navigation.navigate("SettingsView");
@@ -270,6 +363,40 @@ const Dashboard = () => {
             source={{ uri: authUserProfilePic }}
           />
         </TouchableHighlight>
+
+        <AnimatedTouchable
+          underlayColor="rgba(0,0,0,0.2)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            left: 50,
+            top: 10,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+          }}
+          onPress={() => {
+            navigation.navigate("EmergencyPage");
+          }}
+        >
+          <Animated.View style={{ transform: [{ scale: anim.current }] }}>
+            <Image
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                position: "absolute",
+                resizeMode: "cover",
+                borderRadius: ICON_SIZE,
+                borderWidth: 2,
+                borderColor: "rgba(0,0,0,0.1)",
+                backgroundColor: "rgba(0,0,0,0.1)",
+                shadowOpacity: 1,
+                shadowRadius: 20,
+              }}
+              source={require("./images/emergency.jpg")}
+            />
+          </Animated.View>
+        </AnimatedTouchable>
       </View>
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
@@ -283,7 +410,7 @@ const Dashboard = () => {
         >
           <View
             style={{
-              flex: 0.5,
+              flex: 1,
               zIndex: 1,
               backgroundColor: "rgba(0,0,0,0.05)",
               borderRadius: 16,
@@ -294,7 +421,7 @@ const Dashboard = () => {
           >
             <View
               style={{
-                flex: 0.3,
+                height: 40,
                 backgroundColor: "rgba(0,0,0,0.2)",
                 borderTopRightRadius: 16,
                 borderTopLeftRadius: 16,
@@ -316,23 +443,18 @@ const Dashboard = () => {
             </View>
             <View
               style={{
-                flex: 1,
                 zIndex: 1,
                 borderRadius: 32,
+                top: 10,
                 margin: SPACING / 2,
+                borderRadius: 10,
+                borderBottomColor: "rgba(28,56,107,0.9)",
+                height: 520,
               }}
             >
-              <Image
-                source={require("./images/news.png")}
-                resizeMode="stretch"
-                style={{
-                  width: 250,
-                  height: 230,
-                  left: 8,
-                  borderRadius: 6,
-                  top: -2,
-                }}
-              ></Image>
+              <TwitterFeed
+                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+              ></TwitterFeed>
             </View>
             <View
               style={{
@@ -343,7 +465,7 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          <View
+          {/* <View
             style={{
               flex: 0.5,
               zIndex: 1,
@@ -389,21 +511,20 @@ const Dashboard = () => {
                 flex: 0.5,
                 zIndex: 1,
                 borderRadius: 32,
-                margin: SPACING / 2, 
+                margin: SPACING / 2,
               }}
             ></View>
-          </View>
+          </View> */}
           <View
             style={{
               flex: 0.065,
               marginTop: SPACING,
-              marginBottom: SPACING+10,
+              marginBottom: SPACING + 10,
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
             }}
           >
-           
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
@@ -414,7 +535,7 @@ const Dashboard = () => {
             />
           </View>
         </View>
-        
+
         <Animated.FlatList
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
@@ -461,7 +582,6 @@ const Dashboard = () => {
                 onPress={() => {
                   navigation.navigate(item.destination);
                 }}
-                
                 underlayColor="rgba(28,56,107,0.2)"
               >
                 <Animated.View
@@ -483,11 +603,9 @@ const Dashboard = () => {
                     shadowOpacity: 0.5,
                     width: 300,
                   }}
-                 
                 >
-                  <View >
+                  <View>
                     <Image
-                     
                       source={item.image}
                       style={{
                         width: AVATAR_SIZE,
@@ -539,4 +657,22 @@ const Dashboard = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#859a9b",
+    borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: "#303838",
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.35,
+  },
+  webviewStyle: {
+    borderRadius: 10,
+    //  borderWidth: 2,
+    backgroundColor: "rgba(28,56,107,0.9)",
+    height: 700,
+  },
+});
 export default Dashboard;
