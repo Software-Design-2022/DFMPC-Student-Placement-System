@@ -50,19 +50,19 @@ export default class AgendaCalendar extends React.Component {
           calendarBackground: "white", //agenda background
           agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
           backgroundColor: "rgba(28,56,107,0.9)" , // background color below agenda
-          agendaDayTextColor: "rgba(28,56,107,0.9)", // day name
-          agendaDayNumColor: "rgba(28,56,107,0.9)", // day number
+          agendaDayTextColor: "white", // day name
+          agendaDayNumColor: "white", // day number
           agendaTodayColor: "rgba(28,56,107,0.9)", // today in list
           monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
           todayBackgroundColor: "rgba(28,56,107,0.9)",
           textSectionTitleColor: "rgba(28,56,107,0.9)",
           selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
           dayTextColor: "rgba(28,56,107,0.9)", // calendar day
-          dotColor: "white", // dots
+          dotColor: "black", // dots
         
         }}
         items={this.state.items}
-        selected={"2022-05-01"}
+        selected={new Date()}
         loadItemsForMonth={this.loadFromList.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}

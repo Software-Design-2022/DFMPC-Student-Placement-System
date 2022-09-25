@@ -10,10 +10,7 @@ import SettingsView from "./Screens/Settings";
 import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
-import EventCalendar from "./Screens/EventsCalendar";
-import AgendaCalendar from "./Screens/AgendaCalendar";
-
-
+import EventsCalendar from "./Screens/EventsCalendar";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +23,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={AgendaCalendar}
+            component={Login}
           />
         }
         <Stack.Screen
@@ -38,10 +35,9 @@ function App() {
         <Stack.Screen name="CalendarView" component={CalendarView} />
         <Stack.Screen name="SettingsView" component={SettingsView} options={{ headerShown: false }}/>
         <Stack.Screen name="EmergencyProtocols" component={EmergencyProtocols} />
-        <Stack.Screen name="EventsCalendar" component={EventCalendar} />
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="EmergencyPage" component={EmergencyPage} />
-      
+        <Stack.Screen name="EventsCalendar" component={EventsCalendar} />
       </Stack.Navigator>
     </NavigationContainer>
   );
