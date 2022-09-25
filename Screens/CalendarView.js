@@ -8,28 +8,27 @@ const days = "";
 async function getSchedule(onReceiveList) {
   const schedules = [];
   var snapshot = await firebase
-  .firestore()
-  .collection("schedules")
-  .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
-  .get()
-  .then((querySnapshot) => {
+    .firestore()
+    .collection("schedules")
+    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
+    .get()
+    .then((querySnapshot) => {
       querySnapshot.forEach(function (doc) {
-      //push the required data to the array
-          schedules.push({
-              key: schedules.length + 1,
-              student_id: doc.data().student_id,
-              SpecialtyName: doc.data().SpecialtyName,
-              hospital_ID: doc.data().hospital_id,
-              specialty_duration: doc.data().specialty_duration,
-              start: doc.data().start_date,
-              end: doc.data().end_date,
-              specialty_id: doc.data().specialty_id,
-          });
-  
+        //push the required data to the array
+        schedules.push({
+          key: schedules.length + 1,
+          student_id: doc.data().student_id,
+          SpecialtyName: doc.data().SpecialtyName,
+          hospital_ID: doc.data().hospital_id,
+          specialty_duration: doc.data().specialty_duration,
+          start: doc.data().start_date,
+          end: doc.data().end_date,
+          specialty_id: doc.data().specialty_id,
+        });
       });
-  });
-  
- onReceiveList(schedules);
+    });
+
+  onReceiveList(schedules);
 }
 
 LogBox.ignoreLogs(["Setting a timer"]);
@@ -49,7 +48,7 @@ export default class AgendaCalendar extends React.Component {
         theme={{
           calendarBackground: "white", //agenda background
           agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
-          backgroundColor: "rgba(28,56,107,0.9)" , // background color below agenda
+          backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
           agendaDayTextColor: "rgba(28,56,107,0.9)", // day name
           agendaDayNumColor: "rgba(28,56,107,0.9)", // day number
           agendaTodayColor: "rgba(28,56,107,0.9)", // today in list
@@ -59,7 +58,6 @@ export default class AgendaCalendar extends React.Component {
           selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
           dayTextColor: "rgba(28,56,107,0.9)", // calendar day
           dotColor: "white", // dots
-        
         }}
         items={this.state.items}
         selected={"2022-05-01"}
@@ -142,5 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export {days};
+export { days };
