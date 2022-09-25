@@ -11,7 +11,7 @@ import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
 import EventCalendar from "./Screens/EventsCalendar";
-
+import AgendaCalendar from "./Screens/AgendaCalendar";
 
 
 
@@ -26,7 +26,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={AgendaCalendar}
           />
         }
         <Stack.Screen
