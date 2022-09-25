@@ -46,7 +46,6 @@ function App() {
         <Stack.Screen name="DayAgenda" component={DayAgenda} />
         <Stack.Screen name="EmergencyPage" component={EmergencyPage} />
         <Stack.Screen name="EventsCalendar" component={EventsCalendar} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

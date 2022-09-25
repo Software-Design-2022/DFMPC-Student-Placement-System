@@ -62,7 +62,6 @@ export default class AgendaCalendar extends React.Component {
           dayTextColor: "rgba(28,56,107,0.9)", // calendar day
 
           dotColor: "black", // dots
-
         }}
         items={this.state.items}
         selected={new Date()}
