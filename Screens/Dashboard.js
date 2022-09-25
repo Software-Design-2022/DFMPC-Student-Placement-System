@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, Component } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   StatusBar,
   FlatList,
   Image,
   Animated,
+  Pressable,
   Text,
   View,
   Dimensions,
@@ -14,10 +15,15 @@ import {
   Easing,
   SafeAreaViewBase,
   SafeAreaView,
+  Button,
+  ScrollView,
+  Linking,
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
 import "../global";
+import PropTypes from "prop-types";
+import { WebView } from "react-native-webview";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -25,35 +31,122 @@ const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
-const image = { uri: "https://reactjs.org/logo-og.png" };
-const witsLogo = {
-  uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
-};
-
+const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 const DATA = [
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "58694a0f-3da1-471f-bd96-145571e29d73",
     title: "Calendar",
     destination: "CalendarView",
     image: require("./images/calendar.png"),
+    text: "Calendar",
   },
-
   {
-    id: "08694a0f-3da1-471f-bd96-145571e29d72",
+    id: "28694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Emergency Protocols",
+    destination: "EmergencyProtocols",
+    image: require("./images/schedule.png"),
+    text: "Protocols",
+  },
+  {
+    id: "18694a0f-3da1-471f-bd96-145571e29d72",
+    title: "EventsCalendar",
+    destination: "EventsCalendar",
+    image: require("./images/calendar.png"),
+    text: "Events Calendar",
+  },
+  {
+    id: "08694a0f-3da1-471f-bd96-145571e29d79",
     title: "Settings",
     destination: "SettingsView",
     image: require("./images/settings.png"),
+    text: "Settings",
   },
-
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
     image: require("./images/logout.png"),
+    text: "Logout",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d71",
+    title: "Calendar",
+    destination: "CalendarView",
+    image: require("./images/calendar.png"),
+    text: "Calendar",
+  },
+  {
+    id: "28694a0f-3da1-471f-bd96-145571e29d70",
+    title: "Emergency Protocols",
+    destination: "EmergencyProtocols",
+    image: require("./images/schedule.png"),
+    text: "Protocols",
+  },
+  {
+    id: "18694a0f-3da1-471f-bd96-145571e29d76",
+    title: "Logbook",
+    destination: "BackgroundTest",
+    image: require("./images/logbook.png"),
+    text: "Logbook",
+  },
+  {
+    id: "08694a0f-3da1-471f-bd96-145571e29d75",
+    title: "Settings",
+    destination: "SettingsView",
+    image: require("./images/settings.png"),
+    text: "Settings",
+  },
+
+  {
+    id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f66",
+    title: "Logout",
+    destination: "Login",
+    image: require("./images/logout.png"),
+    text: "Logout",
   },
 ];
 
+const DATA2 = [
+  {
+    id: "1",
+    link: "https://ulwazi.wits.ac.za/",
+    text: "ULWAZI",
+    image: require("./images/ulwazi.png"),
+  },
+  {
+    id: "5",
+    link: "https://mail.google.com/",
+    text: "GMAIL",
+    image: require("./images/gmaillogo.png"),
+  },
+  {
+    id: "2",
+    link: "https://self-service.wits.ac.za/",
+    text: "SELF SERVICE",
+    image: require("./images/witsLogo.png"),
+  },
+  {
+    id: "3",
+    link: "https://courses.ms.wits.ac.za/moodle/",
+    text: "MOODLE",
+    image: require("./images/moodleLogo.png"),
+  },
+  {
+    id: "4",
+    link: "https://www.youtube.com/",
+    text: "YOUTUBE",
+    image: require("./images/youtubeLogo.png"),
+  },
+  {
+    id: "6",
+    link: "https://www.notion.so/",
+    text: "NOTION",
+    image: require("./images/notionLogo.png"),
+  },
+];
 // creates it so each item has a touchable button with correct title
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -61,232 +154,525 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
-const Dashboard = () => {
-  //Dashboard screen
+class TwitterFeed extends Component {
+  static propTypes = {
+    witsUrl: PropTypes.string,
+  };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      embedHtml: null,
+    };
+  }
+
+  componentDidMount() {
+    this.setupUrl();
+  }
+
+  setupUrl() {
+    let witsUrl =
+      "https://publish.twitter.com/oembed?url=https://twitter.com/WitsUniversity/status/1572222171174289408?cxt=HHwWgICyzYLv09ErAAAA" +
+      encodeURIComponent(this.props.witsUrl);
+    fetch(witsUrl, {
+      method: "GET",
+      headers: { Accepts: "application/json" },
+    }).then((resp) => {
+      resp.json().then((json) => {
+        let html = json.html;
+        this.setState({
+          embedHtml: html,
+        });
+      });
+    });
+  }
+
+  renderEmbed() {
+    if (this.state.embedHtml) {
+      let html = `<!DOCTYPE html>\
+      <html>\
+        <head>\
+          <meta charset="utf-8">\
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+          </head>\
+          <body>\
+            ${this.state.embedHtml}\
+          </body>\
+      </html>`;
+      return (
+        <View style={styles.webviewStyle}>
+          <WebView
+            style={{
+              borderBottomColor: "rgba(28,56,107,0.9)",
+              borderRadius: 10,
+            }}
+            source={{ html: html }}
+          />
+        </View>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <ScrollView
+        style={{ borderBottomColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+      >
+        {this.renderEmbed()}
+      </ScrollView>
+    );
+  }
+}
+const Dashboard = () => {
+  const anim = useRef(new Animated.Value(1));
+
+  useEffect(() => {
+    // makes the sequence loop
+    Animated.loop(
+      // runs given animations in a sequence
+      Animated.sequence([
+        // increase size
+        Animated.timing(anim.current, {
+          toValue: 1.08,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        // decrease size
+        Animated.timing(anim.current, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
+
+  const scrollY = React.useRef(new Animated.Value(0)).current;
   //use navigation
   const navigation = useNavigation();
-
   //change colour of tapped button
   const [selectedId, setSelectedId] = useState(null);
   const [name, SetName] = useState("");
-
   // first render function that renders the vertical flatlist
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#7fb4e1" : "#bcbcbc";
-    const color = item.id === selectedId ? "black" : "black";
     return (
-      <View
-        style={{
-          flexDirection: "row",
-          padding: SPACING,
-          backgroundColor: " rgba(255,255,255,0.1)",
-          flex: 1,
-          borderRadius: 8,
-          marginBottom: SPACING,
-          shadowColor: "rgba(0,0,0,1)",
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          paddingTop: 10,
-          shadowOpacity: 1,
-          shadowRadius: 20,
-        }}
-      >
-        <View>
-          <Image
-            //create an image with the appropriate locally stored icon
-            source={item.image}
-            style={{
-              width: AVATAR_SIZE,
-              height: AVATAR_SIZE,
-              borderRadius: AVATAR_SIZE,
-              marginRight: SPACING / 2,
-            }}
-          ></Image>
-        </View>
-        <View style={{ width: "75%", flex: 1 }}>
-          <LinearGradient
-            //add a button to each item to allow navigation
-            colors={[
-              "rgba(30,55,108,1)",
-              " rgba(30,55,108,0.8)",
-              "rgba(30,55,108,1)",
-            ]}
-            style={styles.linearGradient}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(item.destination);
-              }}
-            >
-              <Text style={styles.buttonText}>{item.title}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-      </View>
-    );
-  };
-
-  return (
-    // main render function that dictates styling
-    <SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: " rgba(30,55,108,1)",
-          borderRadius: 15,
+      <TouchableOpacity
+        onPress={() => {
+          Linking.openURL(item.link);
         }}
       >
         <View
           style={{
-            height: ICON_SIZE + 20,
-            backgroundColor: "  rgba(30,55,108,1)",
-            borderRadius: 10,
+            backgroundColor: "rgba(0,0,0,0.2)",
+            flex: 1,
+            flexDirection: "row",
+            borderRadius: 8,
+            paddingRight: SPACING,
+            marginLeft: SPACING / 2,
           }}
         >
-          <View>
+          <View style={{ flex: 1 }}>
             <Image
               style={{
-                width: 240,
-                height: 120,
-                position: "absolute",
-                left: SPACING,
-                top: -10,
-                resizeMode: "stretch",
-                marginRight: SPACING / 2,
+                width: 30,
+                height: 30,
+                left: 5,
+                top: 3,
+                position: "relative",
+                resizeMode: "cover",
+                borderRadius: 20,
+                borderWidth: 0,
+                borderColor: "rgba(0,0,0,0.1)",
+                backgroundColor: "rgba(255,255,255,0.5)",
+                shadowOpacity: 1,
+                shadowRadius: 20,
               }}
-              source={witsLogo}
+              source={item.image}
             />
-
-            <TouchableHighlight
-              onPress={() => {
-                navigation.navigate("SettingsView");
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text
+              style={{
+                flex: 1,
+                fontSize: 15,
+                top: 8,
+                left: 10,
+                color: "white",
               }}
             >
-              <Image
-                style={{
-                  width: ICON_SIZE,
-                  height: ICON_SIZE,
-                  position: "absolute",
-                  resizeMode: "cover",
-                  right: 0,
-                  top: 10,
-                  borderRadius: ICON_SIZE,
-                  marginRight: SPACING / 2,
-                  borderWidth: 0,
-                  borderColor: "rgba(0,0,0,1)",
-                  backgroundColor: "rgba(255,255,255,1)",
-                  shadowOffset: {
-                    height: 10,
-                    shadowColor: "black",
-                  },
-                  shadowOpacity: 1,
-                  shadowRadius: 20,
-                }}
-                source={{ uri: authUserProfilePic }}
-              />
-            </TouchableHighlight>
+              {item.text}
+            </Text>
           </View>
         </View>
-      
-        <View style={{ flex: 6.5, backgroundColor: " rgba(18,33,65,0.8)" }}>
-          <FlatList
-            contentContainerStyle={{
-              padding: SPACING / 8,
-              paddingTop: SPACING,
-            }}
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            extraData={selectedId}
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View
+        style={{ backgroundColor: "rgba(0,0,0,0.5)", height: 35, zIndex: 1 }}
+      ></View>
+      <View
+        style={{
+          backgroundColor: "rgba(255,255,255,0.8)",
+          height: 100,
+          zIndex: 1,
+          borderEndWidth: 0,
+          borderEndColor: "rgba(255,255,255,1)",
+          borderBottomStartRadius: 100,
+        }}
+      >
+        <View>
+          <Image
+            style={{ height: 80, position: "absolute", top: 5, left: -160 }}
+            resizeMode="contain"
+            source={require("./images/wits.png")}
+            blurRadius={0}
           />
         </View>
-      </View>
-      {
-        <View style={{ backgroundColor: "rgba(18,33,65,1)" }}>
-          <TouchableHighlight
-            underlayColor="rgba(0,0,0,0)"
-            onPress={() => {
-              navigation.navigate("PanicButton");
+
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0.2)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            right: 15,
+            top: 10,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+          }}
+          onPress={() => {
+            navigation.navigate("SettingsView");
+          }}
+        >
+          <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              borderWidth: 2,
+              borderColor: "rgba(0,0,0,0.1)",
+              backgroundColor: "rgba(0,0,0,0.1)",
+              shadowOpacity: 1,
+              shadowRadius: 20,
             }}
-          >
+            source={{ uri: authUserProfilePic }}
+          />
+        </TouchableHighlight>
+
+        <AnimatedTouchable
+          underlayColor="rgba(0,0,0,0.2)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            left: 50,
+            top: 10,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+          }}
+          onPress={() => {
+            navigation.navigate("EmergencyPage");
+          }}
+        >
+          <Animated.View style={{ transform: [{ scale: anim.current }] }}>
             <Image
               style={{
                 width: ICON_SIZE,
                 height: ICON_SIZE,
-                marginLeft: width - ICON_SIZE,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(18,33,65,1)",
+                position: "absolute",
+                resizeMode: "cover",
                 borderRadius: ICON_SIZE,
-                marginRight: SPACING / 2,
+                borderWidth: 2,
+                borderColor: "rgba(0,0,0,0.1)",
+                backgroundColor: "rgba(0,0,0,0.1)",
+                shadowOpacity: 1,
+                shadowRadius: 20,
               }}
-              source={require("./images/emergency.gif")}
+              source={require("./images/emergency.jpg")}
             />
-          </TouchableHighlight>
+          </Animated.View>
+        </AnimatedTouchable>
+      </View>
+      <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
+        <View
+          style={{
+            zIndex: 1,
+            flex: 2.5,
+            flexDirection: "column",
+            backgroundColor: "rgba(0,0,0,0)",
+            transform: [{ translateY: 0 }, { translateX: 0 }],
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              zIndex: 1,
+              backgroundColor: "rgba(0,0,0,0.05)",
+              borderRadius: 16,
+              marginTop: SPACING,
+              marginLeft: SPACING / 2,
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={{
+                height: 40,
+                backgroundColor: "rgba(0,0,0,0.2)",
+                borderTopRightRadius: 16,
+                borderTopLeftRadius: 16,
+                borderWidth: 0,
+                borderBottomColor: "rgba(28,56,107,0.9)",
+                borderColor: "rgba(28,56,107,0.9)",
+              }}
+            >
+              <Text
+                style={{
+                  color: "rgba(255,255,255,1)",
+                  fontSize: 25,
+                  fontWeight: "bold",
+                  left: 80,
+                }}
+              >
+                News Feed
+              </Text>
+            </View>
+            <View
+              style={{
+                zIndex: 1,
+                borderRadius: 32,
+                top: 10,
+                margin: SPACING / 2,
+                borderRadius: 10,
+                borderBottomColor: "rgba(28,56,107,0.9)",
+                height: 520,
+              }}
+            >
+              <TwitterFeed
+                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+              ></TwitterFeed>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                zIndex: 1,
+                borderRadius: 32,
+                margin: SPACING / 2,
+              }}
+            ></View>
+          </View>
+          {/* <View
+            style={{
+              flex: 0.5,
+              zIndex: 1,
+              backgroundColor: "rgba(0,0,0,0.05)",
+              borderRadius: 16,
+              marginTop: SPACING,
+              marginLeft: SPACING / 2,
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={{
+                flex: 0.3,
+                backgroundColor: "rgba(0,0,0,0.2)",
+                borderTopRightRadius: 16,
+                borderTopLeftRadius: 16,
+                borderWidth: 0,
+                borderBottomColor: "rgba(28,56,107,0.9)",
+                borderColor: "rgba(28,56,107,0.9)",
+              }}
+            >
+              <Text
+                style={{
+                  color: "rgba(255,255,255,1)",
+                  fontSize: 25,
+                  fontWeight: "bold",
+                  left: 70,
+                }}
+              >
+                Notifications
+              </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                zIndex: 1,
+                borderRadius: 32,
+                margin: SPACING / 2,
+              }}
+            ></View>
+            <View
+              style={{
+                flex: 0.5,
+                zIndex: 1,
+                borderRadius: 32,
+                margin: SPACING / 2,
+              }}
+            ></View>
+          </View> */}
+          <View
+            style={{
+              flex: 0.065,
+              marginTop: SPACING,
+              marginBottom: SPACING + 10,
+              backgroundColor: "rgba(0,0,0,0.0)",
+              borderTopRightRadius: 20,
+              borderBottomRightRadius: 20,
+            }}
+          >
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              contentContainerStyle={{}}
+              data={DATA2}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+            />
+          </View>
         </View>
-      }
-    </SafeAreaView>
+
+        <Animated.FlatList
+          snapToInterval={ITEM_SIZE - SPACING * 1.5}
+          decelerationRate={0}
+          style={{ flex: 1 }}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: true }
+          )}
+          data={DATA}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{
+            paddingTop: SPACING,
+          }}
+          renderItem={({ item, index }) => {
+            const inputRange = [
+              -1,
+              0,
+              (ITEM_SIZE - SPACING * 1.5) * index,
+              (ITEM_SIZE - SPACING * 1.5) * (index + 1),
+            ];
+            const opacityInputRange = [
+              -1,
+              0,
+              (ITEM_SIZE - SPACING * 1.5) * index,
+              (ITEM_SIZE - SPACING * 1.5) * (index + 1),
+            ];
+            const scale = scrollY.interpolate({
+              inputRange,
+              outputRange: [1, 1, 1, 0],
+            });
+            const opacity = scrollY.interpolate({
+              inputRange: opacityInputRange,
+              outputRange: [1, 1, 1, 0],
+            });
+            return (
+              <TouchableHighlight
+                style={{
+                  borderRadius: 100,
+                  marginBottom: SPACING / 2,
+                  width: 300,
+                  borderBottomEndRadius: 0,
+                  left: 20,
+                }}
+                onPress={() => {
+                  navigation.navigate(item.destination);
+                }}
+                underlayColor="rgba(28,56,107,0.2)"
+              >
+                <Animated.View
+                  style={{
+                    flexDirection: "row",
+                    padding: SPACING,
+                    backgroundColor: "rgba(0,0,0,0.12)",
+                    borderRadius: 100,
+                    shadowColor: "black",
+                    borderBottomEndRadius: 0,
+                    borderTopEndRadius: 0,
+                    shadowOffset: {
+                      width: 0,
+                      height: 10,
+                    },
+                    opacity,
+                    transform: [{ scaleX: scale }, { scaleY: scale }],
+                    shadowRadius: 20,
+                    shadowOpacity: 0.5,
+                    width: 300,
+                  }}
+                >
+                  <View>
+                    <Image
+                      source={item.image}
+                      style={{
+                        width: AVATAR_SIZE,
+                        height: AVATAR_SIZE,
+                        borderRadius: AVATAR_SIZE,
+                        marginRight: SPACING / 2,
+                        left: 0,
+                        borderWidth: 0,
+                        borderColor: "rgba(0,0,0,0.2)",
+                        backgroundColor: "rgba(0,0,0,0)",
+                      }}
+                    />
+                  </View>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      fontWeight: "bold",
+                      color: "rgba(255,255,255,1)",
+                      position: "absolute",
+                      left: 30,
+                      transform: [
+                        { translateY: 2 },
+                        { translateX: 0 },
+                        { rotate: "0deg" },
+                      ],
+                      top: 2.5,
+                      textShadowColor: "rgba(0,0,0,1)",
+                      textShadowRadius: 0,
+                      textShadowOffset: { width: 0, height: 0 },
+                      textAlign: "left",
+                    }}
+                  >
+                    {item.text}
+                  </Text>
+                </Animated.View>
+              </TouchableHighlight>
+            );
+          }}
+        />
+      </View>
+      <View style={{ position: "absolute" }}>
+        <Image
+          resizeMode="contain"
+          source={require("./images/background6.png")}
+          blurRadius={0}
+        />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: "#7fb4e1",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-  ButtonStyle: {
-    height: AVATAR_SIZE,
-  },
-  linearGradient: {
-    height: AVATAR_SIZE,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
-    paddingTop: AVATAR_SIZE / 4,
-  },
-  buttonText: {
-    fontSize: AVATAR_SIZE / 3,
-    fontWeight: "700",
-    textAlign: "center",
-    color: " rgba(128,163,198,0.8)",
-    backgroundColor: "transparent",
-  },
-  stretch: {
-    width: 400,
-    height: 200,
-    resizeMode: "stretch",
-  },
-  BackGround: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "stretch",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    zIndex: 0,
-  },
-  input: {
-    backgroundColor: "white",
+  button: {
+    backgroundColor: "#859a9b",
+    borderRadius: 20,
     padding: 10,
-    borderRadius: 15,
-    marginTop: 10,
+    marginBottom: 20,
+    shadowColor: "#303838",
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.35,
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
+  webviewStyle: {
+    borderRadius: 10,
+    //  borderWidth: 2,
+    backgroundColor: "rgba(28,56,107,0.9)",
+    height: 700,
   },
 });
-
 export default Dashboard;

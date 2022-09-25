@@ -12,16 +12,16 @@
     "make-badges": "istanbul-badges-readme --logo='jest' "
   },
   "dependencies": {
-    "@react-native-community/voice": "^1.1.9",
-    "@react-native-voice/voice": "^3.2.4",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
     "bcrypt-react-native": "^1.1.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "expo": "~44.0.0",
-    "expo-av": "^11.2.3",
+    "expo-av": "~10.2.0",
+    "expo-device": "~4.1.0",
     "expo-linear-gradient": "~11.0.3",
+    "expo-notifications": "~0.14.0",
     "expo-status-bar": "~1.2.0",
     "express": "^4.18.1",
     "firebase": "^9.6.11",
@@ -34,14 +34,10 @@
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1283.0",
     "react-native-dialog-input": "^1.0.8",
-    "react-native-geolocation-service": "^5.3.0-beta.4",
-    "react-native-get-location": "^2.2.1",
-    "react-native-maps": "^0.31.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
-    "react-native-voice": "^0.3.0",
     "react-native-web": "0.17.1",
-    "react-speech-recognition": "^3.9.1"
+    "react-native-webview": "^11.23.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",
