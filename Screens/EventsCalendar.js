@@ -25,6 +25,7 @@ async function eventsData(onReceiveList) {
           end: end,
           id: id,
           programme: programme,
+          name: name,
         });
       });
     });
@@ -83,7 +84,8 @@ export default class EventsCalendar extends React.Component {
       if (!this.state.items[day]) {
         this.state.items[day] = [];
         this.state.items[day].push({
-          programme: "programme: " + key.programme,
+          Name: "Event: " + key.name,
+          Programme: "Programme: " + key.programme,
           start: "start day: " + key.start,
           end: "end day: " + key.end,
           height: Math.max(50, Math.floor(Math.random() * 150)),
@@ -103,7 +105,8 @@ export default class EventsCalendar extends React.Component {
   renderItem(item) {
     return (
       <View style={[styles.item, { height: item.height }]}>
-        <Text>{item.programme}</Text>
+        <Text>{item.Name}</Text>
+        <Text>{item.Programme}</Text>
         <Text>{item.start}</Text>
         <Text>{item.end}</Text>
       </View>
