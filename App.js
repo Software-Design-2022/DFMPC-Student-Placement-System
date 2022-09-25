@@ -26,7 +26,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={AgendaCalendar}
+            component={Login}
           />
         }
         <Stack.Screen
