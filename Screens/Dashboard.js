@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Component } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   StatusBar,
@@ -16,11 +16,14 @@ import {
   SafeAreaViewBase,
   SafeAreaView,
   Button,
+  ScrollView,
   Linking,
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
 import "../global";
+import PropTypes from "prop-types";
+import { WebView } from "react-native-webview";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -151,6 +154,75 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
+class TwitterFeed extends Component {
+  static propTypes = {
+    witsUrl: PropTypes.string,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      embedHtml: null,
+    };
+  }
+
+  componentDidMount() {
+    this.setupUrl();
+  }
+
+  setupUrl() {
+    let witsUrl =
+      "https://publish.twitter.com/oembed?url=https://twitter.com/WitsUniversity/status/1572222171174289408?cxt=HHwWgICyzYLv09ErAAAA" +
+      encodeURIComponent(this.props.witsUrl);
+    fetch(witsUrl, {
+      method: "GET",
+      headers: { Accepts: "application/json" },
+    }).then((resp) => {
+      resp.json().then((json) => {
+        let html = json.html;
+        this.setState({
+          embedHtml: html,
+        });
+      });
+    });
+  }
+
+  renderEmbed() {
+    if (this.state.embedHtml) {
+      let html = `<!DOCTYPE html>\
+      <html>\
+        <head>\
+          <meta charset="utf-8">\
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+          </head>\
+          <body>\
+            ${this.state.embedHtml}\
+          </body>\
+      </html>`;
+      return (
+        <View style={styles.webviewStyle}>
+          <WebView
+            style={{
+              borderBottomColor: "rgba(28,56,107,0.9)",
+              borderRadius: 10,
+            }}
+            source={{ html: html }}
+          />
+        </View>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <ScrollView
+        style={{ borderBottomColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+      >
+        {this.renderEmbed()}
+      </ScrollView>
+    );
+  }
+}
 const Dashboard = () => {
   const anim = useRef(new Animated.Value(1));
 
@@ -338,7 +410,7 @@ const Dashboard = () => {
         >
           <View
             style={{
-              flex: 0.5,
+              flex: 1,
               zIndex: 1,
               backgroundColor: "rgba(0,0,0,0.05)",
               borderRadius: 16,
@@ -349,7 +421,7 @@ const Dashboard = () => {
           >
             <View
               style={{
-                flex: 0.3,
+                height: 40,
                 backgroundColor: "rgba(0,0,0,0.2)",
                 borderTopRightRadius: 16,
                 borderTopLeftRadius: 16,
@@ -371,23 +443,18 @@ const Dashboard = () => {
             </View>
             <View
               style={{
-                flex: 1,
                 zIndex: 1,
                 borderRadius: 32,
+                top: 10,
                 margin: SPACING / 2,
+                borderRadius: 10,
+                borderBottomColor: "rgba(28,56,107,0.9)",
+                height: 520,
               }}
             >
-              <Image
-                source={require("./images/news.png")}
-                resizeMode="stretch"
-                style={{
-                  width: 250,
-                  height: 230,
-                  left: 8,
-                  borderRadius: 6,
-                  top: -2,
-                }}
-              ></Image>
+              <TwitterFeed
+                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+              ></TwitterFeed>
             </View>
             <View
               style={{
@@ -398,7 +465,7 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          <View
+          {/* <View
             style={{
               flex: 0.5,
               zIndex: 1,
@@ -447,7 +514,7 @@ const Dashboard = () => {
                 margin: SPACING / 2,
               }}
             ></View>
-          </View>
+          </View> */}
           <View
             style={{
               flex: 0.065,
@@ -600,6 +667,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.35,
+  },
+  webviewStyle: {
+    borderRadius: 10,
+    //  borderWidth: 2,
+    backgroundColor: "rgba(28,56,107,0.9)",
+    height: 700,
   },
 });
 export default Dashboard;
