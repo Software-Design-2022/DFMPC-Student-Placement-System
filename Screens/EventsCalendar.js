@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
+import { getCurrentDate } from "../HelperFunctions";
 
+const initialDate = getCurrentDate();
 async function eventsData(onReceiveList) {
   const events = [];
   var snapshot = await firebase
@@ -62,7 +64,7 @@ export default class EventsCalendar extends React.Component {
           dotColor: "black", // dots
         }}
         items={this.state.items}
-        selected={new Date()}
+        selected={initialDate}
         loadItemsForMonth={this.loadFromList.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}

@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
-
+import { getCurrentDate } from "../HelperFunctions";
 const days = "";
+
+const initialDate = getCurrentDate();
 async function getSchedule(onReceiveList) {
   const schedules = [];
   var snapshot = await firebase
@@ -60,7 +62,7 @@ export default class AgendaCalendar extends React.Component {
           dotColor: "green", // dots
         }}
         items={this.state.items}
-        selected={"2022-05-01"}
+        selected={initialDate}
         loadItemsForMonth={this.loadFromList.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
