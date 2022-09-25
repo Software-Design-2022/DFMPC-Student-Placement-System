@@ -1,148 +1,143 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  StyleSheet,
+import { Calendar, Agenda } from "react-native-calendars"; // 1.5.3
+import React, { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
+import { Card, Avatar } from "react-native-paper";
+import { firebase, db } from "../firebase";
 
-  View,
-} from "react-native";
-import { useNavigation } from "@react-navigation/core";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
-import { getSchedule } from "../Screens/RetrieveSchedules";
-import studentData from "../dfmpc-student-placement-system.json";
-import AppContext from "../AppContext";
-import "../global.js";
-import { NavigationContainer } from "@react-navigation/native";
-import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+const days = "";
+async function getSchedule(onReceiveList) {
+  const schedules = [];
+  var snapshot = await firebase
+    .firestore()
+    .collection("schedules")
+    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach(function (doc) {
+        //push the required data to the array
+        schedules.push({
+          key: schedules.length + 1,
+          student_id: doc.data().student_id,
+          SpecialtyName: doc.data().SpecialtyName,
+          hospital_ID: doc.data().hospital_id,
+          specialty_duration: doc.data().specialty_duration,
+          start: doc.data().start_date,
+          end: doc.data().end_date,
+          specialty_id: doc.data().specialty_id,
+        });
+      });
+    });
 
-//constants
-const buttonHeight = 50;
-const textPos = buttonHeight / 2;
-const SPACING = 20;
-const AVATAR_SIZE = 70;
-const ICON_SIZE = 80;
-var dateToPass = "";
-var specialty = "";
-const RANGE = 12;
-const initialDate = "2022-01-02";
-var usersAgenda = {};
-const days=""; //@Noku - this is what I used to fix the Calendar
+  onReceiveList(schedules);
+}
 
-const CalendarView = () => {
-  //use navigation
-  const navigation = useNavigation();
-  const myContext = useContext(AppContext);
-  // Keeps track of selected date
-  const [selectedDate, setSelectedDate] = useState(initialDate);
+LogBox.ignoreLogs(["Setting a timer"]);
 
-  const [state, setState] = useState({
-    //@Noku -  this useState will be used to set the current state of our data
-  // sets scheduleList to the data from database (firestore)
-    scheduleList: [
-      {
-      key: 0,
-      student_id:"",
-      SpecialtyName:"",
-      hospital_id:"",
-      specialty_duration:"",
-      start_date:"",
-      end_date:"",
-      specialty_id:"",
-      },
-    ],
-  })
- 
-  const onReceive = (scheduleList) => {
-        // @Noku - when the list is received we set our scheduleList to the current received list (updating)
+export default class AgendaCalendar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: {},
+      events: [],
+    };
+  }
 
-    setState((prevState) => ({
-      scheduleList: (prevState.scheduleList = scheduleList),
-    }));
-  };
-  // getSchedule is a function from RetrieveSchedules.js
-  // it gets the student specific schedule list containing data from firestore
-  getSchedule(onReceive);
+  render() {
+    return (
+      <Agenda
+        theme={{
+          calendarBackground: "white", //agenda background
+          agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
+          backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
+          agendaDayTextColor: "rgba(28,56,107,0.9)", // day name
+          agendaDayNumColor: "rgba(28,56,107,0.9)", // day number
+          agendaTodayColor: "rgba(28,56,107,0.9)", // today in list
+          monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
+          todayBackgroundColor: "rgba(28,56,107,0.9)",
+          textSectionTitleColor: "rgba(28,56,107,0.9)",
+          selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
+          dayTextColor: "rgba(28,56,107,0.9)", // calendar day
+          dotColor: "green", // dots
+        }}
+        items={this.state.items}
+        selected={"2022-05-01"}
+        loadItemsForMonth={this.loadFromList.bind(this)}
+        renderItem={this.renderItem.bind(this)}
+        renderEmptyDate={this.renderEmptyDate.bind(this)}
+        rowHasChanged={this.rowHasChanged.bind(this)}
+      />
+    );
+  }
 
-  // User's agenda
-  // What to do when day is pressed.
-  const onDayPress = (day) => {
-    console.log("Just ran the redundant function");
-  };
+  loadFromList() {
+    const onReceive = (data) => {
+      this.setState({
+        events: data,
+      });
+    };
+    getSchedule(onReceive);
+    this.state.events.map((key, index) => {
+      const day = key.start;
 
-  return (
-    <View>
-    <CalendarList
-      // testID={testIDs.calendarList.CONTAINER}
-      current={initialDate}
-      pastScrollRange={3}
-      futureScrollRange={RANGE}
-      // renderHeader={renderCustomHeader}
-      theme={theme}
-      onDayPress={(day) => {
-        setSelectedDate(day.dateString);
-        dateToPass = day.dateString;
-        console.log("dateToPass value before navigation:", dateToPass);
-        navigation.navigate("DayAgenda"); // @Noku Does this js file exist? 
-      }}
-      markingType="period"
-      // * The generateSchedule method does way too much at once, really caused issues with understanding
-      // I need to add back in the "created_at","updated_at", "hospital_id", "specialty_id" into the generate Schedule function then strip out only the marked dates format.
-      markedDates={generateSchedule(onReceive)} // now this function is the wrong format only to include: color, textColor and [startDate,endDate]
-    />
-    </View>
-  );
-};
+      if (!this.state.items[day]) {
+        this.state.items[day] = [];
+        this.state.items[day].push({
+          specialty: "Specialty: " + key.SpecialtyName,
+          start: "start day: " + key.start,
+          end: "end day: " + key.end,
+          hospital: "hospital: " + "Baragwanath Hospital",
+          height: Math.max(50, Math.floor(Math.random() * 150)),
+        });
+      }
+      //console.log(this.state.items);
+      const newItems = {};
+      Object.keys(this.state.items).forEach((key) => {
+        newItems[key] = this.state.items[key];
+      });
+      this.setState({
+        items: newItems,
+      });
+    });
+  }
 
+  renderItem(item) {
+    return (
+      <View style={[styles.item, { height: item.height }]}>
+        <Text>{item.specialty}</Text>
+        <Text>{item.start}</Text>
+        <Text>{item.end}</Text>
+        <Text>{item.hospital}</Text>
+      </View>
+    );
+  }
 
-const generateSchedule = (onReceive) => {
-   // @Noku - this is the function needs work
-};
+  renderEmptyDate() {
+    return (
+      <View style={styles.emptyDate}>
+        <Text>No Agenda On this day!</Text>
+      </View>
+    );
+  }
 
-// get days that the specialty will run over using specialty duration
-const getDaysInWeek = (startDate, endDate) => {
-  //@Noku, I edited this to find the number of days between start and end date
-  let dates = [];
-
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const time = Date.getTime(start, end);
-  const formattedDate = time.toISOString().split("T")[0];
-  dates.push(formattedDate);
-  return dates;
-};
-
-
-
-const theme = {
-  "stylesheet.calendar.header": {
-    dayHeader: {
-      fontWeight: "600",
-      color: "#48BFE3",
-    },
-  },
-  "stylesheet.day.basic": {
-    today: {
-      borderColor: "#48BFE3",
-      borderWidth: 0.8,
-    },
-    todayText: {
-      color: "#5390D9",
-      fontWeight: "800",
-    },
-  },
-};
+  rowHasChanged(r1, r2) {
+    return r1.name !== r2.name;
+  }
+}
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
+  item: {
     backgroundColor: "white",
-    marginTop: 10,
-    borderRadius: 20,
     flex: 1,
-    borderColor: "rgba(36,50,61,1)",
-    borderWidth: 5,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,
+  },
+  emptyDate: {
+    height: 15,
+    flex: 1,
+    paddingTop: 30,
   },
 });
 
-export default CalendarView;
-
-export { dateToPass };
-export{ days};
+export { days };
