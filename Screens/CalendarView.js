@@ -57,7 +57,7 @@ export default class AgendaCalendar extends React.Component {
           textSectionTitleColor: "rgba(28,56,107,0.9)",
           selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
           dayTextColor: "rgba(28,56,107,0.9)", // calendar day
-          dotColor: "white", // dots
+          dotColor: "green", // dots
         }}
         items={this.state.items}
         selected={"2022-05-01"}
