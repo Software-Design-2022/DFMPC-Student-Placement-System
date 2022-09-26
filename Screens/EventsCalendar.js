@@ -55,7 +55,7 @@ export default class EventsCalendar extends React.Component {
           backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
           agendaDayTextColor: "white", // day name
           agendaDayNumColor: "white", // day number
-          agendaTodayColor: "rgba(28,56,107,0.9)", // today in list
+          agendaTodayColor: "rgba(255,255,255,0.9)", // today in list
           monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
           todayBackgroundColor: "rgba(28,56,107,0.9)",
           textSectionTitleColor: "rgba(28,56,107,0.9)",
@@ -106,11 +106,14 @@ export default class EventsCalendar extends React.Component {
 
   renderItem(item) {
     return (
-      <View style={[styles.item, { height: item.height }]}>
+      
+      <View>
+      <View style={[styles.item, { height:100 }]}>
         <Text>{item.Name}</Text>
         <Text>{item.Programme}</Text>
         <Text>{item.start}</Text>
         <Text>{item.end}</Text>
+      </View>
       </View>
     );
   }
@@ -118,7 +121,7 @@ export default class EventsCalendar extends React.Component {
   renderEmptyDate() {
     return (
       <View style={styles.emptyDate}>
-        <Text>No Agenda On this day!</Text>
+        <Text>No events on this day!</Text>
       </View>
     );
   }
