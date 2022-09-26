@@ -1,10 +1,14 @@
 import { Calendar, Agenda } from "react-native-calendars"; // 1.5.3
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, LogBox, TouchableHighlight,Image,  Dimensions, } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
+import { useNavigation } from "@react-navigation/core";
 
+const { width, height } = Dimensions.get("screen");
+const SPACING = 20;
+const ICON_SIZE = 75;
 const initialDate = getCurrentDate();
 async function eventsData(onReceiveList) {
   const events = [];
@@ -48,8 +52,41 @@ export default class EventsCalendar extends React.Component {
 
   render() {
     return (
-      <Agenda
-        theme={{
+      <View style={{flex:1}}>
+      <View style={{zIndex:1}}>
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+            marginBottom:SPACING/2, 
+            zIndex:1,
+            top:height-150-ICON_SIZE,
+            right: -5,
+
+          }}
+          onPress={() => {
+            navigation.navigate("Dashboard");
+          }}
+        >
+           <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              shadowRadius: 20,
+            }}
+            source={require("./images/add_event.png")}
+          /> 
+          </TouchableHighlight>
+      </View>
+      <Agenda 
+        theme={{ 
           calendarBackground: "white", //agenda background
           agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
           backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
@@ -70,6 +107,8 @@ export default class EventsCalendar extends React.Component {
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
       />
+      </View>
+      
     );
   }
 
@@ -106,22 +145,21 @@ export default class EventsCalendar extends React.Component {
 
   renderItem(item) {
     return (
-      
-      <View>
       <View style={[styles.item, { height:100 }]}>
         <Text>{item.Name}</Text>
         <Text>{item.Programme}</Text>
         <Text>{item.start}</Text>
         <Text>{item.end}</Text>
       </View>
-      </View>
     );
   }
 
   renderEmptyDate() {
     return (
+      <View>
       <View style={styles.emptyDate}>
         <Text>No events on this day!</Text>
+      </View>
       </View>
     );
   }
