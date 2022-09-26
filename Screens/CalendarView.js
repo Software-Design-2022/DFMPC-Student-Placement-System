@@ -62,7 +62,7 @@ export default class AgendaCalendar extends React.Component {
           dotColor: "green", // dots
         }}
         items={this.state.items}
-        selected={initialDate}
+        selected={new Date()}
         loadItemsForMonth={this.loadFromList.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}

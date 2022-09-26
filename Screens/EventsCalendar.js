@@ -64,7 +64,7 @@ export default class EventsCalendar extends React.Component {
           dotColor: "black", // dots
         }}
         items={this.state.items}
-        selected={initialDate}
+        selected={new Date()}
         loadItemsForMonth={this.loadFromList.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}

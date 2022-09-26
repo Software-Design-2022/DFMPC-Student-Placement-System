@@ -30,7 +30,7 @@ const buttonHeight = 50;
 const textPos = buttonHeight / 2;
 const SPACING = 20;
 const AVATAR_SIZE = 70;
-const ICON_SIZE = 80;
+const ICON_SIZE = 33;
 const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -310,36 +310,29 @@ const Dashboard = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View
-        style={{ backgroundColor: "rgba(0,0,0,0.5)", height: 35, zIndex: 1 }}
-      ></View>
-      <View
+       <View
+        style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
+      ></View> 
+       <View
         style={{
           backgroundColor: "rgba(255,255,255,0.8)",
-          height: 100,
+          height: ICON_SIZE,
           zIndex: 1,
-          borderEndWidth: 0,
-          borderEndColor: "rgba(255,255,255,1)",
-          borderBottomStartRadius: 100,
+          top:SPACING/2,
+          borderRadius:100,
+          left:width/1.8,
+          width:width/1,
         }}
       >
-        <View>
-          <Image
-            style={{ height: 80, position: "absolute", top: 5, left: -160 }}
-            resizeMode="contain"
-            source={require("./images/wits.png")}
-            blurRadius={0}
-          />
-        </View>
-
+        
         <TouchableHighlight
           underlayColor="rgba(0,0,0,0.2)"
           style={{
             flex: 1,
             width: ICON_SIZE,
             height: ICON_SIZE,
-            right: 15,
-            top: 10,
+            left: 10,
+            top: 2,
             position: "absolute",
             borderRadius: ICON_SIZE,
           }}
@@ -349,8 +342,8 @@ const Dashboard = () => {
         >
           <Image
             style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
+              width: ICON_SIZE/1.1,
+              height: ICON_SIZE/1.1,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
@@ -363,42 +356,92 @@ const Dashboard = () => {
             source={{ uri: authUserProfilePic }}
           />
         </TouchableHighlight>
-
-        <AnimatedTouchable
-          underlayColor="rgba(0,0,0,0.2)"
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0)"
           style={{
             flex: 1,
             width: ICON_SIZE,
             height: ICON_SIZE,
-            left: 50,
-            top: 10,
+            left: ICON_SIZE+20,
+            top: 0,
             position: "absolute",
             borderRadius: ICON_SIZE,
+            marginBottom:SPACING/2
           }}
           onPress={() => {
             navigation.navigate("EmergencyPage");
           }}
         >
-          <Animated.View style={{ transform: [{ scale: anim.current }] }}>
-            <Image
-              style={{
-                width: ICON_SIZE,
-                height: ICON_SIZE,
-                position: "absolute",
-                resizeMode: "cover",
-                borderRadius: ICON_SIZE,
-                borderWidth: 2,
-                borderColor: "rgba(0,0,0,0.1)",
-                backgroundColor: "rgba(0,0,0,0.1)",
-                shadowOpacity: 1,
-                shadowRadius: 20,
-              }}
-              source={require("./images/emergency.jpg")}
-            />
-          </Animated.View>
-        </AnimatedTouchable>
-      </View>
-      <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
+          <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              shadowRadius: 20,
+            }}
+            source={require("./images/emergency.png")}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            left: ICON_SIZE*2+30,
+            top: 0,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+            marginBottom:SPACING/2
+          }}
+          onPress={() => {
+            navigation.navigate("SettingsView");
+          }}
+        >
+          <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              shadowRadius: 20,
+            }}
+            source={require("./images/bell.png")}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            left: ICON_SIZE*3+40,
+            top: 0,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+            marginBottom:SPACING/2
+          }}
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        >
+          <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              shadowRadius: 20,
+            }}
+            source={require("./images/logout_logo.png")}
+          />
+        </TouchableHighlight>
+      </View> 
+      <View style={{ zIndex: 1, flex: 1, flexDirection: "row",}}>
         <View
           style={{
             zIndex: 1,
@@ -446,14 +489,15 @@ const Dashboard = () => {
                 zIndex: 1,
                 borderRadius: 32,
                 top: 10,
-                margin: SPACING / 2,
+                margin: SPACING,
                 borderRadius: 10,
                 borderBottomColor: "rgba(28,56,107,0.9)",
-                height: 520,
+                marginBottom:SPACING*3.7,
+                resizeMode:"contain"
               }}
             >
               <TwitterFeed
-                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
+                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 20 }}
               ></TwitterFeed>
             </View>
             <View
@@ -517,12 +561,12 @@ const Dashboard = () => {
           </View> */}
           <View
             style={{
-              flex: 0.065,
               marginTop: SPACING,
               marginBottom: SPACING + 10,
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
+              height:36
             }}
           >
             <FlatList
@@ -649,7 +693,7 @@ const Dashboard = () => {
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
-          source={require("./images/background6.png")}
+          source={require("./images/background.png")}
           blurRadius={0}
         />
       </View>
