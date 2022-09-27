@@ -5,9 +5,9 @@ import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
 
-const initialDate = getCurrentDate();
 async function eventsData(onReceiveList) {
   // this function get events from firebase
+  const initialDate = getCurrentDate();
   const events = [];
   var snapshot = await firebase
     .firestore()
