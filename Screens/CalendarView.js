@@ -12,7 +12,7 @@ async function getSchedule(onReceiveList) {
   var snapshot = await firebase
     .firestore()
     .collection("schedules")
-    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
+    .where("student_id", "==", authUserID) // returns  only a specific user's data, according to their user id
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach(function (doc) {
