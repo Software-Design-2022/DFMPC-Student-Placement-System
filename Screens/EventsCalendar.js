@@ -31,8 +31,8 @@ const compare = (obj1, obj2) => {
 };
 
 //send event data to database
-const sendToFirestore = (state) => {
-  firebase
+async function sendToFirestore (state) {
+ await firebase
     .firestore()
     .collection("events")
     .add({
@@ -44,15 +44,16 @@ const sendToFirestore = (state) => {
     })
     .then(() => {
       Alert.alert("Event Added");
-      // const onReceive = (data) => {
-      //   if (compare(data, this.state.events) === false) {
-      //     this.setState({
-      //       events: data,
-      //       item:{}
-      //     });
-      //   }
-      // };
-      // eventsData(onReceive);
+       const onReceive = (data) => {
+         if (compare(data,state.events) === false) {
+          console.log(data)
+           return data;
+         }
+         else{
+          return state.events;
+         }
+       };
+      eventsData(onReceive);
     })
     ;
     
@@ -142,7 +143,7 @@ export default class EventsCalendar extends PureComponent {
                 <View style={{ padding: 10, marginBottom: 10 }}>
                   <Text style={{fontWeight:'bold',fontSize:17}}>Event name</Text>
                 <TextInput
-                  // user can type their emergency message
+                 
                   style={styles.message}
                   placeholder="Enter name"
                   onChangeText={(newText) => this.setState({eventtext: newText})}
@@ -152,7 +153,7 @@ export default class EventsCalendar extends PureComponent {
                 <View style={{ padding: 10, marginBottom: 10 }}>
                   <Text style={{fontWeight:'bold',fontSize:17}}>Start date</Text>
                 <TextInput
-                  // user can type their emergency message
+                
                   style={styles.message}
                   placeholder="YYYY-MM-DD"
                   onChangeText={(newText) => this.setState({startdatetext: newText})}
@@ -162,7 +163,7 @@ export default class EventsCalendar extends PureComponent {
                   <View style={{ padding: 10, marginBottom: 10 }}>
                   <Text style={{fontWeight:'bold',fontSize:17}}>End date</Text>
                 <TextInput
-                  // user can type their emergency message
+                
                   style={styles.message}
                   placeholder="YYYY-MM-DD"
                   onChangeText={(newText) => this.setState({enddatetext: newText})}
@@ -172,7 +173,7 @@ export default class EventsCalendar extends PureComponent {
                   <View style={{ padding: 10, marginBottom: 10 }}>
                   <Text style={{fontWeight:'bold',fontSize:17}}>Notes</Text>
                 <TextInput
-                  // user can type their emergency message
+              
                   style={styles.message}
                   placeholder="Type notes here"
                   onChangeText={(newText) => this.setState({notetext: newText})}
@@ -201,8 +202,10 @@ export default class EventsCalendar extends PureComponent {
                     { width: width / 3, left: 20, bottom: 30,backgroundColor:'rgba(28,56,107,1)' },
                   ]}
                   onPress={() =>
-                    sendToFirestore(this.state)
-                    
+                    this.setState({
+                      events: sendToFirestore(this.state),
+                      
+                    })
                   }
                 >
                   <Text style={[styles.textStyle]}>Add</Text>
@@ -227,7 +230,7 @@ export default class EventsCalendar extends PureComponent {
                 height: 50,
                 zIndex: 1,
                 right: 20,
-                top: height - 250,
+                bottom: -height+200,
                 alignItems: "center",
               }}
             >
