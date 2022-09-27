@@ -451,7 +451,7 @@ const Dashboard = () => {
             style={{
               flex: 1,
               zIndex: 1,
-              backgroundColor: "rgba(0,0,0,0.05)",
+              backgroundColor: "rgba(255,255,255,1)",
               borderRadius: 16,
               marginTop: SPACING,
               marginLeft: SPACING / 2,
@@ -461,7 +461,7 @@ const Dashboard = () => {
             <View
               style={{
                 height: 40,
-                backgroundColor: "rgba(0,0,0,0.2)",
+                backgroundColor: "rgba(28,56,107,1)",
                 borderTopRightRadius: 16,
                 borderTopLeftRadius: 16,
                 borderWidth: 0,
@@ -484,12 +484,10 @@ const Dashboard = () => {
               style={{
                 zIndex: 1,
                 borderRadius: 32,
-                top: 10,
-                margin: SPACING,
-                borderRadius: 10,
+                top: 0,
                 borderBottomColor: "rgba(28,56,107,0.9)",
-                marginBottom:SPACING*3.7,
-                resizeMode:"contain"
+                resizeMode:"contain",
+                marginBottom:SPACING*3
               }}
             >
               <TwitterFeed
