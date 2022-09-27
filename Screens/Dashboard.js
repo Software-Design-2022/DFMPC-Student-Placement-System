@@ -326,7 +326,7 @@ const Dashboard = () => {
       >
         
         <TouchableHighlight
-          underlayColor="rgba(0,0,0,0.2)"
+          underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
             width: ICON_SIZE,
@@ -337,23 +337,19 @@ const Dashboard = () => {
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
-            navigation.navigate("SettingsView");
+            navigation.navigate("Login");
           }}
         >
           <Image
             style={{
-              width: ICON_SIZE/1.1,
-              height: ICON_SIZE/1.1,
+              width: ICON_SIZE,
+              height: ICON_SIZE,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
               borderWidth: 2,
-              borderColor: "rgba(0,0,0,0.1)",
-              backgroundColor: "rgba(0,0,0,0.1)",
-              shadowOpacity: 1,
-              shadowRadius: 20,
             }}
-            source={{ uri: authUserProfilePic }}
+            source={require("./images/logout_logo.png")}
           />
         </TouchableHighlight>
         <TouchableHighlight
@@ -416,28 +412,28 @@ const Dashboard = () => {
           underlayColor="rgba(0,0,0,0)"
           style={{
             flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
+            width: ICON_SIZE/1.1,
+            height: ICON_SIZE/1.1,
             left: ICON_SIZE*3+40,
-            top: 0,
+            top: 2,
             position: "absolute",
             borderRadius: ICON_SIZE,
             marginBottom:SPACING/2
           }}
           onPress={() => {
-            navigation.navigate("Login");
+            navigation.navigate("SettingsView");
           }}
         >
           <Image
             style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
+              width: ICON_SIZE/1.1,
+              height: ICON_SIZE/1.1,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
               shadowRadius: 20,
             }}
-            source={require("./images/logout_logo.png")}
+            source={{ uri: authUserProfilePic }}
           />
         </TouchableHighlight>
       </View> 
