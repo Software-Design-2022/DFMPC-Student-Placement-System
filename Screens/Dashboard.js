@@ -72,13 +72,6 @@ const DATA = [
     text: "Logout",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d71",
-    title: "Calendar",
-    destination: "CalendarView",
-    image: require("./images/calendar.png"),
-    text: "Calendar",
-  },
-  {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",
     title: "Emergency Protocols",
     destination: "EmergencyProtocols",
@@ -174,7 +167,7 @@ class TwitterFeed extends Component {
     let witsUrl =
       "https://publish.twitter.com/oembed?url=https://twitter.com/WitsHealthFac/status/1573569169982861313?cxt=HHwWgICyzYLv09ErAAAA" +
       encodeURIComponent(this.props.witsUrl);
-      
+
     fetch(witsUrl, {
       method: "GET",
       headers: { Accepts: "application/json" },
