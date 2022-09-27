@@ -1,11 +1,13 @@
 import { Calendar, Agenda } from "react-native-calendars"; // 1.5.3
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, LogBox, TouchableHighlight,Image,  Dimensions, } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text,Pressable, LogBox, Modal, TouchableHighlight,Image,  Dimensions, } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
 import { useNavigation } from "@react-navigation/core";
+import { AntDesign } from '@expo/vector-icons';
 
+const data=[];
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
@@ -42,6 +44,12 @@ async function eventsData(onReceiveList) {
 LogBox.ignoreLogs(["Setting a timer"]);
 
 export default class EventsCalendar extends React.Component {
+  state = {
+    modalVisible: false
+  };
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -51,39 +59,36 @@ export default class EventsCalendar extends React.Component {
   }
 
   render() {
+    const { modalVisible } = this.state;
     return (
       <View style={{flex:1}}>
-      <View style={{zIndex:1}}>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom:SPACING/2, 
-            zIndex:1,
-            top:height-150-ICON_SIZE,
-            right: -5,
-
-          }}
-          onPress={() => {
-            navigation.navigate("Dashboard");
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
           }}
         >
-           <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/add_event.png")}
-          /> 
-          </TouchableHighlight>
+          <View style={styles.centeredView}>
+            <View style={{top:50,height:400,width:width/1.2,backgroundColor:'white',borderRadius:10,borderWidth:4}}>
+              <Text style={{fontSize:25,top:10,textAlign:'center'}}>Create Event</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose,{width:width/3,left:width/4,bottom:-300}]}
+                onPress={() => this.setModalVisible(!modalVisible)}
+              >
+                <Text style={[styles.textStyle]}>Done</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+      <View>
+      <TouchableOpacity onPress={() => this.setModalVisible(true)}
+       style={{ backgroundColor: 'rgba(28,56,107,0.0)', position: 'absolute', borderRadius: 50,
+        width: 50, height: 50, zIndex: 1, right: 20, top: height-250, alignItems: 'center' }} >
+                    <AntDesign name="pluscircle" color='white' size={50} />
+      </TouchableOpacity>
       </View>
       <Agenda 
         theme={{ 
@@ -102,7 +107,7 @@ export default class EventsCalendar extends React.Component {
         }}
         items={this.state.items}
         selected={new Date()}
-        loadItemsForMonth={this.loadFromList.bind(this)}
+        //loadItemsForMonth={data}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
@@ -183,4 +188,44 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width:width/2,
+    height:height/3
+  },
+  button: {
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2,
+    bottom:-height/5,
+  },
+  buttonClose: {
+    backgroundColor: "black",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
