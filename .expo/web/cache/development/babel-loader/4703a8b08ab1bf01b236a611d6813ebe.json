@@ -1,0 +1,16 @@
+{
+  "ast": null,
+  "code": "import { NativeModulesProxy } from 'expo-modules-core';\nexport default NativeModulesProxy.ExpoNotificationCategoriesModule;",
+  "map": {
+    "version": 3,
+    "sources": ["../src/NotificationCategoriesModule.native.ts"],
+    "names": [],
+    "mappings": "AAAA,SAAS,kBAAT,QAAmC,mBAAnC;AAIA,eAAe,kBAAkB,CAAC,gCAAlC",
+    "sourcesContent": [
+      "import { NativeModulesProxy } from 'expo-modules-core';\n\nimport { NotificationCategoriesModule } from './NotificationCategoriesModule.types';\n\nexport default NativeModulesProxy.ExpoNotificationCategoriesModule as NotificationCategoriesModule;\n"
+    ],
+    "sourceRoot": ""
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
