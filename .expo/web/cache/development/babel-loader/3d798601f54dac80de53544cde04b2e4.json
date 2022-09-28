@@ -1,1 +1,33 @@
-{"ast":null,"code":"export var multiply = function multiply(a, b) {\n  return a * b;\n};\nexport var makeLowerCase = function makeLowerCase(string) {\n  return string.toLowerCase();\n};\nexport function getCurrentDate() {\n  var today = new Date();\n  var day = today.getDate();\n  var month = today.getMonth();\n  var year = today.getFullYear();\n  return day + \"-\" + month + \"-\" + year;\n}","map":{"version":3,"sources":["C:/Users/callu/Desktop/3rd Year/Software Design Project/App/DFMPC-Student-Placement-System/HelperFunctions.js"],"names":["multiply","a","b","makeLowerCase","string","toLowerCase","getCurrentDate","today","Date","day","getDate","month","getMonth","year","getFullYear"],"mappings":"AAAA,OAAO,IAAMA,QAAQ,GAAG,SAAXA,QAAW,CAACC,CAAD,EAAIC,CAAJ,EAAU;AAChC,SAAOD,CAAC,GAAGC,CAAX;AACD,CAFM;AAIP,OAAO,IAAMC,aAAa,GAAG,SAAhBA,aAAgB,CAACC,MAAD,EAAY;AACvC,SAAOA,MAAM,CAACC,WAAP,EAAP;AACD,CAFM;AAIP,OAAO,SAASC,cAAT,GACP;AACE,MAAMC,KAAK,GAAG,IAAIC,IAAJ,EAAd;AACA,MAAMC,GAAG,GAAGF,KAAK,CAACG,OAAN,EAAZ;AACA,MAAMC,KAAK,GAAGJ,KAAK,CAACK,QAAN,EAAd;AACA,MAAMC,IAAI,GAAGN,KAAK,CAACO,WAAN,EAAb;AAEA,SAAOL,GAAG,GAAG,GAAN,GAAYE,KAAZ,GAAoB,GAApB,GAA0BE,IAAjC;AACD","sourcesContent":["export const multiply = (a, b) => {\r\n  return a * b;\r\n};\r\n\r\nexport const makeLowerCase = (string) => {\r\n  return string.toLowerCase();\r\n};\r\n\r\nexport function getCurrentDate()\r\n{\r\n  const today = new Date();\r\n  const day = today.getDate();       \r\n  const month = today.getMonth();     \r\n  const year = today.getFullYear();\r\n  \r\n  return day + \"-\" + month + \"-\" + year;\r\n}"]},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "export var multiply = function multiply(a, b) {\n  return a * b;\n};\nexport var makeLowerCase = function makeLowerCase(string) {\n  return string.toLowerCase();\n};\nexport function getCurrentDate() {\n  var today = new Date();\n  var day = today.getDate();\n  var month = today.getMonth();\n  var year = today.getFullYear();\n  return day + \"-\" + month + \"-\" + year;\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "C:/Users/callu/Desktop/3rd Year/Software Design Project/App/DFMPC-Student-Placement-System/HelperFunctions.js"
+    ],
+    "names": [
+      "multiply",
+      "a",
+      "b",
+      "makeLowerCase",
+      "string",
+      "toLowerCase",
+      "getCurrentDate",
+      "today",
+      "Date",
+      "day",
+      "getDate",
+      "month",
+      "getMonth",
+      "year",
+      "getFullYear"
+    ],
+    "mappings": "AAAA,OAAO,IAAMA,QAAQ,GAAG,SAAXA,QAAW,CAACC,CAAD,EAAIC,CAAJ,EAAU;AAChC,SAAOD,CAAC,GAAGC,CAAX;AACD,CAFM;AAIP,OAAO,IAAMC,aAAa,GAAG,SAAhBA,aAAgB,CAACC,MAAD,EAAY;AACvC,SAAOA,MAAM,CAACC,WAAP,EAAP;AACD,CAFM;AAIP,OAAO,SAASC,cAAT,GACP;AACE,MAAMC,KAAK,GAAG,IAAIC,IAAJ,EAAd;AACA,MAAMC,GAAG,GAAGF,KAAK,CAACG,OAAN,EAAZ;AACA,MAAMC,KAAK,GAAGJ,KAAK,CAACK,QAAN,EAAd;AACA,MAAMC,IAAI,GAAGN,KAAK,CAACO,WAAN,EAAb;AAEA,SAAOL,GAAG,GAAG,GAAN,GAAYE,KAAZ,GAAoB,GAApB,GAA0BE,IAAjC;AACD",
+    "sourcesContent": [
+      "export const multiply = (a, b) => {\r\n  return a * b;\r\n};\r\n\r\nexport const makeLowerCase = (string) => {\r\n  return string.toLowerCase();\r\n};\r\n\r\nexport function getCurrentDate()\r\n{\r\n  const today = new Date();\r\n  const day = today.getDate();       \r\n  const month = today.getMonth();     \r\n  const year = today.getFullYear();\r\n  \r\n  return day + \"-\" + month + \"-\" + year;\r\n}"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

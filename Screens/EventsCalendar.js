@@ -1,5 +1,5 @@
 import { Calendar, Agenda } from "react-native-calendars"; // 1.5.3
-import React, { useState,PureComponent } from "react";
+import React, { useState, PureComponent } from "react";
 import {
   View,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
   Image,
   Dimensions,
   TextInput,
-  Alert
+  Alert,
 } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
@@ -31,7 +31,7 @@ const compare = (obj1, obj2) => {
 };
 
 //send event data to database
-async function sendToFirestore (state) {
+async function sendToFirestore(state) {
   await firebase
     .firestore()
     .collection("events")
@@ -39,16 +39,13 @@ async function sendToFirestore (state) {
       name: state.eventtext,
       start_date: state.startdatetext,
       end_date: state.enddatetext,
-      id: Math.max(50, Math.floor(Math.random() * 150)) ,
-      programme: state.notetext
+      id: Math.max(50, Math.floor(Math.random() * 150)),
+      programme: state.notetext,
     })
     .then(() => {
       Alert.alert("Event Added");
-    })
-    ;
-    
-};
-
+    });
+}
 
 // function to retrieve events from firestore
 async function eventsData(onReceiveList) {
@@ -86,7 +83,6 @@ async function eventsData(onReceiveList) {
 
 LogBox.ignoreLogs(["Setting a timer"]);
 export default class EventsCalendar extends PureComponent {
-
   constructor(props) {
     super(props);
 
@@ -99,79 +95,91 @@ export default class EventsCalendar extends PureComponent {
       eventtext: "",
       notetext: "",
     };
-    
   }
   render() {
     return (
-
-        <View style={{ flex: 1 }}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
-              this.setState({
-                modalVisible: false,
-              });
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View
-                style={{
-                  top: 50,
-                  height: 400,
-                  width: width / 1.2,
-                  backgroundColor: "white",
-                  borderRadius: 10,
-                  borderWidth: 4,
-                }}
-              >
-                <Text style={{ fontSize: 25, top: 10, textAlign: "center" }}>
-                  Create Event
+      <View style={{ flex: 1 }}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            this.setState({
+              modalVisible: false,
+            });
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View
+              style={{
+                top: 50,
+                height: 400,
+                width: width / 1.2,
+                backgroundColor: "white",
+                borderRadius: 10,
+                borderWidth: 4,
+              }}
+            >
+              <Text style={{ fontSize: 25, top: 10, textAlign: "center" }}>
+                Create Event
+              </Text>
+              <View style={{ padding: 10, marginBottom: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
+                  Event name
                 </Text>
-                <View style={{ padding: 10, marginBottom: 10 }}>
-                  <Text style={{fontWeight:'bold',fontSize:17}}>Event name</Text>
                 <TextInput
                   // user can type their emergency message
                   style={styles.message}
                   placeholder="Enter name"
-                  onChangeText={(newText) => this.setState({eventtext: newText})}
+                  onChangeText={(newText) =>
+                    this.setState({ eventtext: newText })
+                  }
                   defaultValue={this.state.text}
-                  />
-                  </View>
-                <View style={{ padding: 10, marginBottom: 10 }}>
-                  <Text style={{fontWeight:'bold',fontSize:17}}>Start date</Text>
+                />
+              </View>
+              <View style={{ padding: 10, marginBottom: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
+                  Start date
+                </Text>
                 <TextInput
                   // user can type their emergency message
                   style={styles.message}
                   placeholder="YYYY-MM-DD"
-                  onChangeText={(newText) => this.setState({startdatetext: newText})}
+                  onChangeText={(newText) =>
+                    this.setState({ startdatetext: newText })
+                  }
                   defaultValue={this.state.text}
-                  />
-                  </View>
-                  <View style={{ padding: 10, marginBottom: 10 }}>
-                  <Text style={{fontWeight:'bold',fontSize:17}}>End date</Text>
+                />
+              </View>
+              <View style={{ padding: 10, marginBottom: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
+                  End date
+                </Text>
                 <TextInput
                   // user can type their emergency message
                   style={styles.message}
                   placeholder="YYYY-MM-DD"
-                  onChangeText={(newText) => this.setState({enddatetext: newText})}
+                  onChangeText={(newText) =>
+                    this.setState({ enddatetext: newText })
+                  }
                   defaultValue={this.state.text}
-                  />
-                  </View>
-                  <View style={{ padding: 10, marginBottom: 10 }}>
-                  <Text style={{fontWeight:'bold',fontSize:17}}>Notes</Text>
+                />
+              </View>
+              <View style={{ padding: 10, marginBottom: 10 }}>
+                <Text style={{ fontWeight: "bold", fontSize: 17 }}>Notes</Text>
                 <TextInput
                   // user can type their emergency message
                   style={styles.message}
                   placeholder="Type notes here"
-                  onChangeText={(newText) => this.setState({notetext: newText})}
+                  onChangeText={(newText) =>
+                    this.setState({ notetext: newText })
+                  }
                   defaultValue={this.state.text}
-                  />
-                  </View>
-                  <View style={{flexDirection:'row',left:20,top:42}}>
-                  <Pressable
+                />
+              </View>
+              <View style={{ flexDirection: "row", left: 20, top: 42 }}>
+                <Pressable
                   style={[
                     styles.button,
                     styles.buttonClose,
@@ -184,92 +192,91 @@ export default class EventsCalendar extends PureComponent {
                   }
                 >
                   <Text style={[styles.textStyle]}>Done</Text>
-                  </Pressable>
-                  <Pressable
+                </Pressable>
+                <Pressable
                   style={[
                     styles.button,
                     styles.buttonClose,
-                    { width: width / 3, left: 20, bottom: 30,backgroundColor:'rgba(28,56,107,1)' },
+                    {
+                      width: width / 3,
+                      left: 20,
+                      bottom: 30,
+                      backgroundColor: "rgba(28,56,107,1)",
+                    },
                   ]}
-                  onPress={() =>
-                    sendToFirestore(this.state)
-                    
-                  }
+                  onPress={() => sendToFirestore(this.state)}
                 >
                   <Text style={[styles.textStyle]}>Add</Text>
                 </Pressable>
-                  </View>
-                
               </View>
             </View>
-          </Modal>
-          <View>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  modalVisible: true,
-                })
-              }
-              style={{
-                backgroundColor: "rgba(28,56,107,0.0)",
-                position: "absolute",
-                borderRadius: 50,
-                width: 50,
-                height: 50,
-                zIndex: 1,
-                right: 20,
-                top: height - 250,
-                alignItems: "center",
-              }}
-            >
-              <AntDesign name="pluscircle" color="black" size={50} />
-            </TouchableOpacity>
           </View>
-      <Agenda
-        theme={{
-          calendarBackground: "white", //agenda background
-          agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
-          backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
-          agendaDayTextColor: "white", // day name
-          agendaDayNumColor: "white", // day number
-          agendaTodayColor: "rgba(255,255,255,0.9)", // today in list
-          monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
-          todayBackgroundColor: "rgba(28,56,107,0.9)",
-          textSectionTitleColor: "rgba(28,56,107,0.9)",
-          selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
-          dayTextColor: "rgba(28,56,107,0.9)", // calendar day
-          dotColor: "black", // dots
-        }}
-        minDate={"2022-01-01"}
-        maxDate={"2023-01-01"}
-        refreshing={false}
-        refreshControl={null}
-        items={this.state.items}
-        selected={new Date()}
-        initialNumToRender={5}
-        pastScrollRange={5}
-        futureScrollRange={5}
-        windowSize={15}
-        maxToRenderPerBatch={5}
-        updateCellsBatchingPeriod={5}
-        removeClippedSubviews={false}
-        onEndReachedThreshold={0.1}
-        loadItemsForMonth={this.loadFromList.bind(this)}
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        
-      />
+        </Modal>
+        <View>
+          <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                modalVisible: true,
+              })
+            }
+            style={{
+              backgroundColor: "rgba(28,56,107,0.0)",
+              position: "absolute",
+              borderRadius: 50,
+              width: 50,
+              height: 50,
+              zIndex: 1,
+              right: 20,
+              top: height - 250,
+              alignItems: "center",
+            }}
+          >
+            <AntDesign name="pluscircle" color="black" size={50} />
+          </TouchableOpacity>
+        </View>
+        <Agenda
+          theme={{
+            calendarBackground: "white", //agenda background
+            agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
+            backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
+            agendaDayTextColor: "white", // day name
+            agendaDayNumColor: "white", // day number
+            agendaTodayColor: "rgba(255,255,255,0.9)", // today in list
+            monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
+            todayBackgroundColor: "rgba(28,56,107,0.9)",
+            textSectionTitleColor: "rgba(28,56,107,0.9)",
+            selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
+            dayTextColor: "rgba(28,56,107,0.9)", // calendar day
+            dotColor: "black", // dots
+          }}
+          minDate={"2022-01-01"}
+          maxDate={"2023-01-01"}
+          refreshing={false}
+          refreshControl={null}
+          items={this.state.items}
+          selected={new Date()}
+          initialNumToRender={5}
+          pastScrollRange={5}
+          futureScrollRange={5}
+          windowSize={15}
+          maxToRenderPerBatch={5}
+          updateCellsBatchingPeriod={5}
+          removeClippedSubviews={false}
+          onEndReachedThreshold={0.1}
+          loadItemsForMonth={this.loadFromList.bind(this)}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyDate={this.renderEmptyDate.bind(this)}
+        />
       </View>
     );
   }
 
   loadFromList() {
     const onReceive = (data) => {
-      
       if (compare(data, this.state.events) === false) {
         this.setState({
           events: data,
-          item:{}
+          item: {},
         });
       }
     };
@@ -291,15 +298,15 @@ export default class EventsCalendar extends PureComponent {
       Object.keys(this.state.items).forEach((key) => {
         newItems[key] = this.state.items[key];
       });
-        this.setState({
-          items: newItems,
-        });
+      this.setState({
+        items: newItems,
+      });
     });
   }
 
   renderItem(item) {
     return (
-      <View style={[styles.item, { height: item.height+50 }]}>
+      <View style={[styles.item, { height: item.height + 50 }]}>
         <Text>{item.Name}</Text>
         <Text>{item.programme}</Text>
         <Text>{item.start}</Text>
@@ -315,7 +322,6 @@ export default class EventsCalendar extends PureComponent {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -372,7 +378,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
-    fontSize:20
+    fontSize: 20,
   },
   modalText: {
     marginBottom: 15,

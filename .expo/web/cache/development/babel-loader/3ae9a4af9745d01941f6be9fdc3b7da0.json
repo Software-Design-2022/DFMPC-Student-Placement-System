@@ -1,1 +1,16 @@
-{"ast":null,"code":"export var DeviceType;\n\n(function (DeviceType) {\n  DeviceType[DeviceType[\"UNKNOWN\"] = 0] = \"UNKNOWN\";\n  DeviceType[DeviceType[\"PHONE\"] = 1] = \"PHONE\";\n  DeviceType[DeviceType[\"TABLET\"] = 2] = \"TABLET\";\n  DeviceType[DeviceType[\"DESKTOP\"] = 3] = \"DESKTOP\";\n  DeviceType[DeviceType[\"TV\"] = 4] = \"TV\";\n})(DeviceType || (DeviceType = {}));","map":{"version":3,"sources":["../src/Device.types.ts"],"names":[],"mappings":"AAAA,OAAA,IAAY,UAAZ;;AAAA,CAAA,UAAY,UAAZ,EAAsB;AACpB,EAAA,UAAA,CAAA,UAAA,CAAA,SAAA,CAAA,GAAA,CAAA,CAAA,GAAA,SAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,OAAA,CAAA,GAAA,CAAA,CAAA,GAAA,OAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,QAAA,CAAA,GAAA,CAAA,CAAA,GAAA,QAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,SAAA,CAAA,GAAA,CAAA,CAAA,GAAA,SAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,IAAA,CAAA,GAAA,CAAA,CAAA,GAAA,IAAA;AACD,CAND,EAAY,UAAU,KAAV,UAAU,GAAA,EAAA,CAAtB","sourcesContent":["export enum DeviceType {\n  UNKNOWN = 0,\n  PHONE,\n  TABLET,\n  DESKTOP,\n  TV,\n}\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "export var DeviceType;\n\n(function (DeviceType) {\n  DeviceType[DeviceType[\"UNKNOWN\"] = 0] = \"UNKNOWN\";\n  DeviceType[DeviceType[\"PHONE\"] = 1] = \"PHONE\";\n  DeviceType[DeviceType[\"TABLET\"] = 2] = \"TABLET\";\n  DeviceType[DeviceType[\"DESKTOP\"] = 3] = \"DESKTOP\";\n  DeviceType[DeviceType[\"TV\"] = 4] = \"TV\";\n})(DeviceType || (DeviceType = {}));",
+  "map": {
+    "version": 3,
+    "sources": ["../src/Device.types.ts"],
+    "names": [],
+    "mappings": "AAAA,OAAA,IAAY,UAAZ;;AAAA,CAAA,UAAY,UAAZ,EAAsB;AACpB,EAAA,UAAA,CAAA,UAAA,CAAA,SAAA,CAAA,GAAA,CAAA,CAAA,GAAA,SAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,OAAA,CAAA,GAAA,CAAA,CAAA,GAAA,OAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,QAAA,CAAA,GAAA,CAAA,CAAA,GAAA,QAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,SAAA,CAAA,GAAA,CAAA,CAAA,GAAA,SAAA;AACA,EAAA,UAAA,CAAA,UAAA,CAAA,IAAA,CAAA,GAAA,CAAA,CAAA,GAAA,IAAA;AACD,CAND,EAAY,UAAU,KAAV,UAAU,GAAA,EAAA,CAAtB",
+    "sourcesContent": [
+      "export enum DeviceType {\n  UNKNOWN = 0,\n  PHONE,\n  TABLET,\n  DESKTOP,\n  TV,\n}\n"
+    ],
+    "sourceRoot": ""
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

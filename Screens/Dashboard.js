@@ -310,21 +310,20 @@ const Dashboard = () => {
 
   return (
     <View style={{ flex: 1 }}>
-       <View
+      <View
         style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
-      ></View> 
-       <View
+      ></View>
+      <View
         style={{
           backgroundColor: "rgba(255,255,255,0.8)",
           height: ICON_SIZE,
           zIndex: 1,
-          top:SPACING/2,
-          borderRadius:100,
-          right:width/1.8,
-          width:width/1,
+          top: SPACING / 2,
+          borderRadius: 100,
+          right: width / 1.8,
+          width: width / 1,
         }}
       >
-        
         <TouchableHighlight
           underlayColor="rgba(0,0,0,0.0)"
           style={{
@@ -358,11 +357,11 @@ const Dashboard = () => {
             flex: 1,
             width: ICON_SIZE,
             height: ICON_SIZE,
-            right: ICON_SIZE+20,
+            right: ICON_SIZE + 20,
             top: 0,
             position: "absolute",
             borderRadius: ICON_SIZE,
-            marginBottom:SPACING/2
+            marginBottom: SPACING / 2,
           }}
           onPress={() => {
             navigation.navigate("EmergencyPage");
@@ -386,11 +385,11 @@ const Dashboard = () => {
             flex: 1,
             width: ICON_SIZE,
             height: ICON_SIZE,
-            right: ICON_SIZE*2+30,
+            right: ICON_SIZE * 2 + 30,
             top: 0,
             position: "absolute",
             borderRadius: ICON_SIZE,
-            marginBottom:SPACING/2
+            marginBottom: SPACING / 2,
           }}
           onPress={() => {
             navigation.navigate("SettingsView");
@@ -412,13 +411,13 @@ const Dashboard = () => {
           underlayColor="rgba(0,0,0,0)"
           style={{
             flex: 1,
-            width: ICON_SIZE/1.1,
-            height: ICON_SIZE/1.1,
-            right: ICON_SIZE*3+40,
+            width: ICON_SIZE / 1.1,
+            height: ICON_SIZE / 1.1,
+            right: ICON_SIZE * 3 + 40,
             top: 2,
             position: "absolute",
             borderRadius: ICON_SIZE,
-            marginBottom:SPACING/2
+            marginBottom: SPACING / 2,
           }}
           onPress={() => {
             navigation.navigate("SettingsView");
@@ -426,8 +425,8 @@ const Dashboard = () => {
         >
           <Image
             style={{
-              width: ICON_SIZE/1.1,
-              height: ICON_SIZE/1.1,
+              width: ICON_SIZE / 1.1,
+              height: ICON_SIZE / 1.1,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
@@ -436,8 +435,8 @@ const Dashboard = () => {
             source={{ uri: authUserProfilePic }}
           />
         </TouchableHighlight>
-      </View> 
-      <View style={{ zIndex: 1, flex: 1, flexDirection: "row",}}>
+      </View>
+      <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
           style={{
             zIndex: 1,
@@ -486,8 +485,8 @@ const Dashboard = () => {
                 borderRadius: 32,
                 top: 0,
                 borderBottomColor: "rgba(28,56,107,0.9)",
-                resizeMode:"contain",
-                marginBottom:SPACING*3
+                resizeMode: "contain",
+                marginBottom: SPACING * 3,
               }}
             >
               <TwitterFeed
@@ -560,7 +559,7 @@ const Dashboard = () => {
               backgroundColor: "rgba(0,0,0,0.0)",
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
-              height:36
+              height: 36,
             }}
           >
             <FlatList
