@@ -174,7 +174,7 @@ class TwitterFeed extends Component {
     let witsUrl =
       "https://publish.twitter.com/oembed?url=https://twitter.com/WitsHealthFac/status/1573569169982861313?cxt=HHwWgICyzYLv09ErAAAA" +
       encodeURIComponent(this.props.witsUrl);
-      
+
     fetch(witsUrl, {
       method: "GET",
       headers: { Accepts: "application/json" },
