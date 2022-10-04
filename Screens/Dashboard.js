@@ -24,6 +24,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import "../global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
+import { createTopBar } from "../HelperFunctions";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -314,128 +315,8 @@ const Dashboard = () => {
       <View
         style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
       ></View>
-      <View
-        style={{
-          backgroundColor: "rgba(255,255,255,0.8)",
-          height: ICON_SIZE,
-          zIndex: 1,
-          top: SPACING / 2,
-          borderRadius: 100,
-          right: width / 1.8,
-          width: width / 1,
-        }}
-      >
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0.0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: 10,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-          }}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              borderWidth: 2,
-            }}
-            source={require("./images/logout_logo.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE + 20,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("EmergencyPage");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/emergency.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE * 2 + 30,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/bell.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE / 1.1,
-            height: ICON_SIZE / 1.1,
-            right: ICON_SIZE * 3 + 40,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE / 1.1,
-              height: ICON_SIZE / 1.1,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={{ uri: authUserProfilePic }}
-          />
-        </TouchableHighlight>
+      <View>
+        {createTopBar(10,ICON_SIZE*5,'rgba(255,255,255,0.8)',navigation)}
       </View>
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View

@@ -15,6 +15,7 @@ import firebase from "../firebase";
 import "../global.js";
 import { TouchableOpacity } from "react-native-web";
 import DialogInput from "react-native-dialog-input";
+import { createTopBar } from "../HelperFunctions";
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -28,6 +29,7 @@ const Settings = () => {
 
   return (
     <>
+      {createTopBar(100,165,'rgba(255,255,255,0.8)',navigation)}
       <View style={styles.button}>
         <Image style={styles.ProfilePic} source={{ uri: authUserProfilePic }} />
       </View>
