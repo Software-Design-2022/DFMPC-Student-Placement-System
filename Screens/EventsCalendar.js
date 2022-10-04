@@ -19,12 +19,16 @@ import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
 import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
+//import { Icon } from "react-native-paper/lib/typescript/components/Avatar/Avatar";
+import { createTopBar } from "../HelperFunctions";
+
 
 const data = [];
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
 const initialDate = getCurrentDate();
+
 
 const compare = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
@@ -98,7 +102,7 @@ export default class EventsCalendar extends PureComponent {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, top:SPACING*2,backgroundColor:'white'}}>
         <Modal
           animationType="slide"
           transparent={true}
@@ -227,12 +231,15 @@ export default class EventsCalendar extends PureComponent {
               height: 50,
               zIndex: 1,
               right: 20,
-              top: height - 250,
+              top: height - 175,
               alignItems: "center",
             }}
           >
             <AntDesign name="pluscircle" color="black" size={50} />
           </TouchableOpacity>
+          <View>
+            {createTopBar(5,165,"rgba(255,255,255,0.8)",useNavigation())}
+          </View>
         </View>
         <Agenda
           theme={{
