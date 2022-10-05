@@ -53,7 +53,7 @@ const EmergencyProtocols = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      {createTopBar(40,165,'rgba(255,255,255,0.8)',navigation)}
+      {createTopBar(40,165,"rgba(28,56,107,0.8)",navigation)}
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
