@@ -30,7 +30,7 @@ const Settings = () => {
   return (
     <>
       <View style={{zIndex:1}}>
-        {createTopBar(10,navigation)}
+        {createTopBar(50,navigation)}
       </View>
       <View style={styles.button}>
         <Image style={styles.ProfilePic} source={{ uri: authUserProfilePic }} />

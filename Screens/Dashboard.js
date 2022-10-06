@@ -313,8 +313,8 @@ const Dashboard = () => {
   return (
     <View style={{ flex: 1 }}>
 
-        {createTopBar(10,navigation)}
-   
+      {createTopBar(10,navigation,false)}
+
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
           style={{

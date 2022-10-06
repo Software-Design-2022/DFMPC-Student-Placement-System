@@ -52,8 +52,8 @@ const EmergencyProtocols = () => {
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return (
-    <View style={{ flex: 1,marginBottom:20}}>
-      {createTopBar(40,navigation)}
+    <View style={{flex: 1}}>
+      {createTopBar(10,navigation)}
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"

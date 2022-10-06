@@ -190,10 +190,19 @@ export function getCurrentDate()
 // }
 
 
-export function createTopBar(T,navigation){
+export function createTopBar(T,navigation,show){
   const [shouldShow, setShouldShow] = useState(true);
   return(
-    <View style={{flex:0.07,zIndex:1,backgroundColor:'white',top:40,right:0}}>
+    <View style={{
+                height:120,
+                height: ICON_SIZE,
+                zIndex: 1,
+                top: T+20,
+                borderRadius: 100,
+                right: 0,
+                width: width / 1,
+                marginBottom:35
+              }}>
       <View>
       <TouchableHighlight
           underlayColor="rgba(0,0,0,0.0)"
@@ -234,6 +243,7 @@ export function createTopBar(T,navigation){
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
+            setShouldShow(!shouldShow),
             navigation.goBack()
           }}
         >
@@ -265,7 +275,8 @@ export function createTopBar(T,navigation){
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
-            navigation.navigate("SettingsView");
+            setShouldShow(!shouldShow),
+            navigation.navigate("SettingsView")
           }}
         >
           <Image
@@ -292,7 +303,8 @@ export function createTopBar(T,navigation){
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
-            navigation.navigate("EmergencyPage");
+            setShouldShow(!shouldShow),
+            navigation.navigate("EmergencyPage")
           }}
         >
           <Image
@@ -301,7 +313,7 @@ export function createTopBar(T,navigation){
               height: ICON_SIZE,
               position: "absolute",
               resizeMode: "cover",
-              borderRadius: ICON_SIZE,
+
               borderWidth: 2,
             }}
             source={require("./Screens/images/emergency.png")}
@@ -319,6 +331,7 @@ export function createTopBar(T,navigation){
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
+            setShouldShow(!shouldShow),
             navigation.navigate("Dashboard");
           }}
         >
@@ -338,21 +351,22 @@ export function createTopBar(T,navigation){
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
-            width: ICON_SIZE/1,
-            height: ICON_SIZE/1,
+            width: ICON_SIZE/0.9,
+            height: ICON_SIZE/0.9,
             right:  SPACING+(ICON_SIZE+10)*4,
             top: T+2,
             position: "absolute",
             borderRadius: ICON_SIZE,
           }}
           onPress={() => {
+            setShouldShow(!shouldShow),
             navigation.navigate("Login");
           }}
         >
           <Image
             style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
+              width: ICON_SIZE/0.9,
+              height: ICON_SIZE/0.9,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
