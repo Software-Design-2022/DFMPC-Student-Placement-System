@@ -11,12 +11,14 @@ import {
   TouchableOpacity,
   FlatList,
   TouchableHighlight,
+  Dimensions
 } from "react-native";
 import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DialogInput from "react-native-dialog-input";
 import "../global";
 import { createTopBar } from "../HelperFunctions";
+const { width, height } = Dimensions.get("screen");
 
 const buttonHeight = 50;
 const textPos = buttonHeight / 2;
@@ -147,13 +149,14 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
-      {createTopBar(0,165,'rgba(255,255,255,0.8)',navigation)}
+      {createTopBar(50,navigation)}
+      <View>
       <Image
         style={{
           width: ICON_SIZE,
           height: ICON_SIZE,
           resizeMode: "cover",
-          right: -10,
+          right:height/2,
           top: 10,
           borderRadius: ICON_SIZE,
           marginRight: SPACING / 2,
@@ -187,6 +190,7 @@ const Settings = () => {
           keyExtractor={(item) => item.id}
         />
       </View>
+      </View>
       <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
         <Image
           resizeMode="contain"
@@ -201,12 +205,8 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
-    width: "100%",
     zIndex: 1,
-    top: 40,
   },
   linearGradient: {
     height: AVATAR_SIZE,
