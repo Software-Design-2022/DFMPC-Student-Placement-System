@@ -148,49 +148,26 @@ const Settings = () => {
     );
   };
   return (
-    <View style={styles.container}>
-      {createTopBar(50,navigation)}
-      <View>
-      <Image
-        style={{
-          width: ICON_SIZE,
-          height: ICON_SIZE,
-          resizeMode: "cover",
-          right:height/2,
-          top: 10,
-          borderRadius: ICON_SIZE,
-          marginRight: SPACING / 2,
-          borderWidth: 3,
-          borderColor: "rgba(0,0,0,0.1)",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          zIndex: 1,
-          shadowOffset: {
-            height: 10,
-            shadowColor: "black",
-            flex: 1,
-          },
-          shadowOpacity: 1,
-          shadowRadius: 10,
-        }}
-        source={{ uri: authUserProfilePic }}
-      />
-      <View
-        style={{
-          flex: 2,
-          marginTop: 25,
-          width: "100%",
-          backgroundColor: "rgba(30,55,108,0)",
-          zIndex: 1,
-        }}
-      >
-        <FlatList
-          contentContainerStyle={{}}
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
-      </View>
+    <View >
+      {createTopBar(10,navigation)}
+          <Image
+            style={{
+              width: ICON_SIZE/0.7,
+              height: ICON_SIZE/0.7,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              borderWidth: 2,
+              top:120,
+              zIndex:1,
+              justifyContent:'center',
+              left:width/2-(ICON_SIZE/0.7)/2
+            }}
+            source={{ uri: authUserProfilePic }}
+          />
+          
+
+
       <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
         <Image
           resizeMode="contain"
