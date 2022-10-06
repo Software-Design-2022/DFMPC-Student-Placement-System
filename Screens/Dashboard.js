@@ -312,12 +312,9 @@ const Dashboard = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View
-        style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
-      ></View>
-      <View>
-        {createTopBar(10,ICON_SIZE*5,'rgba(255,255,255,0.8)',navigation)}
-      </View>
+
+        {createTopBar(10,navigation)}
+   
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
           style={{
@@ -384,56 +381,6 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          {/* <View
-            style={{
-              flex: 0.5,
-              zIndex: 1,
-              backgroundColor: "rgba(0,0,0,0.05)",
-              borderRadius: 16,
-              marginTop: SPACING,
-              marginLeft: SPACING / 2,
-              flexDirection: "column",
-            }}
-          >
-            <View
-              style={{
-                flex: 0.3,
-                backgroundColor: "rgba(0,0,0,0.2)",
-                borderTopRightRadius: 16,
-                borderTopLeftRadius: 16,
-                borderWidth: 0,
-                borderBottomColor: "rgba(28,56,107,0.9)",
-                borderColor: "rgba(28,56,107,0.9)",
-              }}
-            >
-              <Text
-                style={{
-                  color: "rgba(255,255,255,1)",
-                  fontSize: 25,
-                  fontWeight: "bold",
-                  left: 70,
-                }}
-              >
-                Notifications
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-            <View
-              style={{
-                flex: 0.5,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-          </View> */}
           <View
             style={{
               marginTop: SPACING,

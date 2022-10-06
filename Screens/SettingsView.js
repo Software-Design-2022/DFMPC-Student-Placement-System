@@ -29,7 +29,9 @@ const Settings = () => {
 
   return (
     <>
-      {createTopBar(100,165,'rgba(255,255,255,0.8)',navigation)}
+      <View style={{zIndex:1}}>
+        {createTopBar(10,navigation)}
+      </View>
       <View style={styles.button}>
         <Image style={styles.ProfilePic} source={{ uri: authUserProfilePic }} />
       </View>
