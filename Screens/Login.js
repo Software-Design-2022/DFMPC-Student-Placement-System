@@ -145,17 +145,12 @@ const Login = () => {
       style={styles.container}
       // needs fixing // when keyboard appers things move up a bit
     >
-            <View style={{ position: "absolute" }}>
-        <Image
-          resizeMode="contain"
-          source={require("./images/background.png")}
-          blurRadius={0}
-        />
-      </View>
       <View>
         <Image
-          source={require("./images/wits.png")}
-          style={{ width: 200, height: 100, marginBottom:20}}
+          source={{
+            uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
+          }}
+          style={{ width: 300, height: 150 }}
         ></Image>
       </View>
       <View style={styles.inputStyle}>
@@ -176,9 +171,9 @@ const Login = () => {
       <View style={{ paddingTop: 12, width: "40%" }}>
         <LinearGradient
           colors={[
-            "rgba(14,36,61,255)",
-            "rgba(14,36,61,255)",
-            "rgba(14,36,61,255)",
+            "rgba(28,72,123,255)",
+            " rgba(28,72,123,255))",
+            "rgba(28,72,123,255)",
           ]}
           style={styles.linearGradient}
         >
@@ -193,7 +188,6 @@ const Login = () => {
         </LinearGradient>
       
       </View>
-
     </KeyboardAvoidingView>
     // </TouchableWithoutFeedback>
     

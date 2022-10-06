@@ -98,7 +98,7 @@ export default function EmergencyPage() {
         />
       </View>
       <View style={{ flex: 1 }}>
-      {createTopBar(40,165,"rgba(28,56,107,0.8)",navigation)}
+      {createTopBar(40,165,'rgba(255,255,255,0.8)',navigation)}
 
         <View style={{ padding: 10, marginBottom: 20,top:60 }}>
           <TextInput
