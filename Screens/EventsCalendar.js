@@ -27,7 +27,7 @@ const data = [];
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
-const initialDate = getCurrentDate();
+
 
 
 const compare = (obj1, obj2) => {
@@ -237,9 +237,6 @@ export default class EventsCalendar extends PureComponent {
           >
             <AntDesign name="pluscircle" color="black" size={50} />
           </TouchableOpacity>
-          <View>
-            {createTopBar(5,165,"rgba(255,255,255,0.8)",useNavigation())}
-          </View>
         </View>
         <Agenda
           theme={{
