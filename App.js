@@ -10,9 +10,7 @@ import SettingsView from "./Screens/Settings";
 import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
-
 import EventsCalendar from "./Screens/EventsCalendar";
-
 const Stack = createNativeStackNavigator();
 
 function App() {

@@ -14,7 +14,8 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import { Card, Avatar } from "react-native-paper";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Card, Avatar, Button } from "react-native-paper";
 import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
 import { useNavigation } from "@react-navigation/core";
@@ -94,6 +95,10 @@ export default class EventsCalendar extends PureComponent {
       enddatetext: "",
       eventtext: "",
       notetext: "",
+      datePickerVisible: false,
+      selectedDate: new Date(),
+      btnstart: false,
+      btnend: false,
     };
   }
   render() {
@@ -138,18 +143,99 @@ export default class EventsCalendar extends PureComponent {
                   defaultValue={this.state.text}
                 />
               </View>
-              <View style={{ padding: 10, marginBottom: 10 }}>
-                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
-                  Start date
-                </Text>
-                <TextInput
-                  // user can type their emergency message
-                  style={styles.message}
-                  placeholder="YYYY-MM-DD"
-                  onChangeText={(newText) =>
-                    this.setState({ startdatetext: newText })
+              <View>
+                <Pressable
+                  style={[
+                    styles.buttonClose,
+                    {
+                      borderRadius: 10,
+                      padding: 10,
+                      elevation: 2,
+                      height: 50,
+                      width: 200,
+                      left: 20,
+                      bottom: 10,
+                      backgroundColor: "rgba(28,56,107,1)",
+                    },
+                    { width: 200, left: 10 },
+                  ]}
+                  onPress={() =>
+                    this.setState({
+                      datePickerVisible: true,
+                      btnstart: true,
+                      btnend: false,
+                    })
                   }
-                  defaultValue={this.state.text}
+                >
+                  <Text style={[styles.textStyle]}>Select a start date</Text>
+                </Pressable>
+              </View>
+              <View>
+                <Pressable
+                  style={[
+                    styles.buttonClose,
+                    {
+                      borderRadius: 10,
+                      padding: 10,
+                      elevation: 2,
+                      height: 50,
+                      width: 200,
+                      left: 20,
+                      bottom: 10,
+                      backgroundColor: "rgba(28,56,107,1)",
+                    },
+                    { width: 200, left: 10 },
+                  ]}
+                  onPress={() =>
+                    this.setState({
+                      datePickerVisible: true,
+                      btnstart: false,
+                      btnend: true,
+                    })
+                  }
+                >
+                  <Text style={[styles.textStyle]}>Select an end date</Text>
+                </Pressable>
+              </View>
+              <View
+                style={{
+                  padding: 20,
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <DateTimePickerModal
+                  date={this.state.selectedDate}
+                  isVisible={this.state.datePickerVisible}
+                  mode="date"
+                  onConfirm={(date) => {
+                    this.setState({
+                      selectedDate: date,
+                      datePickerVisible: false,
+                    });
+                    if (this.state.btnstart === true) {
+                      let datestr = this.state.selectedDate
+                        .toISOString()
+                        .split("T")[0];
+                      this.setState({
+                        startdatetext: datestr,
+                      });
+                     
+                    } else if (this.state.btnend === true) {
+                      let datestr = this.state.selectedDate
+                        .toISOString()
+                        .split("T")[0];
+                      this.setState({
+                        enddatetext: datestr,
+                      });
+                      
+                    }
+                  }}
+                  onCancel={() => {
+                    this.setState({ datePickerVisible: false });
+                  }}
                 />
               </View>
               <View style={{ padding: 10, marginBottom: 10 }}>
@@ -370,6 +456,9 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
     bottom: -height / 5,
+  },
+  buttonClose: {
+    backgroundColor: "black",
   },
   buttonClose: {
     backgroundColor: "black",
