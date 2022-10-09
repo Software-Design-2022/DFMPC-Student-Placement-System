@@ -13,6 +13,7 @@ import {
   LogBox,
 } from "react-native";
 import "../global";
+import { Location, Permissions } from "expo"; // Location and Permissions are expo modules
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 
@@ -32,7 +33,7 @@ const sendToFirestore = (text, msg) => {
     .firestore()
     .collection("panic_button")
     .add({
-      Location: [-latitude, longitude],
+      Location: new firebase.firestore.GeoPoint(latitude, longitude), // new firestore geopoint with latitude and longitude means
       query: text,
       student_Number: "123456",
       user_FirstName: authname,
@@ -53,6 +54,8 @@ Notifications.setNotificationHandler({
 });
 
 export default function EmergencyPage() {
+  // inside this function we will use the location module to get the location of the user and then send it to the database
+  const [setLocation] = useState(null);
   const [text, setText] = useState("");
   const navigation = useNavigation();
   const [expoPushToken, setExpoPushToken] = useState("");
@@ -60,8 +63,25 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  // this function will get the location of the user
+  const getLocation = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+    }
+
+    location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+  };
+
+  // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
+
   useEffect(() => {
     let cancel = false;
+
+    // call the getLocation function
+    getLocation(); // call getLocation function to get the location of the user
+
     registerForPushNotificationsAsync().then((token) => {
       if (cancel) return;
       setExpoPushToken(token);
@@ -121,12 +141,16 @@ export default function EmergencyPage() {
           />
         </View>
 
-        <View style={{ margin: 20 }}>
+        <View style={styles.Button1}>
           <Button
-            title="Send Emergency message"
-            color="#415A77"
-            // when clicked data is send to firestore database
-            onPress={() => sendToFirestore(text, msg)}
+            title="Submit"
+            color="#729fd4"
+            // when clicked data is send to firestore database and reset text input
+            onPress={() => {
+              sendToFirestore(text, msg);
+              // clear text input after submit
+              setText("");
+            }}
           />
         </View>
       </View>
@@ -146,25 +170,29 @@ async function schedulePushNotification(msg) {
 }
 
 async function registerForPushNotificationsAsync() {
-  let token;
+  let token; // expo token
   if (Device.isDevice) {
+    // if device is a real device
     const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
+      await Notifications.getPermissionsAsync(); // get permission
+    let finalStatus = existingStatus; // set final status
     if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+      const { status } = await Notifications.requestPermissionsAsync(); // request permission
+      finalStatus = status; // set final status
     }
     if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
-      return;
+      // if permission is not granted
+      alert("Failed to get push token for push notification!"); // alert user
+      return; // return
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
+    token = (await Notifications.getExpoPushTokenAsync()).data; // get token
   }
 
   if (Platform.OS === "android") {
+    // if device is android
     await Notifications.setNotificationChannelAsync("default", {
-      name: "default",
+      // set notification channel
+      name: "default", // name of channel
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: "#FF231F7C",
@@ -197,11 +225,17 @@ const styles = StyleSheet.create({
     height: 200,
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "white",
+    backgroundColor: "#32455c",
   },
 
   Button1: {
-    backgroundColor: "rgba(221, 240, 255,0.2)",
+    backgroundColor: "#050c12",
+    alignContent: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    height: 50,
+    width: 300,
+    marginLeft: 60,
   },
 
   title: {
