@@ -11,6 +11,7 @@ import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
 import EventsCalendar from "./Screens/EventsCalendar";
+import NewCalendar from "./Screens/NewCalendar";
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={NewCalendar}
           />
         }
         <Stack.Screen
