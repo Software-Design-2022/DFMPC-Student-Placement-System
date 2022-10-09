@@ -65,6 +65,22 @@ async function eventsData(onReceiveList) {
   onReceiveList(events);
 }
 
+async function sendToFirestore(state) {
+  await firebase
+    .firestore()
+    .collection("events")
+    .add({
+      name: state.eventtext,
+      start_date: state.startdatetext,
+      end_date: state.enddatetext,
+      id: Math.max(50, Math.floor(Math.random() * 150)),
+      programme: state.notetext,
+    })
+    .then(() => {
+      Alert.alert("Event Added");
+    });
+}
+
 const NewCalendar = () => {
   const [EventsState, SetEventsState] = useState({
     events: [
@@ -111,47 +127,245 @@ const NewCalendar = () => {
     });
     setDayData(data);
   };
+  const [state, setState] = useState({
+    modalVisible: false,
+    startdatetext: "",
+    enddatetext: "",
+    eventtext: "",
+    notetext: "",
+    datePickerVisible: false,
+    selectedDate: new Date(),
+    btnstart: false,
+    btnend: false,
+  });
 
-  const [show, setShow] = useState(true);
-  const eventInfo = [
-    {
-      key: 0,
-      programme: "test",
-      name: "angela",
-      id: 0,
-      start: "2022-10-08",
-      end: "2022-10-08",
-    },
-  ];
-  // eventData=eventInfo;
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={state.modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setState({
+            modalVisible: false,
+          });
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View
+            style={{
+              top: 50,
+              height: 400,
+              width: width / 1.2,
+              backgroundColor: "white",
+              borderRadius: 10,
+              borderWidth: 4,
+            }}
+          >
+            <Text style={{ fontSize: 25, top: 10, textAlign: "center" }}>
+              Create Event
+            </Text>
+            <View style={{ padding: 10, marginBottom: 10 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 17 }}>
+                Event name
+              </Text>
+              <TextInput
+                // user can type their emergency message
+                style={styles.message}
+                placeholder="Enter name"
+                onChangeText={(newText) => setState({ eventtext: newText })}
+                defaultValue={""}
+              />
+            </View>
+            <View>
+              <Pressable
+                style={[
+                  styles.buttonClose,
+                  {
+                    borderRadius: 10,
+                    padding: 10,
+                    elevation: 2,
+                    height: 50,
+                    width: 200,
+                    left: 20,
+                    bottom: 10,
+                    backgroundColor: "rgba(28,56,107,1)",
+                  },
+                  { width: 200, left: 10 },
+                ]}
+                onPress={() =>
+                  setState({
+                    datePickerVisible: true,
+                    btnstart: true,
+                    btnend: false,
+                  })
+                }
+              >
+                <Text style={[styles.textStyle]}>Select a start date</Text>
+              </Pressable>
+            </View>
+            <View>
+              <Pressable
+                style={[
+                  styles.buttonClose,
+                  {
+                    borderRadius: 10,
+                    padding: 10,
+                    elevation: 2,
+                    height: 50,
+                    width: 200,
+                    left: 20,
+                    bottom: 10,
+                    backgroundColor: "rgba(28,56,107,1)",
+                  },
+                  { width: 200, left: 10 },
+                ]}
+                onPress={() =>
+                  setState({
+                    datePickerVisible: true,
+                    btnstart: false,
+                    btnend: true,
+                  })
+                }
+              >
+                <Text style={[styles.textStyle]}>Select an end date</Text>
+              </Pressable>
+            </View>
+            <View
+              style={{
+                padding: 20,
+                flex: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <DateTimePickerModal
+                date={state.selectedDate}
+                isVisible={state.datePickerVisible}
+                mode="date"
+                onConfirm={(date) => {
+                  setState({
+                    selectedDate: date,
+                    datePickerVisible: false,
+                  });
+                  if (state.btnstart === true) {
+                    let datestr = state.selectedDate
+                      .toISOString()
+                      .split("T")[0];
+                    setState({
+                      startdatetext: datestr,
+                    });
+                  } else if (state.btnend === true) {
+                    let datestr = state.selectedDate
+                      .toISOString()
+                      .split("T")[0];
+                    setState({
+                      enddatetext: datestr,
+                    });
+                  }
+                }}
+                onCancel={() => {
+                  setState({ datePickerVisible: false });
+                }}
+              />
+            </View>
+            <View style={{ padding: 10, marginBottom: 10 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 17 }}>End date</Text>
+              <TextInput
+                // user can type their emergency message
+                style={styles.message}
+                placeholder="YYYY-MM-DD"
+                onChangeText={(newText) => setState({ enddatetext: newText })}
+                defaultValue={state.text}
+              />
+            </View>
+            <View style={{ padding: 10, marginBottom: 10 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 17 }}>Notes</Text>
+              <TextInput
+                // user can type their emergency message
+                style={styles.message}
+                placeholder="Type notes here"
+                onChangeText={(newText) => setState({ notetext: newText })}
+                defaultValue={state.text}
+              />
+            </View>
+            <View style={{ flexDirection: "row", left: 20, top: 42 }}>
+              <Pressable
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  { width: width / 3, left: 10, bottom: 30 },
+                ]}
+                onPress={() =>
+                  setState({
+                    modalVisible: false,
+                  })
+                }
+              >
+                <Text style={[styles.textStyle]}>Done</Text>
+              </Pressable>
+              <Pressable
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  {
+                    width: width / 3,
+                    left: 20,
+                    bottom: 30,
+                    backgroundColor: "rgba(28,56,107,1)",
+                  },
+                ]}
+                onPress={() => sendToFirestore(state)}
+              >
+                <Text style={[styles.textStyle]}>Add</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <View>
+        <TouchableOpacity
+          onPress={() =>
+            setState({
+              modalVisible: true,
+            })
+          }
+          style={{
+            backgroundColor: "rgba(28,56,107,0.0)",
+            position: "absolute",
+            borderRadius: 50,
+            width: 50,
+            height: 50,
+            zIndex: 1,
+            right: 20,
+            top: height - 250,
+            alignItems: "center",
+          }}
+        >
+          <AntDesign name="pluscircle" color="black" size={50} />
+        </TouchableOpacity>
+      </View>
       <Calendar
-        style={{margin:30}}
+        style={{ margin: 30 }}
         markedDates={GetMarkedDates()}
         onDayPress={(day) => {
           getDayEvents(day);
-          setShouldShow(true);
           eventData = dayData;
-          setShow(true);
+          if (showEvent == false) {
+            showEvent = true;
+          }
         }}
         onDayLongPress={(day) => {
-          getDayEvents(day);
-          setShouldShow(true);
-          eventData = dayData;
-          setShow(true);
+          setState({
+            modalVisible: true,
+          })
         }}
       />
-      {/*       <View style={styles.container}>{shouldShow ? setShow(true) : null}</View>  */}
       <Provider>
         <View>
-          <BottomSheet
-            show={show}
-            onDismiss={() => {
-              setShow(false);
-            }}
-            eventInfo1={dayData}
-          ></BottomSheet>
+          <BottomSheet></BottomSheet>
         </View>
       </Provider>
     </View>

@@ -3,22 +3,21 @@ import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 import { IconButton, Portal } from "react-native-paper";
 import "../global";
 
-
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
 
-const BottomSheet = (show, onDismiss, eventsInfo1) => {
+const BottomSheet = () => {
   const sheetHeight = Dimensions.get("window").height;
   const screenWidth = Dimensions.get("window").width;
-  const [open, setOpen] = useState(show);
+  const [open, setOpen] = useState(showEvent);
   const bottom = useRef(new Animated.Value(-sheetHeight)).current;
 
   // const [eventsData,setEventsData] =useState([{}])
   //setEventsData(eventsInfo)
   useEffect(() => {
-    if (show) {
-      setOpen(show);
+    if (showEvent) {
+      setOpen(true);
       Animated.timing(bottom, {
         toValue: -300,
         duration: 100,
@@ -31,7 +30,7 @@ const BottomSheet = (show, onDismiss, eventsInfo1) => {
         useNativeDriver: false,
       }).start(() => setOpen(false));
     }
-  }, [show]);
+  }, [showEvent]);
   if (open == false) {
     return null;
   }
@@ -74,13 +73,15 @@ const BottomSheet = (show, onDismiss, eventsInfo1) => {
             color="red"
             icon="close"
             style={styles.closeIcon}
-            onPress={() => setOpen(false)}
-            
+            onPress={() => {
+              setOpen(false)
+              showEvent=false
+            }}
           />
         </View>
         <View>
           {eventData.map((item, key) => (
-            <View key={key} style={[styles.item, { height: item.height}]}>
+            <View key={key} style={[styles.item, { height: item.height }]}>
               <Text>{item.name}</Text>
               <Text>{item.programme}</Text>
               <Text>{item.start}</Text>
@@ -126,12 +127,11 @@ var styles = StyleSheet.create({
   },
   item: {
     backgroundColor: "white",
-  
+
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
     marginTop: 17,
-   
   },
   emptyDate: {
     height: 15,
