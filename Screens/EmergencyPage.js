@@ -18,7 +18,7 @@ import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 
 const authname = authName;
-const authlastName = authLastName; 
+const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
 
@@ -33,7 +33,7 @@ const sendToFirestore = (text, msg) => {
     .firestore()
     .collection("panic_button")
     .add({
-      Location: new firebase.firestore.GeoPoint(latitude, longitude), // new firestore geopoint with latitude and longitude means 
+      Location: new firebase.firestore.GeoPoint(latitude, longitude), // new firestore geopoint with latitude and longitude means
       query: text,
       student_Number: "123456",
       user_FirstName: authname,
@@ -54,7 +54,6 @@ Notifications.setNotificationHandler({
 });
 
 export default function EmergencyPage() {
-
   // inside this function we will use the location module to get the location of the user and then send it to the database
   const [setLocation] = useState(null);
   const [text, setText] = useState("");
@@ -77,9 +76,6 @@ export default function EmergencyPage() {
 
   // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
 
-
-
-
   useEffect(() => {
     let cancel = false;
 
@@ -95,8 +91,6 @@ export default function EmergencyPage() {
       Notifications.addNotificationReceivedListener((notification) => {
         setNotification(notification);
       });
-
-    
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
@@ -137,8 +131,7 @@ export default function EmergencyPage() {
           </View>
         </View>
 
-        <View style={
-          { padding: 10, marginBottom: 20,  }}>
+        <View style={{ padding: 10, marginBottom: 20 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
@@ -147,8 +140,8 @@ export default function EmergencyPage() {
             defaultValue={text}
           />
         </View>
-      
-        <View style={styles.Button1}  >
+
+        <View style={styles.Button1}>
           <Button
             title="Submit"
             color="#729fd4"
@@ -158,15 +151,12 @@ export default function EmergencyPage() {
               // clear text input after submit
               setText("");
             }}
-            
           />
         </View>
       </View>
     </View>
   );
 }
-
-
 
 async function schedulePushNotification(msg) {
   await Notifications.scheduleNotificationAsync({
@@ -179,30 +169,29 @@ async function schedulePushNotification(msg) {
   });
 }
 
-
-
-
-
-
 async function registerForPushNotificationsAsync() {
   let token; // expo token
-  if (Device.isDevice) { // if device is a real device
-    const { status: existingStatus } = 
+  if (Device.isDevice) {
+    // if device is a real device
+    const { status: existingStatus } =
       await Notifications.getPermissionsAsync(); // get permission
     let finalStatus = existingStatus; // set final status
     if (existingStatus !== "granted") {
       const { status } = await Notifications.requestPermissionsAsync(); // request permission
       finalStatus = status; // set final status
     }
-    if (finalStatus !== "granted") { // if permission is not granted 
+    if (finalStatus !== "granted") {
+      // if permission is not granted
       alert("Failed to get push token for push notification!"); // alert user
       return; // return
     }
     token = (await Notifications.getExpoPushTokenAsync()).data; // get token
   }
 
-  if (Platform.OS === "android") { // if device is android
-    await Notifications.setNotificationChannelAsync("default", { // set notification channel
+  if (Platform.OS === "android") {
+    // if device is android
+    await Notifications.setNotificationChannelAsync("default", {
+      // set notification channel
       name: "default", // name of channel
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
@@ -247,7 +236,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 300,
     marginLeft: 60,
-
   },
 
   title: {
