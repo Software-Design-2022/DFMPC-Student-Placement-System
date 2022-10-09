@@ -22,6 +22,8 @@ const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
 
+
+
 const msg = {
   title: "Message",
   body: "Emergency Message Has Been Sent",
@@ -42,8 +44,14 @@ const sendToFirestore = (text, msg) => {
     .then(() => {
       Alert.alert("Emergency Message Saved");
       schedulePushNotification(msg);
+      let today = new Date();
+      let hours = (today.getHours() < 10 ? '0' : '') + today.getHours();
+      let minutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+      let seconds = (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
+      notificationList.push({id:10,heading:"Emergency Page", time: hours + ':' + minutes + ':' + seconds, date:today.getDay()+"/"+today.getMonth()+"/"+today.getFullYear(),day:" ",body:"You sent an emergency message at " +hours + ':' + minutes + ':' + seconds })
     });
 };
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

@@ -10,6 +10,7 @@ import SettingsView from "./Screens/Settings";
 import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
+import Notifications from "./Screens/Notifications";
 
 import EventsCalendar from "./Screens/EventsCalendar";
 
@@ -24,7 +25,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={Dashboard}
           />
         }
         <Stack.Screen
@@ -57,6 +58,9 @@ function App() {
          options={{ headerShown: false }}
          />
         <Stack.Screen name="EventsCalendar" component={EventsCalendar}
+         options={{ headerShown: false }}
+         />
+         <Stack.Screen name="Notifications" component={Notifications}
          options={{ headerShown: false }}
          />
       </Stack.Navigator>

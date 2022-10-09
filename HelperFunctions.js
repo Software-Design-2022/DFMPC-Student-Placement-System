@@ -66,6 +66,7 @@ export function createTopBar(T,navigation,show){
               width:120,
               position: "absolute",
               resizeMode: "cover",
+              
             }}
             source={require("./Screens/images/wits5.png")}
           />
@@ -92,7 +93,7 @@ export function createTopBar(T,navigation,show){
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
-
+              
             }}
             source={require("./Screens/images/menu.png")}
           />
@@ -119,6 +120,7 @@ export function createTopBar(T,navigation,show){
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
+              
             }}
             source={require("./Screens/images/back.png")}
           />
@@ -133,7 +135,7 @@ export function createTopBar(T,navigation,show){
             flex: 1,
             width: ICON_SIZE/1,
             height: ICON_SIZE/1,
-            right:  SPACING+(ICON_SIZE+10),
+            right:  SPACING+(ICON_SIZE+8),
             top: 10,
             position: "absolute",
             borderRadius: ICON_SIZE,
@@ -149,6 +151,7 @@ export function createTopBar(T,navigation,show){
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
+              
             }}
             source={{ uri: authUserProfilePic }}
           />
@@ -159,10 +162,11 @@ export function createTopBar(T,navigation,show){
             flex: 1,
             width: ICON_SIZE/0.9,
             height: ICON_SIZE/0.9,
-            right:  SPACING+(ICON_SIZE+9)*2,
+            right:  SPACING+(ICON_SIZE+7)*2,
             top: 9,
             position: "absolute",
             borderRadius: ICON_SIZE,
+            
           }}
           onPress={() => {
             navigation.navigate("EmergencyPage")
@@ -184,7 +188,7 @@ export function createTopBar(T,navigation,show){
             flex: 1,
             width: ICON_SIZE/1,
             height: ICON_SIZE/1,
-            right:  SPACING+(ICON_SIZE+10)*3,
+            right:  SPACING+(ICON_SIZE+8)*3-2,
             top: 10,
             position: "absolute",
             borderRadius: ICON_SIZE,
@@ -208,9 +212,9 @@ export function createTopBar(T,navigation,show){
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
-            width: ICON_SIZE/0.9,
-            height: ICON_SIZE/0.9,
-            right:  SPACING+(ICON_SIZE+10)*4,
+            width: ICON_SIZE/0.85,
+            height: ICON_SIZE/0.85,
+            right:  SPACING+(ICON_SIZE+8)*4-6,
             top: 10,
             position: "absolute",
             borderRadius: ICON_SIZE,
@@ -221,13 +225,40 @@ export function createTopBar(T,navigation,show){
         >
           <Image
             style={{
-              width: ICON_SIZE/0.9,
-              height: ICON_SIZE/0.9,
+              width: ICON_SIZE/0.85,
+              height: ICON_SIZE/0.85,
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
             }}
             source={require("./Screens/images/logout_logo.png")}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0.0)"
+          style={{
+            flex: 1,
+            width: ICON_SIZE/1,
+            height: ICON_SIZE/1,
+            right:  SPACING+(ICON_SIZE+8)*5+7.5,
+            top: -2,
+            position: "absolute",
+            borderRadius: ICON_SIZE,
+          }}
+          onPress={() => {
+            navigation.navigate("Notifications")
+          }}
+        >
+          <Image
+            style={{
+              width: ICON_SIZE/0.55,
+            height: ICON_SIZE/0.55,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              
+            }}
+            source={require("./Screens/images/bell.png")}
           />
         </TouchableHighlight>
         </View>
