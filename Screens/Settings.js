@@ -157,7 +157,6 @@ const Settings = () => {
               position: "absolute",
               resizeMode: "cover",
               borderRadius: ICON_SIZE,
-              borderWidth: 2,
               top:120,
               zIndex:1,
               justifyContent:'center',

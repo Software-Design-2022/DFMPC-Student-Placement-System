@@ -118,16 +118,6 @@ export default function EmergencyPage() {
             onPress={() => sendToFirestore(text, msg)}
           />
         </View>
-        <View style={{ margin: 20,top:40 }}>
-          <Button
-            title="Go to protocols"
-            color="#415A77"
-            // when clicked data is send to firestore database
-            onPress={() => {
-              navigation.navigate("EmergencyProtocols");
-            }}
-          />
-        </View>
       </View>
       
     </View>
