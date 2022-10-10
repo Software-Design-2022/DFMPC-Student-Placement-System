@@ -1,5 +1,11 @@
-import { Image, View, TouchableHighlight, Dimensions } from "react-native";
-import { Transition, Transitioning } from "react-native-reanimated";
+
+import {
+  Image,
+  View,
+  TouchableHighlight,
+  Dimensions,
+} from "react-native";
+import {Transition, Transitioning} from 'react-native-reanimated'
 
 const SPACING = 20;
 const ICON_SIZE = 33;
@@ -13,41 +19,44 @@ export const makeLowerCase = (string) => {
   return string.toLowerCase();
 };
 
-export function getCurrentDate() {
+export function getCurrentDate()
+{
   const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth();
+  const day = today.getDate();       
+  const month = today.getMonth();     
   const year = today.getFullYear();
-
+  
   return day + "-" + month + "-" + year;
 }
 
-const transition = (
+const transition=(
   <Transition.Together>
-    <Transition.In type="fade" durationMS={200} />
-    <Transition.Change />
-    <Transition.Out type="fade" durationMS={200} />
+    <Transition.In type="fade" durationMS={200}/>
+    <Transition.Change/>
+    <Transition.Out type="fade" durationMS={200}/>
   </Transition.Together>
-);
+)
 
-const data = [
+const data=[
   {
     icon: require("./Screens/images/emergency.png"),
-    destination: navigation.navigate("EmergencyPage"),
+    destination: navigation.navigate("EmergencyPage")
   },
   {
     icon: { uri: authUserProfilePic },
-    destination: navigation.navigate("SettingsView"),
+    destination: navigation.navigate("SettingsView")
   },
   {
     icon: require("./Screens/images/bell.png"),
-    destination: navigation.navigate("SettingsView"),
+    destination: navigation.navigate("SettingsView")
   },
   {
     icon: require("./Screens/images/back.png"),
-    destination: navigation.goBacK(),
+    destination: navigation.goBacK()
   },
-];
+
+  
+]
 // export function createTopBar(T,R,color,navigation){
 //   return(
 
@@ -200,54 +209,56 @@ const data = [
 //             }}
 //             source={require("./Screens/images/back.png")}
 //           />
-//         </TouchableHighlight>
+//         </TouchableHighlight> 
 //       </View>
 //   )
 // }
 
-export function createTopBar(T, R, color, navigation) {
-  const [currentIndex, setCurrentIndex] = React.useState(null);
-  const ref = React.useRef();
+export function createTopBar(T,R,color,navigation){
 
-  return (
-    <View
-      style={{
-        backgroundColor: color,
-        height: ICON_SIZE,
-        zIndex: 1,
-        top: T,
-        borderRadius: 2,
-        right: 0,
-        width: width / 1,
-      }}
-    >
-      <TouchableHighlight
-        underlayColor="rgba(0,0,0,0.0)"
+  const [currentIndex, setCurrentIndex]=React.useState(null);
+  const ref=React.useRef();
+  
+  return(
+  <View
         style={{
-          flex: 1,
-          width: ICON_SIZE,
+          backgroundColor: color,
           height: ICON_SIZE,
-          right: 10,
-          top: 2,
-          position: "absolute",
-          borderRadius: ICON_SIZE,
-        }}
-        onPress={() => {
-          setCurrentIndex(index);
+          zIndex: 1,
+          top: T,
+          borderRadius: 2,
+          right: 0,
+          width: width / 1,
         }}
       >
-        <Image
+        <TouchableHighlight
+          underlayColor="rgba(0,0,0,0.0)"
           style={{
+            flex: 1,
             width: ICON_SIZE,
             height: ICON_SIZE,
+            right: 10,
+            top: 2,
             position: "absolute",
-            resizeMode: "cover",
             borderRadius: ICON_SIZE,
-            borderWidth: 2,
           }}
-          source={require("./Screens/images/menu.png")}
-        />
-      </TouchableHighlight>
-    </View>
-  );
+          onPress={() => {
+            setCurrentIndex(index);
+          }}
+        >
+          <Image
+            style={{
+              width: ICON_SIZE,
+              height: ICON_SIZE,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              borderWidth: 2,
+            }}
+            source={require("./Screens/images/menu.png")}
+          />
+        </TouchableHighlight>
+        
+      </View>
+  )
 }
