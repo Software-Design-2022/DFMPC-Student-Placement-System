@@ -68,7 +68,7 @@ export default function EmergencyPage() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-
+  const modalVisible=false;
   useEffect(() => {
     let cancel = false;
     registerForPushNotificationsAsync().then((token) => {
@@ -98,6 +98,62 @@ export default function EmergencyPage() {
 
   return (
     <View style={styles.container}>
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            this.setState({
+              modalVisible: false,
+            });
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View
+              style={{
+                top: 50,
+                height: 400,
+                width: width / 1.2,
+                backgroundColor: "white",
+                borderRadius: 10,
+                borderWidth: 4,
+              }}
+              >
+              <View style={{ flexDirection: "row", left: 20, top: 42 }}>
+                <Pressable
+                  style={[
+                    styles.button,
+                    styles.buttonClose,
+                    { width: width / 3, left: 10, bottom: 30 },
+                  ]}
+                  onPress={() =>
+                    this.setState({
+                      modalVisible: false,
+                    })
+                  }
+                >
+                  <Text style={[styles.textStyle]}>Done</Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.button,
+                    styles.buttonClose,
+                    {
+                      width: width / 3,
+                      left: 20,
+                      bottom: 30,
+                      backgroundColor: "rgba(28,56,107,1)",
+                    },
+                  ]}
+                  onPress={() => sendToFirestore(this.state)}
+                >
+                  <Text style={[styles.textStyle]}>Add</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
