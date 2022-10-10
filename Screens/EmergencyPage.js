@@ -15,6 +15,7 @@ import {
 import "../global";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
+import { createTopBar } from "../HelperFunctions";
 
 const authname = authName;
 const authlastName = authLastName;
@@ -89,29 +90,17 @@ export default function EmergencyPage() {
 
   return (
     <View style={styles.container}>
+      <View style={{ position: "absolute" }}>
+        <Image
+          resizeMode="contain"
+          source={require("./images/background.png")}
+          blurRadius={0}
+        />
+      </View>
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            top: -50,
-            backgroundColor: "rgba(255,255,255,0.8)",
-            height: 100,
-            zIndex: 1,
-            borderEndWidth: 0,
-            borderEndColor: "rgba(255,255,255,1)",
-            borderBottomStartRadius: 100,
-          }}
-        >
-          <View style={{ margin: 0 }}>
-            <Image
-              style={{ height: 80, position: "absolute", top: 5, left: -160 }}
-              resizeMode="contain"
-              source={require("./images/wits.png")}
-              blurRadius={0}
-            />
-          </View>
-        </View>
+      {createTopBar(40,165,"rgba(28,56,107,0.8)",navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20 }}>
+        <View style={{ padding: 10, marginBottom: 20,top:60 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
@@ -121,7 +110,7 @@ export default function EmergencyPage() {
           />
         </View>
 
-        <View style={{ margin: 20 }}>
+        <View style={{ margin: 20,top:60 }}>
           <Button
             title="Send Emergency message"
             color="#415A77"
@@ -129,7 +118,18 @@ export default function EmergencyPage() {
             onPress={() => sendToFirestore(text, msg)}
           />
         </View>
+        <View style={{ margin: 20,top:40 }}>
+          <Button
+            title="Go to protocols"
+            color="#415A77"
+            // when clicked data is send to firestore database
+            onPress={() => {
+              navigation.navigate("EmergencyProtocols");
+            }}
+          />
+        </View>
       </View>
+      
     </View>
   );
 }
@@ -174,17 +174,10 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-/* borderColor: "rgba(192,192,192,0.3)",
-backgroundColor: "rgba(192,192,192,0.2)",
-backgroundColor: "rgba(63, 130, 109,0.2)",
- backgroundColor: "rgba(181, 177, 178,0.2)",
- backgroundColor: "rgb(216, 212, 213)",
-  backgroundColor: "rgba(221, 240, 255,0.2)",
- */
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    top:0,
     flex: 1,
     justifyContent: "center",
     backgroundColor: "rgba(192,192,192,0.3)",

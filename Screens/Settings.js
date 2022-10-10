@@ -16,6 +16,7 @@ import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DialogInput from "react-native-dialog-input";
 import "../global";
+import { createTopBar } from "../HelperFunctions";
 
 const buttonHeight = 50;
 const textPos = buttonHeight / 2;
@@ -146,21 +147,7 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={{
-          zIndex: 1,
-          top: 0,
-          left: 10,
-          backgroundColor: "rgba(255,255,255,0.1)",
-          borderRadius: 7,
-          position: "absolute",
-        }}
-        onPress={() => {
-          navigation.navigate("Dashboard");
-        }}
-      >
-        <Text style={{ fontSize: 25, color: "rgba(0,0,0,0.7)" }}> {back} </Text>
-      </TouchableOpacity>
+      {createTopBar(0,165,'rgba(255,255,255,0.8)',navigation)}
       <Image
         style={{
           width: ICON_SIZE,
@@ -203,7 +190,7 @@ const Settings = () => {
       <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
         <Image
           resizeMode="contain"
-          source={require("./images/background6.png")}
+          source={require("./images/background.png")}
           blurRadius={0}
         />
       </View>
@@ -219,7 +206,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(28,56,107,255)",
     width: "100%",
     zIndex: 1,
-    top: 70,
+    top: 40,
   },
   linearGradient: {
     height: AVATAR_SIZE,

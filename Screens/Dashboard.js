@@ -24,6 +24,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import "../global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
+import { createTopBar } from "../HelperFunctions";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -314,128 +315,8 @@ const Dashboard = () => {
       <View
         style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
       ></View>
-      <View
-        style={{
-          backgroundColor: "rgba(255,255,255,0.8)",
-          height: ICON_SIZE,
-          zIndex: 1,
-          top: SPACING / 2,
-          borderRadius: 100,
-          right: width / 1.8,
-          width: width / 1,
-        }}
-      >
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0.0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: 10,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-          }}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              borderWidth: 2,
-            }}
-            source={require("./images/logout_logo.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE + 20,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("EmergencyPage");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/emergency.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE * 2 + 30,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/bell.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE / 1.1,
-            height: ICON_SIZE / 1.1,
-            right: ICON_SIZE * 3 + 40,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE / 1.1,
-              height: ICON_SIZE / 1.1,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={{ uri: authUserProfilePic }}
-          />
-        </TouchableHighlight>
+      <View style={{marginBottom:10}}>
+        {createTopBar(10,ICON_SIZE*5,"rgba(0,0,0,0)",navigation)}
       </View>
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
@@ -503,56 +384,7 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          {/* <View
-            style={{
-              flex: 0.5,
-              zIndex: 1,
-              backgroundColor: "rgba(0,0,0,0.05)",
-              borderRadius: 16,
-              marginTop: SPACING,
-              marginLeft: SPACING / 2,
-              flexDirection: "column",
-            }}
-          >
-            <View
-              style={{
-                flex: 0.3,
-                backgroundColor: "rgba(0,0,0,0.2)",
-                borderTopRightRadius: 16,
-                borderTopLeftRadius: 16,
-                borderWidth: 0,
-                borderBottomColor: "rgba(28,56,107,0.9)",
-                borderColor: "rgba(28,56,107,0.9)",
-              }}
-            >
-              <Text
-                style={{
-                  color: "rgba(255,255,255,1)",
-                  fontSize: 25,
-                  fontWeight: "bold",
-                  left: 70,
-                }}
-              >
-                Notifications
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-            <View
-              style={{
-                flex: 0.5,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-          </View> */}
+          
           <View
             style={{
               marginTop: SPACING,
