@@ -113,7 +113,7 @@ export default function SnazzyLogin() {
   function onCloseState(){
     Animated.timing(buttonOpacity, {
       toValue: 1,
-      duration: 200,
+      duration: 400,
       easing: EasingNode.in
     }).start();
   }
