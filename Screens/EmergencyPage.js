@@ -63,24 +63,12 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  // this function will get the location of the user
-  const getLocation = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
-    }
-
-    location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
-  };
+  
 
   // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
 
   useEffect(() => {
     let cancel = false;
-
-    // call the getLocation function
-    getLocation(); // call getLocation function to get the location of the user
 
     registerForPushNotificationsAsync().then((token) => {
       if (cancel) return;
@@ -225,7 +213,7 @@ const styles = StyleSheet.create({
     height: 200,
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "#32455c",
+    backgroundColor: "white",
   },
 
   Button1: {
