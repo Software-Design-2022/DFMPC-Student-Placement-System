@@ -61,6 +61,7 @@ const Login = () => {
     authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
     console.log("User ID: " + authUserID + " authenticated.");
   }
+
   const LoginFirebase = () => {
     // login with email and password
 
@@ -182,10 +183,14 @@ const Login = () => {
               LoginFirebase();
             }} // when user clicks on login button
           >
+
+            
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           
         </LinearGradient>
+        
+        
       
       </View>
     </KeyboardAvoidingView>
@@ -195,6 +200,7 @@ const Login = () => {
 };
 
 export default Login;
+
 
 const styles = StyleSheet.create({
   container: {
