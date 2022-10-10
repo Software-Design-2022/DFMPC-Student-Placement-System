@@ -146,7 +146,7 @@ export default function SnazzyLogin() {
   })
   const rotateCross=buttonOpacity.interpolate({
     inputRange: [0, 1],
-    outputRange: ["180deg", "360deg"],
+    outputRange: ["-360deg", "360deg"],
     extrapolate: Extrapolate.CLAMP
   })
 
