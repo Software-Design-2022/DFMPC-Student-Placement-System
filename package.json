@@ -9,7 +9,9 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --coverage",
+    
     "make-badges": "istanbul-badges-readme --logo='jest' "
+    
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
@@ -35,7 +37,9 @@
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1283.0",
     "react-native-dialog-input": "^1.0.8",
+    "react-native-gesture-handler": "~2.1.0",
     "react-native-paper": "^4.12.4",
+    "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
@@ -48,6 +52,7 @@
     "codecov": "^3.8.3",
     "istanbul-badges-readme": "^1.8.1",
     "jest": "^28.1.0",
+    "jetifier": "^2.0.0",
     "reinstall-node-modules": "^2.0.0"
   },
   "jest": {

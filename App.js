@@ -11,9 +11,8 @@ import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
 import Notifications from "./Screens/Notifications";
-
+import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
-
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Dashboard}
+            component={SnazzyLogin}
           />
         }
         <Stack.Screen
@@ -61,6 +60,9 @@ function App() {
          options={{ headerShown: false }}
          />
          <Stack.Screen name="Notifications" component={Notifications}
+         options={{ headerShown: false }}
+         />
+         <Stack.Screen name="SnazzyLogin" component={SnazzyLogin}
          options={{ headerShown: false }}
          />
       </Stack.Navigator>
