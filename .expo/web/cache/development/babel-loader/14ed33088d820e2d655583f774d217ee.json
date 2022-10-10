@@ -1,1 +1,17 @@
-{"ast":null,"code":"export var AuthConfig = {\n  appId: '2601b63e-4012-441c-a18d-d6d8e4cd6a29',\n  appScopes: ['openid', 'offline_access', 'profile', 'User.Read', 'MailboxSettings.Read', 'Calendars.ReadWrite']\n};","map":{"version":3,"names":["AuthConfig","appId","appScopes"],"sources":["C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/authConfig.js"],"sourcesContent":["export const AuthConfig = {\r\n    appId: '2601b63e-4012-441c-a18d-d6d8e4cd6a29',\r\n    appScopes: [\r\n      'openid',\r\n      'offline_access',\r\n      'profile',\r\n      'User.Read',\r\n      'MailboxSettings.Read',\r\n      'Calendars.ReadWrite',\r\n    ],\r\n  };"],"mappings":"AAAA,OAAO,IAAMA,UAAU,GAAG;EACtBC,KAAK,EAAE,sCADe;EAEtBC,SAAS,EAAE,CACT,QADS,EAET,gBAFS,EAGT,SAHS,EAIT,WAJS,EAKT,sBALS,EAMT,qBANS;AAFW,CAAnB"},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "export var AuthConfig = {\n  appId: '2601b63e-4012-441c-a18d-d6d8e4cd6a29',\n  appScopes: ['openid', 'offline_access', 'profile', 'User.Read', 'MailboxSettings.Read', 'Calendars.ReadWrite']\n};",
+  "map": {
+    "version": 3,
+    "names": ["AuthConfig", "appId", "appScopes"],
+    "sources": [
+      "C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/authConfig.js"
+    ],
+    "sourcesContent": [
+      "export const AuthConfig = {\r\n    appId: '2601b63e-4012-441c-a18d-d6d8e4cd6a29',\r\n    appScopes: [\r\n      'openid',\r\n      'offline_access',\r\n      'profile',\r\n      'User.Read',\r\n      'MailboxSettings.Read',\r\n      'Calendars.ReadWrite',\r\n    ],\r\n  };"
+    ],
+    "mappings": "AAAA,OAAO,IAAMA,UAAU,GAAG;EACtBC,KAAK,EAAE,sCADe;EAEtBC,SAAS,EAAE,CACT,QADS,EAET,gBAFS,EAGT,SAHS,EAIT,WAJS,EAKT,sBALS,EAMT,qBANS;AAFW,CAAnB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
