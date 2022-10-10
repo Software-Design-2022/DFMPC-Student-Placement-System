@@ -8,14 +8,14 @@ import {
   ScrollView,
   LogBox,
   Image,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import { getList } from "./ListApi";
 import { useNavigation } from "@react-navigation/core";
 import { createTopBar } from "../HelperFunctions";
 const { width, height } = Dimensions.get("screen");
 const EmergencyProtocols = () => {
-  const navigation=useNavigation();
+  const navigation = useNavigation();
   // this useState will be used to set the current state of our data
   // sets protocolList to the dat from database (firestore)
   const [state, setState] = useState({
@@ -53,7 +53,7 @@ const EmergencyProtocols = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      {createTopBar(40,165,"rgba(28,56,107,0.8)",navigation)}
+      {createTopBar(40, 165, "rgba(28,56,107,0.8)", navigation)}
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     flex: 1,
-    textAlign:'center'
+    textAlign: "center",
   },
   header: {
     flexDirection: "row",
@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     borderWidth: 2,
     borderColor: "rgba(192,192,192,0.7)",
-    width:width,
-    
+    width: width,
   },
   itemshow: {
     flexDirection: "row",
@@ -147,13 +146,11 @@ const styles = StyleSheet.create({
     marginLeft: 2,
     borderWidth: 2,
     borderColor: "rgba(255,255,255,0.7)",
-    
   },
   itemText: {
     fontSize: 16,
     fontWeight: "500",
     color: "black",
-    
   },
 
   toggleshow: {
@@ -175,7 +172,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: "rgb(0, 0, 0)",
-    textAlign:'center'
+    textAlign: "center",
   },
   inneritem: {
     borderRadius: 5,

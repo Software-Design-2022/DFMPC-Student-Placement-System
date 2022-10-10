@@ -98,9 +98,9 @@ export default function EmergencyPage() {
         />
       </View>
       <View style={{ flex: 1 }}>
-      {createTopBar(40,165,"rgba(28,56,107,0.8)",navigation)}
+        {createTopBar(40, 165, "rgba(28,56,107,0.8)", navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20,top:60 }}>
+        <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
@@ -110,7 +110,7 @@ export default function EmergencyPage() {
           />
         </View>
 
-        <View style={{ margin: 20,top:60 }}>
+        <View style={{ margin: 20, top: 60 }}>
           <Button
             title="Send Emergency message"
             color="#415A77"
@@ -118,7 +118,7 @@ export default function EmergencyPage() {
             onPress={() => sendToFirestore(text, msg)}
           />
         </View>
-        <View style={{ margin: 20,top:40 }}>
+        <View style={{ margin: 20, top: 40 }}>
           <Button
             title="Go to protocols"
             color="#415A77"
@@ -129,7 +129,6 @@ export default function EmergencyPage() {
           />
         </View>
       </View>
-      
     </View>
   );
 }
@@ -174,10 +173,9 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    top:0,
+    top: 0,
     flex: 1,
     justifyContent: "center",
     backgroundColor: "rgba(192,192,192,0.3)",

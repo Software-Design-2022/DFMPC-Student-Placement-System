@@ -175,7 +175,7 @@ class TwitterFeed extends Component {
     let witsUrl =
       "https://publish.twitter.com/oembed?url=https://twitter.com/WitsHealthFac/status/1573569169982861313?cxt=HHwWgICyzYLv09ErAAAA" +
       encodeURIComponent(this.props.witsUrl);
-      
+
     fetch(witsUrl, {
       method: "GET",
       headers: { Accepts: "application/json" },
@@ -315,8 +315,8 @@ const Dashboard = () => {
       <View
         style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
       ></View>
-      <View style={{marginBottom:10}}>
-        {createTopBar(10,ICON_SIZE*5,"rgba(0,0,0,0)",navigation)}
+      <View style={{ marginBottom: 10 }}>
+        {createTopBar(10, ICON_SIZE * 5, "rgba(0,0,0,0)", navigation)}
       </View>
       <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
@@ -384,7 +384,7 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          
+
           <View
             style={{
               marginTop: SPACING,

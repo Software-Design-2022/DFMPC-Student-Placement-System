@@ -18,7 +18,6 @@ import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 
-
 import "../global";
 
 const AVATAR_SIZE = 70;
@@ -27,7 +26,6 @@ const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
 const Login = () => {
- 
   //Login Screen
   const [email, setEmail] = useState(""); //email
   const [password, setPassword] = useState(""); //password
@@ -100,7 +98,6 @@ const Login = () => {
 });
  */
 
-
     var found = false;
     firebase
       .database()
@@ -145,7 +142,7 @@ const Login = () => {
       style={styles.container}
       // needs fixing // when keyboard appers things move up a bit
     >
-            <View style={{ position: "absolute" }}>
+      <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
           source={require("./images/background.png")}
@@ -155,7 +152,7 @@ const Login = () => {
       <View>
         <Image
           source={require("./images/wits.png")}
-          style={{ width: 200, height: 100, marginBottom:20}}
+          style={{ width: 200, height: 100, marginBottom: 20 }}
         ></Image>
       </View>
       <View style={styles.inputStyle}>
@@ -189,14 +186,10 @@ const Login = () => {
           >
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
-          
         </LinearGradient>
-      
       </View>
-
     </KeyboardAvoidingView>
     // </TouchableWithoutFeedback>
-    
   );
 };
 

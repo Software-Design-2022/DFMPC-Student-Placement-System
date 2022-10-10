@@ -147,7 +147,7 @@ const EventsCalendar = () => {
         markedDay[item.start] = {
           startingDay: true,
           endingDay: true,
-          selected:true,
+          selected: true,
           marked: true,
           color: randomColor2,
           dotColor: "blue",

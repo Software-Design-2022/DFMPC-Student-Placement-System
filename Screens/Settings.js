@@ -147,7 +147,7 @@ const Settings = () => {
   };
   return (
     <View style={styles.container}>
-      {createTopBar(0,165,'rgba(255,255,255,0.8)',navigation)}
+      {createTopBar(0, 165, "rgba(255,255,255,0.8)", navigation)}
       <Image
         style={{
           width: ICON_SIZE,

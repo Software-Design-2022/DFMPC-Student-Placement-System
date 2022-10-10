@@ -30,14 +30,16 @@ function App() {
           component={Dashboard}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Schedule" 
-        component={Schedule}
-        options={{ headerShown: false }}
-         />
-        <Stack.Screen name="CalendarView"
-         component={CalendarView}
-         options={{ headerShown: false }}
-          />
+        <Stack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CalendarView"
+          component={CalendarView}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="SettingsView"
           component={SettingsView}
@@ -48,15 +50,21 @@ function App() {
           component={EmergencyProtocols}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="DayAgenda" component={DayAgenda}
-         options={{ headerShown: false }}
-          />
-        <Stack.Screen name="EmergencyPage" component={EmergencyPage}
-         options={{ headerShown: false }}
-         />
-        <Stack.Screen name="EventsCalendar" component={EventsCalendar}
-         options={{ headerShown: false }}
-         />
+        <Stack.Screen
+          name="DayAgenda"
+          component={DayAgenda}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EmergencyPage"
+          component={EmergencyPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EventsCalendar"
+          component={EventsCalendar}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
