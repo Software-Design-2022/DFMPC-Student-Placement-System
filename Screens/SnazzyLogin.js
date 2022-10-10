@@ -153,7 +153,7 @@ export default function SnazzyLogin() {
 
   return (
     
-    <View style={{backgroundColor:'white',flex:1,justifyContent:'flex-end'}}>
+    <View style={{backgroundColor:'rgb(20, 41, 79)',flex:1,justifyContent:'flex-end'}}>
       <Image
             style={{
               backgroundColor:'rgba(255,255,255,0)',
@@ -179,28 +179,20 @@ export default function SnazzyLogin() {
       <View style={{height:height/3,justifyContent:'center'}}>
         <GestureHandlerRootView>
         <TapGestureHandler onHandlerStateChange={onStateChange} numberOfTaps={1} style={{flex:1}}>
-        <Animated.View style={{...styles.button,opacity:buttonOpacity,transform: [{ translateY: buttonY }]}}>
+        <Animated.View style={{...styles.button,opacity:buttonOpacity,backgroundColor:'rgba(255,255,255,0.9)',transform: [{ translateY: buttonY }]}}>
           <Text style={{fontSize:20,fontWeight:'bold'}}>SIGN IN</Text>
         </Animated.View>
         </TapGestureHandler>
         </GestureHandlerRootView>
         <GestureHandlerRootView>
         <TapGestureHandler onHandlerStateChange={onStateChange} numberOfTaps={1} style={{flex:1}}>
-        <Animated.View style={{...styles.button,opacity:buttonOpacity,transform: [{ translateY: buttonY }]}}>
-          <LinearGradient 
-          start={{ x: 0, y: 1 }}
-          end={{ x: 1, y: 1 }}
-          colors={["rgba(255,109,0,0.5)","rgba(255,165,0,0.6)"]}
-          style={{height: 70,
-            marginHorizontal: 20,
-            borderRadius: 35,
-            alignItems: 'center',
-            justifyContent: 'center',
-            width:width-80
-          }}
-          >
-          <Text style={{fontSize:20,fontWeight:'bold',color:"black"}}>SIGN IN WITH MICROSOFT</Text>
-          </LinearGradient>
+        <Animated.View style={{...styles.button,backgroundColor:'rgba(0,0,0,0.5)',opacity:buttonOpacity,flexDirection:'row',transform: [{ translateY: buttonY }]}}>
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(242, 80, 34)",color:'white',borderBottomWidth:5}}>Sign </Text> 
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(127, 186, 0)",color:'white',borderBottomWidth:5}}>in </Text>
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(127, 186, 0)",color:'white',borderBottomWidth:5}}>wit</Text>
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(0, 164, 239)",color:'white',borderBottomWidth:5}}>h </Text>
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(0, 164, 239)",color:'white',borderBottomWidth:5}}>Mic</Text>
+          <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(255, 185, 0)",color:'white',borderBottomWidth:5}}>rosoft</Text>
         </Animated.View>
         </TapGestureHandler>
         </GestureHandlerRootView>
