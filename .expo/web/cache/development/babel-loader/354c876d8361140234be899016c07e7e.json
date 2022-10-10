@@ -1,0 +1,60 @@
+{
+  "ast": null,
+  "code": "import _slicedToArray from \"@babel/runtime/helpers/slicedToArray\";\nimport _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport React, { useState } from 'react';\nimport StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport View from \"react-native-web/dist/exports/View\";\nimport Text from \"react-native-web/dist/exports/Text\";\nimport TouchableHighlight from \"react-native-web/dist/exports/TouchableHighlight\";\nimport { authorize } from 'react-native-app-auth';\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport { jsxs as _jsxs } from \"react/jsx-runtime\";\nimport { Fragment as _Fragment } from \"react/jsx-runtime\";\nvar AuthConfig = {\n  appId: \"2601b63e-4012-441c-a18d-d6d8e4cd6a29\",\n  tenantId: \"4b1b908c-5582-4377-ba07-a36d65e34934\",\n  appScopes: ['openid', 'offline_access', 'profile', 'User.Read']\n};\nvar config = {\n  warmAndPrefetchChrome: true,\n  clientId: AuthConfig.appId,\n  redirectUrl: \"https://dfmpc-student-placement-system.firebaseapp.com/__/auth/handler\",\n  scopes: AuthConfig.appScopes,\n  additionalParameters: {\n    prompt: 'select_account'\n  },\n  serviceConfiguration: {\n    authorizationEndpoint: 'https://login.microsoftonline.com/' + AuthConfig.tenantId + '/oauth2/v2.0/authorize',\n    tokenEndpoint: 'https://login.microsoftonline.com/' + AuthConfig.tenantId + '/oauth2/v2.0/token'\n  }\n};\n\nvar Microsoft = function Microsoft() {\n  var _useState = useState({}),\n      _useState2 = _slicedToArray(_useState, 2),\n      result = _useState2[0],\n      setResult = _useState2[1];\n\n  loginWithOffice365 = function loginWithOffice365() {\n    var tempResult;\n    return _regeneratorRuntime.async(function loginWithOffice365$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return _regeneratorRuntime.awrap(authorize(config));\n\n          case 2:\n            tempResult = _context.sent;\n            console.log(tempResult);\n            setResult(tempResult);\n\n          case 5:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, null, null, null, Promise);\n  };\n\n  return _jsx(_Fragment, {\n    children: _jsxs(View, {\n      style: styles.container,\n      children: [_jsx(TouchableHighlight, {\n        style: [styles.buttonContainer, styles.loginButton],\n        onPress: function onPress() {\n          return loginWithOffice365();\n        },\n        children: _jsx(Text, {\n          style: styles.loginText,\n          children: \"Login with Office365\"\n        })\n      }), _jsx(Text, {\n        children: result.accessToken ? \"Logged In\" : \"Error\"\n      })]\n    })\n  });\n};\n\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#DCDCDC'\n  },\n  buttonContainer: {\n    height: 45,\n    flexDirection: 'row',\n    justifyContent: 'center',\n    alignItems: 'center',\n    marginBottom: 20,\n    width: 250,\n    borderRadius: 30\n  },\n  loginButton: {\n    backgroundColor: '#3659b8'\n  },\n  loginText: {\n    color: 'white'\n  }\n});\nexport default Microsoft;",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "useState",
+      "authorize",
+      "AuthConfig",
+      "appId",
+      "tenantId",
+      "appScopes",
+      "config",
+      "warmAndPrefetchChrome",
+      "clientId",
+      "redirectUrl",
+      "scopes",
+      "additionalParameters",
+      "prompt",
+      "serviceConfiguration",
+      "authorizationEndpoint",
+      "tokenEndpoint",
+      "Microsoft",
+      "result",
+      "setResult",
+      "loginWithOffice365",
+      "tempResult",
+      "console",
+      "log",
+      "styles",
+      "container",
+      "buttonContainer",
+      "loginButton",
+      "loginText",
+      "accessToken",
+      "StyleSheet",
+      "create",
+      "flex",
+      "justifyContent",
+      "alignItems",
+      "backgroundColor",
+      "height",
+      "flexDirection",
+      "marginBottom",
+      "width",
+      "borderRadius",
+      "color"
+    ],
+    "sources": [
+      "C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/Screens/microsoft.js"
+    ],
+    "sourcesContent": [
+      "import React, { useState } from 'react';  \r\nimport {  \r\n  StyleSheet,  \r\n  View,  \r\n  Text,  \r\n  TouchableHighlight,  \r\n} from 'react-native';  \r\n  \r\nimport { authorize } from 'react-native-app-auth';  \r\n  \r\nconst AuthConfig = {  \r\n  appId: \"2601b63e-4012-441c-a18d-d6d8e4cd6a29\",  \r\n  tenantId: \"4b1b908c-5582-4377-ba07-a36d65e34934\",  \r\n  appScopes: [  \r\n    'openid',  \r\n    'offline_access',  \r\n    'profile',  \r\n    'User.Read',  \r\n  ],  \r\n};  \r\n  \r\nconst config = {  \r\n  warmAndPrefetchChrome: true,  \r\n  clientId: AuthConfig.appId,  \r\n  redirectUrl:\"https://dfmpc-student-placement-system.firebaseapp.com/__/auth/handler\",  \r\n  scopes: AuthConfig.appScopes,  \r\n  additionalParameters: { prompt: 'select_account' },  \r\n  serviceConfiguration: {  \r\n    authorizationEndpoint: 'https://login.microsoftonline.com/' + AuthConfig.tenantId + '/oauth2/v2.0/authorize',  \r\n    tokenEndpoint: 'https://login.microsoftonline.com/' + AuthConfig.tenantId + '/oauth2/v2.0/token',  \r\n  },  \r\n};  \r\n  \r\nconst Microsoft = () => {  \r\n  const [result, setResult] = useState({});  \r\n  \r\n  loginWithOffice365 = async () => {  \r\n    let tempResult = await authorize(config);  \r\n    console.log(tempResult);  \r\n    setResult(tempResult);  \r\n  };  \r\n  return (  \r\n    <>  \r\n      <View style={styles.container}>  \r\n        <TouchableHighlight  \r\n          style={[styles.buttonContainer, styles.loginButton]}  \r\n          onPress={() => loginWithOffice365()}>  \r\n          <Text style={styles.loginText}>Login with Office365</Text>  \r\n        </TouchableHighlight>  \r\n        <Text>{result.accessToken ? \"Logged In\" : \"Error\"}</Text>          \r\n      </View>  \r\n    </>  \r\n  );  \r\n};  \r\n  \r\nconst styles = StyleSheet.create({  \r\n  container: {  \r\n    flex: 1,  \r\n    justifyContent: 'center',  \r\n    alignItems: 'center',  \r\n    backgroundColor: '#DCDCDC',  \r\n  },  \r\n  buttonContainer: {  \r\n    height: 45,  \r\n    flexDirection: 'row',  \r\n    justifyContent: 'center',  \r\n    alignItems: 'center',  \r\n    marginBottom: 20,  \r\n    width: 250,  \r\n    borderRadius: 30,  \r\n  },  \r\n  loginButton: {  \r\n    backgroundColor: '#3659b8',  \r\n  },  \r\n  loginText: {  \r\n    color: 'white',  \r\n  },  \r\n});  \r\n  \r\nexport default Microsoft;  "
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAgBC,QAAhB,QAAgC,OAAhC;;;;;AAQA,SAASC,SAAT,QAA0B,uBAA1B;;;;AAEA,IAAMC,UAAU,GAAG;EACjBC,KAAK,EAAE,sCADU;EAEjBC,QAAQ,EAAE,sCAFO;EAGjBC,SAAS,EAAE,CACT,QADS,EAET,gBAFS,EAGT,SAHS,EAIT,WAJS;AAHM,CAAnB;AAWA,IAAMC,MAAM,GAAG;EACbC,qBAAqB,EAAE,IADV;EAEbC,QAAQ,EAAEN,UAAU,CAACC,KAFR;EAGbM,WAAW,EAAC,wEAHC;EAIbC,MAAM,EAAER,UAAU,CAACG,SAJN;EAKbM,oBAAoB,EAAE;IAAEC,MAAM,EAAE;EAAV,CALT;EAMbC,oBAAoB,EAAE;IACpBC,qBAAqB,EAAE,uCAAuCZ,UAAU,CAACE,QAAlD,GAA6D,wBADhE;IAEpBW,aAAa,EAAE,uCAAuCb,UAAU,CAACE,QAAlD,GAA6D;EAFxD;AANT,CAAf;;AAYA,IAAMY,SAAS,GAAG,SAAZA,SAAY,GAAM;EACtB,gBAA4BhB,QAAQ,CAAC,EAAD,CAApC;EAAA;EAAA,IAAOiB,MAAP;EAAA,IAAeC,SAAf;;EAEAC,kBAAkB,GAAG;IAAA;IAAA;MAAA;QAAA;UAAA;YAAA;YAAA,iCACIlB,SAAS,CAACK,MAAD,CADb;;UAAA;YACfc,UADe;YAEnBC,OAAO,CAACC,GAAR,CAAYF,UAAZ;YACAF,SAAS,CAACE,UAAD,CAAT;;UAHmB;UAAA;YAAA;QAAA;MAAA;IAAA;EAAA,CAArB;;EAKA,OACE;IAAA,UACE,MAAC,IAAD;MAAM,KAAK,EAAEG,MAAM,CAACC,SAApB;MAAA,WACE,KAAC,kBAAD;QACE,KAAK,EAAE,CAACD,MAAM,CAACE,eAAR,EAAyBF,MAAM,CAACG,WAAhC,CADT;QAEE,OAAO,EAAE;UAAA,OAAMP,kBAAkB,EAAxB;QAAA,CAFX;QAAA,UAGE,KAAC,IAAD;UAAM,KAAK,EAAEI,MAAM,CAACI,SAApB;UAAA;QAAA;MAHF,EADF,EAME,KAAC,IAAD;QAAA,UAAOV,MAAM,CAACW,WAAP,GAAqB,WAArB,GAAmC;MAA1C,EANF;IAAA;EADF,EADF;AAYD,CApBD;;AAsBA,IAAML,MAAM,GAAGM,UAAU,CAACC,MAAX,CAAkB;EAC/BN,SAAS,EAAE;IACTO,IAAI,EAAE,CADG;IAETC,cAAc,EAAE,QAFP;IAGTC,UAAU,EAAE,QAHH;IAITC,eAAe,EAAE;EAJR,CADoB;EAO/BT,eAAe,EAAE;IACfU,MAAM,EAAE,EADO;IAEfC,aAAa,EAAE,KAFA;IAGfJ,cAAc,EAAE,QAHD;IAIfC,UAAU,EAAE,QAJG;IAKfI,YAAY,EAAE,EALC;IAMfC,KAAK,EAAE,GANQ;IAOfC,YAAY,EAAE;EAPC,CAPc;EAgB/Bb,WAAW,EAAE;IACXQ,eAAe,EAAE;EADN,CAhBkB;EAmB/BP,SAAS,EAAE;IACTa,KAAK,EAAE;EADE;AAnBoB,CAAlB,CAAf;AAwBA,eAAexB,SAAf"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

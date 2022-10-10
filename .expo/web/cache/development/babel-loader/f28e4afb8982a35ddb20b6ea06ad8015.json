@@ -1,0 +1,54 @@
+{
+  "ast": null,
+  "code": "import _createClass from \"@babel/runtime/helpers/createClass\";\nimport _classCallCheck from \"@babel/runtime/helpers/classCallCheck\";\nimport _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport AsyncStorage from '@react-native-async-storage/async-storage';\nimport { authorize, refresh, AuthConfiguration } from 'react-native-app-auth';\nimport moment from 'moment';\nimport { AuthConfig } from \"./authConfig\";\nvar Auth = {\n  clientId: AuthConfig.appId,\n  redirectUrl: 'https://dfmpc-student-placement-system.firebaseapp.com/__/auth/handler',\n  scopes: AuthConfig.appScopes,\n  additionalParameters: {\n    prompt: 'select_account'\n  },\n  serviceConfiguration: {\n    authorizationEndpoint: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',\n    tokenEndpoint: 'https://login.microsoftonline.com/common/oauth2/v2.0/token'\n  }\n};\nexport var AuthManager = _createClass(function AuthManager() {\n  _classCallCheck(this, AuthManager);\n});\n\nAuthManager.signInAsync = function _callee() {\n  var result;\n  return _regeneratorRuntime.async(function _callee$(_context) {\n    while (1) {\n      switch (_context.prev = _context.next) {\n        case 0:\n          _context.next = 2;\n          return _regeneratorRuntime.awrap(authorize(config));\n\n        case 2:\n          result = _context.sent;\n          console.log(result.accessToken);\n          _context.next = 6;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('userToken', result.accessToken));\n\n        case 6:\n          _context.next = 8;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('refreshToken', result.refreshToken));\n\n        case 8:\n          _context.next = 10;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('expireTime', result.accessTokenExpirationDate));\n\n        case 10:\n        case \"end\":\n          return _context.stop();\n      }\n    }\n  }, null, null, null, Promise);\n};\n\nAuthManager.signOutAsync = function _callee2() {\n  return _regeneratorRuntime.async(function _callee2$(_context2) {\n    while (1) {\n      switch (_context2.prev = _context2.next) {\n        case 0:\n          _context2.next = 2;\n          return _regeneratorRuntime.awrap(AsyncStorage.removeItem('userToken'));\n\n        case 2:\n          _context2.next = 4;\n          return _regeneratorRuntime.awrap(AsyncStorage.removeItem('refreshToken'));\n\n        case 4:\n          _context2.next = 6;\n          return _regeneratorRuntime.awrap(AsyncStorage.removeItem('expireTime'));\n\n        case 6:\n        case \"end\":\n          return _context2.stop();\n      }\n    }\n  }, null, null, null, Promise);\n};\n\nAuthManager.getAccessTokenAsync = function _callee3() {\n  var expireTime, expire, now, refreshToken, result, accessToken;\n  return _regeneratorRuntime.async(function _callee3$(_context3) {\n    while (1) {\n      switch (_context3.prev = _context3.next) {\n        case 0:\n          _context3.next = 2;\n          return _regeneratorRuntime.awrap(AsyncStorage.getItem('expireTime'));\n\n        case 2:\n          expireTime = _context3.sent;\n\n          if (!(expireTime !== null)) {\n            _context3.next = 26;\n            break;\n          }\n\n          expire = moment(expireTime).subtract(5, 'minutes');\n          now = moment();\n\n          if (!now.isSameOrAfter(expire)) {\n            _context3.next = 22;\n            break;\n          }\n\n          console.log('Refreshing token');\n          _context3.next = 10;\n          return _regeneratorRuntime.awrap(AsyncStorage.getItem('refreshToken'));\n\n        case 10:\n          refreshToken = _context3.sent;\n          console.log(\"Refresh token: \" + refreshToken);\n          _context3.next = 14;\n          return _regeneratorRuntime.awrap(refresh(config, {\n            refreshToken: refreshToken || ''\n          }));\n\n        case 14:\n          result = _context3.sent;\n          _context3.next = 17;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('userToken', result.accessToken));\n\n        case 17:\n          _context3.next = 19;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('refreshToken', result.refreshToken || ''));\n\n        case 19:\n          _context3.next = 21;\n          return _regeneratorRuntime.awrap(AsyncStorage.setItem('expireTime', result.accessTokenExpirationDate));\n\n        case 21:\n          return _context3.abrupt(\"return\", result.accessToken);\n\n        case 22:\n          _context3.next = 24;\n          return _regeneratorRuntime.awrap(AsyncStorage.getItem('userToken'));\n\n        case 24:\n          accessToken = _context3.sent;\n          return _context3.abrupt(\"return\", accessToken);\n\n        case 26:\n          return _context3.abrupt(\"return\", null);\n\n        case 27:\n        case \"end\":\n          return _context3.stop();\n      }\n    }\n  }, null, null, null, Promise);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "AsyncStorage",
+      "authorize",
+      "refresh",
+      "AuthConfiguration",
+      "moment",
+      "AuthConfig",
+      "Auth",
+      "clientId",
+      "appId",
+      "redirectUrl",
+      "scopes",
+      "appScopes",
+      "additionalParameters",
+      "prompt",
+      "serviceConfiguration",
+      "authorizationEndpoint",
+      "tokenEndpoint",
+      "AuthManager",
+      "signInAsync",
+      "config",
+      "result",
+      "console",
+      "log",
+      "accessToken",
+      "setItem",
+      "refreshToken",
+      "accessTokenExpirationDate",
+      "signOutAsync",
+      "removeItem",
+      "getAccessTokenAsync",
+      "getItem",
+      "expireTime",
+      "expire",
+      "subtract",
+      "now",
+      "isSameOrAfter"
+    ],
+    "sources": [
+      "C:/Users/nokno/OneDrive/Documents/GitHub/DFMPC-Student-Placement-System/Screens/microsoft.js"
+    ],
+    "sourcesContent": [
+      "import AsyncStorage from '@react-native-async-storage/async-storage';\r\nimport {authorize, refresh, AuthConfiguration} from 'react-native-app-auth';\r\nimport moment from 'moment';\r\n\r\nimport {AuthConfig} from './authConfig';\r\n\r\nconst Auth = {\r\n  clientId: AuthConfig.appId,\r\n  redirectUrl: 'https://dfmpc-student-placement-system.firebaseapp.com/__/auth/handler',\r\n  scopes: AuthConfig.appScopes,\r\n  additionalParameters: {prompt: 'select_account'},\r\n  serviceConfiguration: {\r\n    authorizationEndpoint:\r\n      'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',\r\n    tokenEndpoint: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',\r\n  },\r\n};\r\n\r\nexport class AuthManager {\r\n  static signInAsync = async () => {\r\n    const result = await authorize(config);\r\n\r\n    console.log(result.accessToken);\r\n\r\n    // Store the access token, refresh token, and expiration time in storage\r\n    await AsyncStorage.setItem('userToken', result.accessToken);\r\n    await AsyncStorage.setItem('refreshToken', result.refreshToken);\r\n    await AsyncStorage.setItem('expireTime', result.accessTokenExpirationDate);\r\n  };\r\n\r\n  static signOutAsync = async () => {\r\n    // Clear storage\r\n    await AsyncStorage.removeItem('userToken');\r\n    await AsyncStorage.removeItem('refreshToken');\r\n    await AsyncStorage.removeItem('expireTime');\r\n  };\r\n\r\n  static getAccessTokenAsync = async () => {\r\n    const expireTime = await AsyncStorage.getItem('expireTime');\r\n\r\n    if (expireTime !== null) {\r\n      // Get expiration time - 5 minutes\r\n      // If it's <= 5 minutes before expiration, then refresh\r\n      const expire = moment(expireTime).subtract(5, 'minutes');\r\n      const now = moment();\r\n\r\n      if (now.isSameOrAfter(expire)) {\r\n        // Expired, refresh\r\n        console.log('Refreshing token');\r\n        const refreshToken = await AsyncStorage.getItem('refreshToken');\r\n        console.log(`Refresh token: ${refreshToken}`);\r\n        const result = await refresh(config, {\r\n          refreshToken: refreshToken || '',\r\n        });\r\n\r\n        // Store the new access token, refresh token, and expiration time in storage\r\n        await AsyncStorage.setItem('userToken', result.accessToken);\r\n        await AsyncStorage.setItem('refreshToken', result.refreshToken || '');\r\n        await AsyncStorage.setItem(\r\n          'expireTime',\r\n          result.accessTokenExpirationDate,\r\n        );\r\n\r\n        return result.accessToken;\r\n      }\r\n\r\n      // Not expired, just return saved access token\r\n      const accessToken = await AsyncStorage.getItem('userToken');\r\n      return accessToken;\r\n    }\r\n\r\n    return null;\r\n  };\r\n}"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
