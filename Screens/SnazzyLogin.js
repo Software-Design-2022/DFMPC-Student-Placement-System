@@ -196,7 +196,7 @@ export default function SnazzyLogin() {
             borderRadius: 35,
             alignItems: 'center',
             justifyContent: 'center',
-            width:width-27
+            width:width-80
           }}
           >
           <Text style={{fontSize:20,fontWeight:'bold',color:"black"}}>SIGN IN WITH MICROSOFT</Text>
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor: '#fff',
       height: 70,
-      marginHorizontal: 20,
+      marginHorizontal: 40,
       borderRadius: 35,
       alignItems: 'center',
       justifyContent: 'center',
