@@ -63,8 +63,6 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  
-
   // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
 
   useEffect(() => {
