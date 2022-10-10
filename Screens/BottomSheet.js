@@ -98,7 +98,7 @@ var styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    zIndex: 100,
+    zIndex: 1000,
     backgroundColor: "rgba(28,56,107,0.9)",
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
