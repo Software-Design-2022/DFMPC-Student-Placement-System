@@ -22,8 +22,6 @@ const authlastName = authLastName;
 const latitude = 20;
 const longitude = 30;
 
-
-
 const msg = {
   title: "Message",
   body: "Emergency Message Has Been Sent",
@@ -45,13 +43,26 @@ const sendToFirestore = (text, msg) => {
       Alert.alert("Emergency Message Saved");
       schedulePushNotification(msg);
       let today = new Date();
-      let hours = (today.getHours() < 10 ? '0' : '') + today.getHours();
-      let minutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
-      let seconds = (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
-      notificationList.push({id:10,heading:"Emergency Page", time: hours + ':' + minutes + ':' + seconds, date:today.getDay()+"/"+today.getMonth()+"/"+today.getFullYear(),day:" ",body:"You sent an emergency message at " +hours + ':' + minutes + ':' + seconds })
+      let hours = (today.getHours() < 10 ? "0" : "") + today.getHours();
+      let minutes = (today.getMinutes() < 10 ? "0" : "") + today.getMinutes();
+      let seconds = (today.getSeconds() < 10 ? "0" : "") + today.getSeconds();
+      notificationList.push({
+        id: 10,
+        heading: "Emergency Page",
+        time: hours + ":" + minutes + ":" + seconds,
+        date:
+          today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear(),
+        day: " ",
+        body:
+          "You sent an emergency message at " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds,
+      });
     });
 };
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -68,7 +79,7 @@ export default function EmergencyPage() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-  const modalVisible=false;
+  const modalVisible = false;
   useEffect(() => {
     let cancel = false;
     registerForPushNotificationsAsync().then((token) => {
@@ -99,61 +110,61 @@ export default function EmergencyPage() {
   return (
     <View style={styles.container}>
       <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            this.setState({
-              modalVisible: false,
-            });
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View
-              style={{
-                top: 50,
-                height: 400,
-                width: width / 1.2,
-                backgroundColor: "white",
-                borderRadius: 10,
-                borderWidth: 4,
-              }}
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          this.setState({
+            modalVisible: false,
+          });
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View
+            style={{
+              top: 50,
+              height: 400,
+              width: width / 1.2,
+              backgroundColor: "white",
+              borderRadius: 10,
+              borderWidth: 4,
+            }}
+          >
+            <View style={{ flexDirection: "row", left: 20, top: 42 }}>
+              <Pressable
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  { width: width / 3, left: 10, bottom: 30 },
+                ]}
+                onPress={() =>
+                  this.setState({
+                    modalVisible: false,
+                  })
+                }
               >
-              <View style={{ flexDirection: "row", left: 20, top: 42 }}>
-                <Pressable
-                  style={[
-                    styles.button,
-                    styles.buttonClose,
-                    { width: width / 3, left: 10, bottom: 30 },
-                  ]}
-                  onPress={() =>
-                    this.setState({
-                      modalVisible: false,
-                    })
-                  }
-                >
-                  <Text style={[styles.textStyle]}>Done</Text>
-                </Pressable>
-                <Pressable
-                  style={[
-                    styles.button,
-                    styles.buttonClose,
-                    {
-                      width: width / 3,
-                      left: 20,
-                      bottom: 30,
-                      backgroundColor: "rgba(28,56,107,1)",
-                    },
-                  ]}
-                  onPress={() => sendToFirestore(this.state)}
-                >
-                  <Text style={[styles.textStyle]}>Add</Text>
-                </Pressable>
-              </View>
+                <Text style={[styles.textStyle]}>Done</Text>
+              </Pressable>
+              <Pressable
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  {
+                    width: width / 3,
+                    left: 20,
+                    bottom: 30,
+                    backgroundColor: "rgba(28,56,107,1)",
+                  },
+                ]}
+                onPress={() => sendToFirestore(this.state)}
+              >
+                <Text style={[styles.textStyle]}>Add</Text>
+              </Pressable>
             </View>
           </View>
-        </Modal>
+        </View>
+      </Modal>
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
@@ -162,9 +173,9 @@ export default function EmergencyPage() {
         />
       </View>
       <View style={{ flex: 1 }}>
-      {createTopBar(10,navigation)}
+        {createTopBar(10, navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20,top:60 }}>
+        <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
@@ -174,7 +185,7 @@ export default function EmergencyPage() {
           />
         </View>
 
-        <View style={{ margin: 20,top:60 }}>
+        <View style={{ margin: 20, top: 60 }}>
           <Button
             title="Send Emergency message"
             color="#415A77"
@@ -183,7 +194,6 @@ export default function EmergencyPage() {
           />
         </View>
       </View>
-      
     </View>
   );
 }
@@ -228,10 +238,9 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    top:0,
+    top: 0,
     flex: 1,
     justifyContent: "center",
     backgroundColor: "rgba(192,192,192,0.3)",

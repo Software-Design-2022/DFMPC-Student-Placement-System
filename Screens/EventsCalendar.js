@@ -22,13 +22,10 @@ import { AntDesign } from "@expo/vector-icons";
 //import { Icon } from "react-native-paper/lib/typescript/components/Avatar/Avatar";
 import { createTopBar } from "../HelperFunctions";
 
-
 const data = [];
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
-
-
 
 const compare = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
@@ -102,7 +99,7 @@ export default class EventsCalendar extends PureComponent {
   }
   render() {
     return (
-      <View style={{ flex: 1, top:SPACING*2,backgroundColor:'white'}}>
+      <View style={{ flex: 1, top: SPACING * 2, backgroundColor: "white" }}>
         <Modal
           animationType="slide"
           transparent={true}

@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   FlatList,
   TouchableHighlight,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -148,24 +148,22 @@ const Settings = () => {
     );
   };
   return (
-    <View >
-      {createTopBar(10,navigation)}
-          <Image
-            style={{
-              width: ICON_SIZE/0.7,
-              height: ICON_SIZE/0.7,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              top:120,
-              zIndex:1,
-              justifyContent:'center',
-              left:width/2-(ICON_SIZE/0.7)/2
-            }}
-            source={{ uri: authUserProfilePic }}
-          />
-          
-
+    <View>
+      {createTopBar(10, navigation)}
+      <Image
+        style={{
+          width: ICON_SIZE / 0.7,
+          height: ICON_SIZE / 0.7,
+          position: "absolute",
+          resizeMode: "cover",
+          borderRadius: ICON_SIZE,
+          top: 120,
+          zIndex: 1,
+          justifyContent: "center",
+          left: width / 2 - ICON_SIZE / 0.7 / 2,
+        }}
+        source={{ uri: authUserProfilePic }}
+      />
 
       <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
         <Image

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -29,9 +28,7 @@ const Settings = () => {
 
   return (
     <>
-      <View style={{zIndex:1}}>
-        {createTopBar(50,navigation)}
-      </View>
+      <View style={{ zIndex: 1 }}>{createTopBar(50, navigation)}</View>
       <View style={styles.button}>
         <Image style={styles.ProfilePic} source={{ uri: authUserProfilePic }} />
       </View>

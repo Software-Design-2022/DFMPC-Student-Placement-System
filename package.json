@@ -9,9 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --coverage",
-    
     "make-badges": "istanbul-badges-readme --logo='jest' "
-    
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
