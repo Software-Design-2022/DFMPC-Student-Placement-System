@@ -14,6 +14,7 @@ import {
   Alert,
   Image,
   Dimensions,
+  Linking
 } from "react-native";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
@@ -100,8 +101,7 @@ export default function SnazzyLogin() {
   let buttonOpacity = new Value(1)
     
     const onStateChange = ({ nativeEvent }) =>  {
-      if (nativeEvent.state === State.END) {
-            
+      if (nativeEvent.state === State.END) {   
             Animated.timing(buttonOpacity, {
               toValue: 0,
               duration: 500,
@@ -116,6 +116,9 @@ export default function SnazzyLogin() {
       duration: 400,
       easing: EasingNode.in
     }).start();
+  }
+  function OpenMicrosoft(){
+    Linking.openURL("https://mail.google.com/")
   }
   
   const buttonY = buttonOpacity.interpolate({
@@ -146,7 +149,7 @@ export default function SnazzyLogin() {
   })
   const rotateCross=buttonOpacity.interpolate({
     inputRange: [0, 1],
-    outputRange: ["-720deg", "360deg"],
+    outputRange: ["-360deg", "360deg"],
     extrapolate: Extrapolate.CLAMP
   })
 
@@ -185,7 +188,7 @@ export default function SnazzyLogin() {
         </TapGestureHandler>
         </GestureHandlerRootView>
         <GestureHandlerRootView>
-        <TapGestureHandler onHandlerStateChange={onStateChange} numberOfTaps={1} style={{flex:1}}>
+        <TapGestureHandler onHandlerStateChange={OpenMicrosoft} numberOfTaps={1} style={{flex:1}}>
         <Animated.View style={{...styles.button,backgroundColor:'rgba(0,0,0,0.5)',opacity:buttonOpacity,flexDirection:'row',transform: [{ translateY: buttonY }]}}>
           <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(242, 80, 34)",color:'white',borderBottomWidth:5}}>Sign </Text> 
           <Text style={{fontSize:20,fontWeight:'bold',borderBottomColor:"rgb(127, 186, 0)",color:'white',borderBottomWidth:5}}>in </Text>
