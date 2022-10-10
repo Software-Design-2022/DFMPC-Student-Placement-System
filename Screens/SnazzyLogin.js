@@ -172,7 +172,7 @@ export default function SnazzyLogin() {
       <Animated.View style={{position:'absolute',transform:[{translateY:bgY}]}}>
       
         <Image
-        source={require("./images/backgroundLogin.png")}
+        source={require("./images/backgroundLogin2.png")}
         style={{resizeMode:'contain',width:width+200,height:height+100,left:-100,top:32}}
         />
       </Animated.View>
@@ -190,7 +190,7 @@ export default function SnazzyLogin() {
           <LinearGradient 
           start={{ x: 0, y: 1 }}
           end={{ x: 1, y: 1 }}
-          colors={["rgb(255,109,0)","rgb(255,165,0)"]}
+          colors={["rgba(255,109,0,0.5)","rgba(255,165,0,0.6)"]}
           style={{height: 70,
             marginHorizontal: 20,
             borderRadius: 35,

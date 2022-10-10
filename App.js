@@ -62,7 +62,7 @@ function App() {
          <Stack.Screen name="Notifications" component={Notifications}
          options={{ headerShown: false }}
          />
-         <Stack.Screen name="SnazzyLogin" component={SnazzyLogin}
+         <Stack.Screen name="snazzyLogin" component={SnazzyLogin}
          options={{ headerShown: false }}
          />
       </Stack.Navigator>
