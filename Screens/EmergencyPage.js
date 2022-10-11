@@ -13,7 +13,8 @@ import {
   LogBox,
 } from "react-native";
 import "../global";
-import { Location, Permissions } from "expo"; // Location and Permissions are expo modules
+import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 
@@ -28,12 +29,14 @@ const msg = {
   data: { data: "goes here" },
 };
 
+// convert promise to
+
 const sendToFirestore = (text, msg) => {
   firebase
     .firestore()
     .collection("panic_button")
     .add({
-      Location: new firebase.firestore.GeoPoint(latitude, longitude), // new firestore geopoint with latitude and longitude means
+      Location: JSON.stringify(location), // new firestore geopoint with latitude and longitude means
       query: text,
       student_Number: "123456",
       user_FirstName: authname,
@@ -55,7 +58,6 @@ Notifications.setNotificationHandler({
 
 export default function EmergencyPage() {
   // inside this function we will use the location module to get the location of the user and then send it to the database
-  const [setLocation] = useState(null);
   const [text, setText] = useState("");
   const navigation = useNavigation();
   const [expoPushToken, setExpoPushToken] = useState("");
@@ -63,36 +65,39 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  
-
   // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
 
-  useEffect(() => {
+  React.useEffect(() => {
     let cancel = false;
 
     registerForPushNotificationsAsync().then((token) => {
+      // register for push notifications and get token from expo
       if (cancel) return;
       setExpoPushToken(token);
     });
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
+        // add notification listener to listen for notifications
         setNotification(notification);
       });
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
+        // add response listener to listen for responses
         console.log(response);
       });
 
     return () => {
       Notifications.removeNotificationSubscription(
+        // remove notification subscription
         notificationListener.current
       );
-      Notifications.removeNotificationSubscription(responseListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current); // remove response subscription
       cancel = true;
     };
   }, []);
+
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return (
@@ -145,6 +150,20 @@ export default function EmergencyPage() {
     </View>
   );
 }
+
+//create an async function that returns a promise that gets location permission from the user
+
+async function getLocationAsync() {
+  let { status } = await Permissions.askAsync(Permissions.LOCATION); // ask for location permission
+  if (status !== "granted") {
+    setErrorMsg("Permission to access location was denied");
+  }
+
+  let location = await Location.getCurrentPositionAsync({}); // get current location
+  return location;
+}
+
+const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
 
 async function schedulePushNotification(msg) {
   await Notifications.scheduleNotificationAsync({
