@@ -51,13 +51,6 @@ const DATA = [
     text: "Protocols",
   },
   {
-    id: "18694a0f-3da1-471f-bd96-145571e29d72",
-    title: "EventsCalendar",
-    destination: "EventsCalendar",
-    image: require("./images/calendar.png"),
-    text: "Events Calendar",
-  },
-  {
     id: "08694a0f-3da1-471f-bd96-145571e29d79",
     title: "Settings",
     destination: "SettingsView",
@@ -70,13 +63,6 @@ const DATA = [
     destination: "Login",
     image: require("./images/logout.png"),
     text: "Logout",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d71",
-    title: "Calendar",
-    destination: "CalendarView",
-    image: require("./images/calendar.png"),
-    text: "Calendar",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",
@@ -174,7 +160,7 @@ class TwitterFeed extends Component {
     let witsUrl =
       "https://publish.twitter.com/oembed?url=https://twitter.com/WitsHealthFac/status/1573569169982861313?cxt=HHwWgICyzYLv09ErAAAA" +
       encodeURIComponent(this.props.witsUrl);
-      
+
     fetch(witsUrl, {
       method: "GET",
       headers: { Accepts: "application/json" },

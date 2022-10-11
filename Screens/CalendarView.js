@@ -79,7 +79,7 @@ export default class AgendaCalendar extends React.Component {
               textAlign: "center",
             }}
           >
-            News Feed
+            Events Calendar
           </Text>
         </TouchableHighlight>
 
