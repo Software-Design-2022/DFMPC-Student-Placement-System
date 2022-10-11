@@ -1,29 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import MicrosoftLogin from "react-microsoft-login";
+import { useNavigation } from "@react-navigation/core";
+import { Button } from "react-native-web";
+import "../global";
 
-const LoginMicrosoft = () => {
-  const [msalInstance, onMsalInstanceChange] = useState();
 
-  const loginHandler = (err, data, msal) => {
+
+export default (props) => {
+  const navigation = useNavigation(); //navigation between screens
+  const authHandler = (err, data) => {
     console.log(err, data);
-    // some actions
-    if (!err && data) {
-      onMsalInstanceChange(msal);
-    }
+    global.MSuser=data;
+    console.log(global.MSuser);
+    navigation.navigate("Dashboard")
   };
-
-  const logoutHandler = () => {
-    msalInstance.logout();
-  };
-
-  return msalInstance ? (
-    <button onClick={logoutHandler}>Logout</button>
-  ) : (
-    <MicrosoftLogin
-      clientId={"2601b63e-4012-441c-a18d-d6d8e4cd6a29"}
-      authCallback={loginHandler}
-    />
+  return (
+    <MicrosoftLogin CacheLocation={"localStorage"} clientId={"2601b63e-4012-441c-a18d-d6d8e4cd6a29"} authCallback={authHandler} />
   );
 };
-
-export default LoginMicrosoft;
