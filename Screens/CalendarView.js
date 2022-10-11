@@ -4,8 +4,8 @@ import { View, StyleSheet, TouchableOpacity, Text, LogBox } from "react-native";
 import { Card, Avatar } from "react-native-paper";
 import { firebase, db } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
-const days = "";
 
+const days = "";
 const initialDate = getCurrentDate();
 async function getSchedule(onReceiveList) {
   const schedules = [];
@@ -44,6 +44,16 @@ export default class AgendaCalendar extends React.Component {
     };
   }
 
+  static navigationOptions = {
+    headerTitle: "Calendar",
+    headerRight: (
+      <Button
+        onPress={() => navigator.navigate("EventsCalendar")}
+        title="View Events"
+        color="#000000"
+      />
+    ),
+  };
   render() {
     return (
       <Agenda

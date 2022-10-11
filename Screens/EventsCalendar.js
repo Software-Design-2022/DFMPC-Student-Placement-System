@@ -23,6 +23,7 @@ import { Card, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import "../global";
+
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
 const ICON_SIZE = 75;
@@ -147,7 +148,7 @@ const EventsCalendar = () => {
         markedDay[item.start] = {
           startingDay: true,
           endingDay: true,
-          selected:true,
+          selected: true,
           marked: true,
           color: randomColor2,
           dotColor: "blue",

@@ -74,6 +74,7 @@ export default class AgendaCalendar extends React.Component {
   }
 
   loadFromList() {
+    //this is where the data is loaded from the database
     const onReceive = (data) => {
       this.setState({
         events: data,
@@ -84,6 +85,7 @@ export default class AgendaCalendar extends React.Component {
       const day = key.start;
 
       if (!this.state.items[day]) {
+        //if the day is not in the list
         this.state.items[day] = [];
         this.state.items[day].push({
           programme: "programme: " + key.programme,
