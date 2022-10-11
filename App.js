@@ -74,13 +74,18 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={LoginMicrosoft}
+            component={Login}
           />
         }
         
         <Stack.Screen
           name="Schedule"
           component={Schedule}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
           options={{ headerShown: false }}
         />
          <Stack.Screen

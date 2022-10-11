@@ -30,7 +30,6 @@ const Login = () => {
   const [email, setEmail] = useState(""); //email
   const [password, setPassword] = useState(""); //password
   const navigation = useNavigation(); //navigation between screens
-
   function showAlert(title, message) {
     Alert.alert(
       title,
@@ -138,7 +137,7 @@ const Login = () => {
         >
           <TouchableOpacity
             onPress={() => {
-              LoginFirebase();
+              navigation.navigate("LoginMicrosoft");
             }} // when user clicks on login button
           >
             <Text style={styles.buttonText}>Login</Text>
