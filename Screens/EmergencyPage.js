@@ -29,7 +29,7 @@ const msg = {
   data: { data: "goes here" },
 };
 
-// convert promise to 
+// convert promise to
 
 const sendToFirestore = (text, msg) => {
   firebase
@@ -65,39 +65,39 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  
-
   // to use getLocation function we need to call it inside useEffect function so that it will be called only once when the page is loaded
 
-  
-  
   React.useEffect(() => {
     let cancel = false;
 
-    registerForPushNotificationsAsync().then((token) => { // register for push notifications and get token from expo
+    registerForPushNotificationsAsync().then((token) => {
+      // register for push notifications and get token from expo
       if (cancel) return;
       setExpoPushToken(token);
     });
 
     notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => { // add notification listener to listen for notifications
+      Notifications.addNotificationReceivedListener((notification) => {
+        // add notification listener to listen for notifications
         setNotification(notification);
       });
 
     responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => { // add response listener to listen for responses
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        // add response listener to listen for responses
         console.log(response);
       });
 
     return () => {
-      Notifications.removeNotificationSubscription( // remove notification subscription 
+      Notifications.removeNotificationSubscription(
+        // remove notification subscription
         notificationListener.current
       );
-      Notifications.removeNotificationSubscription(responseListener.current); // remove response subscription 
+      Notifications.removeNotificationSubscription(responseListener.current); // remove response subscription
       cancel = true;
     };
   }, []);
-  
+
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return (
@@ -151,7 +151,7 @@ export default function EmergencyPage() {
   );
 }
 
-//create an async function that returns a promise that gets location permission from the user 
+//create an async function that returns a promise that gets location permission from the user
 
 async function getLocationAsync() {
   let { status } = await Permissions.askAsync(Permissions.LOCATION); // ask for location permission
@@ -164,7 +164,6 @@ async function getLocationAsync() {
 }
 
 const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
-
 
 async function schedulePushNotification(msg) {
   await Notifications.scheduleNotificationAsync({
