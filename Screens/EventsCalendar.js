@@ -20,7 +20,6 @@ import { getCurrentDate } from "../HelperFunctions";
 import BottomSheet from "./BottomSheet";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Card, Avatar } from "react-native-paper";
-import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import "../global";
 
@@ -139,7 +138,6 @@ const EventsCalendar = () => {
 
   const [shouldShow, setShouldShow] = useState(false);
   const [dayData, setDayData] = useState([{}]);
-
   const GetMarkedDates = () => {
     let markedDay = {};
 
@@ -200,6 +198,13 @@ const EventsCalendar = () => {
 
   return (
     <View style={styles.container}>
+      {/* <View>
+        <Button
+          title="View General Calendar"
+          onPress={() => this.props.navigation.navigate("CalendarView")}
+          style={styles.button}
+        />
+      </View> */}
       <Modal
         style={styles.modalStyle}
         animationType={"fade"}
