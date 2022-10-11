@@ -154,7 +154,7 @@ export default function EmergencyPage() {
 //create an async function that returns a promise that gets location permission from the user
 
 async function getLocationAsync() {
-  let { status } = await Permissions.askAsync(Permissions.LOCATION); // ask for location permission
+  let { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND); // ask for location permission
   if (status !== "granted") {
     setErrorMsg("Permission to access location was denied");
   }
