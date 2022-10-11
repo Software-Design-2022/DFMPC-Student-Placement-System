@@ -12,11 +12,14 @@
     "make-badges": "istanbul-badges-readme --logo='jest' "
   },
   "dependencies": {
+    "@azure/msal-browser": "^2.30.0",
+    "@azure/msal-react": "^1.4.9",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
     "accordion-collapse-react-native": "^1.1.1",
     "bcrypt-react-native": "^1.1.1",
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.2.2",
     "dotenv": "^16.0.1",
     "expo": "~44.0.0",
     "expo-av": "~10.2.0",
@@ -30,6 +33,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",
     "react": "17.0.1",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-calendar-picker": "^7.1.2",
