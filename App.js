@@ -16,7 +16,7 @@ import EventsCalendar from "./Screens/EventsCalendar";
 import {PageLayout} from "./Screens/Components/PageLayout";
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
-import { loginRequest } from "./authConfig";
+import { loginRequest } from "./Screens/authConfig";
 import { ProfileData } from "./Screens/Components/ProfileData";
 import {callMsGraph} from "./Screens/graph";
 
