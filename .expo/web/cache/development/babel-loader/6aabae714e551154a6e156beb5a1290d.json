@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "import _slicedToArray from \"@babel/runtime/helpers/slicedToArray\";\nimport React, { useState } from \"react\";\nimport MicrosoftLogin from \"react-microsoft-login\";\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nvar LoginMicrosoft = function LoginMicrosoft() {\n  var _useState = useState(),\n    _useState2 = _slicedToArray(_useState, 2),\n    msalInstance = _useState2[0],\n    onMsalInstanceChange = _useState2[1];\n  var loginHandler = function loginHandler(err, data, msal) {\n    console.log(err, data);\n    if (!err && data) {\n      onMsalInstanceChange(msal);\n    }\n  };\n  var logoutHandler = function logoutHandler() {\n    msalInstance.logout();\n  };\n  return msalInstance ? _jsx(\"button\", {\n    onClick: logoutHandler,\n    children: \"Logout\"\n  }) : _jsx(MicrosoftLogin, {\n    clientId: \"2601b63e-4012-441c-a18d-d6d8e4cd6a29\",\n    authCallback: loginHandler\n  });\n};\nexport default LoginMicrosoft;",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "useState",
+      "MicrosoftLogin",
+      "LoginMicrosoft",
+      "msalInstance",
+      "onMsalInstanceChange",
+      "loginHandler",
+      "err",
+      "data",
+      "msal",
+      "console",
+      "log",
+      "logoutHandler",
+      "logout"
+    ],
+    "sources": [
+      "D:/repos/DFMPC-Student-Placement-System/Screens/MicrosoftLogin.js"
+    ],
+    "sourcesContent": [
+      "import React, { useState } from \"react\";\r\nimport MicrosoftLogin from \"react-microsoft-login\";\r\n\r\nconst LoginMicrosoft = () => {\r\n  const [msalInstance, onMsalInstanceChange] = useState();\r\n\r\n  const loginHandler = (err, data, msal) => {\r\n    console.log(err, data);\r\n    // some actions\r\n    if (!err && data) {\r\n      onMsalInstanceChange(msal);\r\n    }\r\n  };\r\n\r\n  const logoutHandler = () => {\r\n    msalInstance.logout();\r\n  };\r\n\r\n  return msalInstance ? (\r\n    <button onClick={logoutHandler}>Logout</button>\r\n  ) : (\r\n    <MicrosoftLogin\r\n      clientId={\"2601b63e-4012-441c-a18d-d6d8e4cd6a29\"}\r\n      authCallback={loginHandler}\r\n    />\r\n  );\r\n};\r\n\r\nexport default LoginMicrosoft;\r\n"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAK,IAAIC,QAAQ,QAAQ,OAAO;AACvC,OAAOC,cAAc,MAAM,uBAAuB;AAAC;AAEnD,IAAMC,cAAc,GAAG,SAAjBA,cAAc,GAAS;EAC3B,gBAA6CF,QAAQ,EAAE;IAAA;IAAhDG,YAAY;IAAEC,oBAAoB;EAEzC,IAAMC,YAAY,GAAG,SAAfA,YAAY,CAAIC,GAAG,EAAEC,IAAI,EAAEC,IAAI,EAAK;IACxCC,OAAO,CAACC,GAAG,CAACJ,GAAG,EAAEC,IAAI,CAAC;IAEtB,IAAI,CAACD,GAAG,IAAIC,IAAI,EAAE;MAChBH,oBAAoB,CAACI,IAAI,CAAC;IAC5B;EACF,CAAC;EAED,IAAMG,aAAa,GAAG,SAAhBA,aAAa,GAAS;IAC1BR,YAAY,CAACS,MAAM,EAAE;EACvB,CAAC;EAED,OAAOT,YAAY,GACjB;IAAQ,OAAO,EAAEQ,aAAc;IAAA;EAAA,EAAgB,GAE/C,KAAC,cAAc;IACb,QAAQ,EAAE,sCAAuC;IACjD,YAAY,EAAEN;EAAa,EAE9B;AACH,CAAC;AAED,eAAeH,cAAc"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
