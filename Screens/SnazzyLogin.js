@@ -43,7 +43,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 
-import "../global";
+import "./global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;

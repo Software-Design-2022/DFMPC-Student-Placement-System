@@ -18,7 +18,7 @@ import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 
-import "../global";
+import "./global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
@@ -46,7 +46,7 @@ const Login = () => {
     );
   }
 
-  function setUserVariables(data) {
+   function setUserVariables(data) {
     // store information about the user who is currently logged in
     authUser = data;
     authUserID = data.child("id").val();

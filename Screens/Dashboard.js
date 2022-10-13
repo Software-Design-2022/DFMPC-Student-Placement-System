@@ -21,7 +21,7 @@ import {
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
-import "../global";
+import "./global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";

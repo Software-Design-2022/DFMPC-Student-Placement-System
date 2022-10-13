@@ -12,7 +12,7 @@ import {
   Alert,
   LogBox,
 } from "react-native";
-import "../global";
+import "./global";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { createTopBar } from "../HelperFunctions";
