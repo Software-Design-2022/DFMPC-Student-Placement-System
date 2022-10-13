@@ -25,6 +25,7 @@ import "../global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
+import { getList } from "./notificationHelper";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -34,12 +35,27 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 33;
 const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
 //data to be displayed in the flatlist
+
 const DATA2 = notificationList;
 
 // creates it so each item has a touchable button with correct title
 
 const Notifications = () => {
-  console.log(notificationList);
+  // console.log(notificationList);
+
+  // get notifications from database
+  const [state, setState] = useState({
+    notifications: [],
+  });
+  const onReceive = (notifications) => {
+    setState((prevState) => ({
+      notifications: (prevState.notifications = notifications),
+    }));
+  };
+  getList(onReceive);
+
+  //console.log(state.notifications)
+
   const scrollY = React.useRef(new Animated.Value(0)).current;
   //use navigation
   const navigation = useNavigation();
@@ -55,6 +71,7 @@ const Notifications = () => {
         }}
       >
         <View
+         key={item.time}
           style={{
             height: 100,
             backgroundColor: "rgba(9,38,66,0.75)",
@@ -158,7 +175,7 @@ const Notifications = () => {
           showsHorizontalScrollIndicator={false}
           horizontal={false}
           contentContainerStyle={{}}
-          data={DATA2}
+          data={state.notifications}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />

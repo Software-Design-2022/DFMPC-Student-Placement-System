@@ -165,6 +165,7 @@ export function createTopBar(T, navigation, show) {
               navigation.navigate("EmergencyPage");
             }}
           >
+            
             <Image
               style={{
                 width: ICON_SIZE / 0.9,

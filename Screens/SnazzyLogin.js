@@ -49,6 +49,7 @@ const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
+
 const { width, height } = Dimensions.get("window");
 
 function showAlert(title, message) {
@@ -79,7 +80,7 @@ function setUserVariables(data) {
   authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
   console.log("User ID: " + authUserID + " authenticated.");
 }
-const LoginFirebase = () => {
+const LoginFirebase = (email, password, navigation) => {
   var found = false;
   firebase
     .database()
@@ -345,9 +346,16 @@ export default function SnazzyLogin() {
           </TouchableOpacity>
           <TextInput
             placeholder="Enter email"
-            value={email}
             style={styles.textInput}
             placeholderTextColor="black"
+           /*  onChangeText={(newText) => {
+              onStateChange(newText)
+              setEmail(newText);
+            }} */
+            onChangeText={(newText)=>{
+                setEmail(newText)
+            }}
+            // value={email}
           />
           <TextInput
             placeholder="Enter password"
@@ -355,11 +363,20 @@ export default function SnazzyLogin() {
             value={password}
             style={styles.textInput}
             placeholderTextColor="black"
+            /*   onChangeText={(newText) => {
+              
+              setPassword(newText);
+            }} */
+            onChangeText={(newText)=>{
+              setPassword(newText)
+          }}
           />
           <Animated.View style={styles.button}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Dashboard");
+                //navigation.navigate("Dashboard");
+                console.log(email.text);
+                LoginFirebase(email, password, navigation);
               }}
             >
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>SIGN IN</Text>
