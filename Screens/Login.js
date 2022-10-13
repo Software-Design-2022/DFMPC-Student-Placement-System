@@ -137,10 +137,28 @@ const Login = () => {
         >
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("LoginMicrosoft");
+              LoginFirebase();
             }} // when user clicks on login button
           >
             <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </View>
+      <View style={{ paddingTop: 12, width: "40%" }}>
+        <LinearGradient
+          colors={[
+            "rgba(28,72,123,255)",
+            " rgba(28,72,123,255))",
+            "rgba(28,72,123,255)",
+          ]}
+          style={styles.linearGradient}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("LoginMicrosoft");
+            }} // when user clicks on login button
+          >
+            <Text style={styles.buttonText}>Sign In With Microsoft</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
