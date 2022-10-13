@@ -1,7 +1,7 @@
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
-import "../global";
+import "./global";
 import { firebase } from "../firebase";
 
 const SendNotification = () => {

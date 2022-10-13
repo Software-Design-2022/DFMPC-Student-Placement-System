@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 import { IconButton, Portal } from "react-native-paper";
-import "../global";
+import "./global";
 
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;

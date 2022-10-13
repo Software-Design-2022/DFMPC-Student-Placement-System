@@ -18,7 +18,7 @@ import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 
-import "../global";
+import "./global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
