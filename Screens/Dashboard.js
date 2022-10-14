@@ -38,8 +38,8 @@ const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 
-
 EventNotification()
+
 const DATA = [
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d73",
