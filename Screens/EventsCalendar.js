@@ -223,14 +223,14 @@ const EventsCalendar = () => {
         }}
       >
         <View style={styles.modalStyle}>
-          <Text style={{ marginTop:50, fontSize: 25, top: 10, textAlign: "center" }}>
+          <Text style={{ marginTop:50, fontSize: 25, top: 10, textAlign: "center" ,color:"white"}}>
             Create Event
           </Text>
           <TextInput
             style={styles.input}
             underlineColorAndroid="transparent"
             placeholder="Title"
-            placeholderTextColor="black"
+            placeholderTextColor="white"
             autoCapitalize="none"
             onChangeText={(newText) => {
               setEventName(newText);
@@ -240,7 +240,7 @@ const EventsCalendar = () => {
             style={styles.input}
             underlineColorAndroid="transparent"
             placeholder="Program"
-            placeholderTextColor="black"
+            placeholderTextColor="white"
             autoCapitalize="none"
             onChangeText={(newText) => {
               setEventProgramme(newText);
@@ -263,8 +263,8 @@ const EventsCalendar = () => {
               setDatePicker(true);
             }}
           >
-            <Text style={{ margin: 30 }}>Start</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 }}>
+            <Text style={{ margin: 30,color:'white' }}>Start</Text>
+            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30,color:'white' }}>
               {startDate}
               {"   "}
               {"18:00"}
@@ -286,8 +286,8 @@ const EventsCalendar = () => {
               setDatePickerEnd(true);
             }}
           >
-            <Text style={{ margin: 30 }}>End</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 }}>
+            <Text style={{ margin: 30,color:'white' }}>End</Text>
+            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 ,color:'white' }}>
               {endDate}
               {"   "}
               {"18:00"}
@@ -346,7 +346,7 @@ const EventsCalendar = () => {
                   width: width / 3,
                   left: 10,
                   bottom: 30,
-                  backgroundColor: pressed ? "rgba(28,56,107,1)" : "pink",
+                  backgroundColor: pressed ? "rgba(28,56,107,1)" : "rgba(0,0,0,0.5)",
                 },
               ]}
               onPress={() => setModalVisible(false)}
@@ -370,7 +370,7 @@ const EventsCalendar = () => {
 
                   backgroundColor: pressed
                     ? "rgba(28,56,107,0.3)"
-                    : "red",
+                    : "rgba(128,0,0,0.5)",
                 },
               ]}
               onPress={() => {
@@ -456,9 +456,10 @@ var styles = StyleSheet.create({
   input: {
     margin: 15,
     height: 50,
-    borderColor: "rgba(28,56,107,0.6)",
-    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    borderWidth: 2,
     backgroundColor: "rgba(28,56,107,0.5)",
+    borderRadius:10
   },
   button: {
     marginTop: 100,
@@ -483,8 +484,9 @@ var styles = StyleSheet.create({
     width: width - 40,
     marginLeft: 20,
     marginRight: 10,
-    marginTop: 100,
+    marginTop: 80,
     backgroundColor: "rgba(28,56,107,1)",
+    borderRadius:25
   },
   closeButton: {
     display: "flex",
@@ -492,7 +494,7 @@ var styles = StyleSheet.create({
     borderRadius: 6,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FF3974",
+    backgroundColor: "rgba(0,0,0,0.5)",
     shadowColor: "#2AC062",
     shadowOpacity: 0.5,
     shadowOffset: {

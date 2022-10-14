@@ -43,7 +43,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 
-import "../global";
+import "./global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
@@ -112,11 +112,10 @@ const LoginFirebase = (email, password, navigation) => {
 };
 
 export default function SnazzyLogin() {
-  const [email, setEmail] = useState(""); //email
-  const [password, setPassword] = useState(""); //password
+  const [email, setEmail] = useState("john@gmail.com"); //email
+  const [password, setPassword] = useState("John_pass123"); //password
   const navigation = useNavigation(); //navigation between screens
   let buttonOpacity = new Value(1);
-
   const onStateChange = ({ nativeEvent }) => {
     if (nativeEvent.state === State.END) {
       Animated.timing(buttonOpacity, {
@@ -134,7 +133,7 @@ export default function SnazzyLogin() {
     }).start();
   }
   function OpenMicrosoft() {
-    Linking.openURL("https://mail.google.com/");
+   navigation.navigate("LoginMicrosoft");
   }
 
   const buttonY = buttonOpacity.interpolate({
@@ -345,6 +344,7 @@ export default function SnazzyLogin() {
             </Animated.View>
           </TouchableOpacity>
           <TextInput
+            
             placeholder="Enter email"
             style={styles.textInput}
             placeholderTextColor="black"
@@ -355,7 +355,7 @@ export default function SnazzyLogin() {
             onChangeText={(newText)=>{
                 setEmail(newText)
             }}
-            // value={email}
+            value={email}
           />
           <TextInput
             placeholder="Enter password"

@@ -259,3 +259,12 @@ export function createTopBar(T, navigation, show) {
     </View>
   );
 }
+
+
+export function difference(start)
+{
+  let date = new Date();
+  let date2 = new Date(start);
+  let diff = Math.ceil((date2 - date) / (1000 * 3600 * 24));
+  return diff;
+}

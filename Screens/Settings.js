@@ -16,7 +16,7 @@ import {
 import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DialogInput from "react-native-dialog-input";
-import "../global";
+import "./global";
 import { createTopBar } from "../HelperFunctions";
 const { width, height } = Dimensions.get("screen");
 
