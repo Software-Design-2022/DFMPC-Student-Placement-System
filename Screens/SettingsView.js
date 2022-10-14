@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -15,6 +14,7 @@ import firebase from "../firebase";
 import "../global.js";
 import { TouchableOpacity } from "react-native-web";
 import DialogInput from "react-native-dialog-input";
+import { createTopBar } from "../HelperFunctions";
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -28,6 +28,7 @@ const Settings = () => {
 
   return (
     <>
+      <View style={{ zIndex: 1 }}>{createTopBar(50, navigation)}</View>
       <View style={styles.button}>
         <Image style={styles.ProfilePic} source={{ uri: authUserProfilePic }} />
       </View>

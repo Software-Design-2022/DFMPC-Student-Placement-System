@@ -12,11 +12,16 @@ import {
   Alert,
   LogBox,
 } from "react-native";
-import "../global";
+import "./global";
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
+import { createTopBar } from "../HelperFunctions";
+import { Modal } from "react-native-paper";
+import {schedulePushNotification,EventNotification} from "./SendNotification"
+import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
 
 const authname = authName;
 const authlastName = authLastName;
@@ -44,17 +49,12 @@ const sendToFirestore = (text, msg) => {
     })
     .then(() => {
       Alert.alert("Emergency Message Saved");
-      schedulePushNotification(msg);
+      schedulePushNotification(msg,"Emergency Page");
+      
+
     });
 };
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-});
 
 export default function EmergencyPage() {
   // inside this function we will use the location module to get the location of the user and then send it to the database
@@ -102,29 +102,18 @@ export default function EmergencyPage() {
 
   return (
     <View style={styles.container}>
+      
+      <View style={{ position: "absolute" }}>
+        <Image
+          resizeMode="contain"
+          source={require("./images/background.png")}
+          blurRadius={0}
+        />
+      </View>
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            top: -50,
-            backgroundColor: "rgba(255,255,255,0.8)",
-            height: 100,
-            zIndex: 1,
-            borderEndWidth: 0,
-            borderEndColor: "rgba(255,255,255,1)",
-            borderBottomStartRadius: 100,
-          }}
-        >
-          <View style={{ margin: 0 }}>
-            <Image
-              style={{ height: 80, position: "absolute", top: 5, left: -160 }}
-              resizeMode="contain"
-              source={require("./images/wits.png")}
-              blurRadius={0}
-            />
-          </View>
-        </View>
+        {createTopBar(10, navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20 }}>
+        <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
@@ -151,20 +140,21 @@ export default function EmergencyPage() {
   );
 }
 
-//create an async function that returns a promise that gets location permission from the user
-
-async function getLocationAsync() {
+async function getLocationAsync() 
+{
   let { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND); // ask for location permission
-  if (status !== "granted") {
+  if (status !== "granted") 
+  {
     setErrorMsg("Permission to access location was denied");
   }
 
   let location = await Location.getCurrentPositionAsync({}); // get current location
   return location;
+  
 }
 
 const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
-
+/* 
 async function schedulePushNotification(msg) {
   await Notifications.scheduleNotificationAsync({
     content: {
@@ -207,19 +197,11 @@ async function registerForPushNotificationsAsync() {
   }
 
   return token;
-}
-
-/* borderColor: "rgba(192,192,192,0.3)",
-backgroundColor: "rgba(192,192,192,0.2)",
-backgroundColor: "rgba(63, 130, 109,0.2)",
- backgroundColor: "rgba(181, 177, 178,0.2)",
- backgroundColor: "rgb(216, 212, 213)",
-  backgroundColor: "rgba(221, 240, 255,0.2)",
- */
+} */
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    top: 0,
     flex: 1,
     justifyContent: "center",
     backgroundColor: "rgba(192,192,192,0.3)",

@@ -10,12 +10,61 @@ import SettingsView from "./Screens/Settings";
 import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
-import Microsoft from "./Screens/MicrosoftLogin";
-
+import Notifications from "./Screens/Notifications";
+import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
+import LoginMicrosoft from "./Screens/LoginMicrosoft";
+
+
 
 const Stack = createNativeStackNavigator();
 
+// function ProfileContent() {
+//   const { instance, accounts } = useMsal();
+//   const [graphData, setGraphData] = useState(null);
+
+//   const name = accounts[0] && accounts[0].name;
+
+//   function RequestProfileData() {
+//       const request = {
+//           ...loginRequest,
+//           account: accounts[0]
+//       };
+
+//       // Silently acquires an access token which is then attached to a request for Microsoft Graph data
+//       instance.acquireTokenSilent(request).then((response) => {
+//           callMsGraph(response.accessToken).then(response => setGraphData(response));
+//       }).catch((e) => {
+//           instance.acquireTokenPopup(request).then((response) => {
+//               callMsGraph(response.accessToken).then(response => setGraphData(response));
+//           });
+//       });
+//   }
+
+//   return (
+//       <>
+//           <h5 className="card-title">Welcome {name}</h5>
+//           {graphData ? 
+//               <ProfileData graphData={graphData} />
+//               :
+//               <Button variant="secondary" onClick={RequestProfileData}>Request Profile Information</Button>
+//           }
+//       </>
+//   );
+// };
+
+// function App() {
+//   return (
+//       <PageLayout>
+//           <AuthenticatedTemplate>
+//               <ProfileContent />
+//           </AuthenticatedTemplate>
+//           <UnauthenticatedTemplate>
+//               <p>You are not signed in! Please sign in.</p>
+//           </UnauthenticatedTemplate>
+//       </PageLayout>
+//   );
+// }
 function App() {
   // This is the main function that will be called when the app is loaded
   return (
@@ -25,16 +74,30 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={SnazzyLogin}
           />
         }
+        
+        <Stack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Schedule" component={Schedule} />
-        <Stack.Screen name="CalendarView" component={CalendarView} />
+         <Stack.Screen
+          name="LoginMicrosoft"
+          component={LoginMicrosoft}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CalendarView"
+          component={CalendarView}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="SettingsView"
           component={SettingsView}
@@ -43,10 +106,33 @@ function App() {
         <Stack.Screen
           name="EmergencyProtocols"
           component={EmergencyProtocols}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="DayAgenda" component={DayAgenda} />
-        <Stack.Screen name="EmergencyPage" component={EmergencyPage} />
-        <Stack.Screen name="EventsCalendar" component={EventsCalendar} />
+        <Stack.Screen
+          name="DayAgenda"
+          component={DayAgenda}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EmergencyPage"
+          component={EmergencyPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EventsCalendar"
+          component={EventsCalendar}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="snazzyLogin"
+          component={SnazzyLogin}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

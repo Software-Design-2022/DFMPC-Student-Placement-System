@@ -11,11 +11,14 @@ import {
   TouchableOpacity,
   FlatList,
   TouchableHighlight,
+  Dimensions,
 } from "react-native";
 import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DialogInput from "react-native-dialog-input";
-import "../global";
+import "./global";
+import { createTopBar } from "../HelperFunctions";
+const { width, height } = Dimensions.get("screen");
 
 const buttonHeight = 50;
 const textPos = buttonHeight / 2;
@@ -145,65 +148,27 @@ const Settings = () => {
     );
   };
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={{
-          zIndex: 1,
-          top: 0,
-          left: 10,
-          backgroundColor: "rgba(255,255,255,0.1)",
-          borderRadius: 7,
-          position: "absolute",
-        }}
-        onPress={() => {
-          navigation.navigate("Dashboard");
-        }}
-      >
-        <Text style={{ fontSize: 25, color: "rgba(0,0,0,0.7)" }}> {back} </Text>
-      </TouchableOpacity>
+    <View>
+      {createTopBar(10, navigation)}
       <Image
         style={{
-          width: ICON_SIZE,
-          height: ICON_SIZE,
+          width: ICON_SIZE / 0.7,
+          height: ICON_SIZE / 0.7,
+          position: "absolute",
           resizeMode: "cover",
-          right: -10,
-          top: 10,
           borderRadius: ICON_SIZE,
-          marginRight: SPACING / 2,
-          borderWidth: 3,
-          borderColor: "rgba(0,0,0,0.1)",
-          backgroundColor: "rgba(0,0,0,0.4)",
+          top: 120,
           zIndex: 1,
-          shadowOffset: {
-            height: 10,
-            shadowColor: "black",
-            flex: 1,
-          },
-          shadowOpacity: 1,
-          shadowRadius: 10,
+          justifyContent: "center",
+          left: width / 2 - ICON_SIZE / 0.7 / 2,
         }}
         source={{ uri: authUserProfilePic }}
       />
-      <View
-        style={{
-          flex: 2,
-          marginTop: 25,
-          width: "100%",
-          backgroundColor: "rgba(30,55,108,0)",
-          zIndex: 1,
-        }}
-      >
-        <FlatList
-          contentContainerStyle={{}}
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
+
       <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
         <Image
           resizeMode="contain"
-          source={require("./images/background6.png")}
+          source={require("./images/background.png")}
           blurRadius={0}
         />
       </View>
@@ -214,12 +179,8 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
-    width: "100%",
     zIndex: 1,
-    top: 70,
   },
   linearGradient: {
     height: AVATAR_SIZE,
