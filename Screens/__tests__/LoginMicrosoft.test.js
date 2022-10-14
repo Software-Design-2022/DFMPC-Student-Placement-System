@@ -1,15 +1,5 @@
-import { restart } from "nodemon";
-import { setUserVariables, retrieveUser } from "../LoginMicrosoft";
+import {  retrieveUser } from "../LoginMicrosoft";
 import "../global";
-authUserID = "1";
-authName = "John";
-authLastName = "Green";
-
-
-
-
-
-
 
 authEmail = "john_green_test@outlook.com";
 function check()
