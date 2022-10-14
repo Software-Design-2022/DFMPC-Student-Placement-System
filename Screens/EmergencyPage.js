@@ -49,17 +49,7 @@ const sendToFirestore = (text, msg) => {
 
     });
 };
-async function getLocationAsync() {
-  let { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND); // ask for location permission
-  if (status !== "granted") {
-    setErrorMsg("Permission to access location was denied");
-  }
 
-  let location = await Location.getCurrentPositionAsync({}); // get current location
-  return location;
-}
-
-const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
 
 export default function EmergencyPage() {
   const [text, setText] = useState("");
@@ -131,6 +121,21 @@ export default function EmergencyPage() {
     </View>
   );
 }
+
+async function getLocationAsync() 
+{
+  let { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND); // ask for location permission
+  if (status !== "granted") 
+  {
+    setErrorMsg("Permission to access location was denied");
+  }
+
+  let location = await Location.getCurrentPositionAsync({}); // get current location
+  return location;
+  
+}
+
+const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
 /* 
 async function schedulePushNotification(msg) {
   await Notifications.scheduleNotificationAsync({
