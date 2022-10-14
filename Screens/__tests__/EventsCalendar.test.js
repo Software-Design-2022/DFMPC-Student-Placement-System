@@ -1,13 +1,9 @@
 import {eventsData} from '../EventsCalendar';
 import {db} from '../../firebase';
+
+
 const add = require('./EventsCalendar.js');
 
-
-jest.mock('./EventsCalendar.js', () => {
-  return {
-    add: jest.fn()
-  };
-});
 
 //Set Test Data
 const data = {
@@ -30,7 +26,6 @@ async function check () {
         expect(doc.data().programme).toBe("TestProgramme");
     });
 }
-
 
 describe('EventsCalendar', () => {
   it('correctly sends events to calendar', () => {
