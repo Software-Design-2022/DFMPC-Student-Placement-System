@@ -18,6 +18,7 @@ import {
   Button,
   ScrollView,
   Linking,
+  LogBox
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";

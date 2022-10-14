@@ -28,8 +28,8 @@ export async function getList(onReceiveList) {
         });
       });
     });
-
-    
-    
+    notifications
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => (a.time < b.time ? 1 : -1));
   onReceiveList(notifications); // Send array to function that called this function
 }
