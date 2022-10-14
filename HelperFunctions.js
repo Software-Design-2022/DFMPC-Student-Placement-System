@@ -33,8 +33,9 @@ export function getCurrentDate() {
   return day + "-" + month + "-" + year;
 }
 
-export function createTopBar(T, navigation, show) {
+export function createTopBar(T, show) {
   const [shouldShow, setShouldShow] = useState(false);
+  const navigation=useNavigation();
   var marginB = 30;
   if (Platform.OS == "ios") {
     T = T + 10;

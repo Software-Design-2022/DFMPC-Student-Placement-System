@@ -451,7 +451,7 @@ const EventsCalendar = () => {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(28,56,107,0.05)",
+    backgroundColor: "rgba(30,81,123,1)",
   },
   input: {
     margin: 15,
