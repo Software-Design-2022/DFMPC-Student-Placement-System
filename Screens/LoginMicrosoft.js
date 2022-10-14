@@ -13,6 +13,7 @@ export function setUserVariables(data) {
   authUserID = data.child("id").val();
   //authStudentNumber= authUser.child("")user_FirstName
 
+  //global user variables to be accessed through app
   authName = authUser.child("user_FirstName").val();
   authLastName = authUser.child("user_LastName").val();
   authUserProfilePic = authUser.child("user_profile_photo/").val();
@@ -46,14 +47,17 @@ export default (props) => {
   const navigation = useNavigation(); //navigation between screens
 
   const authHandler = (err, data) => {
-    //console.log(err, data);
+    //save microsoft user data
     MSuser = data;
     console.log(MSuser.account.userName);
+    //set user email to temp outlook email for database
     authEmail = "john_green_test@outlook.com";
+    //once successfull navigate to dashboard
     navigation.navigate("Dashboard");
     retrieveUser();
   };
   return (
+    //Microsoft button displayed for sign in
     <MicrosoftLogin clientId={"2601b63e-4012-441c-a18d-d6d8e4cd6a29"} authCallback={authHandler} />
   );
 };

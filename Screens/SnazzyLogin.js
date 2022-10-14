@@ -22,19 +22,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import Animated, {
   EasingNode,
   Value,
-  concat,
-  event,
-  eq,
-  block,
-  cond,
-  set,
-  Clock,
-  startClock,
-  stopClock,
-  debug,
-  timing,
-  clockRunning,
-  interpolate,
   Extrapolate,
 } from "react-native-reanimated";
 import {
@@ -52,6 +39,7 @@ const image = { uri: "https://reactjs.org/logo-og.png" };
 
 const { width, height } = Dimensions.get("window");
 
+//alert for if login fails
 function showAlert(title, message) {
   Alert.alert(
     title,
@@ -68,18 +56,19 @@ function showAlert(title, message) {
   );
 }
 
+//retrieve user variables from database
 function setUserVariables(data) {
   // store information about the user who is currently logged in
   authUser = data;
   authUserID = data.child("id").val();
   //authStudentNumber= authUser.child("")user_FirstName
-
   authName = authUser.child("user_FirstName").val();
   authLastName = authUser.child("user_LastName").val();
   authUserProfilePic = authUser.child("user_profile_photo/").val();
   authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
   console.log("User ID: " + authUserID + " authenticated.");
 }
+
 const LoginFirebase = (email, password, navigation) => {
   var found = false;
   firebase
@@ -116,6 +105,7 @@ export default function SnazzyLogin() {
   const [password, setPassword] = useState("John_pass123"); //password
   const navigation = useNavigation(); //navigation between screens
   let buttonOpacity = new Value(1);
+  //when login opens begin animation
   const onStateChange = ({ nativeEvent }) => {
     if (nativeEvent.state === State.END) {
       Animated.timing(buttonOpacity, {
@@ -125,6 +115,7 @@ export default function SnazzyLogin() {
       }).start();
     }
   };
+  //animation start when x is pressed
   function onCloseState() {
     Animated.timing(buttonOpacity, {
       toValue: 1,
@@ -132,6 +123,7 @@ export default function SnazzyLogin() {
       easing: EasingNode.in,
     }).start();
   }
+  //function for when login with microsoft button is pressed
   function OpenMicrosoft() {
    navigation.navigate("LoginMicrosoft");
   }

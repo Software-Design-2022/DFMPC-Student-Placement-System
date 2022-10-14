@@ -53,7 +53,7 @@ const Notifications = () => {
     }));
   };
   getList(onReceive);
-
+  LogBox.ignoreLogs(["Setting a timer"]);
   //console.log(state.notifications)
 
   const scrollY = React.useRef(new Animated.Value(0)).current;

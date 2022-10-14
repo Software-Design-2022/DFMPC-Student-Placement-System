@@ -23,18 +23,20 @@ import * as Location from "expo-location";
 
 const authname = authName;
 const authlastName = authLastName;
-const latitude = 20;
-const longitude = 30;
 
+//message to be sent to database
 const msg = {
   title: "Message",
   body: "Emergency Message Has Been Sent",
   data: { data: "goes here" },
 };
+
+//function to send message to database
 const sendToFirestore = (text, msg) => {
   firebase
     .firestore()
     .collection("panic_button")
+    //user data about individual message
     .add({
       Location: JSON.stringify(location), // new firestore geopoint with latitude and longitude means
       query: text,
@@ -54,49 +56,23 @@ const sendToFirestore = (text, msg) => {
 export default function EmergencyPage() {
   const [text, setText] = useState("");
   const navigation = useNavigation();
-  const [expoPushToken, setExpoPushToken] = useState("");
-  const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-  const modalVisible = false;
-  //  useEffect(() => {
-  //   let cancel = false;
-  //   registerForPushNotificationsAsync().then((token) => {
-  //     if (cancel) return;
-  //     setExpoPushToken(token);
-  //   });
-
-  //   notificationListener.current =
-  //     Notifications.addNotificationReceivedListener((notification) => {
-  //       setNotification(notification);
-  //     });
-
-  //   responseListener.current =
-  //     Notifications.addNotificationResponseReceivedListener((response) => {
-  //       console.log(response);
-  //     });
-
-  //   return () => {
-  //     Notifications.removeNotificationSubscription(
-  //       notificationListener.current
-  //     );
-  //     Notifications.removeNotificationSubscription(responseListener.current);
-  //     cancel = true;
-  //   };
-  // }, []); 
   LogBox.ignoreLogs(["Setting a timer"]);
-
+  //view for emergency page with textbox and button
   return (
     <View style={styles.container}>
       
-      <View style={{ position: "absolute" }}>
+      <View 
+      //create background image
+      style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
           source={require("./images/background.png")}
           blurRadius={0}
         />
       </View>
-      <View style={{ flex: 1 }}>
+      <View 
+      //create top bar
+      style={{ flex: 1 }}>
         {createTopBar(10, navigation)}
 
         <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
@@ -136,46 +112,7 @@ async function getLocationAsync()
 }
 
 const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
-/* 
-async function schedulePushNotification(msg) {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: msg.title,
-      body: msg.body,
-      data: msg.data,
-    },
-    trigger: { seconds: 1 },
-  });
-}
 
-async function registerForPushNotificationsAsync() {
-  let token;
-  if (Device.isDevice) {
-    const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-  }
-
-  if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("default", {
-      name: "default",
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
-    });
-  }
-
-  return token;
-} */
 
 const styles = StyleSheet.create({
   container: {

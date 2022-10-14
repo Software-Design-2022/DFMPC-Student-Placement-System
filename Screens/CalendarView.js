@@ -14,25 +14,16 @@ import {
   Pressable,
 } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { Provider } from "react-native-paper";
 import { firebase } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
-import BottomSheet from "./BottomSheet";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Card, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
-import { AntDesign } from "@expo/vector-icons";
 import "./global";
-import {schedulePushNotification} from "./SendNotification"
 import { createTopBar } from "../HelperFunctions";
 
 
 
 const { width, height } = Dimensions.get("screen");
-const SPACING = 20;
-const ICON_SIZE = 75;
-const initialDate = getCurrentDate();
-const today = new Date();
+
 const compare = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
@@ -203,8 +194,6 @@ const EventsCalendar = () => {
   );
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEnd, setSelectedEnd] = useState(new Date());
-/*   const [btnstart, setBtnStart] = useState(false);
-  const [btnend, setBtnEnd] = useState(false); */
   const [modalVisible, setModalVisible] = useState(false);
   const [datePickerVisible, setDatePicker] = useState(false);
   const [EnddatePickerVisible, setDatePickerEnd] = useState(false);

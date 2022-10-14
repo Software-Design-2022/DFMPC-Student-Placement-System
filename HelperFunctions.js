@@ -9,7 +9,6 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
-//import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 import React, { useState } from "react";
 
 const SPACING = 20;
@@ -24,6 +23,7 @@ export const makeLowerCase = (string) => {
   return string.toLowerCase();
 };
 
+//function to get current date data from device and returns it as a date string
 export function getCurrentDate() {
   const today = new Date();
   const day = today.getDate();
@@ -33,16 +33,20 @@ export function getCurrentDate() {
   return day + "-" + month + "-" + year;
 }
 
+//function used to create top forehead bar on every page of app
 export function createTopBar(T, show) {
+  //decides if shortcuts visible or not
   const [shouldShow, setShouldShow] = useState(false);
   const navigation=useNavigation();
   var marginB = 30;
+  //if on IOS change styling
   if (Platform.OS == "ios") {
     T = T + 10;
     marginB = marginB + 10;
   }
   return (
     <View
+    //main view
       style={{
         height: 50,
         zIndex: 1,
@@ -56,7 +60,9 @@ export function createTopBar(T, show) {
       }}
     >
       <View>
-        <View style={{ backgroundColor: "white" }}>
+        <View
+        //View with logo in top left hand corner
+         style={{ backgroundColor: "white" }}>
           <Image
             style={{
               backgroundColor: "rgba(255,255,255,0)",
@@ -71,6 +77,7 @@ export function createTopBar(T, show) {
           />
         </View>
         <TouchableHighlight
+        //create touchable menu button to show and hide shortcuts
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
@@ -97,6 +104,7 @@ export function createTopBar(T, show) {
           />
         </TouchableHighlight>
         <TouchableHighlight
+        //create back button to go back to previous page
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
@@ -126,6 +134,7 @@ export function createTopBar(T, show) {
       {shouldShow ? (
         <View>
           <TouchableHighlight
+          //creates hidden button for navigation to settings view
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -152,6 +161,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
+          //creates hidden button for navigation to emergency page
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -178,6 +188,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
+          //creates hidden button for navigation to dashboard
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -204,6 +215,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
+          //creates hidden button for navigation to signout
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -230,6 +242,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
+          //creates hidden button for navigation to notifications
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -261,7 +274,7 @@ export function createTopBar(T, show) {
   );
 }
 
-
+//function to find differences between date to determine if date should be kept
 export function difference(start)
 {
   let date = new Date();

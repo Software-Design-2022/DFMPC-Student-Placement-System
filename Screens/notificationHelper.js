@@ -29,5 +29,7 @@ export async function getList(onReceiveList) {
       });
     });
 
+    
+    
   onReceiveList(notifications); // Send array to function that called this function
 }

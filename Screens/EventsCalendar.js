@@ -419,22 +419,6 @@ const EventsCalendar = () => {
             showEvent = true;
           }
         }}
-        /*       theme={{
-          "stylesheet.day.period": {
-            wrapper: {
-              alignItems: "center",
-              alignSelf: "stretch",
-              marginLeft: -2,
-              borderRadius: 2,
-              overflow: "hidden",
-            },
-            leftFiller: {
-              height: 26,
-              flex: 1,
-              marginLeft: 50,
-            },
-          },
-        }} */
         onDayLongPress={(day) => {
           setModalVisible(true);
         }}
