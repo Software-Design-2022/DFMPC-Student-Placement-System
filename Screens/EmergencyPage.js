@@ -18,6 +18,8 @@ import { useNavigation } from "@react-navigation/core";
 import { createTopBar } from "../HelperFunctions";
 import { Modal } from "react-native-paper";
 import {schedulePushNotification,EventNotification} from "./SendNotification"
+import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
 
 const authname = authName;
 const authlastName = authLastName;
@@ -34,7 +36,7 @@ const sendToFirestore = (text, msg) => {
     .firestore()
     .collection("panic_button")
     .add({
-      Location: [-latitude, longitude],
+      Location: JSON.stringify(location), // new firestore geopoint with latitude and longitude means
       query: text,
       student_Number: "123456",
       user_FirstName: authname,
@@ -47,7 +49,17 @@ const sendToFirestore = (text, msg) => {
 
     });
 };
+async function getLocationAsync() {
+  let { status } = await Permissions.askAsync(Permissions.LOCATION_FOREGROUND); // ask for location permission
+  if (status !== "granted") {
+    setErrorMsg("Permission to access location was denied");
+  }
 
+  let location = await Location.getCurrentPositionAsync({}); // get current location
+  return location;
+}
+
+const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
 
 export default function EmergencyPage() {
   const [text, setText] = useState("");
@@ -57,31 +69,31 @@ export default function EmergencyPage() {
   const notificationListener = useRef();
   const responseListener = useRef();
   const modalVisible = false;
- /*  useEffect(() => {
-    let cancel = false;
-    registerForPushNotificationsAsync().then((token) => {
-      if (cancel) return;
-      setExpoPushToken(token);
-    });
+  //  useEffect(() => {
+  //   let cancel = false;
+  //   registerForPushNotificationsAsync().then((token) => {
+  //     if (cancel) return;
+  //     setExpoPushToken(token);
+  //   });
 
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
+  //   notificationListener.current =
+  //     Notifications.addNotificationReceivedListener((notification) => {
+  //       setNotification(notification);
+  //     });
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
+  //   responseListener.current =
+  //     Notifications.addNotificationResponseReceivedListener((response) => {
+  //       console.log(response);
+  //     });
 
-    return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
-      Notifications.removeNotificationSubscription(responseListener.current);
-      cancel = true;
-    };
-  }, []); */
+  //   return () => {
+  //     Notifications.removeNotificationSubscription(
+  //       notificationListener.current
+  //     );
+  //     Notifications.removeNotificationSubscription(responseListener.current);
+  //     cancel = true;
+  //   };
+  // }, []); 
   LogBox.ignoreLogs(["Setting a timer"]);
 
   return (
@@ -112,7 +124,7 @@ export default function EmergencyPage() {
             title="Send Emergency message"
             color="#415A77"
             // when clicked data is send to firestore database
-            onPress={() => sendToFirestore(text, msg)}
+            onPress={() => {sendToFirestore(text, msg),setText("");}}
           />
         </View>
       </View>

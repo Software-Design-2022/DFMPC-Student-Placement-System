@@ -23,8 +23,8 @@ import { Card, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import "./global";
-import { createTopBar } from "../HelperFunctions";
 import {schedulePushNotification} from "./SendNotification"
+import { createTopBar } from "../HelperFunctions";
 
 
 
