@@ -57,35 +57,10 @@ export default function EmergencyPage() { // emergency page
   const notificationListener = useRef(); // notification listener
   const responseListener = useRef(); // response listener 
   const modalVisible = false; // modal visible
-  //  useEffect(() => {
-  //   let cancel = false;
-  //   registerForPushNotificationsAsync().then((token) => {
-  //     if (cancel) return;
-  //     setExpoPushToken(token);
-  //   });
-
-  //   notificationListener.current =
-  //     Notifications.addNotificationReceivedListener((notification) => {
-  //       setNotification(notification);
-  //     });
-
-  //   responseListener.current =
-  //     Notifications.addNotificationResponseReceivedListener((response) => {
-  //       console.log(response);
-  //     });
-
-  //   return () => {
-  //     Notifications.removeNotificationSubscription(
-  //       notificationListener.current
-  //     );
-  //     Notifications.removeNotificationSubscription(responseListener.current);
-  //     cancel = true;
-  //   };
-  // }, []); 
   LogBox.ignoreLogs(["Setting a timer"]); // ignore logs 
 
   return (  // return 
-    <View style={styles.container}> // view 
+    <View style={styles.container}>
       
       <View 
       //create background image
@@ -101,7 +76,7 @@ export default function EmergencyPage() { // emergency page
       style={{ flex: 1 }}>
         {createTopBar(10, navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20, top: 60 }}> // view 
+        <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
           <TextInput
             // user can type their emergency message
             style={styles.message}
