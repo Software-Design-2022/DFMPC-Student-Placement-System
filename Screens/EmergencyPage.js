@@ -24,42 +24,68 @@ import * as Location from "expo-location";
 const authname = authName;
 const authlastName = authLastName;
 
-//message to be sent to database
-const msg = {
-  title: "Message",
-  body: "Emergency Message Has Been Sent",
-  data: { data: "goes here" },
+const msg = { // message to be sent to the user 
+  title: "Message", // (optional) 
+  body: "Emergency Message Has Been Sent",  // (required) 
+  data: { data: "goes here" }, // (optional) any data that is sent is stored in the push notification 
 };
-
-//function to send message to database
-const sendToFirestore = (text, msg) => {
-  firebase
-    .firestore()
-    .collection("panic_button")
-    //user data about individual message
-    .add({
+const sendToFirestore = (text, msg) => {  // send message to firestore 
+  firebase // firebase 
+    .firestore() // firestore 
+    .collection("panic_button") // collection 
+    .add({ // add 
       Location: JSON.stringify(location), // new firestore geopoint with latitude and longitude means
-      query: text,
-      student_Number: "123456",
-      user_FirstName: authname,
-      user_LastName: authlastName,
+      query: text, // query 
+      student_Number: "123456", // student number 
+      user_FirstName: authname, // user first name 
+      user_LastName: authlastName, // user last name 
     })
     .then(() => {
-      Alert.alert("Emergency Message Saved");
-      schedulePushNotification(msg,"Emergency Page");
+      Alert.alert("Emergency Message Saved"); // alert 
+      schedulePushNotification(msg,"Emergency Page"); // send notification 
       
 
     });
 };
 
 
-export default function EmergencyPage() {
-  const [text, setText] = useState("");
-  const navigation = useNavigation();
-  LogBox.ignoreLogs(["Setting a timer"]);
-  //view for emergency page with textbox and button
-  return (
-    <View style={styles.container}>
+export default function EmergencyPage() { // emergency page 
+  const [text, setText] = useState(""); // text 
+  const navigation = useNavigation(); // navigation 
+  const [expoPushToken, setExpoPushToken] = useState(""); // expo push token 
+  const [notification, setNotification] = useState(false);  // notification 
+  const notificationListener = useRef(); // notification listener
+  const responseListener = useRef(); // response listener 
+  const modalVisible = false; // modal visible
+  //  useEffect(() => {
+  //   let cancel = false;
+  //   registerForPushNotificationsAsync().then((token) => {
+  //     if (cancel) return;
+  //     setExpoPushToken(token);
+  //   });
+
+  //   notificationListener.current =
+  //     Notifications.addNotificationReceivedListener((notification) => {
+  //       setNotification(notification);
+  //     });
+
+  //   responseListener.current =
+  //     Notifications.addNotificationResponseReceivedListener((response) => {
+  //       console.log(response);
+  //     });
+
+  //   return () => {
+  //     Notifications.removeNotificationSubscription(
+  //       notificationListener.current
+  //     );
+  //     Notifications.removeNotificationSubscription(responseListener.current);
+  //     cancel = true;
+  //   };
+  // }, []); 
+  LogBox.ignoreLogs(["Setting a timer"]); // ignore logs 
+
+  return (  // return 
+    <View style={styles.container}> // view 
       
       <View 
       //create background image
@@ -75,13 +101,13 @@ export default function EmergencyPage() {
       style={{ flex: 1 }}>
         {createTopBar(10, navigation)}
 
-        <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
+        <View style={{ padding: 10, marginBottom: 20, top: 60 }}> // view 
           <TextInput
             // user can type their emergency message
             style={styles.message}
-            placeholder="Type emergency message here!"
-            onChangeText={(newText) => setText(newText)}
-            defaultValue={text}
+            placeholder="Type emergency message here!" // placeholder 
+            onChangeText={(newText) => setText(newText)} // on change text 
+            defaultValue={text} // default value 
           />
         </View>
 
@@ -90,7 +116,7 @@ export default function EmergencyPage() {
             title="Send Emergency message"
             color="#415A77"
             // when clicked data is send to firestore database
-            onPress={() => {sendToFirestore(text, msg),setText("");}}
+            onPress={() => {sendToFirestore(text, msg),setText("");}} // on press  
           />
         </View>
       </View>

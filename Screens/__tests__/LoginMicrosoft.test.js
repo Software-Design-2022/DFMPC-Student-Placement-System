@@ -6,11 +6,6 @@ authName = "John";
 authLastName = "Green";
 
 
-
-
-
-
-
 authEmail = "john_green_test@outlook.com";
 function check()
 {
@@ -19,18 +14,19 @@ function check()
     //ensure that global variables are set
     expect(authUserID).toBe("1");
     expect(authName).toBe("John");
-    expect(authLastName).toBe("Green");
+    expect(authLastName).toBe("Green"); 
 }
 
+test("check", check); //test to check if the user is retrieved correctly
+
+describe("LoginMicrosoft", () => { //describe the test 
+    it("checks database for existeing email", () => { //it checks the database for existing email
+        check(); //call the check function
+    }); 
+
+});
 
 
-describe("LoginMicrosoft", () => {
-
-    it("checks database for existeing email", () => {
-        check();
-    });
-
-  });
 
 
 
