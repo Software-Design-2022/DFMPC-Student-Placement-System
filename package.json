@@ -12,6 +12,7 @@
     "make-badges": "istanbul-badges-readme --logo='jest' "
   },
   "dependencies": {
+    "@azure/msal-react": "^1.4.9",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
@@ -31,6 +32,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",
     "react": "17.0.1",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "17.0.1",
     "react-microsoft-login": "^1.15.0",
     "react-native": "0.64.3",
