@@ -1,3 +1,5 @@
+
+
 global.authUserID = "";
 global.authUserRef = "";
 global.authUser = "";
@@ -22,3 +24,5 @@ global.authEmail = "";
 global.eventData=[{}];
 global.showEvent=false;
 global.notificationId=0;
+global.doctorsList=[];
+

@@ -14,6 +14,7 @@ import Notifications from "./Screens/Notifications";
 import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
 import LoginMicrosoft from "./Screens/LoginMicrosoft";
+import { Doctors } from "./Screens/Doctors"
 
 
 
@@ -86,6 +87,11 @@ function App() {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="Doctors"
+          component={Doctors}
           options={{ headerShown: false }}
         />
          <Stack.Screen
