@@ -360,10 +360,13 @@ const Dashboard = () => {
          key={item.time}
           style={{
             height: 65,
-            backgroundColor: "rgba(0,0,28,0.1)",
+            backgroundColor: "rgba(0,0,0,0.05)",
             marginBottom: 10,
             margin: 5,
             borderRadius: 10,
+            borderWidth:3,
+            borderColor:"rgba(0,0,0,0.1)",
+            width:275
           }}
         >
           <Text
@@ -452,19 +455,19 @@ const Dashboard = () => {
               backgroundColor:'rgba(0,0,0,0)'
             }}
           >
-          <View style={{backgroundColor:'rgba(0,0,0,1)',borderRadius:20,height:70}}> 
+          <View style={{backgroundColor:'rgba(0,0,0,0)',borderRadius:20,height:70,left:5}}> 
           <FlatList
           showsHorizontalScrollIndicator={false}
-          horizontal={false}
+          horizontal={true}
           contentContainerStyle={{}}
           data={state.notifications}
           renderItem={renderNotificationItem}
           keyExtractor={(item) => item.id}
-          snapToInterval={70}
+          snapToInterval={285}
           decelerationRate={1}
           />
           </View>
-          <TwitterFeed style={{marginBottom:10}}></TwitterFeed>
+          <TwitterFeed style={{marginBottom:10,marginTop:SPACING}}></TwitterFeed>
 
           </View>
           <View
@@ -630,7 +633,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 575,
     backgroundColor:"rgba(0,0,0,0)",
-    top:0
+    top:0,
+    left:7,
+    marginTop:SPACING/2
   },
 });
 export default Dashboard;
