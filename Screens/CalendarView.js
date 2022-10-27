@@ -20,8 +20,6 @@ import { useNavigation } from "@react-navigation/core";
 import "./global";
 import { createTopBar } from "../HelperFunctions";
 
-
-
 const { width, height } = Dimensions.get("screen");
 
 const compare = (obj1, obj2) => {
@@ -69,9 +67,6 @@ async function eventsData(onReceiveList) {
 
   onReceiveList(events);
 }
-
-
-
 
 const validateInput = (eventtext, notetext) => {
   let valid = true;
@@ -147,7 +142,7 @@ const EventsCalendar = () => {
         markedDay[item.start] = {
           startingDay: true,
           endingDay: true,
-          selected:true,
+          selected: true,
           marked: true,
           color: randomColor2,
           dotColor: "blue",
@@ -183,7 +178,6 @@ const EventsCalendar = () => {
     setDayData(data);
   };
 
-
   const [eventName, setEventName] = useState("");
   const [eventProgramme, setEventProgramme] = useState("");
   const [startDate, setStartDate] = useState(
@@ -201,32 +195,46 @@ const EventsCalendar = () => {
   return (
     <View style={styles.container}>
       {createTopBar(10, navigation)}
-      <View style={{flex:1}}>
-      <Calendar
-        style={{
-          shadowColor: "black",
-          height: 500,
-          marginTop: 80,
-          marginBottom: 30,
-          marginLeft: 30,
-          marginRight: 30,
-        }}
-        markingType={"period"}
-        markedDates={{}}
-        onDayPress={(day) => {
-          getDayEvents(day);
-          eventData = dayData;
-          if (showEvent == false) {
-            showEvent = true;
-          }
-        }}
-      />
+      <View style={{ flex: 1 }}>
+        <Calendar
+          style={{
+            shadowColor: "black",
+            height: 500,
+            marginTop: 80,
+            marginBottom: 30,
+            marginLeft: 30,
+            marginRight: 30,
+          }}
+          markingType={"period"}
+          markedDates={{}}
+          onDayPress={(day) => {
+            getDayEvents(day);
+            eventData = dayData;
+            if (showEvent == false) {
+              showEvent = true;
+            }
+          }}
+        />
       </View>
-      <View style={{flex:1,zIndex:1,bottom:10,left:10,position:'absolute'}}>
-        <TouchableOpacity onPress={() => {
+      <View
+        style={{
+          flex: 1,
+          zIndex: 1,
+          bottom: 10,
+          left: 10,
+          position: "absolute",
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
             navigation.navigate("EventsCalendar");
-          }}>
-        <Text style={{color:'rgba(0,0,0,1)',fontWeight:'bold',fontSize:15}}>{'Go to Events Calendar >>'}</Text>
+          }}
+        >
+          <Text
+            style={{ color: "rgba(0,0,0,1)", fontWeight: "bold", fontSize: 15 }}
+          >
+            {"Go to Events Calendar >>"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -244,7 +252,7 @@ var styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 2,
     backgroundColor: "rgba(28,56,107,0.5)",
-    borderRadius:10
+    borderRadius: 10,
   },
   button: {
     marginTop: 100,
@@ -271,7 +279,7 @@ var styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 80,
     backgroundColor: "rgba(28,56,107,1)",
-    borderRadius:25
+    borderRadius: 25,
   },
   closeButton: {
     display: "flex",
@@ -366,7 +374,7 @@ var styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: "black",
   },
- 
+
   textStyle: {
     color: "white",
     fontWeight: "bold",
