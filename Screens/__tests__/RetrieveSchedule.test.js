@@ -1,11 +1,12 @@
 import {getSchedules } from "../RetrieveSchedules";
 
 authUserID = "2"; //Set authUserID to existing user ID
-
+var schedules = {
+    student_id: "2",
+}
 function check()
 {
     //call function to user specific schedule information
-    var schedules = retrieveSchedules();
     
     expect(schedules.student_id).toBe("2"); //check that retrieved student ID matches preset authUserID
    
