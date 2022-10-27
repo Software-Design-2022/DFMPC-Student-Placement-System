@@ -31,6 +31,7 @@
     "firebase": "^9.6.11",
     "lodash.filter": "^4.6.0",
     "mocha": "^10.0.0",
+    "msal": "^1.4.17",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
     "react": "17.0.1",

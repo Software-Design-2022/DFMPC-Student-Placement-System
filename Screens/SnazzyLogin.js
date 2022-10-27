@@ -125,7 +125,7 @@ export default function SnazzyLogin() {
   }
   //function for when login with microsoft button is pressed
   function OpenMicrosoft() {
-   navigation.navigate("LoginMicrosoft");
+   navigation.navigate("Microsoft");
   }
 
   const buttonY = buttonOpacity.interpolate({
