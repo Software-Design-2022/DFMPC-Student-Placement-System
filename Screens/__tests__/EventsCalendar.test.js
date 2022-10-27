@@ -1,4 +1,4 @@
-import EventsCalendar from '../Screens/EventsCalendar';
+import EventsCalendar from '../EventsCalendar';
 
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 
