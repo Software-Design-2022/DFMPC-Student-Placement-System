@@ -1,169 +1,327 @@
-import { Calendar, Agenda } from "react-native-calendars"; // 1.5.3
 import React, { useState } from "react";
 import {
-  View,
+  Button,
   StyleSheet,
-  TouchableOpacity,
-  TouchableHighlight,
   Text,
-  LogBox,
+  View,
+  Dimensions,
+  Modal,
+  TouchableHighlight,
+  Image,
+  TextInput,
+  Alert,
+  TouchableOpacity,
+  Pressable,
 } from "react-native";
-import { Card, Avatar } from "react-native-paper";
-import { firebase, db } from "../firebase";
+import { Calendar } from "react-native-calendars";
+import { firebase } from "../firebase";
 import { getCurrentDate } from "../HelperFunctions";
-const days = "";
+import { useNavigation } from "@react-navigation/core";
+import "./global";
+import { createTopBar } from "../HelperFunctions";
 
-const initialDate = getCurrentDate();
-async function getSchedule(onReceiveList) {
-  const schedules = [];
+
+
+const { width, height } = Dimensions.get("screen");
+
+const compare = (obj1, obj2) => {
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+};
+
+const generateColor = () => {
+  const randomColor = Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, "0");
+  return `#${randomColor}`;
+};
+
+const randomColor = generateColor();
+const randomColor2 = generateColor();
+async function eventsData(onReceiveList) {
+  const events = [];
   var snapshot = await firebase
     .firestore()
-    .collection("schedules")
-    .where("student_id", "==", authUserID) //@Noku - this is where we are filtering the data to be specific to the student logged in
+    .collection("events")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach(function (doc) {
-        //push the required data to the array
-        schedules.push({
-          key: schedules.length + 1,
-          student_id: doc.data().student_id,
-          SpecialtyName: doc.data().SpecialtyName,
-          hospital_ID: doc.data().hospital_id,
-          specialty_duration: doc.data().specialty_duration,
-          start: doc.data().start_date,
-          end: doc.data().end_date,
-          specialty_id: doc.data().specialty_id,
-        });
+        let start = doc.data().start_date,
+          end = doc.data().end_date,
+          name = doc.data().name,
+          id = doc.data().id,
+          programme = doc.data().programme,
+          key = events.length + 1;
+        let date = new Date();
+        let date2 = new Date(start);
+        let diff = Math.ceil((date2 - date) / (1000 * 3600 * 24));
+        if (Math.abs(diff) < 90) {
+          events.push({
+            name: name,
+            key: key,
+            start: start,
+            end: end,
+            id: id,
+            programme: programme,
+          });
+        }
       });
     });
 
-  onReceiveList(schedules);
+  onReceiveList(events);
 }
 
-LogBox.ignoreLogs(["Setting a timer"]);
 
-export default class AgendaCalendar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: {},
-      events: [],
-    };
+
+
+const validateInput = (eventtext, notetext) => {
+  let valid = true;
+  if (JSON.stringify(eventtext).length - 2 <= 0) {
+    Alert.alert("Warning", "Event name cannot be left empty", [
+      { text: "OK", onPress: () => {} },
+    ]);
+    valid = false;
   }
 
-  render() {
-    return (
-      <View>
-        <TouchableHighlight
-          underlayColor="#2AC062"
-          style={{
-            display: "flex",
-            height: 60,
-            borderRadius: 6,
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 1,
-            width: "100%",
-            height: 100,
-            right: 10,
-            top: 2,
-            borderRadius: 10,
-          }}
-          onPress={() => this.props.navigation.navigate("EventsCalendar")}
-        >
-          <Text
-            style={{
-              color: "rgba(255,255,255,1)",
-              fontSize: 25,
-              fontWeight: "bold",
-              textAlign: "center",
-            }}
-          >
-            Events Calendar
-          </Text>
-        </TouchableHighlight>
-        <Agenda
-          theme={{
-            calendarBackground: "white", //agenda background
-            agendaKnobColor: "rgba(28,56,107,0.9)", // knob color
-            backgroundColor: "rgba(28,56,107,0.9)", // background color below agenda
-            agendaDayTextColor: "rgba(28,56,107,0.9)", // day name
-            agendaDayNumColor: "rgba(28,56,107,0.9)", // day number
-            agendaTodayColor: "rgba(28,56,107,0.9)", // today in list
-            monthTextColor: "rgba(28,56,107,0.9)", // name in calendar
-            todayBackgroundColor: "rgba(28,56,107,0.9)",
-            textSectionTitleColor: "rgba(28,56,107,0.9)",
-            selectedDayBackgroundColor: "rgba(28,56,107,0.9)", // calendar sel date
-            dayTextColor: "rgba(28,56,107,0.9)", // calendar day
-            dotColor: "green", // dots
-          }}
-          items={this.state.items}
-          selected={new Date()}
-          loadItemsForMonth={this.loadFromList.bind(this)}
-          renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
-          rowHasChanged={this.rowHasChanged.bind(this)}
-        />
-      </View>
-    );
+  if (JSON.stringify(notetext).length - 2 <= 0) {
+    Alert.alert("Warning", "Event programme cannot be left empty", [
+      { text: "OK", onPress: () => {} },
+    ]);
+    valid = false;
   }
+  return valid;
+};
 
-  loadFromList() {
-    const onReceive = (data) => {
-      this.setState({
-        events: data,
+async function sendToFirestore(
+  eventtext,
+  notetext,
+  startdatetext,
+  enddatetext
+) {
+  if (validateInput(eventtext, notetext) == true) {
+    await firebase
+      .firestore()
+      .collection("events")
+      .add({
+        name: eventtext,
+        start_date: startdatetext,
+        end_date: enddatetext,
+        id: Math.max(50, Math.floor(Math.random() * 150)),
+        programme: notetext,
+      })
+      .then(() => {
+        Alert.alert("Event Added");
       });
-    };
-    getSchedule(onReceive);
-    this.state.events.map((key, index) => {
-      const day = key.start;
+  }
+}
 
-      if (!this.state.items[day]) {
-        this.state.items[day] = [];
-        this.state.items[day].push({
-          specialty: "Specialty: " + key.SpecialtyName,
-          start: "start day: " + key.start,
-          end: "end day: " + key.end,
-          hospital: "hospital: " + "Baragwanath Hospital",
-          height: Math.max(50, Math.floor(Math.random() * 150)),
-        });
+const EventsCalendar = () => {
+  const [EventsState, SetEventsState] = useState({
+    events: [
+      {
+        key: 0,
+        programme: "",
+        name: "",
+        id: 0,
+        start: "",
+        end: "",
+      },
+    ],
+  });
+
+  const onReceive = (newEvents) => {
+    // when the list is received we set our protocolLIst to the current received list (updating)
+    SetEventsState((prevState) => ({
+      events: (prevState.events = newEvents),
+    }));
+  };
+  eventsData(onReceive);
+
+  const [dayData, setDayData] = useState([{}]);
+  const navigation = useNavigation();
+
+  const GetMarkedDates = () => {
+    let markedDay = {};
+
+    EventsState.events.map((item, key) => {
+      if (compare(item.start, item.end)) {
+        markedDay[item.start] = {
+          startingDay: true,
+          endingDay: true,
+          selected:true,
+          marked: true,
+          color: randomColor2,
+          dotColor: "blue",
+        };
+      } else {
+        markedDay[item.start] = {
+          startingDay: true,
+          color: randomColor,
+          textColor: "white",
+          marked: true,
+          dotColor: "black",
+        };
+        markedDay[item.end] = {
+          endingDay: true,
+          color: randomColor,
+          textColor: "white",
+          marked: true,
+          dotColor: "black",
+        };
       }
-      //console.log(this.state.items);
-      const newItems = {};
-      Object.keys(this.state.items).forEach((key) => {
-        newItems[key] = this.state.items[key];
-      });
-      this.setState({
-        items: newItems,
-      });
     });
-  }
 
-  renderItem(item) {
-    return (
-      <View style={[styles.item, { height: item.height }]}>
-        <Text>{item.specialty}</Text>
-        <Text>{item.start}</Text>
-        <Text>{item.end}</Text>
-        <Text>{item.hospital}</Text>
+    return markedDay;
+  };
+
+  const getDayEvents = (day) => {
+    const data = [];
+    EventsState.events.map((event, key) => {
+      if (compare(event.start, day.dateString) == true) {
+        data.push(event);
+      }
+    });
+    setDayData(data);
+  };
+
+
+  const [eventName, setEventName] = useState("");
+  const [eventProgramme, setEventProgramme] = useState("");
+  const [startDate, setStartDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [endDate, setEndDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedEnd, setSelectedEnd] = useState(new Date());
+  const [modalVisible, setModalVisible] = useState(false);
+  const [datePickerVisible, setDatePicker] = useState(false);
+  const [EnddatePickerVisible, setDatePickerEnd] = useState(false);
+
+  return (
+    <View style={styles.container}>
+      {createTopBar(10, navigation)}
+      <View style={{flex:1}}>
+      <Calendar
+        style={{
+          shadowColor: "black",
+          height: 500,
+          marginTop: 80,
+          marginBottom: 30,
+          marginLeft: 30,
+          marginRight: 30,
+        }}
+        markingType={"period"}
+        markedDates={{}}
+        onDayPress={(day) => {
+          getDayEvents(day);
+          eventData = dayData;
+          if (showEvent == false) {
+            showEvent = true;
+          }
+        }}
+      />
       </View>
-    );
-  }
-
-  renderEmptyDate() {
-    return (
-      <View style={styles.emptyDate}>
-        <Text>No Agenda On this day!</Text>
+      <View style={{flex:1,zIndex:1,bottom:10,left:10,position:'absolute'}}>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate("EventsCalendar");
+          }}>
+        <Text style={{color:'rgba(0,0,0,1)',fontWeight:'bold',fontSize:15}}>{'Go to Events Calendar >>'}</Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+    </View>
+  );
+};
 
-  rowHasChanged(r1, r2) {
-    return r1.name !== r2.name;
-  }
-}
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "rgba(28,56,107,1)",
+  },
+  input: {
+    margin: 15,
+    height: 50,
+    borderColor: "rgba(0,0,0,0.2)",
+    borderWidth: 2,
+    backgroundColor: "rgba(28,56,107,0.5)",
+    borderRadius:10
+  },
+  button: {
+    marginTop: 100,
+    display: "flex",
+    height: 60,
+    borderRadius: 6,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#2AC062",
+    shadowColor: "#2AC062",
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      height: 10,
+      width: 0,
+    },
+    shadowRadius: 25,
+  },
+  modalStyle: {
+    zIndex: 100,
+    height: height - 210,
+    width: width - 40,
+    marginLeft: 20,
+    marginRight: 10,
+    marginTop: 80,
+    backgroundColor: "rgba(28,56,107,1)",
+    borderRadius:25
+  },
+  closeButton: {
+    display: "flex",
+    height: 60,
+    borderRadius: 6,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    shadowColor: "#2AC062",
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      height: 10,
+      width: 0,
+    },
+    shadowRadius: 25,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 22,
+  },
+  image: {
+    marginTop: 150,
+    marginBottom: 10,
+    width: "100%",
+    height: 350,
+  },
 
-const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+    marginBottom: 30,
+    padding: 40,
+  },
+  closeText: {
+    fontSize: 24,
+    color: "#00479e",
+    textAlign: "center",
+  },
+
+  buttonClose: {
+    marginRight: 30,
+    marginLeft: 10,
+  },
+  eventStyle: {
+    justifyContent: "flex-end",
+    marginBottom: 36,
+    width: 50,
+    height: 50,
+    margin: 10,
+    backgroundColor: "green",
+  },
   item: {
     backgroundColor: "white",
     flex: 1,
@@ -177,6 +335,47 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
   },
-});
+  emptyDate: {
+    height: 15,
+    flex: 1,
+    paddingTop: 30,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: width / 2,
+    height: height / 3,
+  },
 
-export { days };
+  buttonClose: {
+    backgroundColor: "black",
+  },
+ 
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 20,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+});
+export default EventsCalendar;
