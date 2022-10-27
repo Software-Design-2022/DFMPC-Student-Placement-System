@@ -21,9 +21,11 @@ import {
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
-import "../global";
+import "./global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
+import { createTopBar } from "../HelperFunctions";
+import {EventNotification} from "./SendNotification"
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -35,6 +37,10 @@ const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
+
+EventNotification()
+
+/**Create FlatList */
 const DATA = [
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d73",
@@ -44,11 +50,25 @@ const DATA = [
     text: "Calendar",
   },
   {
+    id: "58694a0f-3da1-471f-bd96-1455e29d71",
+    title: "FeedBack",
+    destination: "Doctors",
+    image: require("./images/feedback.jpg"),
+    text: "FeedBack",
+  },
+  {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "Emergency Protocols",
     destination: "EmergencyProtocols",
     image: require("./images/schedule.png"),
     text: "Protocols",
+  },
+  {
+    id: "18694a0f-3da1-471f-bd96-145571e29d72",
+    title: "EventsCalendar",
+    destination: "EventsCalendar",
+    image: require("./images/calendar.png"),
+    text: "  Events",
   },
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d79",
@@ -63,6 +83,20 @@ const DATA = [
     destination: "Login",
     image: require("./images/logout.png"),
     text: "Logout",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d71",
+    title: "Calendar",
+    destination: "CalendarView",
+    image: require("./images/calendar.png"),
+    text: "Calendar",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-14557e29d71",
+    title: "FeedBack",
+    destination: "Doctors",
+    image: require("./images/feedback.jpg"),
+    text: "FeedBack",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",
@@ -95,6 +129,9 @@ const DATA = [
   },
 ];
 
+
+//data to be displayed in bottom hotbar
+/**Create Shortlinks */
 const DATA2 = [
   {
     id: "1",
@@ -133,6 +170,7 @@ const DATA2 = [
     image: require("./images/notionLogo.png"),
   },
 ];
+
 // creates it so each item has a touchable button with correct title
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -140,6 +178,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   </TouchableOpacity>
 );
 
+//setup for twitter feed on dashboard
 class TwitterFeed extends Component {
   static propTypes = {
     witsUrl: PropTypes.string,
@@ -199,7 +238,7 @@ class TwitterFeed extends Component {
       );
     }
   }
-
+  //renders interactive scrollview and renders twitter feed
   render() {
     return (
       <ScrollView
@@ -210,7 +249,10 @@ class TwitterFeed extends Component {
     );
   }
 }
+
+/**Create Dashboard */
 const Dashboard = () => {
+ 
   const anim = useRef(new Animated.Value(1));
 
   useEffect(() => {
@@ -244,6 +286,7 @@ const Dashboard = () => {
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity
+      //creates link that opens external page
         onPress={() => {
           Linking.openURL(item.link);
         }}
@@ -259,7 +302,9 @@ const Dashboard = () => {
           }}
         >
           <View style={{ flex: 1 }}>
+            
             <Image
+            //adds image to each hotbar item for identification
               style={{
                 width: 30,
                 height: 30,
@@ -279,6 +324,7 @@ const Dashboard = () => {
           </View>
           <View style={{ flex: 1 }}>
             <Text
+            //shows item text for each hotbar item
               style={{
                 flex: 1,
                 fontSize: 15,
@@ -297,133 +343,11 @@ const Dashboard = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {createTopBar(10, navigation, false)}
+
       <View
-        style={{ backgroundColor: "rgba(0,0,0,0.0)", height: 30, zIndex: 1 }}
-      ></View>
-      <View
-        style={{
-          backgroundColor: "rgba(255,255,255,0.8)",
-          height: ICON_SIZE,
-          zIndex: 1,
-          top: SPACING / 2,
-          borderRadius: 100,
-          right: width / 1.8,
-          width: width / 1,
-        }}
-      >
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0.0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: 10,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-          }}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              borderWidth: 2,
-            }}
-            source={require("./images/logout_logo.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE + 20,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("EmergencyPage");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/emergency.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE,
-            height: ICON_SIZE,
-            right: ICON_SIZE * 2 + 30,
-            top: 0,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE,
-              height: ICON_SIZE,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={require("./images/bell.png")}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          underlayColor="rgba(0,0,0,0)"
-          style={{
-            flex: 1,
-            width: ICON_SIZE / 1.1,
-            height: ICON_SIZE / 1.1,
-            right: ICON_SIZE * 3 + 40,
-            top: 2,
-            position: "absolute",
-            borderRadius: ICON_SIZE,
-            marginBottom: SPACING / 2,
-          }}
-          onPress={() => {
-            navigation.navigate("SettingsView");
-          }}
-        >
-          <Image
-            style={{
-              width: ICON_SIZE / 1.1,
-              height: ICON_SIZE / 1.1,
-              position: "absolute",
-              resizeMode: "cover",
-              borderRadius: ICON_SIZE,
-              shadowRadius: 20,
-            }}
-            source={{ uri: authUserProfilePic }}
-          />
-        </TouchableHighlight>
-      </View>
-      <View style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
+      //creates left hand news feed with twitter feed
+       style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
         <View
           style={{
             zIndex: 1,
@@ -467,6 +391,7 @@ const Dashboard = () => {
               </Text>
             </View>
             <View
+            //display twitter feed
               style={{
                 zIndex: 1,
                 borderRadius: 32,
@@ -489,57 +414,8 @@ const Dashboard = () => {
               }}
             ></View>
           </View>
-          {/* <View
-            style={{
-              flex: 0.5,
-              zIndex: 1,
-              backgroundColor: "rgba(0,0,0,0.05)",
-              borderRadius: 16,
-              marginTop: SPACING,
-              marginLeft: SPACING / 2,
-              flexDirection: "column",
-            }}
-          >
-            <View
-              style={{
-                flex: 0.3,
-                backgroundColor: "rgba(0,0,0,0.2)",
-                borderTopRightRadius: 16,
-                borderTopLeftRadius: 16,
-                borderWidth: 0,
-                borderBottomColor: "rgba(28,56,107,0.9)",
-                borderColor: "rgba(28,56,107,0.9)",
-              }}
-            >
-              <Text
-                style={{
-                  color: "rgba(255,255,255,1)",
-                  fontSize: 25,
-                  fontWeight: "bold",
-                  left: 70,
-                }}
-              >
-                Notifications
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-            <View
-              style={{
-                flex: 0.5,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
-          </View> */}
           <View
+          //responsible for right hand side menu for general navigation
             style={{
               marginTop: SPACING,
               marginBottom: SPACING + 10,
@@ -561,6 +437,7 @@ const Dashboard = () => {
         </View>
 
         <Animated.FlatList
+        //animated flatlist for scaling and fading out of flatlist elements
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
           style={{ flex: 1 }}
@@ -596,6 +473,7 @@ const Dashboard = () => {
             });
             return (
               <TouchableHighlight
+              //touchable for each flatlist item for navigation to corresponding page
                 style={{
                   borderRadius: 100,
                   marginBottom: SPACING / 2,
@@ -672,6 +550,7 @@ const Dashboard = () => {
       </View>
       <View style={{ position: "absolute" }}>
         <Image
+        //creates background for page
           resizeMode="contain"
           source={require("./images/background.png")}
           blurRadius={0}
