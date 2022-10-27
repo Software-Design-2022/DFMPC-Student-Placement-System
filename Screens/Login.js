@@ -26,12 +26,10 @@ const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
-setDoctorsList(); // set the doctors list 
+setDoctorsList(); // set the doctors list
 
 const Login = () => {
   //Login Screen
-  
-  
 
   const [email, setEmail] = useState("john@gmail.com"); //email
   const [password, setPassword] = useState("John_pass123"); //password
@@ -65,8 +63,6 @@ const Login = () => {
     authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
 
     console.log("User ID: " + authUserID + " authenticated.");
-
-    
   }
   const LoginFirebase = () => {
     var found = false;
@@ -86,7 +82,7 @@ const Login = () => {
             if (encrypted === password) {
               // compares entered password to the password for the corresponding user in the database
               setUserVariables(data); // so that we can keep track of who is logged in currenctly
-              
+
               console.log(
                 "User authenticated sucessfully! Storing variables..."
               );
