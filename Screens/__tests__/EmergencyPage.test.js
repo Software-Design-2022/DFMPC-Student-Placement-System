@@ -1,2 +1,0 @@
-import EmergencyPage from "../EmergencyPage";
-

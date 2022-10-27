@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  Modal,
-  TouchableHighlight,
-  Image,
-  TextInput,
-  Alert,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { Button,StyleSheet,Text,View,Dimensions,Modal, TouchableHighlight,Image,TextInput,Alert,TouchableOpacity,Pressable,} from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Provider } from "react-native-paper";
 import { firebase } from "../firebase";
