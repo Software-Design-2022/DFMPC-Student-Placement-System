@@ -27,6 +27,8 @@ import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
 import {EventNotification} from "./SendNotification"
 import { getList } from "./notificationHelper";
+import { setNotificationList } from "./SetGlobal";
+import { set } from "react-native-reanimated";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -40,6 +42,7 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 
 EventNotification()
+setNotificationList()
 
 const DATA = [
   {
@@ -131,6 +134,8 @@ const DATA = [
 
 
 
+
+
 //data to be displayed in bottom hotbar
 const DATA2 = [
   {
@@ -171,12 +176,6 @@ const DATA2 = [
   },
 ];
 
-// creates it so each item has a touchable button with correct title
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, textColor]}>{item.title}</Text>
-  </TouchableOpacity>
-);
 
 //setup for twitter feed on dashboard
 class TwitterFeed extends Component {
@@ -252,16 +251,6 @@ class TwitterFeed extends Component {
 const Dashboard = () => {
  
   const anim = useRef(new Animated.Value(1));
-
-  const [state, setState] = useState({
-    notifications: [],
-  });
-  const onReceive = (notifications) => {
-    setState((prevState) => ({
-      notifications: (prevState.notifications = notifications),
-    }));
-  };
-  getList(onReceive);
 
   useEffect(() => {
     // makes the sequence loop
@@ -460,7 +449,7 @@ const Dashboard = () => {
           showsHorizontalScrollIndicator={false}
           horizontal={true}
           contentContainerStyle={{}}
-          data={state.notifications}
+          data={notificationList}
           renderItem={renderNotificationItem}
           keyExtractor={(item) => item.id}
           snapToInterval={285}

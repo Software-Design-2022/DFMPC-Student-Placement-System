@@ -23,6 +23,6 @@ global.MSuser={};
 global.authEmail = "";
 global.eventData=[{}];
 global.showEvent=false;
-global.notificationId=0;
 global.doctorsList=[];
+global.notificationList=[];
 
