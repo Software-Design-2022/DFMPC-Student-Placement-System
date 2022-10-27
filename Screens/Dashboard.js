@@ -26,6 +26,7 @@ import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
 import {EventNotification} from "./SendNotification"
+import { getList } from "./notificationHelper";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -105,11 +106,11 @@ const DATA = [
     text: "Protocols",
   },
   {
-    id: "18694a0f-3da1-471f-bd96-145571e29d76",
-    title: "Logbook",
-    destination: "BackgroundTest",
-    image: require("./images/logbook.png"),
-    text: "Logbook",
+    id: "18694a0f-2da1-471f-bd96-145571e29d72",
+    title: "EventsCalendar",
+    destination: "EventsCalendar",
+    image: require("./images/calendar.png"),
+    text: "Events",
   },
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d75",
@@ -127,6 +128,7 @@ const DATA = [
     text: "Logout",
   },
 ];
+
 
 
 //data to be displayed in bottom hotbar
@@ -227,8 +229,8 @@ class TwitterFeed extends Component {
         <View style={styles.webviewStyle}>
           <WebView
             style={{
-              borderBottomColor: "rgba(28,56,107,0.9)",
-              borderRadius: 10,
+              backgroundColor:"rgba(0,0,0,0.0)",
+              top:0,
             }}
             source={{ html: html }}
           />
@@ -250,6 +252,16 @@ class TwitterFeed extends Component {
 const Dashboard = () => {
  
   const anim = useRef(new Animated.Value(1));
+
+  const [state, setState] = useState({
+    notifications: [],
+  });
+  const onReceive = (notifications) => {
+    setState((prevState) => ({
+      notifications: (prevState.notifications = notifications),
+    }));
+  };
+  getList(onReceive);
 
   useEffect(() => {
     // makes the sequence loop
@@ -295,6 +307,7 @@ const Dashboard = () => {
             borderRadius: 8,
             paddingRight: SPACING,
             marginLeft: SPACING / 2,
+            
           }}
         >
           <View style={{ flex: 1 }}>
@@ -310,7 +323,7 @@ const Dashboard = () => {
                 resizeMode: "cover",
                 borderRadius: 20,
                 borderWidth: 0,
-                borderColor: "rgba(0,0,0,0.1)",
+                borderColor: "rgba(0,0,0,1)",
                 backgroundColor: "rgba(255,255,255,0.5)",
                 shadowOpacity: 1,
                 shadowRadius: 20,
@@ -336,11 +349,86 @@ const Dashboard = () => {
       </TouchableOpacity>
     );
   };
+  const renderNotificationItem = ({ item }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Notifications")
+        }}
+      >
+        <View
+         key={item.time}
+          style={{
+            height: 65,
+            backgroundColor: "rgba(0,0,28,0.1)",
+            marginBottom: 10,
+            margin: 5,
+            borderRadius: 10,
+          }}
+        >
+          <Text
+            style={{
+              borderBottomWidth: 2,
+              borderColor: "rgba(255,255,255,255)",
+              letterSpacing: 1,
+              fontWeight: "bold",
+              left: 4,
+              top: 2,
+              color: "rgba(255,255,255,255)",
+              position: "absolute",
+              fontSize: 15,
+            }}
+          >
+            {item.heading}
+          </Text>
+          <Text
+            style={{
+              letterSpacing: 1,
+              fontWeight: "bold",
+              right: 4,
+              top: 2,
+              color: "rgba(255,255,255,255)",
+              position: "absolute",
+              fontSize: 10,
+            }}
+          >
+            {item.date}
+          </Text>
+          <Text
+            style={{
+              letterSpacing: 1,
+              fontWeight: "bold",
+              right: 4,
+              top: 14,
+              color: "rgba(255,255,255,255)",
+              position: "absolute",
+              fontSize: 10,
+            }}
+          >
+            {item.time}
+          </Text>
+          <Text
+            style={{
+              letterSpacing: 0,
+              fontWeight: "bold",
+              left: 4,
+              top: SPACING + 12,
+              color: "rgba(128,185,238,255)",
+              height: 50,
+              width: width / 1.1,
+            }}
+          >
+            New Notification, tap for details
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
 
   return (
     <View style={{ flex: 1 }}>
       {createTopBar(10, navigation, false)}
-
       <View
       //creates left hand news feed with twitter feed
        style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
@@ -355,63 +443,32 @@ const Dashboard = () => {
         >
           <View
             style={{
-              flex: 1,
               zIndex: 1,
-              backgroundColor: "rgba(255,255,255,1)",
               borderRadius: 16,
               marginTop: SPACING,
               marginLeft: SPACING / 2,
               flexDirection: "column",
+              height:640,
+              backgroundColor:'rgba(0,0,0,0)'
             }}
           >
-            <View
-              style={{
-                height: 40,
-                backgroundColor: "rgba(28,56,107,1)",
-                borderTopRightRadius: 16,
-                borderTopLeftRadius: 16,
-                borderWidth: 0,
-                borderBottomColor: "rgba(28,56,107,0.9)",
-                borderColor: "rgba(28,56,107,0.9)",
-              }}
-            >
-              <Text
-                style={{
-                  color: "rgba(255,255,255,1)",
-                  fontSize: 25,
-                  fontWeight: "bold",
-                  left: 80,
-                }}
-              >
-                News Feed
-              </Text>
-            </View>
-            <View
-            //display twitter feed
-              style={{
-                zIndex: 1,
-                borderRadius: 32,
-                top: 0,
-                borderBottomColor: "rgba(28,56,107,0.9)",
-                resizeMode: "contain",
-                marginBottom: SPACING * 3,
-              }}
-            >
-              <TwitterFeed
-                style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 20 }}
-              ></TwitterFeed>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                zIndex: 1,
-                borderRadius: 32,
-                margin: SPACING / 2,
-              }}
-            ></View>
+          <View style={{backgroundColor:'rgba(0,0,0,1)',borderRadius:20,height:70}}> 
+          <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal={false}
+          contentContainerStyle={{}}
+          data={state.notifications}
+          renderItem={renderNotificationItem}
+          keyExtractor={(item) => item.id}
+          snapToInterval={70}
+          decelerationRate={1}
+          />
+          </View>
+          <TwitterFeed style={{marginBottom:10}}></TwitterFeed>
+
           </View>
           <View
-          //responsible for right hand side menu for general navigation
+          //responsible for bottom hotbar
             style={{
               marginTop: SPACING,
               marginBottom: SPACING + 10,
@@ -419,6 +476,8 @@ const Dashboard = () => {
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
               height: 36,
+              position:'absolute',
+              bottom:5
             }}
           >
             <FlatList
@@ -568,10 +627,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
   },
   webviewStyle: {
-    borderRadius: 10,
-    //  borderWidth: 2,
-    backgroundColor: "rgba(28,56,107,0.9)",
-    height: 700,
+    borderRadius: 20,
+    height: 575,
+    backgroundColor:"rgba(0,0,0,0)",
+    top:0
   },
 });
 export default Dashboard;
