@@ -13,9 +13,8 @@ import EmergencyPage from "./Screens/EmergencyPage";
 import Notifications from "./Screens/Notifications";
 import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
-import Microsoft from "./Screen/Microsoft";
 import { Doctors } from "./Screens/Doctors"
-
+import LoginMicrosoft from "./Screens/LoginMicrosoft";
 
 
 const Stack = createNativeStackNavigator();
@@ -30,7 +29,7 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Microsoft}
+            component={SnazzyLogin}
           />
         }
         

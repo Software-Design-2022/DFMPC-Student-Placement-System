@@ -1,4 +1,4 @@
-import { multiply, makeLowerCase, getCurrentDate, difference } from "../../HelperFunctions.js";
+import { multiply, makeLowerCase, getCurrentDate, difference } from "../../functions.js";
 
 
 const date = new Date();
