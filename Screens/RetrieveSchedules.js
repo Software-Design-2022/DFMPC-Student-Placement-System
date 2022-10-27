@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-
+/** Function to Retrieve Student Specific Schedule Information from Firebase */
 export async function getSchedule(onReceiveList) {
     var schedules = [];
     var snapshot = await firebase

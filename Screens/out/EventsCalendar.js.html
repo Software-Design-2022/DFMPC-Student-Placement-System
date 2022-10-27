@@ -1,4 +1,32 @@
-import React, { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: EventsCalendar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: EventsCalendar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
 import { Button,StyleSheet,Text,View,Dimensions,Modal, TouchableHighlight,Image,TextInput,Alert,TouchableOpacity,Pressable,} from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Provider } from "react-native-paper";
@@ -56,7 +84,7 @@ async function eventsData(onReceiveList) {
         let date = new Date();
         let date2 = new Date(start);
         let diff = Math.ceil((date2 - date) / (1000 * 3600 * 24));
-        if (Math.abs(diff) < 90) {
+        if (Math.abs(diff) &lt; 90) {
           events.push({
             name: name,
             key: key,
@@ -77,14 +105,14 @@ async function eventsData(onReceiveList) {
 /**Validate input for events modal form */
 const validateInput = (eventtext, notetext) => {
   let valid = true;
-  if (JSON.stringify(eventtext).length - 2 <= 0) {
+  if (JSON.stringify(eventtext).length - 2 &lt;= 0) {
     Alert.alert("Warning", "Event name cannot be left empty", [
       { text: "OK", onPress: () => {} },
     ]);
     valid = false;
   }
 
-  if (JSON.stringify(notetext).length - 2 <= 0) {
+  if (JSON.stringify(notetext).length - 2 &lt;= 0) {
     Alert.alert("Warning", "Event programme cannot be left empty", [
       { text: "OK", onPress: () => {} },
     ]);
@@ -213,9 +241,9 @@ const EventsCalendar = () => {
   const [EnddatePickerVisible, setDatePickerEnd] = useState(false);
 
   return (
-    <View style={styles.container}>
+    &lt;View style={styles.container}>
       {createTopBar(10, navigation)}
-      <Modal
+      &lt;Modal
         style={styles.modalStyle}
         animationType={"fade"}
         transparent={true}
@@ -225,11 +253,11 @@ const EventsCalendar = () => {
           setModalVisible(false);
         }}
       >
-        <View style={styles.modalStyle}>
-          <Text style={{ marginTop:50, fontSize: 25, top: 10, textAlign: "center" ,color:"white"}}>
+        &lt;View style={styles.modalStyle}>
+          &lt;Text style={{ marginTop:50, fontSize: 25, top: 10, textAlign: "center" ,color:"white"}}>
             Create Event
-          </Text>
-          <TextInput
+          &lt;/Text>
+          &lt;TextInput
             style={styles.input}
             underlineColorAndroid="transparent"
             placeholder="Title"
@@ -239,7 +267,7 @@ const EventsCalendar = () => {
               setEventName(newText);
             }}
           />
-          <TextInput
+          &lt;TextInput
             style={styles.input}
             underlineColorAndroid="transparent"
             placeholder="Program"
@@ -250,7 +278,7 @@ const EventsCalendar = () => {
             }}
           />
 
-          <Pressable
+          &lt;Pressable
             style={({ pressed }) => [
               {
                 backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
@@ -266,15 +294,15 @@ const EventsCalendar = () => {
               setDatePicker(true);
             }}
           >
-            <Text style={{ margin: 30,color:'white' }}>Start</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30,color:'white' }}>
+            &lt;Text style={{ margin: 30,color:'white' }}>Start&lt;/Text>
+            &lt;Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30,color:'white' }}>
               {startDate}
               {"   "}
               {"18:00"}
-            </Text>
-          </Pressable>
+            &lt;/Text>
+          &lt;/Pressable>
 
-          <Pressable
+          &lt;Pressable
             style={({ pressed }) => [
               {
                 backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
@@ -289,15 +317,15 @@ const EventsCalendar = () => {
               setDatePickerEnd(true);
             }}
           >
-            <Text style={{ margin: 30,color:'white' }}>End</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 ,color:'white' }}>
+            &lt;Text style={{ margin: 30,color:'white' }}>End&lt;/Text>
+            &lt;Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 ,color:'white' }}>
               {endDate}
               {"   "}
               {"18:00"}
-            </Text>
-          </Pressable>
+            &lt;/Text>
+          &lt;/Pressable>
 
-          <View
+          &lt;View
             style={{
               marginBottom: 10,
               flex: 1,
@@ -306,7 +334,7 @@ const EventsCalendar = () => {
               alignItems: "center",
             }}
           >
-            <DateTimePickerModal
+            &lt;DateTimePickerModal
               date={selectedDate}
               isVisible={datePickerVisible}
               mode="date"
@@ -321,7 +349,7 @@ const EventsCalendar = () => {
                 setDatePicker(false);
               }}
             />
-             <DateTimePickerModal
+             &lt;DateTimePickerModal
               date={selectedEnd}
               isVisible={EnddatePickerVisible}
               mode="date"
@@ -337,10 +365,10 @@ const EventsCalendar = () => {
                 setDatePickerEnd(false);
               }}
             />
-          </View>
+          &lt;/View>
 
-          <View style={{ flexDirection: "row" }}>
-            <Pressable
+          &lt;View style={{ flexDirection: "row" }}>
+            &lt;Pressable
               style={({ pressed }) => [
                 styles.button,
                 styles.buttonClose,
@@ -354,14 +382,14 @@ const EventsCalendar = () => {
               ]}
               onPress={() => setModalVisible(false)}
             >
-              <Text
+              &lt;Text
                 onPress={() => setModalVisible(false)}
                 style={[styles.textStyle]}
               >
                 Close
-              </Text>
-            </Pressable>
-            <Pressable
+              &lt;/Text>
+            &lt;/Pressable>
+            &lt;Pressable
               style={({ pressed }) => [
                 styles.button,
                 styles.buttonClose,
@@ -380,14 +408,14 @@ const EventsCalendar = () => {
                 sendToFirestore(eventName, eventProgramme, startDate, endDate);
               }}
             >
-              <Text style={[styles.textStyle]}>Save</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+              &lt;Text style={[styles.textStyle]}>Save&lt;/Text>
+            &lt;/Pressable>
+          &lt;/View>
+        &lt;/View>
+      &lt;/Modal>
 
-      <View>
-        <TouchableOpacity
+      &lt;View>
+        &lt;TouchableOpacity
           onPress={() => setModalVisible(true)}
           style={{
             backgroundColor: "rgba(28,56,107,0.0)",
@@ -401,10 +429,10 @@ const EventsCalendar = () => {
             alignItems: "center",
           }}
         >
-          <AntDesign name="pluscircle" color="black" size={50} />
-        </TouchableOpacity>
-      </View>
-      <Calendar
+          &lt;AntDesign name="pluscircle" color="black" size={50} />
+        &lt;/TouchableOpacity>
+      &lt;/View>
+      &lt;Calendar
         style={{
           shadowColor: "black",
           height: 500,
@@ -426,12 +454,12 @@ const EventsCalendar = () => {
           setModalVisible(true);
         }}
       />
-      <Provider>
-        <View>
-          <BottomSheet></BottomSheet>
-        </View>
-      </Provider>
-    </View>
+      &lt;Provider>
+        &lt;View>
+          &lt;BottomSheet>&lt;/BottomSheet>
+        &lt;/View>
+      &lt;/Provider>
+    &lt;/View>
   );
 };
 
@@ -580,4 +608,26 @@ var styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-export default EventsCalendar;
+export default EventsCalendar;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#EventsCalendar">EventsCalendar</a></li><li><a href="global.html#eventsData">eventsData</a></li><li><a href="global.html#sendToFirestore">sendToFirestore</a></li><li><a href="global.html#validateInput">validateInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Oct 27 2022 22:34:53 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
