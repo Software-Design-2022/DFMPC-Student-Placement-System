@@ -25,7 +25,7 @@ import "./global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
-import {EventNotification} from "./SendNotification"
+import { EventNotification } from "./SendNotification";
 
 //Constants for use with UI scaling
 const buttonHeight = 50;
@@ -38,7 +38,7 @@ const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 
-EventNotification()
+EventNotification();
 
 /**Create FlatList */
 const DATA = [
@@ -128,7 +128,6 @@ const DATA = [
     text: "Logout",
   },
 ];
-
 
 //data to be displayed in bottom hotbar
 /**Create Shortlinks */
@@ -252,7 +251,6 @@ class TwitterFeed extends Component {
 
 /**Create Dashboard */
 const Dashboard = () => {
- 
   const anim = useRef(new Animated.Value(1));
 
   useEffect(() => {
@@ -286,7 +284,7 @@ const Dashboard = () => {
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-      //creates link that opens external page
+        //creates link that opens external page
         onPress={() => {
           Linking.openURL(item.link);
         }}
@@ -302,9 +300,8 @@ const Dashboard = () => {
           }}
         >
           <View style={{ flex: 1 }}>
-            
             <Image
-            //adds image to each hotbar item for identification
+              //adds image to each hotbar item for identification
               style={{
                 width: 30,
                 height: 30,
@@ -324,7 +321,7 @@ const Dashboard = () => {
           </View>
           <View style={{ flex: 1 }}>
             <Text
-            //shows item text for each hotbar item
+              //shows item text for each hotbar item
               style={{
                 flex: 1,
                 fontSize: 15,
@@ -346,8 +343,9 @@ const Dashboard = () => {
       {createTopBar(10, navigation, false)}
 
       <View
-      //creates left hand news feed with twitter feed
-       style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
+        //creates left hand news feed with twitter feed
+        style={{ zIndex: 1, flex: 1, flexDirection: "row" }}
+      >
         <View
           style={{
             zIndex: 1,
@@ -391,7 +389,7 @@ const Dashboard = () => {
               </Text>
             </View>
             <View
-            //display twitter feed
+              //display twitter feed
               style={{
                 zIndex: 1,
                 borderRadius: 32,
@@ -415,7 +413,7 @@ const Dashboard = () => {
             ></View>
           </View>
           <View
-          //responsible for right hand side menu for general navigation
+            //responsible for right hand side menu for general navigation
             style={{
               marginTop: SPACING,
               marginBottom: SPACING + 10,
@@ -437,7 +435,7 @@ const Dashboard = () => {
         </View>
 
         <Animated.FlatList
-        //animated flatlist for scaling and fading out of flatlist elements
+          //animated flatlist for scaling and fading out of flatlist elements
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
           style={{ flex: 1 }}
@@ -473,7 +471,7 @@ const Dashboard = () => {
             });
             return (
               <TouchableHighlight
-              //touchable for each flatlist item for navigation to corresponding page
+                //touchable for each flatlist item for navigation to corresponding page
                 style={{
                   borderRadius: 100,
                   marginBottom: SPACING / 2,
@@ -550,7 +548,7 @@ const Dashboard = () => {
       </View>
       <View style={{ position: "absolute" }}>
         <Image
-        //creates background for page
+          //creates background for page
           resizeMode="contain"
           source={require("./images/background.png")}
           blurRadius={0}
