@@ -17,18 +17,24 @@ import {
 import { firebase } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
+import { setDoctorsList } from "./SetGlobal";
 
-import "../global";
+import "./global";
 
 const AVATAR_SIZE = 70;
 const ICON_SIZE = 80;
 const SPACING = 20;
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
+setDoctorsList(); // set the doctors list 
+
 const Login = () => {
   //Login Screen
-  const [email, setEmail] = useState(""); //email
-  const [password, setPassword] = useState(""); //password
+  
+  
+
+  const [email, setEmail] = useState("john@gmail.com"); //email
+  const [password, setPassword] = useState("John_pass123"); //password
   const navigation = useNavigation(); //navigation between screens
 
   function showAlert(title, message) {
@@ -57,48 +63,12 @@ const Login = () => {
     authLastName = authUser.child("user_LastName").val();
     authUserProfilePic = authUser.child("user_profile_photo/").val();
     authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
+
     console.log("User ID: " + authUserID + " authenticated.");
-  }
 
-  const LoginFirebase = () => {
-    // login with email and password
-
-    // check if email exists in the database if so then hash pass and compare
-    /* var found = false;
-    var snapshot = firebase
-    .firestore()
-    .collection("users") // Get collection of protocols
-    .get() // Get all items in collection
-    .then((querySnapshot) => {
     
-   // For each item in collection
-   querySnapshot.forEach(function (doc) {
-    // For each item in collection
-      if(doc.data().email===email){
-        found = true;
-        // user exists
-        if(doc.data().password_digest===password){
-          setUserVariables(doc.data()); // so that we can keep track of who is logged in currenctly
-          console.log(
-            "User authenticated sucessfully! Storing variables..."
-          );
-          navigation.navigate("Dashboard");
-        } else {
-          showAlert(
-            "Password Error",
-            "Your email and password do not match"
-          );
-        
-        }
-      }
-      
-  });
-  if (found === false) {
-    showAlert("Email Error", "user does not exist");
   }
-});
- */
-
+  const LoginFirebase = () => {
     var found = false;
     firebase
       .database()
@@ -116,6 +86,7 @@ const Login = () => {
             if (encrypted === password) {
               // compares entered password to the password for the corresponding user in the database
               setUserVariables(data); // so that we can keep track of who is logged in currenctly
+              
               console.log(
                 "User authenticated sucessfully! Storing variables..."
               );
