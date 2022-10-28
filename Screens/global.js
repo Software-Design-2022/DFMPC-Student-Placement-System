@@ -1,4 +1,16 @@
 
+/**Set global variables to handle user information
+ * @param {string} authUserID - ID of user currently logged in
+ * @param {string} authUserType - Type of user currently logged in
+ * @param {string} authUserEmail - Email of user currently logged in
+ * @param {string} authUserPassword - Password of user currently logged in
+ * @param {string} authUserFirstName - First name of user currently logged in
+ * @param {string} authUserLastName - Last name of user currently logged in
+ * @param {string} doctorsList - List of doctors
+ * @param {string} notificationId - default ID of notification
+ * 
+ */
+
 
 global.authUserID = "";
 global.authUserRef = "";
