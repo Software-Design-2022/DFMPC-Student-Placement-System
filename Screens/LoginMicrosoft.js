@@ -47,10 +47,20 @@ export function retrieveUser() {
       });
     });
 }
-
+/**
+ * @module LoginMicrosoft
+ * @description This is the login screen for the application. It will allow the user to login using their Microsoft
+ *           account. It will then redirect the user to the dashboard screen.
+ * @returns {JSX.Element} - The login screen.
+ */
 export default (props) => {
   const navigation = useNavigation(); //navigation between screens
 
+  /**
+   * @function login
+   * @param {string} err error message
+   * @param {Object} data data object
+   */
   const authHandler = (err, data) => {
     //save microsoft user data
     MSuser = data;
