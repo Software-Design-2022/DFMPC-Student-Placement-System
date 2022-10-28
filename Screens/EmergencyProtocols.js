@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 20,
     backgroundColor: "rgba(255,255,255,1)",
     padding: 10,
     marginTop: 10,
@@ -132,20 +132,20 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     borderWidth: 2,
     borderColor: "rgba(192,192,192,0.7)",
-    width: width,
+    width: width-30,
   },
   itemshow: {
     flexDirection: "row",
     borderRadius: 5,
     backgroundColor: "rgba(255, 255, 255,0.9)",
     padding: 10,
-
+    borderRadius:20,
     marginTop: 10,
     marginBottom: 10,
     marginRight: 2,
     marginLeft: 2,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.7)",
+    borderWidth: 4,
+    borderColor: "rgba(128,0,0,1)",
   },
   itemText: {
     fontSize: 16,
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
     margin: 2,
     borderWidth: 2,
     borderColor: "rgba(0,0,0,0.1)",
+    borderRadius:20,
   },
   inneritemText: {
     fontSize: 16,
@@ -201,6 +202,7 @@ const styles = StyleSheet.create({
     padding: 10,
     opacity: 1,
     maxHeight: 9999,
+    borderRadius:20,
   },
 });
 export default EmergencyProtocols;
