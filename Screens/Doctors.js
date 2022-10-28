@@ -36,6 +36,12 @@ const sendData = (feedback,rating,DoctorName,email) => {
 };
 
 const { height } = Dimensions.get("window");
+
+/**Function to give feedback to doctors
+ * * user must click of doctors name to give feedback
+ * @type {function}
+ */
+
 export const Doctors = () => {
    const navigation = useNavigation();
   const [search, setSearch] = useState("");
@@ -46,6 +52,11 @@ export const Doctors = () => {
   const [DoctorRating, setRating] = useState(0);
 
   LogBox.ignoreLogs(["Setting a timer"]);
+  /**
+   * 
+   * @param {String} item 
+   * @returns  {View}
+   */
   function Item({ item }) {
     return (
       <View>

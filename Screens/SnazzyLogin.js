@@ -68,7 +68,10 @@ function setUserVariables(data) {
   authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
   console.log("User ID: " + authUserID + " authenticated.");
 }
-
+/**Function to login to firebase
+ * * when login is pressed
+ * @type {function}
+ */
 const LoginFirebase = (email, password, navigation) => {
   var found = false;
   firebase
@@ -86,6 +89,7 @@ const LoginFirebase = (email, password, navigation) => {
 
           if (encrypted === password) {
             // compares entered password to the password for the corresponding user in the database
+            
             setUserVariables(data); // so that we can keep track of who is logged in currenctly
             console.log("User authenticated sucessfully! Storing variables...");
             navigation.navigate("Dashboard");
@@ -124,8 +128,9 @@ export default function SnazzyLogin() {
     }).start();
   }
   //function for when login with microsoft button is pressed
+
   function OpenMicrosoft() {
-   navigation.navigate("LoginMicrosoft");
+    navigation.navigate("LoginMicrosoft");
   }
 
   const buttonY = buttonOpacity.interpolate({
@@ -336,16 +341,15 @@ export default function SnazzyLogin() {
             </Animated.View>
           </TouchableOpacity>
           <TextInput
-            
             placeholder="Enter email"
             style={styles.textInput}
             placeholderTextColor="black"
-           /*  onChangeText={(newText) => {
+            /*  onChangeText={(newText) => {
               onStateChange(newText)
               setEmail(newText);
             }} */
-            onChangeText={(newText)=>{
-                setEmail(newText)
+            onChangeText={(newText) => {
+              setEmail(newText);
             }}
             value={email}
           />
@@ -359,9 +363,9 @@ export default function SnazzyLogin() {
               
               setPassword(newText);
             }} */
-            onChangeText={(newText)=>{
-              setPassword(newText)
-          }}
+            onChangeText={(newText) => {
+              setPassword(newText);
+            }}
           />
           <Animated.View style={styles.button}>
             <TouchableOpacity

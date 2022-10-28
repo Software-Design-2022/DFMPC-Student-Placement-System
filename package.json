@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --coverage",
-    "make-badges": "istanbul-badges-readme --logo='jest' "
+    "make-badges": "istanbul-badges-readme --logo='jest' ",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^6.5.0",
@@ -18,12 +19,14 @@
     "accordion-collapse-react-native": "^1.1.1",
     "bcrypt-react-native": "^1.1.1",
     "bcryptjs": "^2.4.3",
+    "clean-jsdoc-theme": "^4.1.8",
     "dotenv": "^16.0.1",
     "expo": "~44.0.0",
     "expo-av": "~10.2.0",
     "expo-device": "~4.1.0",
     "expo-linear-gradient": "~11.0.3",
     "expo-location": "^14.3.0",
+    "expo-mail-composer": "^11.3.0",
     "expo-notifications": "~0.14.0",
     "expo-permissions": "^13.2.0",
     "expo-status-bar": "~1.2.0",
@@ -33,22 +36,26 @@
     "mocha": "^10.0.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
+    "qs": "^6.11.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-microsoft-login": "^1.15.0",
     "react-native": "^0.64.3",
+    "react-native-azure-ad-2": "^1.0.5",
     "react-native-calendar-picker": "^7.1.2",
     "react-native-calendars": "^1.1283.0",
     "react-native-dialog-input": "^1.0.8",
     "react-native-elements": "^3.4.2",
+    "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-modal-datetime-picker": "^14.0.0",
     "react-native-paper": "^4.12.4",
     "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
+    "react-native-smtp-mailer": "^1.2.5",
     "react-native-web": "0.17.1",
-    "react-native-webview": "11.15.0"
+    "react-native-webview": "^11.23.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",
@@ -58,6 +65,7 @@
     "istanbul-badges-readme": "^1.8.1",
     "jest": "^28.1.0",
     "jetifier": "^2.0.0",
+    "jsdoc": "^3.6.11",
     "reinstall-node-modules": "^2.0.0"
   },
   "jest": {
