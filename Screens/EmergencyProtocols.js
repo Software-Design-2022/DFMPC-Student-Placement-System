@@ -57,7 +57,7 @@ const EmergencyProtocols = () => {
       <View style={{ position: "absolute" }}>
         <Image
           resizeMode="contain"
-          source={require("./images/background.png")}
+          source={require("./images/background9.png")}
           blurRadius={0}
         />
       </View>
