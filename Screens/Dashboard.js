@@ -274,7 +274,7 @@ class TwitterFeed extends Component {
             style={{
               backgroundColor:"rgba(0,0,0,0.0)",
               top:0,
-              width:292
+              width:292,
             }}
             source={{ html: html }}
           />
@@ -669,7 +669,7 @@ const styles = StyleSheet.create({
   },
   webviewStyle: {
     borderRadius: 20,
-    height: 575,
+    height: 520,
     backgroundColor:"rgba(0,0,0,0)",
     top:0,
     left:-3,
