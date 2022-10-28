@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: App - The Main App Component</title>
+    <title>JSDoc: Module: EventsCalendar</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: App - The Main App Component</h1>
+    <h1 class="page-title">Module: EventsCalendar</h1>
 
     
 
@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">This is the main file for the application. It contains the navigation stack and the main screen. It will            render the main screen and the navigation stack.</div>
+            <div class="description">React component to render the events calendar screen and its components using React Native Calendar</div>
         
 
         
@@ -61,9 +61,6 @@
 <dl class="details">
 
     
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>0.2.4 - 2022/10/27 - Sprint 4/4 of version 0.2</li></ul></dd>
-    
 
     
 
@@ -79,13 +76,6 @@
 
     
 
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>- Callum Muller, Shagan Plaatjies, Angela Nkosi, Nokuthaba Moyo, Peace Riot Ndlovu</li>
-        </ul>
-    </dd>
     
 
     
@@ -97,21 +87,12 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="App.js.html">App.js</a>, <a href="App.js.html#line26">line 26</a>
+        <a href="Screens_EventsCalendar.js.html">Screens/EventsCalendar.js</a>, <a href="Screens_EventsCalendar.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>Github: @CallumMuller @Cipher73 @nokuthabam @peacendlovu @shgnplaatjies</li>
-        
-            <li><a href="https://reactnavigation.org/docs/native-stack-navigator/">https://reactnavigation.org/docs/native-stack-navigator/</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -131,6 +112,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    JSX element to render the calendar screen
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX.Element</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -157,16 +160,26 @@
 
         
             
-<h4 class="name" id="~styles"><span class="type-signature">(inner, constant) </span>styles<span class="type-signature"></span></h4>
+<h4 class="name" id="~styles"><span class="type-signature">(inner) </span>styles<span class="type-signature"> :StyleSheet</span></h4>
 
 
 
 
 <div class="description">
-    This is the stylessheet for the navigation stack. It contains the styles for the main screen.
+    Stylesheet for the events calendar
 </div>
 
 
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">StyleSheet</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -201,19 +214,12 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="App.js.html">App.js</a>, <a href="App.js.html#line116">line 116</a>
+        <a href="Screens_EventsCalendar.js.html">Screens/EventsCalendar.js</a>, <a href="Screens_EventsCalendar.js.html#line533">line 533</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://reactnative.dev/docs/stylesheet%20for%20official%20documentation%20of%20stylesheets.">https://reactnative.dev/docs/stylesheet for official documentation of stylesheets.</a></li>
-        </ul>
-    </dd>
     
 
     
@@ -229,6 +235,82 @@
 
     
 
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="~Event">Event</h4>
+
+
+
+
+<div class="description">
+    Object to store the events from Firestore. This is used to update the calendar when an event is added.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Screens_EventsCalendar.js.html">Screens/EventsCalendar.js</a>, <a href="Screens_EventsCalendar.js.html#line191">line 191</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
     
 
     

@@ -1,4 +1,32 @@
-import React, { useState, useRef, useEffect, Component } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Screens/Dashboard.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Screens/Dashboard.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useRef, useEffect, Component } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   StatusBar,
@@ -177,7 +205,7 @@ const DATA = [
 ];
 
 /**
- * @constant {Array<Object>} DATA2
+ * @constant {Array&lt;Object>} DATA2
  * @description The short links that will be displayed on the bottom of the screen. It will display the buttons that the user can press to navigate to different screens for the short links at the  bottom of the screen.
  *            As well as the profile picture and other relevant widgets like social media feed, etc.
  * @property {string} id - This is the id of the item that will be displayed on the screen.
@@ -234,9 +262,9 @@ const DATA2 = [
  * @returns {JSX.Element} - Returns the button that will be displayed on the screen.
  */
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, textColor]}>{item.title}</Text>
-  </TouchableOpacity>
+  &lt;TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+    &lt;Text style={[styles.title, textColor]}>{item.title}&lt;/Text>
+  &lt;/TouchableOpacity>
 );
 
 //setup for twitter feed on dashboard
@@ -321,26 +349,26 @@ class TwitterFeed extends Component {
    */
   renderEmbed() {
     if (this.state.embedHtml) {
-      let html = `<!DOCTYPE html>\
-      <html>\
-        <head>\
-          <meta charset="utf-8">\
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-          </head>\
-          <body>\
+      let html = `&lt;!DOCTYPE html>\
+      &lt;html>\
+        &lt;head>\
+          &lt;meta charset="utf-8">\
+          &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">\
+          &lt;/head>\
+          &lt;body>\
             ${this.state.embedHtml}\
-          </body>\
-      </html>`;
+          &lt;/body>\
+      &lt;/html>`;
       return (
-        <View style={styles.webviewStyle}>
-          <WebView
+        &lt;View style={styles.webviewStyle}>
+          &lt;WebView
             style={{
               borderBottomColor: "rgba(28,56,107,0.9)",
               borderRadius: 10,
             }}
             source={{ html: html }}
           />
-        </View>
+        &lt;/View>
       );
     }
   }
@@ -355,11 +383,11 @@ class TwitterFeed extends Component {
    */
   render() {
     return (
-      <ScrollView
+      &lt;ScrollView
         style={{ borderBottomColor: "rgba(28,56,107,0.9)", borderRadius: 10 }}
       >
         {this.renderEmbed()}
-      </ScrollView>
+      &lt;/ScrollView>
     );
   }
 }
@@ -465,13 +493,13 @@ const Dashboard = () => {
    */
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity
+      &lt;TouchableOpacity
         //creates link that opens external page
         onPress={() => {
           Linking.openURL(item.link);
         }}
       >
-        <View
+        &lt;View
           style={{
             backgroundColor: "rgba(0,0,0,0.2)",
             flex: 1,
@@ -481,8 +509,8 @@ const Dashboard = () => {
             marginLeft: SPACING / 2,
           }}
         >
-          <View style={{ flex: 1 }}>
-            <Image
+          &lt;View style={{ flex: 1 }}>
+            &lt;Image
               //adds image to each hotbar item for identification
               style={{
                 width: 30,
@@ -500,9 +528,9 @@ const Dashboard = () => {
               }}
               source={item.image}
             />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text
+          &lt;/View>
+          &lt;View style={{ flex: 1 }}>
+            &lt;Text
               //shows item text for each hotbar item
               style={{
                 flex: 1,
@@ -513,22 +541,22 @@ const Dashboard = () => {
               }}
             >
               {item.text}
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+            &lt;/Text>
+          &lt;/View>
+        &lt;/View>
+      &lt;/TouchableOpacity>
     );
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    &lt;View style={{ flex: 1 }}>
       {createTopBar(10, navigation, false)}
 
-      <View
+      &lt;View
         //creates left hand news feed with twitter feed
         style={{ zIndex: 1, flex: 1, flexDirection: "row" }}
       >
-        <View
+        &lt;View
           style={{
             zIndex: 1,
             flex: 2.5,
@@ -537,7 +565,7 @@ const Dashboard = () => {
             transform: [{ translateY: 0 }, { translateX: 0 }],
           }}
         >
-          <View
+          &lt;View
             style={{
               flex: 1,
               zIndex: 1,
@@ -548,7 +576,7 @@ const Dashboard = () => {
               flexDirection: "column",
             }}
           >
-            <View
+            &lt;View
               style={{
                 height: 40,
                 backgroundColor: "rgba(28,56,107,1)",
@@ -559,7 +587,7 @@ const Dashboard = () => {
                 borderColor: "rgba(28,56,107,0.9)",
               }}
             >
-              <Text
+              &lt;Text
                 style={{
                   color: "rgba(255,255,255,1)",
                   fontSize: 25,
@@ -568,9 +596,9 @@ const Dashboard = () => {
                 }}
               >
                 News Feed
-              </Text>
-            </View>
-            <View
+              &lt;/Text>
+            &lt;/View>
+            &lt;View
               //display twitter feed
               style={{
                 zIndex: 1,
@@ -581,20 +609,20 @@ const Dashboard = () => {
                 marginBottom: SPACING * 3,
               }}
             >
-              <TwitterFeed
+              &lt;TwitterFeed
                 style={{ borderColor: "rgba(28,56,107,0.9)", borderRadius: 20 }}
-              ></TwitterFeed>
-            </View>
-            <View
+              >&lt;/TwitterFeed>
+            &lt;/View>
+            &lt;View
               style={{
                 flex: 1,
                 zIndex: 1,
                 borderRadius: 32,
                 margin: SPACING / 2,
               }}
-            ></View>
-          </View>
-          <View
+            >&lt;/View>
+          &lt;/View>
+          &lt;View
             //responsible for right hand side menu for general navigation
             style={{
               marginTop: SPACING,
@@ -605,7 +633,7 @@ const Dashboard = () => {
               height: 36,
             }}
           >
-            <FlatList
+            &lt;FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
               contentContainerStyle={{}}
@@ -613,10 +641,10 @@ const Dashboard = () => {
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
             />
-          </View>
-        </View>
+          &lt;/View>
+        &lt;/View>
 
-        <Animated.FlatList
+        &lt;Animated.FlatList
           //animated flatlist for scaling and fading out of flatlist elements
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
@@ -652,7 +680,7 @@ const Dashboard = () => {
               outputRange: [1, 1, 1, 0],
             });
             return (
-              <TouchableHighlight
+              &lt;TouchableHighlight
                 //touchable for each flatlist item for navigation to corresponding page
                 style={{
                   borderRadius: 100,
@@ -666,7 +694,7 @@ const Dashboard = () => {
                 }}
                 underlayColor="rgba(28,56,107,0.2)"
               >
-                <Animated.View
+                &lt;Animated.View
                   style={{
                     flexDirection: "row",
                     padding: SPACING,
@@ -686,8 +714,8 @@ const Dashboard = () => {
                     width: 300,
                   }}
                 >
-                  <View>
-                    <Image
+                  &lt;View>
+                    &lt;Image
                       source={item.image}
                       style={{
                         width: AVATAR_SIZE,
@@ -700,8 +728,8 @@ const Dashboard = () => {
                         backgroundColor: "rgba(0,0,0,0)",
                       }}
                     />
-                  </View>
-                  <Text
+                  &lt;/View>
+                  &lt;Text
                     style={{
                       fontSize: 11,
                       fontWeight: "bold",
@@ -721,22 +749,22 @@ const Dashboard = () => {
                     }}
                   >
                     {item.text}
-                  </Text>
-                </Animated.View>
-              </TouchableHighlight>
+                  &lt;/Text>
+                &lt;/Animated.View>
+              &lt;/TouchableHighlight>
             );
           }}
         />
-      </View>
-      <View style={{ position: "absolute" }}>
-        <Image
+      &lt;/View>
+      &lt;View style={{ position: "absolute" }}>
+        &lt;Image
           //creates background for page
           resizeMode="contain"
           source={require("./images/background.png")}
           blurRadius={0}
         />
-      </View>
-    </View>
+      &lt;/View>
+    &lt;/View>
   );
 };
 
@@ -764,3 +792,26 @@ const styles = StyleSheet.create({
   },
 });
 export default Dashboard;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App%2520-%2520The%2520Main%2520App%2520Component.html">App - The Main App Component</a></li><li><a href="module-Dashboard.html">Dashboard</a></li><li><a href="module-EventsCalendar.html">EventsCalendar</a></li><li><a href="module-GlobalVariables%2520-%2520The%2520Global%2520Variables%2520Component.html">GlobalVariables - The Global Variables Component</a></li></ul><h3>Classes</h3><ul><li><a href="TwitterFeed.html">TwitterFeed</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AnimatedPressable">AnimatedPressable</a></li><li><a href="global.html#AnimatedTouchable">AnimatedTouchable</a></li><li><a href="global.html#authEmail">authEmail</a></li><li><a href="global.html#authLastName">authLastName</a></li><li><a href="global.html#authName">authName</a></li><li><a href="global.html#authUser">authUser</a></li><li><a href="global.html#authUserProfilePic">authUserProfilePic</a></li><li><a href="global.html#authUserRef">authUserRef</a></li><li><a href="global.html#AVATAR_SIZE">AVATAR_SIZE</a></li><li><a href="global.html#compare">compare</a></li><li><a href="global.html#DATA">DATA</a></li><li><a href="global.html#DATA2">DATA2</a></li><li><a href="global.html#defaultProfilePic">defaultProfilePic</a></li><li><a href="global.html#doctorsList">doctorsList</a></li><li><a href="global.html#eventData">eventData</a></li><li><a href="global.html#EventNotification">EventNotification</a></li><li><a href="global.html#eventsData">eventsData</a></li><li><a href="global.html#generateColor">generateColor</a></li><li><a href="global.html#ICON_SIZE">ICON_SIZE</a></li><li><a href="global.html#initialDate">initialDate</a></li><li><a href="global.html#Item">Item</a></li><li><a href="global.html#ITEM_SIZE">ITEM_SIZE</a></li><li><a href="global.html#MSuser">MSuser</a></li><li><a href="global.html#notificationId">notificationId</a></li><li><a href="global.html#sendToFirestore">sendToFirestore</a></li><li><a href="global.html#showEvent">showEvent</a></li><li><a href="global.html#SPACING">SPACING</a></li><li><a href="global.html#Stack">Stack</a></li><li><a href="global.html#textPos">textPos</a></li><li><a href="global.html#today">today</a></li><li><a href="global.html#validateInput">validateInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Oct 28 2022 15:31:16 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: App - The Main App Component</title>
+    <title>JSDoc: Source: Screens/global.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,224 +17,127 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: App - The Main App Component</h1>
+    <h1 class="page-title">Source: Screens/global.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">This is the main file for the application. It contains the navigation stack and the main screen. It will            render the main screen and the navigation stack.</div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>0.2.4 - 2022/10/27 - Sprint 4/4 of version 0.2</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>- Callum Muller, Shagan Plaatjies, Angela Nkosi, Nokuthaba Moyo, Peace Riot Ndlovu</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="App.js.html">App.js</a>, <a href="App.js.html#line26">line 26</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>Github: @CallumMuller @Cipher73 @nokuthabam @peacendlovu @shgnplaatjies</li>
-        
-            <li><a href="https://reactnavigation.org/docs/native-stack-navigator/">https://reactnavigation.org/docs/native-stack-navigator/</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="~styles"><span class="type-signature">(inner, constant) </span>styles<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    This is the stylessheet for the navigation stack. It contains the styles for the main screen.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="App.js.html">App.js</a>, <a href="App.js.html#line116">line 116</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://reactnative.dev/docs/stylesheet%20for%20official%20documentation%20of%20stylesheets.">https://reactnative.dev/docs/stylesheet for official documentation of stylesheets.</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Global functions for the app.
+ * @module GlobalVariables - The Global Variables Component
+ * @description This hold the global variables needed to be shared across the app.
+ */
+
+global.authUserID = "";
+/**
+ *  @global
+ *  @type {string}
+ * @description ID of user currently logged in
+ * @example "123456789"
+ */
+global.authUserRef = "";
+/**
+ * @global
+ * @type {string}
+ * @description Reference to user currently logged in
+ * @example "users/123456789"
+ */
+global.authUser = "";
+/**
+ * @global
+ * @type {string}
+ * @description Name of user currently logged in
+ * @example "John Smith"
+ */
+global.authUserProfilePic = "https://i.imgur.com/3bOE2E6.jpeg";
+/**
+ * @global
+ * @type {string}
+ * @description Profile picture of user currently logged in
+ * @example "https://i.imgur.com/3bOE2E6.jpeg"
+ * @see https://imgur.com/3bOE2E6
+ */
+global.defaultProfilePic = "./images/user.png";
+/**
+ * @global
+ * @type {string}
+ * @description Default profile picture of user
+ * @example "./images/user.png"
+ * @see https://imgur.com/3bOE2E6
+ */
+global.authName = "";
+/**
+ * @global
+ * @type {string}
+ * @description Name of user currently logged in
+ * @example "John Smith"
+ */
+global.authLastName = "";
+("https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png");
+global.notificationList = [
+  {
+    id: 1,
+    userID: 2,
+    userName: authUserID,
+    heading: "Emergency Pafe",
+    message: "You sent a message at xx:xx:xx",
+    time: "09:15:43",
+    date: "14/10/2022",
+    day: "Friday",
+    body: "Notification sent at xx:xx:xx",
+  },
+];
+/**
+ * @global
+ * @type {Array}
+ * @description List of notifications
+ */
+global.MSuser = {};
+/**
+ * @global
+ * @type {Object}
+ * @description Object containing user details
+ */
+global.authEmail = "";
+/**
+ * @global
+ * @type {string}
+ * @description Email of user currently logged in
+ */
+global.eventData = [{}];
+/**
+ *
+ * @global
+ * @type {Array}
+ * @description Array of events
+ */
+global.showEvent = false;
+/**
+ * @global
+ * @type {boolean}
+ * @description Boolean to show event
+ * @example true
+ */
+global.notificationId = 0;
+/**
+ * @global
+ * @type {number}
+ * @description ID of notification
+ * @example 1
+ */
+global.doctorsList = [];
+/**
+ * @global
+ * @type {Array}
+ * @description Array of doctors
+ */
+</code></pre>
+        </article>
+    </section>
 
 
 
