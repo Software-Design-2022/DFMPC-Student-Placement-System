@@ -55,7 +55,7 @@ const DATA = [
   },
   {
     id: "58694a0f-3da1-471f-bd96-1455e29d71",
-    title: "FeedBack",
+    title: "Feedback",
     destination: "Doctors",
     image: require("./images/feedback2.png"),
     text: "Feedback",
@@ -97,7 +97,7 @@ const DATA = [
   },
   {
     id: "58694a0f-3da1-471f-bd96-14557e29d71",
-    title: "FeedBack",
+    title: "Feedback",
     destination: "Doctors",
     image: require("./images/feedback2.png"),
     text: "FeedBack",
