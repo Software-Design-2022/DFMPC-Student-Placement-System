@@ -6,7 +6,6 @@
 
 ![Screenshot_1666945911](https://user-images.githubusercontent.com/67168444/198542673-5535a8d6-c253-4d77-b1c0-2e0f328ec9bd.png)
 
-
 ## Documentation :memo:
 
 Our project Documentation can be found in our [Wiki!](https://github.com/Software-Design-2022/DFMPC-Student-Placement-System/wiki) :open_book:
@@ -68,8 +67,8 @@ npm start or expo start
 
 ## Code Coverage: Code Climate Badge
 
-| Statements                                                                                       | Branches                                                                                       | Functions                                                                                       | Lines                                                                                       |
-| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Statements                                                                                      | Branches                                                                                       | Functions                                                                                  | Lines                                                                                 |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
 | ![Statements](https://img.shields.io/badge/statements-83.33%25-yellow.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/functions-66.66%25-red.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/lines-83.33%25-yellow.svg?style=flat&logo=jest) |
 
 ## Code Coverage: CodeCov Badge
