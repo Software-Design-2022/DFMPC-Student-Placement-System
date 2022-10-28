@@ -132,8 +132,15 @@ export const Doctors = () => {
 
             <Rating
               showRating
+              fractions="{1}"
+              startingValue="{3.3}"
+              type='custom'
+              ratingBackgroundColor='rgba(0,0,0,0.2)'
+              ratingCount={5}
               onFinishRating={ratingCompleted}
               style={{ paddingVertical: 10}}
+
+
             />
             <View style={{ flexDirection: "row", margin: 50 }}>
               <Pressable
@@ -195,7 +202,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 0,
+    backgroundColor:'rgba(30,81,123,1)'
   },
   modalView: {
     margin: 20,
@@ -224,7 +232,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "rgba(30,81,123,1)",
   },
   textStyle: {
     color: "white",
@@ -241,15 +249,15 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     height: 200,
-    width: 300,
+    width: 350,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-
+    color:'rgba(0,0,0,0.5)',
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: "rgba(0,0,0,0.1)",
   },
 });

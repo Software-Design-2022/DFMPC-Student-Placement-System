@@ -25,6 +25,7 @@ import { AntDesign } from "@expo/vector-icons";
 import "./global";
 import {schedulePushNotification} from "./SendNotification"
 import { createTopBar } from "../HelperFunctions";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 
@@ -222,41 +223,50 @@ const EventsCalendar = () => {
           setModalVisible(false);
         }}
       >
+        
         <View style={styles.modalStyle}>
-          <Text style={{ marginTop:50, fontSize: 25, top: 10, textAlign: "center" ,color:"white"}}>
+        <LinearGradient
+        colors={[
+          " rgba(255,255,255,1)",
+          " rgba(235,235,235,1)",
+          "rgba(225,225,225,1)",
+        ]}
+        style={{flex:1,borderRadius:20}}>
+          <Text style={{ marginTop:20, fontSize: 30, top:0,fontWeight:'bold', textAlign: "center" ,color:"rgba(0,0,0,0.75)"}}>
             Create Event
           </Text>
           <TextInput
             style={styles.input}
             underlineColorAndroid="transparent"
-            placeholder="Title"
+            placeholder="   Title"
             placeholderTextColor="white"
             autoCapitalize="none"
             onChangeText={(newText) => {
-              setEventName(newText);
+              setEventName("   "+newText);
             }}
           />
           <TextInput
             style={styles.input}
             underlineColorAndroid="transparent"
-            placeholder="Program"
+            placeholder="   Program"
             placeholderTextColor="white"
             autoCapitalize="none"
             onChangeText={(newText) => {
-              setEventProgramme(newText);
+              setEventProgramme("   "+newText);
             }}
           />
-
           <Pressable
             style={({ pressed }) => [
               {
-                backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
+                backgroundColor: pressed ? "rgba(0, 0, 0, 0.75)" : "rgba(25,25,25,0.9)",
               },
               {
                 borderRadius: 10,
                 margin: 10,
                 flexDirection: "row",
-                marginTop: 40,
+                marginTop: 60,
+                width:200,
+                left:60
               },
             ]}
             onPress={() => {
@@ -264,9 +274,10 @@ const EventsCalendar = () => {
             }}
           >
             <Text style={{ margin: 30,color:'white' }}>Start</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30,color:'white' }}>
+            <Text style={{ left:100, marginBottom: 10, marginTop: 20,color:'white',position:'absolute' }}>
               {startDate}
-              {"   "}
+            </Text>
+            <Text style={{ left:100, marginBottom: 10, marginTop: 40,color:'white',position:'absolute' }}>
               {"18:00"}
             </Text>
           </Pressable>
@@ -274,12 +285,14 @@ const EventsCalendar = () => {
           <Pressable
             style={({ pressed }) => [
               {
-                backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
+                backgroundColor: pressed ? "rgba(0, 0, 0, 0.75)" : "rgba(25,25,25,0.9)",
               },
               {
                 borderRadius: 10,
                 margin: 10,
                 flexDirection: "row",
+                width:200,
+                left:60
               },
             ]}
             onPress={() => {
@@ -287,9 +300,10 @@ const EventsCalendar = () => {
             }}
           >
             <Text style={{ margin: 30,color:'white' }}>End</Text>
-            <Text style={{ marginLeft: 100, marginBottom: 10, marginTop: 30 ,color:'white' }}>
+            <Text style={{ left:100, marginBottom: 10, marginTop: 20,color:'white',position:'absolute' }}>
               {endDate}
-              {"   "}
+            </Text>
+            <Text style={{ left:100, marginBottom: 10, marginTop: 40,color:'white',position:'absolute' }}>
               {"18:00"}
             </Text>
           </Pressable>
@@ -344,9 +358,12 @@ const EventsCalendar = () => {
                 {
                   marginRight: 40,
                   width: width / 3,
-                  left: 10,
+                  left: 20,
                   bottom: 30,
-                  backgroundColor: pressed ? "rgba(28,56,107,1)" : "rgba(0,0,0,0.5)",
+                  
+                  backgroundColor: pressed
+                    ? "rgba(128,0,0,0.5)"
+                    : "rgba(128,18,0,0.75)",
                 },
               ]}
               onPress={() => setModalVisible(false)}
@@ -364,13 +381,10 @@ const EventsCalendar = () => {
                 styles.buttonClose,
                 {
                   width: width / 3,
-                  left: 20,
+                  left: 30,
                   right: 30,
                   bottom: 30,
-
-                  backgroundColor: pressed
-                    ? "rgba(28,56,107,0.3)"
-                    : "rgba(128,0,0,0.5)",
+                  backgroundColor: pressed ? "rgba(28,56,107,1)" : "rgba(28,56,107,1)",
                 },
               ]}
               onPress={() => {
@@ -380,7 +394,9 @@ const EventsCalendar = () => {
               <Text style={[styles.textStyle]}>Save</Text>
             </Pressable>
           </View>
+          </LinearGradient>
         </View>
+
       </Modal>
 
       <View>
@@ -438,12 +454,14 @@ var styles = StyleSheet.create({
     backgroundColor: "rgba(30,81,123,1)",
   },
   input: {
+    top:20,
     margin: 15,
     height: 50,
     borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 2,
-    backgroundColor: "rgba(28,56,107,0.5)",
-    borderRadius:10
+    backgroundColor: "rgba(28,56,107,0.9)",
+    borderRadius:10,
+    color:'white',
   },
   button: {
     marginTop: 100,
@@ -469,8 +487,10 @@ var styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 10,
     marginTop: 80,
-    backgroundColor: "rgba(28,56,107,1)",
-    borderRadius:25
+    backgroundColor: "rgba(120,120,120,0)",
+    borderRadius:25,
+    borderWidth:5,
+    borderColor: "rgba(0,0,0,0.25)",
   },
   closeButton: {
     display: "flex",
