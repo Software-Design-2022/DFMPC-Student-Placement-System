@@ -25,20 +25,61 @@ import "./global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
-import {EventNotification} from "./SendNotification"
+import { EventNotification } from "./SendNotification";
 
-//Constants for use with UI scaling
+/**
+ * @constant  {number}  buttonHeight
+ * @description This is the height of the buttons on the dashboard.
+ */
 const buttonHeight = 50;
+/**
+ * @constant  {number} textPos
+ * @description This is the position of the text on the dashboard. Positions the text based on the height of the button.
+ */
 const textPos = buttonHeight / 2;
+/**
+ * @constant  {number} SPACING
+ * @description This is the spacing between the items that will be displayed on the screen.
+ * @see https://reactnative.dev/docs/dimensions
+ */
 const SPACING = 20;
+/**
+ * @constant AVATAR_SIZE
+ * @description This is the size of the avatar that will be displayed on the screen.
+ */
 const AVATAR_SIZE = 70;
+/**
+ * @constant  {number} ICON_SIZE
+ * @description This is the size of the icon that will be displayed on the screen.
+ * @see https://reactnative.dev/docs/dimensions
+ */
 const ICON_SIZE = 33;
+/**
+ * @constant {number} ITEM_SIZE
+ * @description This is the size of the item that will be displayed on the screen. Gets the size of the screen and subtracts the spacing.
+ * @see https://reactnative.dev/docs/dimensions
+ */
 const ITEM_SIZE = AVATAR_SIZE + SPACING * 4;
+/**
+ * @constant {TouchableOpacity} AnimatedTouchable
+ * @description This is the touchable that will be displayed on the screen. It will be animated.
+ * @see https://reactnative.dev/docs/touchableopacity
+ * */
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+/**
+ * @constant {Pressable} AnimatedPressable
+ * @description This is the animated component that will be animated when the user presses a button. Different from Touchable
+ * @see https://reactnative.dev/docs/pressable
+ */
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 
-EventNotification()
+/**
+ * @function EventNotification
+ * @description This function will send a notification to the user when an event is created. Implemented by using the expo-notifications package.
+ * @see https://docs.expo.io/versions/latest/sdk/notifications/
+ */
+EventNotification();
 
 /**Create FlatList */
 const DATA = [
@@ -129,9 +170,15 @@ const DATA = [
   },
 ];
 
-
-//data to be displayed in bottom hotbar
-/**Create Shortlinks */
+/**
+ * @constant {Array<Object>} DATA2
+ * @description The short links that will be displayed on the bottom of the screen. It will display the buttons that the user can press to navigate to different screens for the short links at the  bottom of the screen.
+ *            As well as the profile picture and other relevant widgets like social media feed, etc.
+ * @property {string} id - This is the id of the item that will be displayed on the screen.
+ * @property {string} link - URL of the link that will be navigated to when the user presses the button, could be a website or another app.
+ * @property {string} image - This is the image that will be displayed on the screen. This can be a local image or a URL.
+ * @property {string} text - This is the text that will be displayed on the screen to describe the short link button.
+ */
 const DATA2 = [
   {
     id: "1",
@@ -172,6 +219,16 @@ const DATA2 = [
 ];
 
 // creates it so each item has a touchable button with correct title
+/**
+ * @function Item
+ * @description This function creates the button that will be displayed on the screen. It will display the title, destination, image and text of the item.
+ *           It will also call the onPress function when the user presses the button. It will also set the background color and text color of the button.
+ * @param {Object} item - This is the item that will be displayed on the screen. Contains the title, destination, image and text.
+ * @param {function} onPress - This is the function that will be called when the user presses the button.
+ * @param {string} backgroundColor - This is the background color of the button.
+ * @param {string} textColor - This is the text color of the button.
+ * @returns {JSX.Element} - Returns the button that will be displayed on the screen.
+ */
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <Text style={[styles.title, textColor]}>{item.title}</Text>
@@ -179,11 +236,29 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 //setup for twitter feed on dashboard
+/**
+ * @class TwitterFeed
+ * @description This function creates the twitter feed that will be displayed on the screen. It will display the twitter feed of the user. It will also call the onPress function when the user presses the button.
+ *              It will also set the background color and text color of the button and the twitter feed.
+ *            It will also set the twitter feed to be displayed on the screen using the Twitter API.
+ */
 class TwitterFeed extends Component {
+  /**
+   * @static propTypes
+   * @typedef {Object} propTypes
+   * @property {string} witsUrl - This is the URL of the Wits University Twitter page.
+   * @description Sets the type of the props that will be used in the Twitter Feed class.
+   * */
   static propTypes = {
     witsUrl: PropTypes.string,
   };
 
+  /**
+   * @constructs
+   * @param {Object} props - This is the props that will be used in the Twitter Feed class.
+   * @description The constructor for the TwitterFeed class. It will set the state of the twitter feed to be displayed on the screen.  Sets the default values of the props that will be used in the Twitter Feed class. It will set the URL of the Wits University Twitter page.
+   * @returns {void}
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -191,10 +266,24 @@ class TwitterFeed extends Component {
     };
   }
 
+  /**
+   * @function componentDidMount
+   * @description This function will be called when the component is mounted. It will set the twitter feed to be displayed on the screen using the Twitter API.
+   * @returns {void}
+   * @async
+   */
   componentDidMount() {
     this.setupUrl();
   }
 
+  /**
+   * @function setupUrl
+   * @description This function will set the twitter feed to be displayed on the screen using the Twitter API. It fetches the twitter feed from the Wits University Twitter page, using the state of the prop witsUrl.
+   * @returns {void}
+   * @async
+   * @see {@link https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/overview}
+   *
+   */
   setupUrl() {
     let witsUrl =
       "https://publish.twitter.com/oembed?url=https://twitter.com/WitsHealthFac/status/1573569169982861313?cxt=HHwWgICyzYLv09ErAAAA" +
@@ -213,6 +302,13 @@ class TwitterFeed extends Component {
     });
   }
 
+  /**
+   * @function render
+   * @param {Object} embedHtml - This is the twitter feed that will be displayed on the screen.
+   * @description This function will render the twitter feed to be embedded on the screen. It will set the background color and text color of the twitter feed and handle the HTML of the twitter feed, using the embedHtml state.
+   * @returns {JSX.Element} - Returns the twitter feed that will be displayed on the screen as a View using the HTML of the twitter feed.
+   * @async
+   */
   renderEmbed() {
     if (this.state.embedHtml) {
       let html = `<!DOCTYPE html>\
@@ -239,6 +335,11 @@ class TwitterFeed extends Component {
     }
   }
   //renders interactive scrollview and renders twitter feed
+  /**
+   * @function render
+   * @description This function will render the twitter feed to be embedded using the renderEmbed function. It will also render the interactive scrollview that will be displayed on the screen.
+   * @returns {JSX.Element} - Renders an interactive scrollview and renders the twitter feed using the renderEmbed function.
+   */
   render() {
     return (
       <ScrollView
@@ -251,10 +352,30 @@ class TwitterFeed extends Component {
 }
 
 /**Create Dashboard */
+
+/**
+ * @module Dashboard
+ * @author - Callum Muller, Shagan Plaatjies, Nokuthaba Moyo, Angela Nkosi, Peace Riot Ndlovu
+ * @description This is the dashboard that will be displayed when the user logs in. It will display the buttons that the user can press to navigate to different screens.
+ *              As well as the profile picture and other relevant widgets like social media feed, etc.
+ *
+ * @returns {View} Returns the view that will be displayed on the screen.
+ */
+
 const Dashboard = () => {
- 
+  /**
+   * @const anim
+   * @description This is the animation that will be used to animate the buttons on the screen.
+   */
   const anim = useRef(new Animated.Value(1));
 
+  /**
+   * @function useEffect
+   * @description This function will be called when the component is mounted. It will animate the buttons on the screen. Loops through the buttons and animates them.
+   * @returns {void}
+   * @async
+   * @see {@link https://reactnative.dev/docs/animated}
+   */
   useEffect(() => {
     // makes the sequence loop
     Animated.loop(
@@ -276,17 +397,63 @@ const Dashboard = () => {
     ).start();
   }, []);
 
+  /**
+   * @constant {number} scrollY
+   * @description This is the scroll position of the screen.
+   * @see {@link https://reactnative.dev/docs/animated}
+   * @see {@link https://reactnative.dev/docs/scrollview}
+   */
   const scrollY = React.useRef(new Animated.Value(0)).current;
-  //use navigation
+
+  /**
+   * @constant navigation
+   * @description This is the navigation that will be used to navigate to different screens.
+   * @see {@link https://reactnavigation.org/docs/getting-started}
+   * @see {@link https://reactnavigation.org/docs/stack-navigator}
+   */
   const navigation = useNavigation();
+
   //change colour of tapped button
+
+  /**
+   * @typedef {string} selectedId — This is the id of the button that is currently selected as a state variable string.
+   * @description  This is the id of the button that is currently selected. It will be used to change the colour of the button that is currently selected.
+   */
+
+  /**
+   * @typedef {function} setSelectedId — This is the function that will be used to set the id of the button that is currently selected.
+   * @description  This is the function that will be used to set the id state of the button that is currently selected. It will be used to change the colour of the button that is currently selected.
+   */
   const [selectedId, setSelectedId] = useState(null);
+
+  /**
+   * @typedef {string} name — This is the name of the button that is currently selected as a state variable string.
+   * @description  This is the name of the button that is currently selected. It will be used to change the colour of the button that is currently selected.
+   */
+
+  /**
+   * @typedef {function} SetName — This is the function that will be used to set the state of the name text of the button that is currently selected.
+   * @description  This is the function that will be used to set the state of the name text on the button that is currently selected. It will be used to change the colour of the button that is currently selected.
+   */
   const [name, SetName] = useState("");
   // first render function that renders the vertical flatlist
   const renderItem = ({ item }) => {
+    /**
+     * @function renderItem
+     * @description renders a single item in the vertical flatlist and changes the colour of the button when tapped and navigates to the correct screen when button is tapped.
+     * @param {item} item - the item to be rendered
+     * @param {string} item.id - id of the item
+     * @param {string} item.title - title of the item
+     * @param {string} item.destination - destination of the item
+     * @param {string} item.image - source of the image, can be a local image or a url.
+     * @param {string} item.text - text of the item
+     * @param {string} item.link - link of the item
+     *
+     * @returns {View} - returns a view with a touchable opacity and a text and image of the items in the flatlist.
+     */
     return (
       <TouchableOpacity
-      //creates link that opens external page
+        //creates link that opens external page
         onPress={() => {
           Linking.openURL(item.link);
         }}
@@ -302,9 +469,8 @@ const Dashboard = () => {
           }}
         >
           <View style={{ flex: 1 }}>
-            
             <Image
-            //adds image to each hotbar item for identification
+              //adds image to each hotbar item for identification
               style={{
                 width: 30,
                 height: 30,
@@ -324,7 +490,7 @@ const Dashboard = () => {
           </View>
           <View style={{ flex: 1 }}>
             <Text
-            //shows item text for each hotbar item
+              //shows item text for each hotbar item
               style={{
                 flex: 1,
                 fontSize: 15,
@@ -341,13 +507,20 @@ const Dashboard = () => {
     );
   };
 
+  // second render function that renders the horizontal flatlist
+  /**
+   * @function renderHorizontalItem
+   * @description renders a single item in the horizontal flatlist on the top Bar and changes the colour of the button when tapped and navigates to the correct screen when button is tapped.
+   * @param {item} item - the item to be rendered
+   */
   return (
     <View style={{ flex: 1 }}>
       {createTopBar(10, navigation, false)}
 
       <View
-      //creates left hand news feed with twitter feed
-       style={{ zIndex: 1, flex: 1, flexDirection: "row" }}>
+        //creates left hand news feed with twitter feed
+        style={{ zIndex: 1, flex: 1, flexDirection: "row" }}
+      >
         <View
           style={{
             zIndex: 1,
@@ -391,7 +564,7 @@ const Dashboard = () => {
               </Text>
             </View>
             <View
-            //display twitter feed
+              //display twitter feed
               style={{
                 zIndex: 1,
                 borderRadius: 32,
@@ -415,7 +588,7 @@ const Dashboard = () => {
             ></View>
           </View>
           <View
-          //responsible for right hand side menu for general navigation
+            //responsible for right hand side menu for general navigation
             style={{
               marginTop: SPACING,
               marginBottom: SPACING + 10,
@@ -437,7 +610,7 @@ const Dashboard = () => {
         </View>
 
         <Animated.FlatList
-        //animated flatlist for scaling and fading out of flatlist elements
+          //animated flatlist for scaling and fading out of flatlist elements
           snapToInterval={ITEM_SIZE - SPACING * 1.5}
           decelerationRate={0}
           style={{ flex: 1 }}
@@ -473,7 +646,7 @@ const Dashboard = () => {
             });
             return (
               <TouchableHighlight
-              //touchable for each flatlist item for navigation to corresponding page
+                //touchable for each flatlist item for navigation to corresponding page
                 style={{
                   borderRadius: 100,
                   marginBottom: SPACING / 2,
@@ -550,7 +723,7 @@ const Dashboard = () => {
       </View>
       <View style={{ position: "absolute" }}>
         <Image
-        //creates background for page
+          //creates background for page
           resizeMode="contain"
           source={require("./images/background.png")}
           blurRadius={0}
