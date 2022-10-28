@@ -54,10 +54,10 @@ const Settings = () => {
   };
   
   return (
-    <View style={{flex:1,zIndex:1}}>
+    <View style={{flex:1}}>
       {createTopBar(10, navigation)}
       <View style={{flex:1,top:-60}}>
-        <View style={{flex:1,zIndex:1}}>
+        <View style={{zIndex:1}}>
       <Image
         style={{
           width: ICON_SIZE / 0.7,
@@ -90,7 +90,7 @@ const Settings = () => {
           shadowRadius: 10,
         }}
       >
-        <View style={{ width: "100%", flex: 1 }}>
+        <View style={{ width: "100%",top:370 }}>
             <TouchableOpacity
               onPress={() => {
                 changeProfilePhoto();
