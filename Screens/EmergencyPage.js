@@ -98,9 +98,11 @@ export default function EmergencyPage() {
   const notificationListener = useRef(); // notification listener
   const responseListener = useRef(); // response listener
   const modalVisible = false; // modal visible
-  LogBox.ignoreLogs(["Setting a timer"]); // ignore logs
-  const positionButton = useRef(new Animated.Value(0)).current; // position button
-  const isOnRef = useRef(false); // used to check if the button is on or off
+  LogBox.ignoreLogs(["Setting a timer"]); // ignore logs 
+  const positionButton = useRef(new Animated.Value(0)).current; // position button (peace)
+  const isOnRef = useRef(false); // used to check if the button is on or off // (peace)
+
+  // Peace Code starts here 
 
   const startAnimationToOff = () => {
     Animated.timing(positionButton, {
@@ -154,6 +156,7 @@ export default function EmergencyPage() {
     }
   };
 
+  // Peace Code ends here
   
   return (
     // return
@@ -194,7 +197,8 @@ export default function EmergencyPage() {
             }} // on press
           />
         </View>
-
+        
+        // Peace code starts here
         <TouchableOpacity style={{height:30, width:60}} activeOpacity={0.9} onPress={onPress}>
             <Animated.View style={[styles.mainStyes,{
               backgroundColor:backgroundColorAnimation
