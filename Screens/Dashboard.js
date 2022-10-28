@@ -50,10 +50,10 @@ const DATA = [
   },
   {
     id: "58694a0f-3da1-471f-bd96-1455e29d71",
-    title: "FeedBack",
+    title: "Feedback",
     destination: "Doctors",
     image: require("./images/feedback.jpg"),
-    text: "FeedBack",
+    text: "Feedback",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
@@ -92,10 +92,10 @@ const DATA = [
   },
   {
     id: "58694a0f-3da1-471f-bd96-14557e29d71",
-    title: "FeedBack",
+    title: "Feedback",
     destination: "Doctors",
     image: require("./images/feedback.jpg"),
-    text: "FeedBack",
+    text: "Feedback",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",

@@ -11,6 +11,8 @@ import {
   TextInput,
   Alert,
   LogBox,
+  TouchableOpacity,
+  Easing, // used for animation, easing is the rate of change of a parameter over time
   Linking
 } from "react-native";
 import "./global";
@@ -25,6 +27,7 @@ import {
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
 import qs from "qs";
+import Animated from "react-native-reanimated";
 
 const authname = authName;
 const authlastName = authLastName;
@@ -96,7 +99,62 @@ export default function EmergencyPage() {
   const responseListener = useRef(); // response listener
   const modalVisible = false; // modal visible
   LogBox.ignoreLogs(["Setting a timer"]); // ignore logs
+  const positionButton = useRef(new Animated.Value(0)).current; // position button
+  const isOnRef = useRef(false); // used to check if the button is on or off
 
+  const startAnimationToOff = () => {
+    Animated.timing(positionButton, {
+      toValue: 0,
+      duration: 400,
+      easing: Easing.ease,
+      useNativeDriver: false
+    }).start();
+  };
+  
+  const startAnimationToOn = () => {
+    Animated.timing(positionButton, {
+      toValue: 1,
+      duration: 400,
+      easing: Easing.ease,
+      useNativeDriver: false
+    }).start();
+  };
+  
+  const positionInterpolate = positionButton.interpolate({ 
+    inputRange: [0, 1],
+    outputRange: [0, 1]
+  });
+  
+  const backgroundColorAnimation = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["#415A77", "#415A77"]
+  });
+  
+  const initialOpacityOn = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0]
+  });
+  
+  const initialOpacityOff = positionButton.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1]
+  });
+  
+  const onPress = () => {
+    if (isOnRef.current) {
+      startAnimationToOff();
+      isOnRef.current = false;
+      //do something when the button is off
+  
+    } else {
+      startAnimationToOn();
+      isOnRef.current = true;
+      //do something when the button is on
+  
+    }
+  };
+
+  
   return (
     // return
     <View style={styles.container}>
@@ -136,6 +194,36 @@ export default function EmergencyPage() {
             }} // on press
           />
         </View>
+
+        <TouchableOpacity style={{height:30, width:60}} activeOpacity={0.9} onPress={onPress}>
+            <Animated.View style={[styles.mainStyes,{
+              backgroundColor:backgroundColorAnimation
+            }]} >
+              <Animated.Text
+                style={[
+                  styles.eahcStyles,
+                  {
+                    opacity: initialOpacityOn,
+                  },
+                ]}>
+                ON
+              </Animated.Text>
+              <Animated.Text
+                style={[
+                  styles.eahcStylesOf,
+                  {
+                    opacity: initialOpacityOff,
+                  },
+                ]}>
+                OFF
+              </Animated.Text>
+              <Animated.View style={[styles.basicStyle,{
+                transform:[{
+                  translateX:positionInterpolate
+                }]
+              }]} />
+                </Animated.View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -150,6 +238,10 @@ async function getLocationAsync() {
   let location = await Location.getCurrentPositionAsync({}); // get current location
   return location;
 }
+
+//animation for toggle button
+
+
 
 const location = getLocationAsync(); // call getLocationAsync function and store the result in location variable
 
