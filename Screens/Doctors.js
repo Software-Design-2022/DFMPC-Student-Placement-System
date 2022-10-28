@@ -133,7 +133,7 @@ export const Doctors = () => {
             <Rating
               showRating
               onFinishRating={ratingCompleted}
-              style={{ paddingVertical: 10 }}
+              style={{ paddingVertical: 10}}
             />
             <View style={{ flexDirection: "row", margin: 50 }}>
               <Pressable
@@ -141,7 +141,7 @@ export const Doctors = () => {
                 onPress={() => {
                  
                   sendData(feedback,DoctorRating,doctor.name,doctor.email);
-                  Alert.alert("Alert", "feedback has been sent");
+                  Alert.alert("Thank you for your feedback!");
                   
                 }}
               >
@@ -183,11 +183,13 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginBottom:20,
     height: 40,
-    borderWidth: 1,
+    borderWidth: 2,
     paddingLeft: 20,
     margin: 5,
-    borderColor: "#009688",
+    borderColor: "rgba(0,0,0,0.5)",
     backgroundColor: "#FFFFFF",
+    borderRadius:10,
+    margin:20
   },
   centeredView: {
     flex: 1,
@@ -248,6 +250,6 @@ const styles = StyleSheet.create({
 
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "blue",
+    backgroundColor: "rgba(0,0,0,0.2)",
   },
 });

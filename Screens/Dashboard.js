@@ -30,6 +30,7 @@ import { getList } from "./notificationHelper";
 import { setNotificationList } from "./SetGlobal";
 import { set } from "react-native-reanimated";
 
+
 //Constants for use with UI scaling
 const buttonHeight = 50;
 const textPos = buttonHeight / 2;
@@ -49,77 +50,77 @@ const DATA = [
     id: "58694a0f-3da1-471f-bd96-145571e29d73",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./images/calendar.png"),
+    image: require("./images/calendar2.png"),
     text: "Calendar",
   },
   {
     id: "58694a0f-3da1-471f-bd96-1455e29d71",
     title: "FeedBack",
     destination: "Doctors",
-    image: require("./images/feedback.jpg"),
+    image: require("./images/feedback2.png"),
     text: "FeedBack",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d72",
     title: "Emergency Protocols",
     destination: "EmergencyProtocols",
-    image: require("./images/schedule.png"),
+    image: require("./images/protocol.png"),
     text: "Protocols",
   },
   {
     id: "18694a0f-3da1-471f-bd96-145571e29d72",
     title: "EventsCalendar",
     destination: "EventsCalendar",
-    image: require("./images/calendar.png"),
+    image: require("./images/events.png"),
     text: "  Events",
   },
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d79",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./images/settings.png"),
+    image: require("./images/settings2.png"),
     text: "Settings",
   },
   {
     id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f63",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logout.png"),
+    image: require("./images/logout2.png"),
     text: "Logout",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d71",
     title: "Calendar",
     destination: "CalendarView",
-    image: require("./images/calendar.png"),
+    image: require("./images/calendar2.png"),
     text: "Calendar",
   },
   {
     id: "58694a0f-3da1-471f-bd96-14557e29d71",
     title: "FeedBack",
     destination: "Doctors",
-    image: require("./images/feedback.jpg"),
+    image: require("./images/feedback2.png"),
     text: "FeedBack",
   },
   {
     id: "28694a0f-3da1-471f-bd96-145571e29d70",
     title: "Emergency Protocols",
     destination: "EmergencyProtocols",
-    image: require("./images/schedule.png"),
+    image: require("./images/protocol.png"),
     text: "Protocols",
   },
   {
     id: "18694a0f-2da1-471f-bd96-145571e29d72",
     title: "EventsCalendar",
     destination: "EventsCalendar",
-    image: require("./images/calendar.png"),
+    image: require("./images/events.png"),
     text: "Events",
   },
   {
     id: "08694a0f-3da1-471f-bd96-145571e29d75",
     title: "Settings",
     destination: "SettingsView",
-    image: require("./images/settings.png"),
+    image: require("./images/settings2.png"),
     text: "Settings",
   },
 
@@ -127,7 +128,50 @@ const DATA = [
     id: "3ac68af2-c605-48d3-a4f8-fbd91aa97f66",
     title: "Logout",
     destination: "Login",
-    image: require("./images/logout.png"),
+    image: require("./images/logout2.png"),
+    text: "Logout",
+  },
+  {
+    id: "586194a0f-3da1-471f-bd96-145571e29d71",
+    title: "Calendar",
+    destination: "CalendarView",
+    image: require("./images/calendar2.png"),
+    text: "Calendar",
+  },
+  {
+    id: "58694a0f2-3da1-471f-bd96-14557e29d71",
+    title: "FeedBack",
+    destination: "Doctors",
+    image: require("./images/feedback2.png"),
+    text: "FeedBack",
+  },
+  {
+    id: "286934a0f-3da1-471f-bd96-145571e29d70",
+    title: "Emergency Protocols",
+    destination: "EmergencyProtocols",
+    image: require("./images/protocol.png"),
+    text: "Protocols",
+  },
+  {
+    id: "186944a0f-2da1-471f-bd96-145571e29d72",
+    title: "EventsCalendar",
+    destination: "EventsCalendar",
+    image: require("./images/events.png"),
+    text: "Events",
+  },
+  {
+    id: "08694a05f-3da1-471f-bd96-145571e29d75",
+    title: "Settings",
+    destination: "SettingsView",
+    image: require("./images/settings2.png"),
+    text: "Settings",
+  },
+
+  {
+    id: "3ac68af62-c605-48d3-a4f8-fbd91aa97f66",
+    title: "Logout",
+    destination: "Login",
+    image: require("./images/logout2.png"),
     text: "Logout",
   },
 ];
@@ -230,6 +274,7 @@ class TwitterFeed extends Component {
             style={{
               backgroundColor:"rgba(0,0,0,0.0)",
               top:0,
+              width:292
             }}
             source={{ html: html }}
           />
@@ -349,19 +394,19 @@ const Dashboard = () => {
          key={item.time}
           style={{
             height: 65,
-            backgroundColor: "rgba(0,0,0,0.05)",
+            backgroundColor: "rgba(0,0,0,0.1)",
             marginBottom: 10,
             margin: 5,
-            borderRadius: 10,
-            borderWidth:3,
-            borderColor:"rgba(0,0,0,0.1)",
+            borderRadius: 15,
+            borderWidth:2,
+            borderColor:"rgba(0,0,0,0.3)",
             width:275
           }}
         >
           <Text
             style={{
-              borderBottomWidth: 2,
-              borderColor: "rgba(255,255,255,255)",
+              borderBottomWidth: 1,
+              borderColor: "rgba(255,255,255,0.2)",
               letterSpacing: 1,
               fontWeight: "bold",
               left: 4,
@@ -444,7 +489,7 @@ const Dashboard = () => {
               backgroundColor:'rgba(0,0,0,0)'
             }}
           >
-          <View style={{backgroundColor:'rgba(0,0,0,0)',borderRadius:20,height:70,left:5}}> 
+          <View style={{backgroundColor:'rgba(0,0,0,0)',borderRadius:20,height:70,left:0}}> 
           <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal={true}
@@ -469,7 +514,9 @@ const Dashboard = () => {
               borderBottomRightRadius: 20,
               height: 36,
               position:'absolute',
-              bottom:5
+              bottom:5,
+              left:SPACING-15,
+              width:285
             }}
           >
             <FlatList
@@ -537,7 +584,7 @@ const Dashboard = () => {
                   style={{
                     flexDirection: "row",
                     padding: SPACING,
-                    backgroundColor: "rgba(0,0,0,0.12)",
+                    backgroundColor: "rgba(0,0,0,0.1)",
                     borderRadius: 100,
                     shadowColor: "black",
                     borderBottomEndRadius: 0,
@@ -559,20 +606,22 @@ const Dashboard = () => {
                       style={{
                         width: AVATAR_SIZE,
                         height: AVATAR_SIZE,
-                        borderRadius: AVATAR_SIZE,
+                        borderRadius: AVATAR_SIZE+20,
                         marginRight: SPACING / 2,
                         left: 0,
                         borderWidth: 0,
                         borderColor: "rgba(0,0,0,0.2)",
                         backgroundColor: "rgba(0,0,0,0)",
+                        transform:[{scaleX:1.1},{scaleY:1.1}],
+                        top:5
                       }}
                     />
                   </View>
                   <Text
                     style={{
-                      fontSize: 11,
+                      fontSize: 12,
                       fontWeight: "bold",
-                      color: "rgba(255,255,255,1)",
+                      color: "rgba(255,255,255,0.75)",
                       position: "absolute",
                       left: 30,
                       transform: [
@@ -580,7 +629,7 @@ const Dashboard = () => {
                         { translateX: 0 },
                         { rotate: "0deg" },
                       ],
-                      top: 2.5,
+                      top: 5,
                       textShadowColor: "rgba(0,0,0,1)",
                       textShadowRadius: 0,
                       textShadowOffset: { width: 0, height: 0 },
@@ -599,7 +648,7 @@ const Dashboard = () => {
         <Image
         //creates background for page
           resizeMode="contain"
-          source={require("./images/background.png")}
+          source={require("./images/background9.png")}
           blurRadius={0}
         />
       </View>
@@ -623,7 +672,7 @@ const styles = StyleSheet.create({
     height: 575,
     backgroundColor:"rgba(0,0,0,0)",
     top:0,
-    left:7,
+    left:-3,
     marginTop:SPACING/2
   },
 });
