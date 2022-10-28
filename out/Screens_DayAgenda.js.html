@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Screens/global.js</title>
+    <title>JSDoc: Source: Screens/DayAgenda.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Screens/global.js</h1>
+    <h1 class="page-title">Source: Screens/DayAgenda.js</h1>
 
     
 
@@ -26,115 +26,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Global functions for the app.
- * @module GlobalVariables - The Global Variables Component
- * @description This hold the global variables needed to be shared across the app.
- */
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/core";
+import {
+  StatusBar,
+  FlatList,
+  Image,
+  Animated,
+  Text,
+  View,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableHighlight,
+  Easing,
+  SafeAreaViewBase,
+  SafeAreaView,
+} from "react-native";
+const { width, height } = Dimensions.get("screen");
+import { LinearGradient } from "expo-linear-gradient";
+import { days } from "./CalendarView";
 
-global.authUserID = "";
+//Constants to dictate side of elements in UI
+const buttonHeight = 50;
+const textPos = buttonHeight / 2;
+const SPACING = 20;
+const AVATAR_SIZE = 70;
+const ICON_SIZE = 80;
+const image = { uri: "https://reactjs.org/logo-og.png" };
+const witsLogo = {
+  uri: "https://www.wits.ac.za/media/wits-university/news-and-events/images/logos-and-icons/Wits-Logo-Mono-Neg-Legal-600x300.png",
+};
+
 /**
- *  @global
- *  @type {string}
- * @description ID of user currently logged in
- * @example "123456789"
- */
-global.authUserRef = "";
-/**
- * @global
- * @type {string}
- * @description Reference to user currently logged in
- * @example "users/123456789"
- */
-global.authUser = "";
-/**
- * @global
- * @type {string}
- * @description Name of user currently logged in
- * @example "John Smith"
- */
-global.authUserProfilePic = "https://i.imgur.com/3bOE2E6.jpeg";
-/**
- * @global
- * @type {string}
- * @description Profile picture of user currently logged in
- * @example "https://i.imgur.com/3bOE2E6.jpeg"
- * @see https://imgur.com/3bOE2E6
- */
-global.defaultProfilePic = "./images/user.png";
-/**
- * @global
- * @type {string}
- * @description Default profile picture of user
- * @example "./images/user.png"
- * @see https://imgur.com/3bOE2E6
- */
-global.authName = "";
-/**
- * @global
- * @type {string}
- * @description Name of user currently logged in
- * @example "John Smith"
- */
-global.authLastName = "";
-("https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png");
-global.notificationList = [
-  {
-    id: 1,
-    userID: 2,
-    userName: authUserID,
-    heading: "Emergency Pafe",
-    message: "You sent a message at xx:xx:xx",
-    time: "09:15:43",
-    date: "14/10/2022",
-    day: "Friday",
-    body: "Notification sent at xx:xx:xx",
-  },
-];
-/**
- * @global
- * @type {Array}
- * @description List of notifications
- */
-global.MSuser = {};
-/**
- * @global
- * @type {Object}
- * @description Object containing user details
- */
-global.authEmail = "";
-/**
- * @global
- * @type {string}
- * @description Email of user currently logged in
- */
-global.eventData = [{}];
-/**
+ * @module DayAgenda
+ * @description This module is the screen that displays the agenda for a specific day
+ * @param {Object} props - The props passed to the component
  *
- * @global
- * @type {Array}
- * @description Array of events
+ * @returns {JSX.Element} - JSX element to render the agenda for a specific day
  */
-global.showEvent = false;
-/**
- * @global
- * @type {boolean}
- * @description Boolean to show event
- * @example true
- */
-global.notificationId = 0;
-/**
- * @global
- * @type {number}
- * @description ID of notification
- * @example 1
- */
-global.doctorsList = [];
-/**
- * @global
- * @type {Array}
- * @description Array of doctors
- */
+const DayAgenda = () => {
+  //Use navigation
+  const navigation = useNavigation();
+
+  //Changes button colour slightly when tapped
+  /**
+   * A react hook that changes the colour of the button slightly when tapped
+   */
+  const [selectedId, setSelectedId] = useState(null);
+  /**
+   * A react hook to set the button text
+   */
+  const [name, SetName] = useState("");
+  console.log(days);
+
+  //TO-DO, show schedules
+  return (
+    //main views for layout of UI
+    &lt;SafeAreaView style={{ flex: 1, backgroundColor: " rgba(255,255,255,1)" }}>
+      &lt;Text>{days}&lt;/Text>
+    &lt;/SafeAreaView>
+  );
+};
+
+export default DayAgenda;
 </code></pre>
         </article>
     </section>
