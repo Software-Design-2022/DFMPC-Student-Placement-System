@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Screens/EventsCalendar.js</title>
+    <title>JSDoc: Source: Screens/CalendarView.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Screens/EventsCalendar.js</h1>
+    <h1 class="page-title">Source: Screens/CalendarView.js</h1>
 
     
 
@@ -42,49 +42,18 @@ import {
   Pressable,
 } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { Provider } from "react-native-paper";
 import { firebase } from "../firebase";
-import { getCurrentDate } from "../functions";
-import BottomSheet from "./BottomSheet";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Card, Avatar } from "react-native-paper";
+import { getCurrentDate } from "../HelperFunctions";
 import { useNavigation } from "@react-navigation/core";
-import { AntDesign } from "@expo/vector-icons";
 import "./global";
-import { schedulePushNotification } from "./SendNotification";
 import { createTopBar } from "../HelperFunctions";
 
 const { width, height } = Dimensions.get("screen");
-/**
- * Spacing between events in calendar
- */
-const SPACING = 20;
-/**
- * Icon size for icons on calendar
- */
-const ICON_SIZE = 75;
-/**
- * Current date as a string represented in the format DD-MM-YYYY
- * @type {Date}
- */
-const initialDate = getCurrentDate();
-/**
- * Constant to store todays date.
- */
-const today = new Date();
-/**
- * Compare two dates
- * @param {Date} obj1
- * @param {Date} obj2
- * @returns True if obj1 is equal to obj2, false otherwise
- */
+
 const compare = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
-/**
- * Generates a random color for event cards.
- * @returns {string} A hex color code in the format #RRGGBB
- */
+
 const generateColor = () => {
   const randomColor = Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -94,17 +63,8 @@ const generateColor = () => {
 
 const randomColor = generateColor();
 const randomColor2 = generateColor();
-
-/**
- * Function to get events from Firestore and add them to the onRecieveList
- * @async
- * @param {function} onRecieveList Function to add events to the calendar
- * @see https://firebase.google.com/docs/firestore/query-data/listen
- * @see https://firebase.google.com/docs/firestore/query-data/get-data
- * @returns {void} Nothing is returned. The onRecieveList function is called and the events are added to the calendar
- */
 async function eventsData(onReceiveList) {
-  const events = []; //Array to store events
+  const events = [];
   var snapshot = await firebase
     .firestore()
     .collection("events")
@@ -128,20 +88,14 @@ async function eventsData(onReceiveList) {
             end: end,
             id: id,
             programme: programme,
-          }); //Add an event to array
+          });
         }
-      }); // Loop through each event in the collection
-    }); //Get events from Firestore
+      });
+    });
 
   onReceiveList(events);
 }
 
-/**
- * Function to validate input from user when adding an event using the add event modal form
- * @param {string} eventtext Event name
- * @param {string} notetext Event description
- * @returns {boolean} True if input is valid, false otherwise
- */
 const validateInput = (eventtext, notetext) => {
   let valid = true;
   if (JSON.stringify(eventtext).length - 2 &lt;= 0) {
@@ -160,16 +114,6 @@ const validateInput = (eventtext, notetext) => {
   return valid;
 };
 
-/**
- * Function to add an event to Firestore database. The event is validated before being added to the database.
- * @async
- * @param {string} eventtext Event name
- * @param {string} notetext Event description
- * @param {string} startdatetext Start date of event in the format DD-MM-YYYY
- * @param {string} enddatetext End date of event in the format DD-MM-YYYY
- * @returns {void} Nothing is returned. The event is added to the database and the calendar is updated.
- * @see https://firebase.google.com/docs/firestore/manage-data/add-data
- */
 async function sendToFirestore(
   eventtext,
   notetext,
@@ -192,17 +136,13 @@ async function sendToFirestore(
       });
   }
 }
+
 /**
- * React component to render the events calendar screen and its components using React Native Calendar
- * @module EventsCalendar
- * @returns {JSX.Element} JSX element to render the calendar screen
+ * @module CalendarView
+ * @description Screen that displays the calendar and allows the user to add events to the calendar
+ * @returns {JSX.Element} Screen that displays the calendar with the events
  */
 const EventsCalendar = () => {
-  /**
-   * React hook to store the events in the calendar
-   * @type {Array}
-   * @see https://reactjs.org/docs/hooks-state.html
-   */
   const [EventsState, SetEventsState] = useState({
     events: [
       {
@@ -216,18 +156,6 @@ const EventsCalendar = () => {
     ],
   });
 
-  /**
-   * Object to store the events from Firestore. This is used to update the calendar when an event is added.
-   * @typedef {Object} Event
-   */
-  /**
-   * Function to add events to the calendar when they are received from Firestore
-   * @type {Event}
-   * @param {Event} EventsState.events Array of events to be added to the calendar
-   * @returns {void} Nothing is returned. The events are added to the calendar.
-   * @see https://reactjs.org/docs/hooks-state.html
-   *
-   */
   const onReceive = (newEvents) => {
     // when the list is received we set our protocolLIst to the current received list (updating)
     SetEventsState((prevState) => ({
@@ -239,19 +167,9 @@ const EventsCalendar = () => {
   const [dayData, setDayData] = useState([{}]);
   const navigation = useNavigation();
 
-  /**
-   * Function to render the event cards in the calendar when a day is selected
-   *
-   */
   const GetMarkedDates = () => {
     let markedDay = {};
 
-    /**
-     * Loop through each event in the calendar and add it to the markedDay object if is marked.
-     * @type {Event}
-     * @param {Event} EventsState.events Array of events to be compared.
-     * @returns {void} Nothing is returned. The marked events are added to the markedDay object.
-     */
     EventsState.events.map((item, key) => {
       if (compare(item.start, item.end)) {
         markedDay[item.start] = {
@@ -303,8 +221,6 @@ const EventsCalendar = () => {
   );
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEnd, setSelectedEnd] = useState(new Date());
-  /*   const [btnstart, setBtnStart] = useState(false);
-  const [btnend, setBtnEnd] = useState(false); */
   const [modalVisible, setModalVisible] = useState(false);
   const [datePickerVisible, setDatePicker] = useState(false);
   const [EnddatePickerVisible, setDatePickerEnd] = useState(false);
@@ -312,256 +228,56 @@ const EventsCalendar = () => {
   return (
     &lt;View style={styles.container}>
       {createTopBar(10, navigation)}
-      &lt;Modal
-        style={styles.modalStyle}
-        animationType={"fade"}
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(false);
+      &lt;View style={{ flex: 1 }}>
+        &lt;Calendar
+          style={{
+            shadowColor: "black",
+            height: 500,
+            marginTop: 80,
+            marginBottom: 30,
+            marginLeft: 30,
+            marginRight: 30,
+          }}
+          markingType={"period"}
+          markedDates={{}}
+          onDayPress={(day) => {
+            getDayEvents(day);
+            eventData = dayData;
+            if (showEvent == false) {
+              showEvent = true;
+            }
+          }}
+        />
+      &lt;/View>
+      &lt;View
+        style={{
+          flex: 1,
+          zIndex: 1,
+          bottom: 10,
+          left: 10,
+          position: "absolute",
         }}
       >
-        &lt;View style={styles.modalStyle}>
-          &lt;Text
-            style={{
-              marginTop: 50,
-              fontSize: 25,
-              top: 10,
-              textAlign: "center",
-              color: "white",
-            }}
-          >
-            Create Event
-          &lt;/Text>
-          &lt;TextInput
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Title"
-            placeholderTextColor="white"
-            autoCapitalize="none"
-            onChangeText={(newText) => {
-              setEventName(newText);
-            }}
-          />
-          &lt;TextInput
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Program"
-            placeholderTextColor="white"
-            autoCapitalize="none"
-            onChangeText={(newText) => {
-              setEventProgramme(newText);
-            }}
-          />
-
-          &lt;Pressable
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
-              },
-              {
-                borderRadius: 10,
-                margin: 10,
-                flexDirection: "row",
-                marginTop: 40,
-              },
-            ]}
-            onPress={() => {
-              setDatePicker(true);
-            }}
-          >
-            &lt;Text style={{ margin: 30, color: "white" }}>Start&lt;/Text>
-            &lt;Text
-              style={{
-                marginLeft: 100,
-                marginBottom: 10,
-                marginTop: 30,
-                color: "white",
-              }}
-            >
-              {startDate}
-              {"   "}
-              {"18:00"}
-            &lt;/Text>
-          &lt;/Pressable>
-
-          &lt;Pressable
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "rgb(210, 230, 255)" : "#2c477a",
-              },
-              {
-                borderRadius: 10,
-                margin: 10,
-                flexDirection: "row",
-              },
-            ]}
-            onPress={() => {
-              setDatePickerEnd(true);
-            }}
-          >
-            &lt;Text style={{ margin: 30, color: "white" }}>End&lt;/Text>
-            &lt;Text
-              style={{
-                marginLeft: 100,
-                marginBottom: 10,
-                marginTop: 30,
-                color: "white",
-              }}
-            >
-              {endDate}
-              {"   "}
-              {"18:00"}
-            &lt;/Text>
-          &lt;/Pressable>
-
-          &lt;View
-            style={{
-              marginBottom: 10,
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            &lt;DateTimePickerModal
-              date={selectedDate}
-              isVisible={datePickerVisible}
-              mode="date"
-              onConfirm={(date) => {
-                setSelectedDate(date), setDatePicker(false);
-                let datestr = selectedDate.toISOString().split("T")[0];
-                //console.log(datestr)
-                setStartDate(datestr);
-              }}
-              onCancel={() => {
-                setDatePicker(false);
-              }}
-            />
-            &lt;DateTimePickerModal
-              date={selectedEnd}
-              isVisible={EnddatePickerVisible}
-              mode="date"
-              onConfirm={(date) => {
-                setSelectedEnd(date), setDatePickerEnd(false);
-
-                let datestr = selectedEnd.toISOString().split("T")[0];
-                //console.log(datestr)
-                setEndDate(datestr);
-              }}
-              onCancel={() => {
-                setDatePickerEnd(false);
-              }}
-            />
-          &lt;/View>
-
-          &lt;View style={{ flexDirection: "row" }}>
-            &lt;Pressable
-              style={({ pressed }) => [
-                styles.button,
-                styles.buttonClose,
-                {
-                  marginRight: 40,
-                  width: width / 3,
-                  left: 10,
-                  bottom: 30,
-                  backgroundColor: pressed
-                    ? "rgba(28,56,107,1)"
-                    : "rgba(0,0,0,0.5)",
-                },
-              ]}
-              onPress={() => setModalVisible(false)}
-            >
-              &lt;Text
-                onPress={() => setModalVisible(false)}
-                style={[styles.textStyle]}
-              >
-                Close
-              &lt;/Text>
-            &lt;/Pressable>
-            &lt;Pressable
-              style={({ pressed }) => [
-                styles.button,
-                styles.buttonClose,
-                {
-                  width: width / 3,
-                  left: 20,
-                  right: 30,
-                  bottom: 30,
-
-                  backgroundColor: pressed
-                    ? "rgba(28,56,107,0.3)"
-                    : "rgba(128,0,0,0.5)",
-                },
-              ]}
-              onPress={() => {
-                sendToFirestore(eventName, eventProgramme, startDate, endDate);
-              }}
-            >
-              &lt;Text style={[styles.textStyle]}>Save&lt;/Text>
-            &lt;/Pressable>
-          &lt;/View>
-        &lt;/View>
-      &lt;/Modal>
-
-      &lt;View>
         &lt;TouchableOpacity
-          onPress={() => setModalVisible(true)}
-          style={{
-            backgroundColor: "rgba(28,56,107,0.0)",
-            position: "absolute",
-            borderRadius: 50,
-            width: 50,
-            height: 50,
-            zIndex: 1,
-            right: 20,
-            top: height - 220,
-            alignItems: "center",
+          onPress={() => {
+            navigation.navigate("EventsCalendar");
           }}
         >
-          &lt;AntDesign name="pluscircle" color="black" size={50} />
+          &lt;Text
+            style={{ color: "rgba(0,0,0,1)", fontWeight: "bold", fontSize: 15 }}
+          >
+            {"Go to Events Calendar >>"}
+          &lt;/Text>
         &lt;/TouchableOpacity>
       &lt;/View>
-      &lt;Calendar
-        style={{
-          shadowColor: "black",
-          height: 500,
-          marginTop: 80,
-          marginBottom: 30,
-          marginLeft: 30,
-          marginRight: 30,
-        }}
-        markingType={"period"}
-        markedDates={GetMarkedDates()}
-        onDayPress={(day) => {
-          getDayEvents(day);
-          eventData = dayData;
-          if (showEvent == false) {
-            showEvent = true;
-          }
-        }}
-        onDayLongPress={(day) => {
-          setModalVisible(true);
-        }}
-      />
-      &lt;Provider>
-        &lt;View>
-          &lt;BottomSheet>&lt;/BottomSheet>
-        &lt;/View>
-      &lt;/Provider>
     &lt;/View>
   );
 };
 
-/**
- * Stylesheet for the events calendar
- * @type {StyleSheet}
- */
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(30,81,123,1)",
+    backgroundColor: "rgba(28,56,107,1)",
   },
   input: {
     margin: 15,
@@ -703,7 +419,6 @@ var styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
 export default EventsCalendar;
 </code></pre>
         </article>
