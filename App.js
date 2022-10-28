@@ -25,22 +25,15 @@ const Stack = createNativeStackNavigator();
 
 /**
  *
- * @module /App.js - Main App Component
+ * @module App - The Main App Component
  * @description This is the main file for the application. It contains the navigation stack and the main screen. It will
  *             render the main screen and the navigation stack.
  *
  * @see Github: @CallumMuller @Cipher73 @nokuthabam @peacendlovu @shgnplaatjies
  * @see https://reactnavigation.org/docs/native-stack-navigator/
  *
- * @author - Callum Muller, Shagan Plaatjies, Angela Nkosi, Peace Riot Ndlovu
+ * @author - Callum Muller, Shagan Plaatjies, Angela Nkosi, Nokuthaba Moyo, Peace Riot Ndlovu
  * @version 0.2.4 - 2022/10/27 - Sprint 4/4 of version 0.2
- */
-/**
- *
- * @function App
- * @description This is the main file for the application. It contains the navigation stack and the main screen. It will
- *            render the main screen and the navigation stack.
- * @returns {JSX.Element} - The main screen and the navigation stack.
  */
 function App() {
   // This is the main function that will be called when the app is loaded
