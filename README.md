@@ -4,8 +4,7 @@
 
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
 
->![Screenshot_1666945911](https://user-images.githubusercontent.com/67168444/198542673-5535a8d6-c253-4d77-b1c0-2e0f328ec9bd.png)
-
+> ![Screenshot_1666945911](https://user-images.githubusercontent.com/67168444/198542673-5535a8d6-c253-4d77-b1c0-2e0f328ec9bd.png)
 
 ## Documentation :memo:
 
@@ -68,8 +67,8 @@ npm start or expo start
 
 ## Code Coverage: Code Climate Badge
 
-| Statements                                                                                       | Branches                                                                                       | Functions                                                                                       | Lines                                                                                       |
-| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Statements                                                                                      | Branches                                                                                       | Functions                                                                                  | Lines                                                                                 |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
 | ![Statements](https://img.shields.io/badge/statements-83.33%25-yellow.svg?style=flat&logo=jest) | ![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat&logo=jest) | ![Functions](https://img.shields.io/badge/functions-66.66%25-red.svg?style=flat&logo=jest) | ![Lines](https://img.shields.io/badge/lines-83.33%25-yellow.svg?style=flat&logo=jest) |
 
 ## Code Coverage: CodeCov Badge
