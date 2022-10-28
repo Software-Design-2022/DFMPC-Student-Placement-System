@@ -95,7 +95,7 @@ const Settings = () => {
               onPress={() => {
                 changeProfilePhoto();
               }}
-              style={{backgroundColor:'rgba(0,0,0,0.5)',left:30,width:width-60,borderRadius:10,marginBottom:20,marginTop:20}}
+              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20,marginTop:20}}
             >
               <Text style={styles.buttonText}>Change Profile Photo</Text>
             </TouchableOpacity>
@@ -104,13 +104,13 @@ const Settings = () => {
               onPress={() => {
                 changeTheme();
               }}
-              style={{backgroundColor:'rgba(0,0,0,0.5)',left:30,width:width-60,borderRadius:10,marginBottom:20}}
+              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}
             >
               <Text style={styles.buttonText}>Change App Theme</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}}
-            style={{backgroundColor:'rgba(0,0,0,0.5)',left:30,width:width-60,borderRadius:10,marginBottom:20}}>
+            style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}>
               <Text style={styles.buttonText}>Suggestions?</Text>
             </TouchableOpacity>
         </View>
