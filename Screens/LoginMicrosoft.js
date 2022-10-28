@@ -5,7 +5,17 @@ import { Button } from "react-native-web";
 import "./global";
 import { firebase } from "../firebase";
 
-
+/**
+ * @function LoginMicrosoft
+ * @description This is the login screen for the application. It will allow the user to login using their Microsoft
+ *            account. It will then redirect the user to the dashboard screen.
+ * @returns {JSX.Element} - The login screen.
+ * @constructor
+ * @memberof Screens
+ * @todo Add a loading screen while the user is being redirected to the dashboard screen.
+ * @param {firebaseObject} data
+ * @see {@link https://www.npmjs.com/package/react-microsoft-login}
+ */
 export function setUserVariables(data) {
   // store information about the user who is currently logged in
   authUser = data;
