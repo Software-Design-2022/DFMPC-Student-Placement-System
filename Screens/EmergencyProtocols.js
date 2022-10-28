@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginRight: 2,
     marginLeft: 2,
     borderWidth: 4,
-    borderColor: "rgba(128,0,0,1)",
+    borderColor: "rgba(0,0,128,1)",
   },
   itemText: {
     fontSize: 16,
