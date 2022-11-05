@@ -19,20 +19,18 @@ import "./global";
 import { useNavigation } from "@react-navigation/core";
 import { createTopBar } from "../HelperFunctions";
 
-const sendData = (feedback,rating,DoctorName,email) => {
-   firebase
+const sendData = (feedback, rating, DoctorName, email) => {
+  firebase
     .firestore()
     .collection("feedback")
     .add({
-        feedback: feedback, 
-        rating: rating, 
-        studentID:authUserID,
-        sentBy:authName+" "+authLastName,
-        doctorName:DoctorName,
-        doctorEmail:email,
-      }) 
-    
-
+      feedback: feedback,
+      rating: rating,
+      studentID: authUserID,
+      sentBy: authName + " " + authLastName,
+      doctorName: DoctorName,
+      doctorEmail: email,
+    });
 };
 
 const { height } = Dimensions.get("window");
@@ -43,7 +41,7 @@ const { height } = Dimensions.get("window");
  */
 
 export const Doctors = () => {
-   const navigation = useNavigation();
+  const navigation = useNavigation();
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState(doctorsList);
   const [modalVisible, setModalVisible] = useState(false);
@@ -53,8 +51,8 @@ export const Doctors = () => {
 
   LogBox.ignoreLogs(["Setting a timer"]);
   /**
-   * 
-   * @param {String} item 
+   *
+   * @param {String} item
    * @returns  {View}
    */
   function Item({ item }) {
@@ -74,17 +72,15 @@ export const Doctors = () => {
           <View style={{ alignItems: "center", flex: 1 }}>
             <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
             <Text style={{ fontWeight: "bold" }}>{item.email}</Text>
-           
           </View>
         </TouchableOpacity>
       </View>
     );
   }
   const ratingCompleted = (rating) => {
-    setRating(rating)
+    setRating(rating);
   };
   const searchFilterFunction = (text) => {
-
     if (text) {
       const newData = doctorsList.filter(function (item) {
         const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
@@ -145,22 +141,18 @@ export const Doctors = () => {
               showRating
               fractions="{1}"
               startingValue="{3.3}"
-              type='custom'
-              ratingBackgroundColor='rgba(0,0,0,0.2)'
+              type="custom"
+              ratingBackgroundColor="rgba(0,0,0,0.2)"
               ratingCount={5}
               onFinishRating={ratingCompleted}
-              style={{ paddingVertical: 10}}
-
-
+              style={{ paddingVertical: 10 }}
             />
             <View style={{ flexDirection: "row", margin: 50 }}>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => {
-                 
-                  sendData(feedback,DoctorRating,doctor.name,doctor.email);
+                  sendData(feedback, DoctorRating, doctor.name, doctor.email);
                   Alert.alert("Thank you for your feedback!");
-                  
                 }}
               >
                 <Text style={styles.textStyle}>SEND FEEDBACK</Text>
@@ -198,23 +190,23 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textInputStyle: {
-    marginTop:20,
-    marginBottom:20,
+    marginTop: 20,
+    marginBottom: 20,
     height: 40,
     borderWidth: 2,
     paddingLeft: 20,
     margin: 5,
     borderColor: "rgba(0,0,0,0.5)",
     backgroundColor: "#FFFFFF",
-    borderRadius:10,
-    margin:20
+    borderRadius: 10,
+    margin: 20,
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 0,
-    backgroundColor:'rgba(30,81,123,1)'
+    backgroundColor: "rgba(30,81,123,1)",
   },
   modalView: {
     margin: 20,
@@ -266,7 +258,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    color:'rgba(0,0,0,0.5)',
+    color: "rgba(0,0,0,0.5)",
     textAlign: "center",
     borderRadius: 5,
     backgroundColor: "rgba(0,0,0,0.1)",

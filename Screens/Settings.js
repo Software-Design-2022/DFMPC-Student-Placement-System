@@ -52,122 +52,148 @@ const Settings = () => {
     setDialogVisible(true);
     console.log("Profile Photo button pressed");
   };
-  
+
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       {createTopBar(10, navigation)}
-      <View style={{flex:1,top:-60}}>
-        <View style={{zIndex:1}}>
+      <View style={{ flex: 1, top: -60 }}>
+        <View style={{ zIndex: 1 }}>
+          <Image
+            style={{
+              width: ICON_SIZE / 0.7,
+              height: ICON_SIZE / 0.7,
+              position: "absolute",
+              resizeMode: "cover",
+              borderRadius: ICON_SIZE,
+              top: 120,
+              zIndex: 1,
+              justifyContent: "center",
+              left: width / 2 - ICON_SIZE / 0.7 / 2,
+            }}
+            source={{ uri: authUserProfilePic }}
+          />
+        </View>
+        <View style={{ flex: 1 }}>
+          <View
+            style={{
+              flexDirection: "column",
+              flex: 1,
+              borderRadius: 8,
+              marginBottom: SPACING,
+              shadowColor: "rgba(0,0,0,1)",
+              shadowOffset: {
+                width: 0,
+                height: 10,
+              },
+              paddingTop: SPACING,
+              shadowOpacity: 1,
+              shadowRadius: 10,
+            }}
+          >
+            <View style={{ width: "100%", top: 370 }}>
+              <TouchableOpacity
+                onPress={() => {
+                  changeProfilePhoto();
+                }}
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.3)",
+                  left: 30,
+                  width: width - 60,
+                  borderRadius: 10,
+                  marginBottom: 20,
+                  marginTop: 20,
+                }}
+              >
+                <Text style={styles.buttonText}>Change Profile Photo</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  changeTheme();
+                }}
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.3)",
+                  left: 30,
+                  width: width - 60,
+                  borderRadius: 10,
+                  marginBottom: 20,
+                }}
+              >
+                <Text style={styles.buttonText}>Change App Theme</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {}}
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.3)",
+                  left: 30,
+                  width: width - 60,
+                  borderRadius: 10,
+                  marginBottom: 20,
+                }}
+              >
+                <Text style={styles.buttonText}>Suggestions?</Text>
+              </TouchableOpacity>
+            </View>
+            <View>
+              <DialogInput
+                isDialogVisible={dialogVisible}
+                title={"Change Profile Photo"}
+                message={"Please paste image link.\nLeave blank to reset."}
+                hintInput={profilePic}
+                submitInput={(inputText) => {
+                  console.log("Image link input is: " + inputText);
+                  const isHyperLink = new RegExp(
+                    "^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"
+                  );
+                  const isImageFile = new RegExp(
+                    "[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"
+                  );
+                  if (inputText == "" || typeof inputText === "undefined") {
+                    //Sets profile photo to default photo
+                    authUser.ref.update({
+                      user_profile_photo: authUserProfilePic,
+                    });
+                    authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
+                    setProfilePic(authUserProfilePic);
+                    setDialogVisible(false);
+                  } else if (inputText === profilePic) {
+                    alert("Please input a NEW image link.");
+                    console.log("Image link is identical to current link.");
+                  } else if (
+                    inputText.match(isHyperLink) &&
+                    inputText.match(isImageFile)
+                  ) {
+                    console.log("Valid input received: " + inputText);
+                    // Sets new profile photo URL to input then, updates global variable
+                    authUser.ref.update({ user_profile_photo: inputText });
+                    authUserProfilePic = inputText;
+                    setProfilePic(authUserProfilePic);
+                    //Doesn't update the snapshot though
+                    setDialogVisible(false);
+                  } else {
+                    console.log("Invalid link inserted: " + inputText);
+                    alert("Please enter a valid image link.");
+                  }
+                }}
+                closeDialog={() => {
+                  setDialogVisible(false);
+                }}
+              ></DialogInput>
+            </View>
+          </View>
+        </View>
+      </View>
       <Image
         style={{
-          width: ICON_SIZE / 0.7,
-          height: ICON_SIZE / 0.7,
           position: "absolute",
-          resizeMode: "cover",
-          borderRadius: ICON_SIZE,
-          top: 120,
-          zIndex: 1,
-          justifyContent: "center",
-          left: width / 2 - ICON_SIZE / 0.7 / 2,
+          transform: [{ translateX: -15 }],
+          zIndex: -1,
         }}
-        source={{ uri: authUserProfilePic }}
+        resizeMode="contain"
+        source={require("./images/background9.png")}
+        blurRadius={0}
       />
-      </View>
-      <View style={{flex:1}}>
-      <View
-        style={{
-          flexDirection: "column",
-          flex: 1,
-          borderRadius: 8,
-          marginBottom: SPACING,
-          shadowColor: "rgba(0,0,0,1)",
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          paddingTop: SPACING,
-          shadowOpacity: 1,
-          shadowRadius: 10,
-        }}
-      >
-        <View style={{ width: "100%",top:370 }}>
-            <TouchableOpacity
-              onPress={() => {
-                changeProfilePhoto();
-              }}
-              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20,marginTop:20}}
-            >
-              <Text style={styles.buttonText}>Change Profile Photo</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                changeTheme();
-              }}
-              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}
-            >
-              <Text style={styles.buttonText}>Change App Theme</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => {}}
-            style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}>
-              <Text style={styles.buttonText}>Suggestions?</Text>
-            </TouchableOpacity>
-        </View>
-        <View>
-          <DialogInput
-            isDialogVisible={dialogVisible}
-            title={"Change Profile Photo"}
-            message={"Please paste image link.\nLeave blank to reset."}
-            hintInput={profilePic}
-            submitInput={(inputText) => {
-              console.log("Image link input is: " + inputText);
-              const isHyperLink = new RegExp(
-                "^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"
-              );
-              const isImageFile = new RegExp(
-                "[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"
-              );
-              if (inputText == "" || typeof inputText === "undefined") {
-                //Sets profile photo to default photo
-                authUser.ref.update({ user_profile_photo: authUserProfilePic });
-                authUserProfilePic = defaultProfilePic; //Update locally because update() doesn't update the snapshot
-                setProfilePic(authUserProfilePic);
-                setDialogVisible(false);
-              } else if (inputText === profilePic) {
-                alert("Please input a NEW image link.");
-                console.log("Image link is identical to current link.");
-              } else if (
-                inputText.match(isHyperLink) &&
-                inputText.match(isImageFile)
-              ) {
-                console.log("Valid input received: " + inputText);
-                // Sets new profile photo URL to input then, updates global variable
-                authUser.ref.update({ user_profile_photo: inputText });
-                authUserProfilePic = inputText;
-                setProfilePic(authUserProfilePic);
-                //Doesn't update the snapshot though
-                setDialogVisible(false);
-              } else {
-                console.log("Invalid link inserted: " + inputText);
-                alert("Please enter a valid image link.");
-              }
-            }}
-            closeDialog={() => {
-              setDialogVisible(false);
-            }}
-          ></DialogInput>
-        </View>
-      </View>
-        
-      </View>
-      </View>
-        <Image
-        style={{ position: "absolute", transform: [{ translateX: -15 }],zIndex:-1}}
-          resizeMode="contain"
-          source={require("./images/background9.png")}
-          blurRadius={0}
-        />
     </View>
   );
 };

@@ -63,7 +63,7 @@ const msg = {
   body: "Emergency Message Has Been Sent", // (required)
   data: { data: "goes here" }, // (optional) any data that is sent is stored in the push notification
 };
-const sendToFirestore = (text, msg,location) => {
+const sendToFirestore = (text, msg, location) => {
   // send message to firestore
   firebase // firebase
     .firestore() // firestore
@@ -163,18 +163,14 @@ export default function EmergencyPage() {
         style={{ flex: 1 }}
       >
         {createTopBar(10, navigation)}
-        <View style={{height:50}}>
-        <Text>Location</Text>
-        <TouchableOpacity
-          style={{height: 30, width: 60 }}
-          activeOpacity={0.9}
-          
-        >
-        
-            
+        <View style={{ height: 50 }}>
+          <Text>Location</Text>
+          <TouchableOpacity
+            style={{ height: 30, width: 60 }}
+            activeOpacity={0.9}
+          >
             <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
-          
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
         <View style={{ padding: 10, marginBottom: 20, top: 60 }}>
           <TextInput
@@ -192,7 +188,8 @@ export default function EmergencyPage() {
             color="#415A77"
             // when clicked data is send to firestore database
             onPress={() => {
-              sendToFirestore(text, msg,isSwitchOn?getLocationAsync():""), setText("");
+              sendToFirestore(text, msg, isSwitchOn ? getLocationAsync() : ""),
+                setText("");
             }} // on press
           />
         </View>

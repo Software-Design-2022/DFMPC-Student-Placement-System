@@ -18,7 +18,7 @@ import {
   Button,
   ScrollView,
   Linking,
-  LogBox
+  LogBox,
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
 import { LinearGradient } from "expo-linear-gradient";
@@ -72,7 +72,7 @@ const Notifications = () => {
         }}
       >
         <View
-         key={item.time}
+          key={item.time}
           style={{
             height: 100,
             backgroundColor: "rgba(9,38,66,0.75)",

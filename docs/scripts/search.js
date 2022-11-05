@@ -1,12 +1,12 @@
 /* global document */
 
-const searchId = 'LiBfqbJVcV';
-const searchHash = '#' + searchId;
-const searchContainer = document.querySelector('#PkfLWpAbet');
-const searchWrapper = document.querySelector('#iCxFxjkHbP');
-const searchCloseButton = document.querySelector('#VjLlGakifb');
-const searchInput = document.querySelector('#vpcKVYIppa');
-const resultBox = document.querySelector('#fWwVHRuDuN');
+const searchId = "LiBfqbJVcV";
+const searchHash = "#" + searchId;
+const searchContainer = document.querySelector("#PkfLWpAbet");
+const searchWrapper = document.querySelector("#iCxFxjkHbP");
+const searchCloseButton = document.querySelector("#VjLlGakifb");
+const searchInput = document.querySelector("#vpcKVYIppa");
+const resultBox = document.querySelector("#fWwVHRuDuN");
 
 function showResultText(text) {
   resultBox.innerHTML = `<span class="search-result-c-text">${text}</span>`;
@@ -23,15 +23,15 @@ function hideSearch() {
   window.onhashchange = null;
 
   if (searchContainer) {
-    searchContainer.style.display = 'none';
+    searchContainer.style.display = "none";
   }
 }
 
 function listenCloseKey(event) {
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     hideSearch();
     // eslint-disable-next-line no-undef
-    window.removeEventListener('keyup', listenCloseKey);
+    window.removeEventListener("keyup", listenCloseKey);
   }
 }
 
@@ -56,9 +56,9 @@ function showSearch() {
   }
 
   if (searchContainer) {
-    searchContainer.style.display = 'flex';
+    searchContainer.style.display = "flex";
     // eslint-disable-next-line no-undef
-    window.addEventListener('keyup', listenCloseKey);
+    window.addEventListener("keyup", listenCloseKey);
   }
 
   if (searchInput) {
@@ -71,9 +71,10 @@ async function fetchAllData() {
   const { hostname, protocol, port } = location;
 
   // eslint-disable-next-line no-undef
-  const base = protocol + '//' + hostname + (port !== '' ? ':' + port : '') + baseURL;
+  const base =
+    protocol + "//" + hostname + (port !== "" ? ":" + port : "") + baseURL;
   // eslint-disable-next-line no-undef
-  const url = new URL('data/search.json', base);
+  const url = new URL("data/search.json", base);
   const result = await fetch(url);
   const { list } = await result.json();
 
@@ -85,8 +86,8 @@ function onClickSearchItem(event) {
   const target = event.currentTarget;
 
   if (target) {
-    const href = target.getAttribute('href') || '';
-    let elementId = href.split('#')[1] || '';
+    const href = target.getAttribute("href") || "";
+    let elementId = href.split("#")[1] || "";
     let element = document.getElementById(elementId);
 
     if (!element) {
@@ -95,7 +96,7 @@ function onClickSearchItem(event) {
     }
 
     if (element) {
-      setTimeout(function() {
+      setTimeout(function () {
         // eslint-disable-next-line no-undef
         bringElementIntoView(element); // defined in core.js
       }, 100);
@@ -104,17 +105,19 @@ function onClickSearchItem(event) {
 }
 
 function buildSearchResult(result) {
-  let output = '';
+  let output = "";
 
   for (const res of result) {
     const { title, description } = res.item;
 
-    const link = res.item.link.replace('<a href="', '').replace(/">.*/, '');
+    const link = res.item.link.replace('<a href="', "").replace(/">.*/, "");
 
     output += `
     <a onclick="onClickSearchItem(event)" href="${link}" class="search-result-item">
       <div class="search-result-item-title">${title}</div>
-      <div class="search-result-item-p">${description || 'No description available.'}</div>
+      <div class="search-result-item-p">${
+        description || "No description available."
+      }</div>
     </a>
     `;
   }
@@ -130,7 +133,7 @@ function getSearchResult(list, keys, searchKey) {
     distance: 100,
     maxPatternLength: 32,
     minMatchCharLength: 1,
-    keys: keys
+    keys: keys,
   };
 
   const options = { ...defaultOptions };
@@ -153,7 +156,7 @@ function getSearchResult(list, keys, searchKey) {
 function debounce(func, wait, immediate) {
   let timeout;
 
-  return function() {
+  return function () {
     const args = arguments;
 
     clearTimeout(timeout);
@@ -176,29 +179,29 @@ let searchData;
 
 async function search(event) {
   const value = event.target.value;
-  const keys = ['title', 'description'];
+  const keys = ["title", "description"];
 
   if (!resultBox) {
-    console.error('Search result container not found');
+    console.error("Search result container not found");
 
     return;
   }
 
   if (!value) {
-    showResultText('Type anything to view search result');
+    showResultText("Type anything to view search result");
 
     return;
   }
 
   if (!searchData) {
-    showResultText('Loading...');
+    showResultText("Loading...");
 
     try {
       // eslint-disable-next-line require-atomic-updates
       searchData = await fetchAllData();
     } catch (e) {
       console.log(e);
-      showResultText('Failed to load result.');
+      showResultText("Failed to load result.");
 
       return;
     }
@@ -207,7 +210,7 @@ async function search(event) {
   const result = getSearchResult(searchData, keys, value);
 
   if (!result.length) {
-    showResultText('No result found! Try some different combination.');
+    showResultText("No result found! Try some different combination.");
 
     return;
   }
@@ -217,31 +220,31 @@ async function search(event) {
 }
 
 function onDomContentLoaded() {
-  const searchButton = document.querySelectorAll('.search-button');
+  const searchButton = document.querySelectorAll(".search-button");
   const debouncedSearch = debounce(search, 300);
 
   if (searchCloseButton) {
-    searchCloseButton.addEventListener('click', hideSearch);
+    searchCloseButton.addEventListener("click", hideSearch);
   }
 
   if (searchButton) {
-    searchButton.forEach(function(item) {
-      item.addEventListener('click', showSearch);
+    searchButton.forEach(function (item) {
+      item.addEventListener("click", showSearch);
     });
   }
 
   if (searchContainer) {
-    searchContainer.addEventListener('click', hideSearch);
+    searchContainer.addEventListener("click", hideSearch);
   }
 
   if (searchWrapper) {
-    searchWrapper.addEventListener('click', function(event) {
+    searchWrapper.addEventListener("click", function (event) {
       event.stopPropagation();
     });
   }
 
   if (searchInput) {
-    searchInput.addEventListener('keyup', debouncedSearch);
+    searchInput.addEventListener("keyup", debouncedSearch);
   }
 
   // eslint-disable-next-line no-undef
@@ -251,10 +254,10 @@ function onDomContentLoaded() {
 }
 
 // eslint-disable-next-line no-undef
-window.addEventListener('DOMContentLoaded', onDomContentLoaded);
+window.addEventListener("DOMContentLoaded", onDomContentLoaded);
 
 // eslint-disable-next-line no-undef
-window.addEventListener('hashchange', function() {
+window.addEventListener("hashchange", function () {
   // eslint-disable-next-line no-undef
   if (window.location.hash === searchHash) {
     showSearch();
