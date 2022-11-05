@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // // import MicRecorder from 'mic-recorder-to-mp3';
 // // import Button from '@material-ui/core/Button';
@@ -20,11 +19,10 @@
 //   borderRadius:'50px'
 // }
 
-// const Mp3Recorder = new MicRecorder({ 
+// const Mp3Recorder = new MicRecorder({
 //     bitRate: 64 ,
 //     prefix: "data:audio/wav;base64,",
 // });
-
 
 // class VoiceRecorder extends React.Component {
 //   constructor(props){
@@ -35,7 +33,6 @@
 //       isBlocked: false,
 //     };
 //   }
-
 
 //   start = () => {
 //     if (this.state.isBlocked) {
@@ -74,22 +71,19 @@
 //     );
 //   }
 
-
 //   render(){
 //     return (
 //       <View>
-      
+
 //           <Container maxWidth="sm" style={main}>
 //             <Button variant="contained" style={record} color="primary"  onClick={this.start} disabled={this.state.isRecording}><MicIcon/></Button>
 //             <Button variant="contained" style={stop} color="primary" onClick={this.stop} disabled={!this.state.isRecording}><MicOffIcon /></Button>
 //           </Container>
 //           <audio src={this.state.blobURL} controls="controls" />
-        
+
 //       </View>
 //     );
 //   }
 // }
-
-
 
 // export default VoiceRecorder;

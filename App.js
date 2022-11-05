@@ -14,9 +14,8 @@ import Notifications from "./Screens/Notifications";
 import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
 import LoginMicrosoft from "./Screens/LoginMicrosoft";
-import { Doctors } from "./Screens/Doctors"
+import { Doctors } from "./Screens/Doctors";
 import VoiceRecorder from "./Screens/VoiceRecorder";
-
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -31,7 +30,7 @@ function App() {
             component={SnazzyLogin}
           />
         }
-        
+
         <Stack.Screen
           name="Schedule"
           component={Schedule}
@@ -42,12 +41,12 @@ function App() {
           component={Dashboard}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Doctors"
           component={Doctors}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="LoginMicrosoft"
           component={LoginMicrosoft}
           options={{ headerShown: false }}

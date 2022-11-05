@@ -15,13 +15,11 @@ const SPACING = 20;
 const ICON_SIZE = 33;
 const { width, height } = Dimensions.get("screen");
 
-
-
 //function used to create top forehead bar on every page of app
 export function createTopBar(T, show) {
   //decides if shortcuts visible or not
   const [shouldShow, setShouldShow] = useState(false);
-  const navigation=useNavigation();
+  const navigation = useNavigation();
   var marginB = 30;
   //if on IOS change styling
   if (Platform.OS == "ios") {
@@ -30,7 +28,7 @@ export function createTopBar(T, show) {
   }
   return (
     <View
-    //main view
+      //main view
       style={{
         height: 50,
         zIndex: 1,
@@ -45,8 +43,9 @@ export function createTopBar(T, show) {
     >
       <View>
         <View
-        //View with logo in top left hand corner
-         style={{ backgroundColor: "white" }}>
+          //View with logo in top left hand corner
+          style={{ backgroundColor: "white" }}
+        >
           <Image
             style={{
               backgroundColor: "rgba(255,255,255,0)",
@@ -61,7 +60,7 @@ export function createTopBar(T, show) {
           />
         </View>
         <TouchableHighlight
-        //create touchable menu button to show and hide shortcuts
+          //create touchable menu button to show and hide shortcuts
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
@@ -88,7 +87,7 @@ export function createTopBar(T, show) {
           />
         </TouchableHighlight>
         <TouchableHighlight
-        //create back button to go back to previous page
+          //create back button to go back to previous page
           underlayColor="rgba(0,0,0,0.0)"
           style={{
             flex: 1,
@@ -118,7 +117,7 @@ export function createTopBar(T, show) {
       {shouldShow ? (
         <View>
           <TouchableHighlight
-          //creates hidden button for navigation to settings view
+            //creates hidden button for navigation to settings view
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -145,7 +144,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
-          //creates hidden button for navigation to emergency page
+            //creates hidden button for navigation to emergency page
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -160,7 +159,6 @@ export function createTopBar(T, show) {
               navigation.navigate("EmergencyPage");
             }}
           >
-            
             <Image
               style={{
                 width: ICON_SIZE / 0.9,
@@ -172,7 +170,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
-          //creates hidden button for navigation to dashboard
+            //creates hidden button for navigation to dashboard
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -199,7 +197,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
-          //creates hidden button for navigation to signout
+            //creates hidden button for navigation to signout
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -226,7 +224,7 @@ export function createTopBar(T, show) {
             />
           </TouchableHighlight>
           <TouchableHighlight
-          //creates hidden button for navigation to notifications
+            //creates hidden button for navigation to notifications
             underlayColor="rgba(0,0,0,0.0)"
             style={{
               flex: 1,
@@ -257,4 +255,3 @@ export function createTopBar(T, show) {
     </View>
   );
 }
-

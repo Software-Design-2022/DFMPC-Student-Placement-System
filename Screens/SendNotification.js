@@ -98,7 +98,7 @@ export async function EventNotification() {
     const timeLeft = date1.getTime() - date2.getTime();
     const daysLeft = timeLeft / (1000 * 3600 * 24);
     // console.log(date1)
-  //  console.log(Math.floor(daysLeft));
+    //  console.log(Math.floor(daysLeft));
     if (Math.floor(daysLeft) >= 0) {
       if (Math.floor(daysLeft) == 1) {
         const msg = {

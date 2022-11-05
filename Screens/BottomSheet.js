@@ -74,8 +74,8 @@ const BottomSheet = () => {
             icon="close"
             style={styles.closeIcon}
             onPress={() => {
-              setOpen(false)
-              showEvent=false
+              setOpen(false);
+              showEvent = false;
             }}
           />
         </View>

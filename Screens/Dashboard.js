@@ -25,11 +25,10 @@ import "./global";
 import PropTypes from "prop-types";
 import { WebView } from "react-native-webview";
 import { createTopBar } from "../HelperFunctions";
-import {EventNotification} from "./SendNotification"
+import { EventNotification } from "./SendNotification";
 import { getList } from "./notificationHelper";
 import { setNotificationList } from "./SetGlobal";
 import { set } from "react-native-reanimated";
-
 
 /**
  * @constant  {number}  buttonHeight
@@ -78,8 +77,7 @@ const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 //data to be displayed in the flatlist
 
-
-setNotificationList()
+setNotificationList();
 /**
  * @function EventNotification
  * @description This function will send a notification to the user when an event is created. Implemented by using the expo-notifications package.
@@ -374,9 +372,9 @@ class TwitterFeed extends Component {
         <View style={styles.webviewStyle}>
           <WebView
             style={{
-              backgroundColor:"rgba(0,0,0,0.0)",
-              top:0,
-              width:292,
+              backgroundColor: "rgba(0,0,0,0.0)",
+              top: 0,
+              width: 292,
             }}
             source={{ html: html }}
           />
@@ -516,7 +514,6 @@ const Dashboard = () => {
             borderRadius: 8,
             paddingRight: SPACING,
             marginLeft: SPACING / 2,
-            
           }}
         >
           <View style={{ flex: 1 }}>
@@ -561,20 +558,20 @@ const Dashboard = () => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Notifications")
+          navigation.navigate("Notifications");
         }}
       >
         <View
-         key={item.time}
+          key={item.time}
           style={{
             height: 65,
             backgroundColor: "rgba(0,0,0,0.1)",
             marginBottom: 10,
             margin: 5,
             borderRadius: 15,
-            borderWidth:2,
-            borderColor:"rgba(0,0,0,0.3)",
-            width:275
+            borderWidth: 2,
+            borderColor: "rgba(0,0,0,0.3)",
+            width: 275,
           }}
         >
           <Text
@@ -636,7 +633,6 @@ const Dashboard = () => {
     );
   };
 
-
   // second render function that renders the horizontal flatlist
   /**
    * @function renderHorizontalItem
@@ -666,27 +662,35 @@ const Dashboard = () => {
               marginTop: SPACING,
               marginLeft: SPACING / 2,
               flexDirection: "column",
-              height:640,
-              backgroundColor:'rgba(0,0,0,0)'
+              height: 640,
+              backgroundColor: "rgba(0,0,0,0)",
             }}
           >
-          <View style={{backgroundColor:'rgba(0,0,0,0)',borderRadius:20,height:70,left:0}}> 
-          <FlatList
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-          contentContainerStyle={{}}
-          data={notificationList}
-          renderItem={renderNotificationItem}
-          keyExtractor={(item) => item.id}
-          snapToInterval={285}
-          decelerationRate={1}
-          />
-          </View>
-          <TwitterFeed style={{marginBottom:10,marginTop:SPACING}}></TwitterFeed>
-
+            <View
+              style={{
+                backgroundColor: "rgba(0,0,0,0)",
+                borderRadius: 20,
+                height: 70,
+                left: 0,
+              }}
+            >
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                contentContainerStyle={{}}
+                data={notificationList}
+                renderItem={renderNotificationItem}
+                keyExtractor={(item) => item.id}
+                snapToInterval={285}
+                decelerationRate={1}
+              />
+            </View>
+            <TwitterFeed
+              style={{ marginBottom: 10, marginTop: SPACING }}
+            ></TwitterFeed>
           </View>
           <View
-          //responsible for bottom hotbar
+            //responsible for bottom hotbar
             style={{
               marginTop: SPACING,
               marginBottom: SPACING + 10,
@@ -694,10 +698,10 @@ const Dashboard = () => {
               borderTopRightRadius: 20,
               borderBottomRightRadius: 20,
               height: 36,
-              position:'absolute',
-              bottom:5,
-              left:SPACING-15,
-              width:285
+              position: "absolute",
+              bottom: 5,
+              left: SPACING - 15,
+              width: 285,
             }}
           >
             <FlatList
@@ -787,14 +791,14 @@ const Dashboard = () => {
                       style={{
                         width: AVATAR_SIZE,
                         height: AVATAR_SIZE,
-                        borderRadius: AVATAR_SIZE+20,
+                        borderRadius: AVATAR_SIZE + 20,
                         marginRight: SPACING / 2,
                         left: 0,
                         borderWidth: 0,
                         borderColor: "rgba(0,0,0,0.2)",
                         backgroundColor: "rgba(0,0,0,0)",
-                        transform:[{scaleX:1.1},{scaleY:1.1}],
-                        top:5
+                        transform: [{ scaleX: 1.1 }, { scaleY: 1.1 }],
+                        top: 5,
                       }}
                     />
                   </View>
@@ -851,10 +855,10 @@ const styles = StyleSheet.create({
   webviewStyle: {
     borderRadius: 20,
     height: 580,
-    backgroundColor:"rgba(0,0,0,0)",
-    top:0,
-    left:-3,
-    marginTop:SPACING/2
+    backgroundColor: "rgba(0,0,0,0)",
+    top: 0,
+    left: -3,
+    marginTop: SPACING / 2,
   },
 });
 export default Dashboard;

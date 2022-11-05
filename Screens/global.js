@@ -1,4 +1,3 @@
-
 /**Set global variables to handle user information
  * @param {string} authUserID - ID of user currently logged in
  * @param {string} authUserType - Type of user currently logged in
@@ -8,9 +7,8 @@
  * @param {string} authUserLastName - Last name of user currently logged in
  * @param {string} doctorsList - List of doctors
  * @param {string} notificationId - default ID of notification
- * 
+ *
  */
-
 
 global.authUserID = "";
 global.authUserRef = "";
@@ -20,7 +18,8 @@ global.defaultProfilePic = "./images/user.png";
 global.authName = "";
 global.authLastName = "";
 ("https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png");
-global.notificationList = [{
+global.notificationList = [
+  {
     id: 1,
     userID: 2,
     userName: authUserID,
@@ -30,11 +29,11 @@ global.notificationList = [{
     date: "14/10/2022",
     day: "Friday",
     body: "Notification sent at xx:xx:xx",
-}];
-global.MSuser={};
+  },
+];
+global.MSuser = {};
 global.authEmail = "";
-global.eventData=[{}];
-global.showEvent=false;
-global.doctorsList=[];
-global.notificationList=[];
-
+global.eventData = [{}];
+global.showEvent = false;
+global.doctorsList = [];
+global.notificationList = [];

@@ -1,26 +1,25 @@
 import { firebase } from "./firebase";
 
 export const multiply = (a, b) => {
-    return a * b;
-  };
-  
-  export const makeLowerCase = (string) => {
-    return string.toLowerCase();
-  };
-  
-  //function to get current date data from device and returns it as a date string
-  export function getCurrentDate() {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-  
-    return day + "-" + month + "-" + year;
-  }
+  return a * b;
+};
 
-  //function to find differences between date to determine if date should be kept
-export function difference(start)
-{
+export const makeLowerCase = (string) => {
+  return string.toLowerCase();
+};
+
+//function to get current date data from device and returns it as a date string
+export function getCurrentDate() {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth();
+  const year = today.getFullYear();
+
+  return day + "-" + month + "-" + year;
+}
+
+//function to find differences between date to determine if date should be kept
+export function difference(start) {
   let date = new Date();
   let date2 = new Date(start);
   let diff = Math.ceil((date2 - date) / (1000 * 3600 * 24));
@@ -45,16 +44,11 @@ export const LoginFirebase = () => {
           if (encrypted === password) {
             // compares entered password to the password for the corresponding user in the database
             setUserVariables(data); // so that we can keep track of who is logged in currenctly
-            
-            console.log(
-              "User authenticated sucessfully! Storing variables..."
-            );
+
+            console.log("User authenticated sucessfully! Storing variables...");
             navigation.navigate("Dashboard");
           } else {
-            showAlert(
-              "Password Error",
-              "Your email and password do not match"
-            );
+            showAlert("Password Error", "Your email and password do not match");
           }
         }
       });
@@ -63,8 +57,7 @@ export const LoginFirebase = () => {
       }
     });
 
-
-    return found;
+  return found;
 };
 export async function schedulePushNotification(msg, fromPage) {
   Notifications.setNotificationHandler({
@@ -85,23 +78,21 @@ export async function schedulePushNotification(msg, fromPage) {
   sentData(msg, fromPage);
 }
 
-
-export const sendToFirestore = (text, msg) => {  // send message to firestore 
-  firebase // firebase 
-    .firestore() // firestore 
-    .collection("panic_button") // collection 
-    .add({ // add 
+export const sendToFirestore = (text, msg) => {
+  // send message to firestore
+  firebase // firebase
+    .firestore() // firestore
+    .collection("panic_button") // collection
+    .add({
+      // add
       Location: JSON.stringify(location), // new firestore geopoint with latitude and longitude means
-      query: text, // query 
-      student_Number: "123456", // student number 
-      user_FirstName: authname, // user first name 
-      user_LastName: authlastName, // user last name 
+      query: text, // query
+      student_Number: "123456", // student number
+      user_FirstName: authname, // user first name
+      user_LastName: authlastName, // user last name
     })
     .then(() => {
-      Alert.alert("Emergency Message Saved"); // alert 
-      schedulePushNotification(msg,"Emergency Page"); // send notification 
-      
-
+      Alert.alert("Emergency Message Saved"); // alert
+      schedulePushNotification(msg, "Emergency Page"); // send notification
     });
 };
-

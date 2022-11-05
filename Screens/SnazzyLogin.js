@@ -89,7 +89,7 @@ const LoginFirebase = (email, password, navigation) => {
 
           if (encrypted === password) {
             // compares entered password to the password for the corresponding user in the database
-            
+
             setUserVariables(data); // so that we can keep track of who is logged in currenctly
             console.log("User authenticated sucessfully! Storing variables...");
             navigation.navigate("Dashboard");

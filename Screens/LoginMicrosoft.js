@@ -29,7 +29,6 @@ export function setUserVariables(data) {
   authUserProfilePic = authUser.child("user_profile_photo/").val();
   authUserRef = firebase.database().ref("/users") + "/" + authUserID + "/";
   console.log("User ID: " + authUserID + " authenticated.");
-  
 }
 
 export function retrieveUser() {
@@ -44,14 +43,10 @@ export function retrieveUser() {
           // compare entered email with current email on the snapshot
 
           setUserVariables(data); // so that we can keep track of who is logged in currenctly
-
-          
         }
       });
     });
-};
-
-
+}
 
 export default (props) => {
   const navigation = useNavigation(); //navigation between screens
@@ -68,7 +63,9 @@ export default (props) => {
   };
   return (
     //Microsoft button displayed for sign in
-    <MicrosoftLogin clientId={"2601b63e-4012-441c-a18d-d6d8e4cd6a29"} authCallback={authHandler} />
+    <MicrosoftLogin
+      clientId={"2601b63e-4012-441c-a18d-d6d8e4cd6a29"}
+      authCallback={authHandler}
+    />
   );
 };
-

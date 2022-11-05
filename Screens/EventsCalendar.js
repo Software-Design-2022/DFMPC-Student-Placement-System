@@ -23,11 +23,9 @@ import { Card, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import "./global";
-import {schedulePushNotification} from "./SendNotification"
+import { schedulePushNotification } from "./SendNotification";
 import { createTopBar } from "../HelperFunctions";
 import { LinearGradient } from "expo-linear-gradient";
-
-
 
 const { width, height } = Dimensions.get("screen");
 const SPACING = 20;
@@ -79,9 +77,6 @@ async function eventsData(onReceiveList) {
 
   onReceiveList(events);
 }
-
-
-
 
 const validateInput = (eventtext, notetext) => {
   let valid = true;
@@ -157,7 +152,7 @@ const EventsCalendar = () => {
         markedDay[item.start] = {
           startingDay: true,
           endingDay: true,
-          selected:true,
+          selected: true,
           marked: true,
           color: randomColor2,
           dotColor: "blue",
@@ -193,7 +188,6 @@ const EventsCalendar = () => {
     setDayData(data);
   };
 
-
   const [eventName, setEventName] = useState("");
   const [eventProgramme, setEventProgramme] = useState("");
   const [startDate, setStartDate] = useState(
@@ -204,7 +198,7 @@ const EventsCalendar = () => {
   );
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEnd, setSelectedEnd] = useState(new Date());
-/*   const [btnstart, setBtnStart] = useState(false);
+  /*   const [btnstart, setBtnStart] = useState(false);
   const [btnend, setBtnEnd] = useState(false); */
   const [modalVisible, setModalVisible] = useState(false);
   const [datePickerVisible, setDatePicker] = useState(false);
@@ -223,180 +217,229 @@ const EventsCalendar = () => {
           setModalVisible(false);
         }}
       >
-        
         <View style={styles.modalStyle}>
-        <LinearGradient
-        colors={[
-          " rgba(255,255,255,1)",
-          " rgba(235,235,235,1)",
-          "rgba(225,225,225,1)",
-        ]}
-        style={{flex:1,borderRadius:20}}>
-          <Text style={{ marginTop:20, fontSize: 30, top:0,fontWeight:'bold', textAlign: "center" ,color:"rgba(0,0,0,0.75)"}}>
-            Create Event
-          </Text>
-          <TextInput
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="   Title"
-            placeholderTextColor="white"
-            autoCapitalize="none"
-            onChangeText={(newText) => {
-              setEventName("   "+newText);
-            }}
-          />
-          <TextInput
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="   Program"
-            placeholderTextColor="white"
-            autoCapitalize="none"
-            onChangeText={(newText) => {
-              setEventProgramme("   "+newText);
-            }}
-          />
-          <Pressable
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "rgba(0, 0, 0, 0.75)" : "rgba(25,25,25,0.9)",
-              },
-              {
-                borderRadius: 10,
-                margin: 10,
-                flexDirection: "row",
-                marginTop: 60,
-                width:200,
-                left:60
-              },
+          <LinearGradient
+            colors={[
+              " rgba(255,255,255,1)",
+              " rgba(235,235,235,1)",
+              "rgba(225,225,225,1)",
             ]}
-            onPress={() => {
-              setDatePicker(true);
-            }}
+            style={{ flex: 1, borderRadius: 20 }}
           >
-            <Text style={{ margin: 30,color:'white' }}>Start</Text>
-            <Text style={{ left:100, marginBottom: 10, marginTop: 20,color:'white',position:'absolute' }}>
-              {startDate}
+            <Text
+              style={{
+                marginTop: 20,
+                fontSize: 30,
+                top: 0,
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "rgba(0,0,0,0.75)",
+              }}
+            >
+              Create Event
             </Text>
-            <Text style={{ left:100, marginBottom: 10, marginTop: 40,color:'white',position:'absolute' }}>
-              {"18:00"}
-            </Text>
-          </Pressable>
+            <TextInput
+              style={styles.input}
+              underlineColorAndroid="transparent"
+              placeholder="   Title"
+              placeholderTextColor="white"
+              autoCapitalize="none"
+              onChangeText={(newText) => {
+                setEventName("   " + newText);
+              }}
+            />
+            <TextInput
+              style={styles.input}
+              underlineColorAndroid="transparent"
+              placeholder="   Program"
+              placeholderTextColor="white"
+              autoCapitalize="none"
+              onChangeText={(newText) => {
+                setEventProgramme("   " + newText);
+              }}
+            />
+            <Pressable
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed
+                    ? "rgba(0, 0, 0, 0.75)"
+                    : "rgba(25,25,25,0.9)",
+                },
+                {
+                  borderRadius: 10,
+                  margin: 10,
+                  flexDirection: "row",
+                  marginTop: 60,
+                  width: 200,
+                  left: 60,
+                },
+              ]}
+              onPress={() => {
+                setDatePicker(true);
+              }}
+            >
+              <Text style={{ margin: 30, color: "white" }}>Start</Text>
+              <Text
+                style={{
+                  left: 100,
+                  marginBottom: 10,
+                  marginTop: 20,
+                  color: "white",
+                  position: "absolute",
+                }}
+              >
+                {startDate}
+              </Text>
+              <Text
+                style={{
+                  left: 100,
+                  marginBottom: 10,
+                  marginTop: 40,
+                  color: "white",
+                  position: "absolute",
+                }}
+              >
+                {"18:00"}
+              </Text>
+            </Pressable>
 
-          <Pressable
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "rgba(0, 0, 0, 0.75)" : "rgba(25,25,25,0.9)",
-              },
-              {
-                borderRadius: 10,
-                margin: 10,
-                flexDirection: "row",
-                width:200,
-                left:60
-              },
-            ]}
-            onPress={() => {
-              setDatePickerEnd(true);
-            }}
-          >
-            <Text style={{ margin: 30,color:'white' }}>End</Text>
-            <Text style={{ left:100, marginBottom: 10, marginTop: 20,color:'white',position:'absolute' }}>
-              {endDate}
-            </Text>
-            <Text style={{ left:100, marginBottom: 10, marginTop: 40,color:'white',position:'absolute' }}>
-              {"18:00"}
-            </Text>
-          </Pressable>
+            <Pressable
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed
+                    ? "rgba(0, 0, 0, 0.75)"
+                    : "rgba(25,25,25,0.9)",
+                },
+                {
+                  borderRadius: 10,
+                  margin: 10,
+                  flexDirection: "row",
+                  width: 200,
+                  left: 60,
+                },
+              ]}
+              onPress={() => {
+                setDatePickerEnd(true);
+              }}
+            >
+              <Text style={{ margin: 30, color: "white" }}>End</Text>
+              <Text
+                style={{
+                  left: 100,
+                  marginBottom: 10,
+                  marginTop: 20,
+                  color: "white",
+                  position: "absolute",
+                }}
+              >
+                {endDate}
+              </Text>
+              <Text
+                style={{
+                  left: 100,
+                  marginBottom: 10,
+                  marginTop: 40,
+                  color: "white",
+                  position: "absolute",
+                }}
+              >
+                {"18:00"}
+              </Text>
+            </Pressable>
 
-          <View
-            style={{
-              marginBottom: 10,
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <DateTimePickerModal
-              date={selectedDate}
-              isVisible={datePickerVisible}
-              mode="date"
-              onConfirm={(date) => {
-                setSelectedDate(date), setDatePicker(false);
+            <View
+              style={{
+                marginBottom: 10,
+                flex: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <DateTimePickerModal
+                date={selectedDate}
+                isVisible={datePickerVisible}
+                mode="date"
+                onConfirm={(date) => {
+                  setSelectedDate(date), setDatePicker(false);
                   let datestr = selectedDate.toISOString().split("T")[0];
                   //console.log(datestr)
                   setStartDate(datestr);
-                
-              }}
-              onCancel={() => {
-                setDatePicker(false);
-              }}
-            />
-             <DateTimePickerModal
-              date={selectedEnd}
-              isVisible={EnddatePickerVisible}
-              mode="date"
-              onConfirm={(date) => {
-                setSelectedEnd(date), setDatePickerEnd(false);
+                }}
+                onCancel={() => {
+                  setDatePicker(false);
+                }}
+              />
+              <DateTimePickerModal
+                date={selectedEnd}
+                isVisible={EnddatePickerVisible}
+                mode="date"
+                onConfirm={(date) => {
+                  setSelectedEnd(date), setDatePickerEnd(false);
 
                   let datestr = selectedEnd.toISOString().split("T")[0];
                   //console.log(datestr)
                   setEndDate(datestr);
-               
-              }}
-              onCancel={() => {
-                setDatePickerEnd(false);
-              }}
-            />
-          </View>
+                }}
+                onCancel={() => {
+                  setDatePickerEnd(false);
+                }}
+              />
+            </View>
 
-          <View style={{ flexDirection: "row" }}>
-            <Pressable
-              style={({ pressed }) => [
-                styles.button,
-                styles.buttonClose,
-                {
-                  marginRight: 40,
-                  width: width / 3,
-                  left: 20,
-                  bottom: 30,
-                  
-                  backgroundColor: pressed
-                    ? "rgba(128,0,0,0.5)"
-                    : "rgba(128,18,0,0.75)",
-                },
-              ]}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text
+            <View style={{ flexDirection: "row" }}>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.buttonClose,
+                  {
+                    marginRight: 40,
+                    width: width / 3,
+                    left: 20,
+                    bottom: 30,
+
+                    backgroundColor: pressed
+                      ? "rgba(128,0,0,0.5)"
+                      : "rgba(128,18,0,0.75)",
+                  },
+                ]}
                 onPress={() => setModalVisible(false)}
-                style={[styles.textStyle]}
               >
-                Close
-              </Text>
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => [
-                styles.button,
-                styles.buttonClose,
-                {
-                  width: width / 3,
-                  left: 30,
-                  right: 30,
-                  bottom: 30,
-                  backgroundColor: pressed ? "rgba(28,56,107,1)" : "rgba(28,56,107,1)",
-                },
-              ]}
-              onPress={() => {
-                sendToFirestore(eventName, eventProgramme, startDate, endDate);
-              }}
-            >
-              <Text style={[styles.textStyle]}>Save</Text>
-            </Pressable>
-          </View>
+                <Text
+                  onPress={() => setModalVisible(false)}
+                  style={[styles.textStyle]}
+                >
+                  Close
+                </Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  styles.buttonClose,
+                  {
+                    width: width / 3,
+                    left: 30,
+                    right: 30,
+                    bottom: 30,
+                    backgroundColor: pressed
+                      ? "rgba(28,56,107,1)"
+                      : "rgba(28,56,107,1)",
+                  },
+                ]}
+                onPress={() => {
+                  sendToFirestore(
+                    eventName,
+                    eventProgramme,
+                    startDate,
+                    endDate
+                  );
+                }}
+              >
+                <Text style={[styles.textStyle]}>Save</Text>
+              </Pressable>
+            </View>
           </LinearGradient>
         </View>
-
       </Modal>
 
       <View>
@@ -454,14 +497,14 @@ var styles = StyleSheet.create({
     backgroundColor: "rgba(30,81,123,1)",
   },
   input: {
-    top:20,
+    top: 20,
     margin: 15,
     height: 50,
     borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 2,
     backgroundColor: "rgba(28,56,107,0.9)",
-    borderRadius:10,
-    color:'white',
+    borderRadius: 10,
+    color: "white",
   },
   button: {
     marginTop: 100,
@@ -488,8 +531,8 @@ var styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 80,
     backgroundColor: "rgba(120,120,120,0)",
-    borderRadius:25,
-    borderWidth:5,
+    borderRadius: 25,
+    borderWidth: 5,
     borderColor: "rgba(0,0,0,0.25)",
   },
   closeButton: {
@@ -585,7 +628,7 @@ var styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: "black",
   },
- 
+
   textStyle: {
     color: "white",
     fontWeight: "bold",
