@@ -7,10 +7,15 @@ import {
   TouchableOpacity,
   ScrollView,
   LogBox,
+  Image,
+  Dimensions,
 } from "react-native";
 import { getList } from "./ListApi";
-
+import { useNavigation } from "@react-navigation/core";
+import { createTopBar } from "../HelperFunctions";
+const { width, height } = Dimensions.get("screen");
 const EmergencyProtocols = () => {
+  const navigation = useNavigation();
   // this useState will be used to set the current state of our data
   // sets protocolList to the dat from database (firestore)
   const [state, setState] = useState({
@@ -48,6 +53,14 @@ const EmergencyProtocols = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {createTopBar(10, navigation)}
+      <View style={{ position: "absolute" }}>
+        <Image
+          resizeMode="contain"
+          source={require("./images/background9.png")}
+          blurRadius={0}
+        />
+      </View>
       <View style={styles.container}>
         <ScrollView style={styles.container}>
           {
@@ -97,12 +110,12 @@ const EmergencyProtocols = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 30,
     marginBottom: 20,
-    marginRight: 20,
-    marginLeft: 20,
+    marginRight: 5,
+    marginLeft: 5,
     flex: 1,
-    backgroundColor: "white",
+    textAlign: "center",
   },
   header: {
     flexDirection: "row",
@@ -110,29 +123,29 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: "row",
-    borderRadius: 5,
-    backgroundColor: "rgba(192,192,192,0.2)",
+    borderRadius: 20,
+    backgroundColor: "rgba(255,255,255,1)",
     padding: 10,
-
     marginTop: 10,
     marginBottom: 10,
-    marginRight: 2,
-    marginLeft: 2,
+    marginRight: 0,
+    marginLeft: 0,
     borderWidth: 2,
-    borderColor: "rgba(192,192,192,0.3)",
+    borderColor: "rgba(192,192,192,0.7)",
+    width: width-30,
   },
   itemshow: {
     flexDirection: "row",
     borderRadius: 5,
-    backgroundColor: "rgba(63, 130, 109,0.2)",
+    backgroundColor: "rgba(255, 255, 255,0.9)",
     padding: 10,
-
+    borderRadius:20,
     marginTop: 10,
     marginBottom: 10,
     marginRight: 2,
     marginLeft: 2,
-    borderWidth: 2,
-    borderColor: "rgba(192,192,192,0.3)",
+    borderWidth: 4,
+    borderColor: "rgba(0,0,128,1)",
   },
   itemText: {
     fontSize: 16,
@@ -158,15 +171,17 @@ const styles = StyleSheet.create({
   itemTextshow: {
     fontSize: 16,
     fontWeight: "500",
-    color: "rgb(36, 123, 160)",
+    color: "rgb(0, 0, 0)",
+    textAlign: "center",
   },
   inneritem: {
     borderRadius: 5,
-    backgroundColor: "rgba(181, 177, 178,0.2)",
+    backgroundColor: "rgba(255, 255, 255,1)",
     padding: 10,
     margin: 2,
     borderWidth: 2,
-    borderColor: "rgba(192,192,192,0.3)",
+    borderColor: "rgba(0,0,0,0.1)",
+    borderRadius:20,
   },
   inneritemText: {
     fontSize: 16,
@@ -180,13 +195,14 @@ const styles = StyleSheet.create({
     maxHeight: 0,
   },
   content_show: {
-    backgroundColor: "rgba(221, 240, 255,0.2)",
+    backgroundColor: "rgba(221, 240, 255,0.7)",
     color: "black",
     marginBottom: 10,
     marginTop: 10,
     padding: 10,
     opacity: 1,
     maxHeight: 9999,
+    borderRadius:20,
   },
 });
 export default EmergencyProtocols;

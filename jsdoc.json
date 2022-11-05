@@ -1,0 +1,19 @@
+{
+  "source": {
+    "include": ["Screens"],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": ["plugins/markdown"],
+
+  "opts": {
+    "encoding": "utf8",
+    "readme": "./README.md",
+    "recurse": true,
+    "destination": "./docs/",
+    "template": "./node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "theme": "dark"
+    }
+  }
+}

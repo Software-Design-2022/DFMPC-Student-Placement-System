@@ -11,11 +11,14 @@ import {
   TouchableOpacity,
   FlatList,
   TouchableHighlight,
+  Dimensions,
 } from "react-native";
 import { Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DialogInput from "react-native-dialog-input";
-import "../global";
+import "./global";
+import { createTopBar } from "../HelperFunctions";
+const { width, height } = Dimensions.get("screen");
 
 const buttonHeight = 50;
 const textPos = buttonHeight / 2;
@@ -49,9 +52,28 @@ const Settings = () => {
     setDialogVisible(true);
     console.log("Profile Photo button pressed");
   };
-
-  const renderItem = ({ item }) => {
-    return (
+  
+  return (
+    <View style={{flex:1}}>
+      {createTopBar(10, navigation)}
+      <View style={{flex:1,top:-60}}>
+        <View style={{zIndex:1}}>
+      <Image
+        style={{
+          width: ICON_SIZE / 0.7,
+          height: ICON_SIZE / 0.7,
+          position: "absolute",
+          resizeMode: "cover",
+          borderRadius: ICON_SIZE,
+          top: 120,
+          zIndex: 1,
+          justifyContent: "center",
+          left: width / 2 - ICON_SIZE / 0.7 / 2,
+        }}
+        source={{ uri: authUserProfilePic }}
+      />
+      </View>
+      <View style={{flex:1}}>
       <View
         style={{
           flexDirection: "column",
@@ -68,18 +90,12 @@ const Settings = () => {
           shadowRadius: 10,
         }}
       >
-        <View style={{ width: "100%", flex: 1 }}>
-          <LinearGradient
-            colors={[
-              "rgba(30,55,108,0.1)",
-              " rgba(30,55,108,0.2)",
-              "rgba(30,55,108,0.1)",
-            ]}
-          >
+        <View style={{ width: "100%",top:370 }}>
             <TouchableOpacity
               onPress={() => {
                 changeProfilePhoto();
               }}
+              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20,marginTop:20}}
             >
               <Text style={styles.buttonText}>Change Profile Photo</Text>
             </TouchableOpacity>
@@ -88,14 +104,15 @@ const Settings = () => {
               onPress={() => {
                 changeTheme();
               }}
+              style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}
             >
               <Text style={styles.buttonText}>Change App Theme</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => {}}
+            style={{backgroundColor:'rgba(0,0,0,0.3)',left:30,width:width-60,borderRadius:10,marginBottom:20}}>
               <Text style={styles.buttonText}>Suggestions?</Text>
             </TouchableOpacity>
-          </LinearGradient>
         </View>
         <View>
           <DialogInput
@@ -142,71 +159,15 @@ const Settings = () => {
           ></DialogInput>
         </View>
       </View>
-    );
-  };
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={{
-          zIndex: 1,
-          top: 0,
-          left: 10,
-          backgroundColor: "rgba(255,255,255,0.1)",
-          borderRadius: 7,
-          position: "absolute",
-        }}
-        onPress={() => {
-          navigation.navigate("Dashboard");
-        }}
-      >
-        <Text style={{ fontSize: 25, color: "rgba(0,0,0,0.7)" }}> {back} </Text>
-      </TouchableOpacity>
-      <Image
-        style={{
-          width: ICON_SIZE,
-          height: ICON_SIZE,
-          resizeMode: "cover",
-          right: -10,
-          top: 10,
-          borderRadius: ICON_SIZE,
-          marginRight: SPACING / 2,
-          borderWidth: 3,
-          borderColor: "rgba(0,0,0,0.1)",
-          backgroundColor: "rgba(0,0,0,0.4)",
-          zIndex: 1,
-          shadowOffset: {
-            height: 10,
-            shadowColor: "black",
-            flex: 1,
-          },
-          shadowOpacity: 1,
-          shadowRadius: 10,
-        }}
-        source={{ uri: authUserProfilePic }}
-      />
-      <View
-        style={{
-          flex: 2,
-          marginTop: 25,
-          width: "100%",
-          backgroundColor: "rgba(30,55,108,0)",
-          zIndex: 1,
-        }}
-      >
-        <FlatList
-          contentContainerStyle={{}}
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+        
       </View>
-      <View style={{ position: "absolute", transform: [{ translateX: -15 }] }}>
+      </View>
         <Image
+        style={{ position: "absolute", transform: [{ translateX: -15 }],zIndex:-1}}
           resizeMode="contain"
-          source={require("./images/background6.png")}
+          source={require("./images/background9.png")}
           blurRadius={0}
         />
-      </View>
     </View>
   );
 };
@@ -214,12 +175,8 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "rgba(28,56,107,255)",
-    width: "100%",
     zIndex: 1,
-    top: 70,
   },
   linearGradient: {
     height: AVATAR_SIZE,

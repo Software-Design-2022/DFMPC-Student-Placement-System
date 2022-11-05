@@ -1,11 +1,10 @@
-# DFMPC-Student-Placement-System :student: :woman_student: :stethoscope:
+# DFMPC-Student-Placement-System
 
 ## Project Description 📃
 
 - Student Mobile App(SPS) - A student app which integrates with the student Placement System. The app will need to accomodate any student needs and any relevant information on the system needs to be presented to students via app. For example, the app may need to present the student with their schedule for a specific Block.
 
->![Screenshot_1666945911](https://user-images.githubusercontent.com/67168444/198542673-5535a8d6-c253-4d77-b1c0-2e0f328ec9bd.png)
-
+![image](https://user-images.githubusercontent.com/67168444/198542673-5535a8d6-c253-4d77-b1c0-2e0f328ec9bd.png)
 
 ## Documentation :memo:
 

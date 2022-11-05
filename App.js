@@ -10,12 +10,15 @@ import SettingsView from "./Screens/Settings";
 import EmergencyProtocols from "./Screens/EmergencyProtocols";
 import DayAgenda from "./Screens/DayAgenda";
 import EmergencyPage from "./Screens/EmergencyPage";
-import Microsoft from "./Screens/MicrosoftLogin";
-
+import Notifications from "./Screens/Notifications";
+import SnazzyLogin from "./Screens/SnazzyLogin";
 import EventsCalendar from "./Screens/EventsCalendar";
+import LoginMicrosoft from "./Screens/LoginMicrosoft";
+import { Doctors } from "./Screens/Doctors"
+import VoiceRecorder from "./Screens/VoiceRecorder";
+
 
 const Stack = createNativeStackNavigator();
-
 function App() {
   // This is the main function that will be called when the app is loaded
   return (
@@ -25,16 +28,35 @@ function App() {
           <Stack.Screen
             options={{ headerShown: false }}
             name="Login"
-            component={Login}
+            component={SnazzyLogin}
           />
         }
+        
+        <Stack.Screen
+          name="Schedule"
+          component={Schedule}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Schedule" component={Schedule} />
-        <Stack.Screen name="CalendarView" component={CalendarView} />
+         <Stack.Screen
+          name="Doctors"
+          component={Doctors}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="LoginMicrosoft"
+          component={LoginMicrosoft}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CalendarView"
+          component={CalendarView}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="SettingsView"
           component={SettingsView}
@@ -43,10 +65,33 @@ function App() {
         <Stack.Screen
           name="EmergencyProtocols"
           component={EmergencyProtocols}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="DayAgenda" component={DayAgenda} />
-        <Stack.Screen name="EmergencyPage" component={EmergencyPage} />
-        <Stack.Screen name="EventsCalendar" component={EventsCalendar} />
+        <Stack.Screen
+          name="DayAgenda"
+          component={DayAgenda}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EmergencyPage"
+          component={EmergencyPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EventsCalendar"
+          component={EventsCalendar}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="snazzyLogin"
+          component={SnazzyLogin}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
