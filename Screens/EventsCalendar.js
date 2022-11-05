@@ -16,7 +16,7 @@ import {
 import { Calendar } from "react-native-calendars";
 import { Provider } from "react-native-paper";
 import { firebase } from "../firebase";
-import { getCurrentDate } from "../HelperFunctions";
+import { getCurrentDate } from "../functions";
 import BottomSheet from "./BottomSheet";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Card, Avatar } from "react-native-paper";
