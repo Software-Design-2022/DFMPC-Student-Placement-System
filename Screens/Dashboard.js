@@ -850,7 +850,7 @@ const styles = StyleSheet.create({
   },
   webviewStyle: {
     borderRadius: 20,
-    height: 520,
+    height: 580,
     backgroundColor:"rgba(0,0,0,0)",
     top:0,
     left:-3,
