@@ -1,1 +1,27 @@
-{"ast":null,"code":"import React from 'react';\n\nvar useCombinedRefs = function useCombinedRefs() {\n  for (var _len = arguments.length, refs = new Array(_len), _key = 0; _key < _len; _key++) {\n    refs[_key] = arguments[_key];\n  }\n\n  var targetRef = React.useRef();\n  React.useEffect(function () {\n    refs.forEach(function (ref) {\n      if (!ref) {\n        return;\n      }\n\n      if (typeof ref === 'function') {\n        ref(targetRef.current);\n      } else {\n        ref.current = targetRef.current;\n      }\n    });\n  }, [refs]);\n  return targetRef;\n};\n\nexport default useCombinedRefs;","map":{"version":3,"names":["React","useCombinedRefs","refs","targetRef","useRef","useEffect","forEach","ref","current"],"sources":["C:/Users/Peace/Desktop/YOS3/SEMESTER 1/Software Design III/2022/Software Design Project/SPS-Project/DFMPC-Student-Placement-System/project/node_modules/react-native-calendars/src/commons/useCombinedRefs.js"],"sourcesContent":["import React from 'react';\nconst useCombinedRefs = (...refs) => {\n    const targetRef = React.useRef();\n    React.useEffect(() => {\n        refs.forEach(ref => {\n            if (!ref) {\n                return;\n            }\n            if (typeof ref === 'function') {\n                ref(targetRef.current);\n            }\n            else {\n                // @ts-expect-error\n                ref.current = targetRef.current;\n            }\n        });\n    }, [refs]);\n    return targetRef;\n};\nexport default useCombinedRefs;\n"],"mappings":"AAAA,OAAOA,KAAP,MAAkB,OAAlB;;AACA,IAAMC,eAAe,GAAG,SAAlBA,eAAkB,GAAa;EAAA,kCAATC,IAAS;IAATA,IAAS;EAAA;;EACjC,IAAMC,SAAS,GAAGH,KAAK,CAACI,MAAN,EAAlB;EACAJ,KAAK,CAACK,SAAN,CAAgB,YAAM;IAClBH,IAAI,CAACI,OAAL,CAAa,UAAAC,GAAG,EAAI;MAChB,IAAI,CAACA,GAAL,EAAU;QACN;MACH;;MACD,IAAI,OAAOA,GAAP,KAAe,UAAnB,EAA+B;QAC3BA,GAAG,CAACJ,SAAS,CAACK,OAAX,CAAH;MACH,CAFD,MAGK;QAEDD,GAAG,CAACC,OAAJ,GAAcL,SAAS,CAACK,OAAxB;MACH;IACJ,CAXD;EAYH,CAbD,EAaG,CAACN,IAAD,CAbH;EAcA,OAAOC,SAAP;AACH,CAjBD;;AAkBA,eAAeF,eAAf"},"metadata":{},"sourceType":"module"}
+{
+  "ast": null,
+  "code": "import React from 'react';\n\nvar useCombinedRefs = function useCombinedRefs() {\n  for (var _len = arguments.length, refs = new Array(_len), _key = 0; _key < _len; _key++) {\n    refs[_key] = arguments[_key];\n  }\n\n  var targetRef = React.useRef();\n  React.useEffect(function () {\n    refs.forEach(function (ref) {\n      if (!ref) {\n        return;\n      }\n\n      if (typeof ref === 'function') {\n        ref(targetRef.current);\n      } else {\n        ref.current = targetRef.current;\n      }\n    });\n  }, [refs]);\n  return targetRef;\n};\n\nexport default useCombinedRefs;",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "useCombinedRefs",
+      "refs",
+      "targetRef",
+      "useRef",
+      "useEffect",
+      "forEach",
+      "ref",
+      "current"
+    ],
+    "sources": [
+      "C:/Users/Peace/Desktop/YOS3/SEMESTER 1/Software Design III/2022/Software Design Project/SPS-Project/DFMPC-Student-Placement-System/project/node_modules/react-native-calendars/src/commons/useCombinedRefs.js"
+    ],
+    "sourcesContent": [
+      "import React from 'react';\nconst useCombinedRefs = (...refs) => {\n    const targetRef = React.useRef();\n    React.useEffect(() => {\n        refs.forEach(ref => {\n            if (!ref) {\n                return;\n            }\n            if (typeof ref === 'function') {\n                ref(targetRef.current);\n            }\n            else {\n                // @ts-expect-error\n                ref.current = targetRef.current;\n            }\n        });\n    }, [refs]);\n    return targetRef;\n};\nexport default useCombinedRefs;\n"
+    ],
+    "mappings": "AAAA,OAAOA,KAAP,MAAkB,OAAlB;;AACA,IAAMC,eAAe,GAAG,SAAlBA,eAAkB,GAAa;EAAA,kCAATC,IAAS;IAATA,IAAS;EAAA;;EACjC,IAAMC,SAAS,GAAGH,KAAK,CAACI,MAAN,EAAlB;EACAJ,KAAK,CAACK,SAAN,CAAgB,YAAM;IAClBH,IAAI,CAACI,OAAL,CAAa,UAAAC,GAAG,EAAI;MAChB,IAAI,CAACA,GAAL,EAAU;QACN;MACH;;MACD,IAAI,OAAOA,GAAP,KAAe,UAAnB,EAA+B;QAC3BA,GAAG,CAACJ,SAAS,CAACK,OAAX,CAAH;MACH,CAFD,MAGK;QAEDD,GAAG,CAACC,OAAJ,GAAcL,SAAS,CAACK,OAAxB;MACH;IACJ,CAXD;EAYH,CAbD,EAaG,CAACN,IAAD,CAbH;EAcA,OAAOC,SAAP;AACH,CAjBD;;AAkBA,eAAeF,eAAf"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
