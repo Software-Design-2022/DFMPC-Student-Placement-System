@@ -1,1 +1,24 @@
-{"ast":null,"code":"global.authUserID = \"\";\nglobal.authUserRef = \"\";\nglobal.authUser = \"\";\nglobal.authUserProfilePic = \"./images/user.png\";\nglobal.defaultProfilePic = \"./images/user.png\";\nglobal.authName = \"\";\nglobal.authLastName = \"\";\n\"https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png\";","map":{"version":3,"names":["global","authUserID","authUserRef","authUser","authUserProfilePic","defaultProfilePic","authName","authLastName"],"sources":["D:/repos/DFMPC-Student-Placement-System/global.js"],"sourcesContent":["global.authUserID = \"\";\r\nglobal.authUserRef = \"\";\r\nglobal.authUser = \"\";\r\nglobal.authUserProfilePic = \"./images/user.png\";\r\nglobal.defaultProfilePic = \"./images/user.png\";\r\nglobal.authName = \"\";\r\nglobal.authLastName = \"\";\r\n(\"https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png\");\r\n"],"mappings":"AAAAA,MAAM,CAACC,UAAP,GAAoB,EAApB;AACAD,MAAM,CAACE,WAAP,GAAqB,EAArB;AACAF,MAAM,CAACG,QAAP,GAAkB,EAAlB;AACAH,MAAM,CAACI,kBAAP,GAA4B,mBAA5B;AACAJ,MAAM,CAACK,iBAAP,GAA2B,mBAA3B;AACAL,MAAM,CAACM,QAAP,GAAkB,EAAlB;AACAN,MAAM,CAACO,YAAP,GAAsB,EAAtB;AACC,oGAAD"},"metadata":{},"sourceType":"script"}
+{
+  "ast": null,
+  "code": "global.authUserID = \"\";\nglobal.authUserRef = \"\";\nglobal.authUser = \"\";\nglobal.authUserProfilePic = \"./images/user.png\";\nglobal.defaultProfilePic = \"./images/user.png\";\nglobal.authName = \"\";\nglobal.authLastName = \"\";\n\"https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png\";",
+  "map": {
+    "version": 3,
+    "names": [
+      "global",
+      "authUserID",
+      "authUserRef",
+      "authUser",
+      "authUserProfilePic",
+      "defaultProfilePic",
+      "authName",
+      "authLastName"
+    ],
+    "sources": ["D:/repos/DFMPC-Student-Placement-System/global.js"],
+    "sourcesContent": [
+      "global.authUserID = \"\";\r\nglobal.authUserRef = \"\";\r\nglobal.authUser = \"\";\r\nglobal.authUserProfilePic = \"./images/user.png\";\r\nglobal.defaultProfilePic = \"./images/user.png\";\r\nglobal.authName = \"\";\r\nglobal.authLastName = \"\";\r\n(\"https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png\");\r\n"
+    ],
+    "mappings": "AAAAA,MAAM,CAACC,UAAP,GAAoB,EAApB;AACAD,MAAM,CAACE,WAAP,GAAqB,EAArB;AACAF,MAAM,CAACG,QAAP,GAAkB,EAAlB;AACAH,MAAM,CAACI,kBAAP,GAA4B,mBAA5B;AACAJ,MAAM,CAACK,iBAAP,GAA2B,mBAA3B;AACAL,MAAM,CAACM,QAAP,GAAkB,EAAlB;AACAN,MAAM,CAACO,YAAP,GAAsB,EAAtB;AACC,oGAAD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}
